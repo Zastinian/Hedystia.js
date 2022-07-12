@@ -6,7 +6,7 @@ const {
   verifyForStatusCode,
   verifyForJSONStatusCode,
 } = require("./CheckAPIError");
-const { apiUrl } = require("../Constant/DiscordEndpoints");
+const { apiUrl } = require("../Constant/DiscordEndPoints");
 
 class Requester extends null {
   static async create(
