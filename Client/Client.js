@@ -51,8 +51,8 @@ class Client extends EventEmitter {
 
     CacheFactory.addToClient(this, this.options.cache);
   }
-  login(token = process.env.DISCORD_TOKEN) {
-    if (!token) throw new Error("No se proporciona ningún token");
+  IniciarSesion(token = process.env.DISCORD_TOKEN) {
+    if (!token) throw new Error("No se proporciono ningún token");
 
     this.ping = -1;
     this.token = token;
@@ -84,7 +84,7 @@ class Client extends EventEmitter {
     this.cleanUp();
     this.emit("reconectando");
     this.api.should_resume = Boolean(this.api.sessionId);
-    this.login(this.token);
+    this.IniciarSesion(this.token);
   }
 
   _verifyOptions() {
