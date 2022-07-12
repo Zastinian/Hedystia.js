@@ -2,9 +2,9 @@
 
 const EventEmitter = require("node:events");
 
-const Heartbeater = require("./WS/Heartbeater");
+const Heartbeater = require("./ws/Heartbeater");
 
-const WebsocketManager = require("./WS/WebsocketManager");
+const WebsocketManager = require("./ws/WebsocketManager");
 const ActionManager = require("../Action/ActionManager");
 const CacheFactory = require("../Util/CacheFactory");
 const Intents = require("../Util/Intents");
