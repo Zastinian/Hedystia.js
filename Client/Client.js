@@ -5,9 +5,9 @@ const EventEmitter = require("node:events");
 const Heartbeater = require("./WS/Heartbeater");
 
 const WebsocketManager = require("./WS/WebsocketManager");
-const ActionManager = require("../Actions/ActionManager");
-const CacheFactory = require("../Utils/CacheFactory");
-const Intents = require("../Utils/Intents");
+const ActionManager = require("../Action/ActionManager");
+const CacheFactory = require("../Util/CacheFactory");
+const Intents = require("../Util/Intents");
 
 class Client extends EventEmitter {
   constructor(options = {}) {
