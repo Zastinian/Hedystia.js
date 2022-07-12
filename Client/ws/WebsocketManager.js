@@ -3,7 +3,7 @@
 const WebSocket = require("ws");
 const Heartbeater = require("./Heartbeater");
 const Parser = require("./Parser");
-const Endpoints = require("../../Constant/DiscordEndpoints");
+const Endpoints = require("../../Constant/DiscordEndPoints");
 
 class WebSocketManager {
   constructor(client) {
