@@ -1,0 +1,23 @@
+"use strict";
+
+exports.Client = require("./src/client/Client");
+exports.ClientUser = require("./src/structures/ClientUser");
+exports.CommandInteraction = require("./src/structures/CommandInteraction");
+exports.DataManager = require("./src/structures/DataManager");
+exports.Guild = require("./src/structures/Guild");
+exports.GuildMember = require("./src/structures/GuildMember");
+exports.Invite = require("./src/structures/Invite");
+exports.Message = require("./src/structures/Message");
+exports.MessageEmbed = require("./src/structures/MessageEmbed");
+exports.Role = require("./src/structures/Role");
+exports.TextChannel = require("./src/structures/TextChannel");
+exports.User = require("./src/structures/User");
+exports.ChannelManager = require("./src/managers/ChannelManager");
+exports.ChannelMessageManager = require("./src/managers/ChannelMessageManager");
+exports.EmojiManager = require("./src/managers/EmojiManager");
+exports.GuildChannelManager = require("./src/managers/GuildChannelManager");
+exports.GuildManager = require("./src/managers/GuildManager");
+exports.RoleManager = require("./src/managers/RoleManager");
+exports.UserManager = require("./src/managers/UserManager");
+exports.Utils = require("./src/utils/Utils");
+exports.version = require("./package.json").version;
