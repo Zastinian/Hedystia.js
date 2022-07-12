@@ -11,7 +11,7 @@ module.exports.handle = (client, data) => {
         client.guilds.cache.get(data.guild_id)
       );
       client.channels.cache.set(data.id, channel);
-      client.emit("canalCreado", channel);
+      client.emit("CanalCreado", channel);
       break;
     }
   }
