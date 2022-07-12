@@ -1,6 +1,6 @@
 {
   "name": "esmile",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Un cliente para discord",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "Zastinian#8451",
   "license": "ISC",
   "dependencies": {
+    "node-fetch": "^3.2.7",
     "ws": "^8.8.0"
   }
 }
