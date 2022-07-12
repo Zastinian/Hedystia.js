@@ -21,7 +21,7 @@ Intents.FLAGS = {
   ContenidoDelMensaje: 1 << 15,
   EventosProgramados: 1 << 16,
   ConfiguracionDeAutoModeracion: 1 << 20,
-  AutoModeracionAcciones: 1 << 21,
+  AccionesDeAutoModeracion: 1 << 21,
 };
 
 Intents.default =
