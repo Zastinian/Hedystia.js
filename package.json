@@ -1,0 +1,14 @@
+{
+  "name": "esmile",
+  "version": "1.0.0",
+  "description": "Un cliente para discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zastinian#8451",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.8.0"
+  }
+}
