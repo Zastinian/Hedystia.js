@@ -1,5 +1,6 @@
 const EventEmitter = require("node:events");
-const Intents = require("../Util/Intents");
+const { Error } = require("../Util/Errors");
+const Intents = require("../Uil/Intents");
 
 class Client extends EventEmitter {
   intents = 0;
