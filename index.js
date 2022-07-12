@@ -1,5 +1,4 @@
 "use strict";
-
 exports.Client = require("./Client/Client");
 exports.ClientUser = require("./Structure/ClientUser");
 exports.CommandInteraction = require("./Structure/CommandInteraction");
