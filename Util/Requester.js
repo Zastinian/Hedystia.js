@@ -64,7 +64,6 @@ class Requester extends null {
       fetchData.status,
       method
     );
-
     return json;
   }
 }
