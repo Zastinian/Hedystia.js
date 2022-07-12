@@ -23,7 +23,7 @@ class Requester extends null {
         Authorization: `Bot ${client.token}`,
         "Content-Type": "application/json",
         "User-Agent": `Cliente (https://github.com/Zastinian/Cliente-De-Discord/, ${
-          require("../../index").version
+          require("../index").version
         })`,
         ...headers,
       };
