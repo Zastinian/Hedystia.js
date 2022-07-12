@@ -2,7 +2,7 @@
 
 module.exports = {
   CrearInvitacion: 1 << 0,
-  Kickear: 1 << 1,
+  Expulsar: 1 << 1,
   Banear: 1 << 2,
   Administrador: 1 << 3,
   ManejarCanales: 1 << 4,
