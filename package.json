@@ -1,15 +1,16 @@
 {
   "name": "esmile",
-  "version": "0.0.3",
+  "version": "0.0.9",
   "description": "Un cliente para discord",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Zastinian#8451",
-  "license": "ISC",
+  "license": "Copyright",
   "dependencies": {
-    "node-fetch": "^3.2.7",
+    "form-data": "^4.0.0",
+    "node-fetch": "^3.2.8",
     "ws": "^8.8.0"
   }
 }
