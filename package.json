@@ -1,6 +1,6 @@
 {
   "name": "esmile",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Un cliente para discord",
   "main": "index.js",
   "scripts": {
