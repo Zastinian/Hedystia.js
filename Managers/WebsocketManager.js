@@ -42,7 +42,7 @@ class WebsocketManager extends WebSocket {
         case 1001:
           this.resume = true;
           if (this.resume == true) {
-            this.close(resume ? 4000 : 1000);
+            this.close(this.resume ? 4000 : 1000);
             this.send({
               op: Opcodes.IDENTIFY,
               d: {
@@ -72,7 +72,7 @@ class WebsocketManager extends WebSocket {
           );
           this.resume = true;
           if (this.resume == true) {
-            this.close(resume ? 4000 : 1000);
+            this.close(this.resume ? 4000 : 1000);
             this.send({
               op: Opcodes.IDENTIFY,
               d: {
@@ -96,7 +96,7 @@ class WebsocketManager extends WebSocket {
           );
           this.resume = true;
           if (this.resume == true) {
-            this.close(resume ? 4000 : 1000);
+            this.close(this.resume ? 4000 : 1000);
             this.send({
               op: Opcodes.IDENTIFY,
               d: {
@@ -120,7 +120,7 @@ class WebsocketManager extends WebSocket {
           );
           this.resume = true;
           if (this.resume == true) {
-            this.close(resume ? 4000 : 1000);
+            this.close(this.resume ? 4000 : 1000);
             this.send({
               op: Opcodes.IDENTIFY,
               d: {
@@ -152,7 +152,7 @@ class WebsocketManager extends WebSocket {
         default:
           this.resume = true;
           if (this.resume == true) {
-            this.close(resume ? 4000 : 1000);
+            this.close(this.resume ? 4000 : 1000);
             this.send({
               op: Opcodes.IDENTIFY,
               d: {
