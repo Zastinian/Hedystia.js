@@ -34,143 +34,24 @@ class WebsocketManager extends WebSocket {
         },
       },
     });
-
+    setInterval(() => {
+      this.close();
+      this.send({
+        op: Opcodes.IDENTIFY,
+        d: {
+          token: this.client.token,
+          intents: this.client.intents.toString(),
+          presence: this.client.presence,
+          properties: {
+            $os: process.platform,
+            $browser: "windows",
+            $device: "windows",
+          },
+        },
+      });
+    }, 7200000);
     const gatewayMessage = `[Websocket]: Info:\nURL: ${gatewayInfo.url}\nShards: ${gatewayInfo.shards}\nLogin Remaining: ${gatewayInfo.session_start_limit?.remaining}/1000\nReset: ${gatewayInfo.session_start_limit?.reset_after}`;
     this.client.emit("debug", gatewayMessage);
-    this.on("close", (code) => {
-      switch (code) {
-        case 1001:
-          this.resume = true;
-          if (this.resume == true) {
-            this.close(this.resume ? 4000 : 1000);
-            this.send({
-              op: Opcodes.IDENTIFY,
-              d: {
-                token: this.client.token,
-                intents: this.client.intents.toString(),
-                presence: this.client.presence,
-                properties: {
-                  $os: process.platform,
-                  $browser: "windows",
-                  $device: "windows",
-                },
-              },
-            });
-            this.resume = false;
-          }
-          break;
-        case 4004:
-          this.client.emit(
-            "debug",
-            "[DEBUG] Recibido 4004 [Token inválido], NO intento de reconexión."
-          );
-          throw new Error("APIError: Token inválido.");
-        case 4007:
-          this.client.emit(
-            "debug",
-            "[DEBUG] Recibido 4007 [Secuencia no válida], intento de reconexión..."
-          );
-          this.resume = true;
-          if (this.resume == true) {
-            this.close(this.resume ? 4000 : 1000);
-            this.send({
-              op: Opcodes.IDENTIFY,
-              d: {
-                token: this.client.token,
-                intents: this.client.intents.toString(),
-                presence: this.client.presence,
-                properties: {
-                  $os: process.platform,
-                  $browser: "windows",
-                  $device: "windows",
-                },
-              },
-            });
-            this.resume = false;
-          }
-          break;
-        case 4008:
-          this.client.emit(
-            "debug",
-            "[DEBUG] Recibido 4008 [Rate Limit], intentando reconectar..."
-          );
-          this.resume = true;
-          if (this.resume == true) {
-            this.close(this.resume ? 4000 : 1000);
-            this.send({
-              op: Opcodes.IDENTIFY,
-              d: {
-                token: this.client.token,
-                intents: this.client.intents.toString(),
-                presence: this.client.presence,
-                properties: {
-                  $os: process.platform,
-                  $browser: "windows",
-                  $device: "windows",
-                },
-              },
-            });
-            this.resume = false;
-          }
-          break;
-        case 4009:
-          this.client.emit(
-            "debug",
-            "[DEBUG] Recibido 4009 [Tiempo de espera de la sesión], intentando reconectar..."
-          );
-          this.resume = true;
-          if (this.resume == true) {
-            this.close(this.resume ? 4000 : 1000);
-            this.send({
-              op: Opcodes.IDENTIFY,
-              d: {
-                token: this.client.token,
-                intents: this.client.intents.toString(),
-                presence: this.client.presence,
-                properties: {
-                  $os: process.platform,
-                  $browser: "windows",
-                  $device: "windows",
-                },
-              },
-            });
-            this.resume = false;
-          }
-          break;
-        case 4013:
-          this.client.emit(
-            "debug",
-            "[DEBUG] Recibido 4013 [Invalid Intents], NO intento de reconexión."
-          );
-          throw new Error("APIError: Intents invalidos.");
-        case 4014:
-          this.client.emit(
-            "debug",
-            "[DEBUG] Recibido 4013 [Intents desactuvados], NO intento de reconexión."
-          );
-          throw new Error("APIError: Intents desactivados.");
-        default:
-          this.resume = true;
-          if (this.resume == true) {
-            this.close(this.resume ? 4000 : 1000);
-            this.send({
-              op: Opcodes.IDENTIFY,
-              d: {
-                token: this.client.token,
-                intents: this.client.intents.toString(),
-                presence: this.client.presence,
-                properties: {
-                  $os: process.platform,
-                  $browser: "windows",
-                  $device: "windows",
-                },
-              },
-            });
-            this.resume = false;
-          }
-          break;
-      }
-    });
     return this._handleConnect();
   }
 
