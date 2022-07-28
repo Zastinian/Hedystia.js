@@ -25,7 +25,7 @@ class Client extends EventEmitter {
     this.intents = new Intents(options.intents ?? Intents.FLAGS.GUILDS);
     this.token = options.user ? `${options.token}` : `Bot ${options.token}`;
     this.presence = Client.transformPresence(options.presence);
-    this.version = options.version ?? "9";
+    this.version = options.version ?? "10";
     this.encoding = options.encoding ?? "json";
     this.restRequestTimeout = options.timeout ?? 1000 * 15;
     this.partials = options.partials ?? [];
