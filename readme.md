@@ -11,7 +11,7 @@
 ## Enlaces
 
 - [Documentacion](https://discord.gg/ZggF6k7FEc) [Cuando el cliente este listo]
-- [Servidor de Discord](https://discord.gg/ZggF6k7FEc) [Unete para estar informado de todo]
+- [Servidor de Discord](https://discord.gg/YtMrX3uNJy) [Unete para estar informado de todo]
 
 ## Encargados
 
