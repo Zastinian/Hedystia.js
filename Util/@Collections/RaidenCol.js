@@ -82,7 +82,6 @@ class RaidenCol extends Map {
       return keys?.some((o) => super.has(o));
     }
   }
-
   some(fn) {
     for (const [key, val] of this.entries()) {
       if (fn(key, val)) return true;
@@ -90,14 +89,12 @@ class RaidenCol extends Map {
 
     return false;
   }
-
   random() {
     let array = Array.from(this.values())[
       Math.floor(Math.random() * this.size)
     ];
     return array;
   }
-
   get(k) {
     return super.get(k);
   }
@@ -111,11 +108,9 @@ class RaidenCol extends Map {
     this.forEach(fn);
     return this;
   }
-
   randomKey() {
     return Array.from(this.keys())[Math.floor(Math.random() * this.size)];
   }
-
   equals(collection) {
     if (!collection) return false;
     if (this.size !== collection.size) return false;
@@ -125,20 +120,17 @@ class RaidenCol extends Map {
     }
     return true;
   }
-
   difference(collection) {
     if (this.size !== collection.size)
       return `size difference by: ${Math.abs(this.size - collection.size)}`;
     return Array.from(collection.keys()).filter((value) => !this.has(value));
   }
-
   findKey(fn) {
     for (let [key, val] of this) {
       if (fn(key, val)) return key;
     }
     return this;
   }
-
   sort(fn = RaidenCol.compareFunction) {
     const entries = [...this.entries()];
     entries.sort((a, b) => fn(a[1], b[1], a[0], b[0]));
@@ -148,16 +140,13 @@ class RaidenCol extends Map {
     }
     return this;
   }
-
   clear() {
     return super.clear();
   }
-
   at(index = 0) {
     const collectionArr = this.array();
     return collectionArr[index];
   }
-
   static compareFunction(one, two) {
     return Number(one > two || one === two) - 1;
   }
