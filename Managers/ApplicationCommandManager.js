@@ -101,7 +101,9 @@ class ApplicationCommandManager extends Base {
     const commandId = typeof command === "string" ? command : command?.id;
     const guildId = typeof guild === "string" ? guild : guild?.id;
     if (!commandId)
-      throw new RangeError(`Please specify an ApplicationCommand to delete`);
+      throw new RangeError(
+        `Por favor, especifique un ApplicationCommand para eliminar`
+      );
     const deletedCommand = this._add(command, guildId);
     await this.client.api.delete(
       `${this.client.root}/applications/${this.client.user.id}${
@@ -116,7 +118,8 @@ class ApplicationCommandManager extends Base {
   async edit(command, options = {}, guild = this.guildId) {
     const body = ApplicationCommandManager.transformPayload(options);
     const commandId = typeof command === "string" ? command : command?.id;
-    if (!commandId) throw new RangeError(`Application Command is required`);
+    if (!commandId)
+      throw new RangeError(`Se requiere el comando de aplicación`);
     const guildId = typeof guild === "string" ? guild : guild?.id;
     command = await this.client.api.patch(
       `${this.client.root}/applications/${this.client.user.id}${
@@ -158,13 +161,13 @@ class ApplicationCommandManager extends Base {
   }
 
   static transformPayload(payload = {}) {
-    if (!payload.name) throw new RangeError(`Please specify a name`);
+    if (!payload.name) throw new RangeError(`Por favor, especifique un nombre`);
     if (payload.name?.length > 32 || payload.name?.length < 1)
-      throw new RangeError(`Name must be between 1-32`);
+      throw new RangeError(`El nombre debe estar entre 1-32`);
     if (!payload.description && [1, "CHAT_INPUT"].includes(payload.type))
-      throw new RangeError(`Description is required`);
+      throw new RangeError(`La descripción es necesaria`);
     if (payload.description?.length > 100 || payload.description?.length < 1)
-      throw new RangeError(`Description must be between 1-100`);
+      throw new RangeError(`La descripción debe estar entre 1-100`);
     if (
       ["USER", "MESSAGE", 2, 3].includes(payload.type) &&
       (payload.description || payload.options?.length >= 1)

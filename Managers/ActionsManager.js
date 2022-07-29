@@ -65,7 +65,7 @@ class ActionsManager {
     if (message.op === Opcodes.HEARTBEAT_ACK)
       this.client.emit(
         "debug",
-        `[Heartbeat Acknowledged]: Successfully acknowledged heartbeat. Sending next heartbeat at ${this.client.heartbeatInterval}ms`
+        `[Heartbeat Acknowledged]: Reconocido con éxito el latido del corazón. Enviando el siguiente latido en ${this.client.heartbeatInterval}ms`
       );
     this.client.seq = message.s;
     switch (message.t) {
