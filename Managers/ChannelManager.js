@@ -244,7 +244,7 @@ class ChannelManager extends Base {
       );
     }
 
-    throw new RangeError(`Channel not found in cache`);
+    throw new RangeError(`Canal no encontrado en la caché`);
   }
 
   get cache() {
