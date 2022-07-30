@@ -29,27 +29,15 @@ class WebsocketManager extends WebSocket {
         presence: this.client.presence,
         properties: {
           $os: process.platform,
-          $browser: "esmile",
-          $device: "esmile",
         },
       },
     });
-    setInterval(() => {
-      this.close();
-      this.send({
-        op: Opcodes.IDENTIFY,
-        d: {
-          token: this.client.token,
-          intents: this.client.intents.toString(),
-          presence: this.client.presence,
-          properties: {
-            $os: process.platform,
-            $browser: "windows",
-            $device: "windows",
-          },
-        },
-      });
-    }, 7200000);
+    this.send({
+      op: Opcodes.RESUME,
+    });
+    this.send({
+      op: Opcodes.RECONNECT,
+    });
     const gatewayMessage = `[Websocket]: Info:\nURL: ${gatewayInfo.url}\nShards: ${gatewayInfo.shards}\nLogin Remaining: ${gatewayInfo.session_start_limit?.remaining}/1000\nReset: ${gatewayInfo.session_start_limit?.reset_after}`;
     this.client.emit("debug", gatewayMessage);
     return this._handleConnect();
