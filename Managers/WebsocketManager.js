@@ -29,8 +29,8 @@ class WebsocketManager extends WebSocket {
         presence: this.client.presence,
         properties: {
           $os: process.platform,
-          $browser: "windows",
-          $device: "windows",
+          $browser: "esmile",
+          $device: "esmile",
         },
       },
     });
