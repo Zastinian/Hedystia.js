@@ -157,7 +157,10 @@ class Client extends EventEmitter {
   }
 
   async fetchGuildTemplate(code) {
-    if (!code) throw new RangeError(`Guild Template code is required!`);
+    if (!code)
+      throw new RangeError(
+        `Se requiere el código de la plantilla del servidor!`
+      );
     if (/^(http(s)?)/gi.test(code))
       code = code.slice(code.lastIndexOf("/") + 1);
     code = typeof code === "string" ? code : code.code;
