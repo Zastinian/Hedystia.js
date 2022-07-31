@@ -414,12 +414,12 @@ function createEnum(keys) {
   return obj;
 }
 
-module.exports.InviteTargetTypesEnums = {
+module.exports.InviteTargetTypes = {
   STREAM: 1,
   EMBEDDED_APPLICATION: 2,
 };
 
-module.exports.OverwriteTypeEnums = {
+module.exports.OverwriteType = {
   ROLE: 0,
   MEMBER: 1,
 };
@@ -485,7 +485,7 @@ module.exports.Colors = {
   NOT_QUITE_BLACK: 0x23272a,
 };
 
-module.exports.ActivityEnums = {
+module.exports.Activity = {
   PLAYING: 0,
   STREAMING: 1,
   LISTENING: 2,
@@ -494,7 +494,7 @@ module.exports.ActivityEnums = {
   COMPETING: 5,
 };
 
-module.exports.StatusEnums = {
+module.exports.Status = {
   ONLINE: "online",
   DND: "dnd",
   IDLE: "idle",
@@ -502,7 +502,7 @@ module.exports.StatusEnums = {
   OFFLINE: "offline",
 };
 
-module.exports.ButtonStyleEnums = {
+module.exports.ButtonStyle = {
   PRIMARY: 1,
   SECONDARY: 2,
   SUCCESS: 3,
@@ -510,7 +510,7 @@ module.exports.ButtonStyleEnums = {
   LINK: 5,
 };
 
-module.exports.InputTextStyleEnums = {
+module.exports.InputTextStyle = {
   SHORT: 1,
   PARAGRAPH: 2,
 };
@@ -523,7 +523,7 @@ module.exports.ApiVersion = {
   V10: 10,
 };
 
-module.exports.ApplicationCommandTypeEnums = {
+module.exports.ApplicationCommandType = {
   CHAT_INPUT: 1,
   USER: 2,
   MESSAGE: 3,

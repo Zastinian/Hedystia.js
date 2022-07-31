@@ -31,16 +31,15 @@ exports.SlashSubCommands = require("./Builders/Slash/SlashSubCommands");
 exports.SlashSubCommandGroups = require("./Builders/Slash/SlashSubCommandGroup");
 exports.Util = require("./Util/Util");
 exports.ComponentTypes = require("./Util/Constants").ComponentTypes;
-exports.ActivityEnums = require("./Util/Constants").ActivityEnums;
-exports.StatusEnums = require("./Util/Constants").StatusEnums;
+exports.Activity = require("./Util/Constants").Activity;
+exports.Status = require("./Util/Constants").Status;
 exports.Colors = require("./Util/Constants").Colors;
-exports.ButtonStyleEnums = require("./Util/Constants").ButtonStyleEnums;
-exports.InputTextStyleEnums = require("./Util/Constants").InputTextStyleEnums;
+exports.ButtonStyle = require("./Util/Constants").ButtonStyle;
+exports.InputTextStyle = require("./Util/Constants").InputTextStyle;
 exports.ApiVersion = require("./Util/Constants").ApiVersion;
-exports.ApplicationCommandTypeEnums =
-  require("./Util/Constants").ApplicationCommandTypeEnums;
-exports.InviteTargetTypesEnums =
-  require("./Util/Constants").InviteTargetTypesEnums;
+exports.ApplicationCommandType =
+  require("./Util/Constants").ApplicationCommandType;
+exports.InviteTargetTypes = require("./Util/Constants").InviteTargetTypes;
 exports.Opcodes = require("./Util/Constants").Opcodes;
 exports.WebhookClient = require("./Structures/WebhookClient");
 exports.InteractionWebhook = require("./Structures/InteractionWebhook");
