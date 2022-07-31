@@ -63,7 +63,9 @@ class Embed {
     if (!this.fields) {
       this.fields = "";
     }
+    this.validation();
     const embed = {
+      type: "rich",
       title: this.title,
       description: this.description,
       url: this.url,
@@ -86,6 +88,25 @@ class Embed {
       },
     };
     return embed;
+  }
+  validation() {
+    if (!this.title && !this.description)
+      throw new RangeError(
+        `El embed no debe estar vacío, necesita al menos un título o una descripción`
+      );
+    if (this.title.length > 256)
+      throw new RangeError(
+        `El título debe ser inferior o igual a 256 caracteres`
+      );
+    if (typeof this.title !== "string" && this.title)
+      throw new TypeError(`El título debe ser un string`);
+    if (typeof this.description !== "string" && this.description)
+      throw new TypeError(`La descripción debe ser un string`);
+    if (this.description.length > 4096)
+      throw new RangeError(
+        `La descripción debe ser menor o igual a 4096 caracteres. Received=${this.description.length}`
+      );
+    return;
   }
 }
 
