@@ -1,5 +1,5 @@
 {
-  "name": "esmile",
+  "name": "esmileclient",
   "version": "0.0.1-dev.11",
   "description": "Un cliente para discord",
   "main": "index.js",
@@ -12,5 +12,9 @@
   },
   "engines": {
     "node": ">=16.9.0"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "https://github.com/Zastinian/EsmileClient"
 }
