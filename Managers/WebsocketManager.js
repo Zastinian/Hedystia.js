@@ -32,12 +32,6 @@ class WebsocketManager extends WebSocket {
         },
       },
     });
-    this.send({
-      op: Opcodes.RESUME,
-    });
-    this.send({
-      op: Opcodes.RECONNECT,
-    });
     const gatewayMessage = `[Websocket]: Info:\nURL: ${gatewayInfo.url}\nShards: ${gatewayInfo.shards}\nLogin Remaining: ${gatewayInfo.session_start_limit?.remaining}/1000\nReset: ${gatewayInfo.session_start_limit?.reset_after}`;
     this.client.emit("debug", gatewayMessage);
     return this._handleConnect();
