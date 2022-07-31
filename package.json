@@ -1,6 +1,6 @@
 {
-  "name": "esmileclient",
-  "version": "0.0.1-dev.11",
+  "name": "@Zastinian/EsmileClient",
+  "version": "0.0.1-dev.1",
   "description": "Un cliente para discord",
   "main": "index.js",
   "author": "Zastinian#8451",
