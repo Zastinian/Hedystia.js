@@ -14,9 +14,6 @@ class GuildMember extends Base {
         value: data.permissions,
       },
     });
-    this.username = data.user.username;
-    this.discriminator = data.user.discriminator;
-    this.tag = `${data.user.username}#${data.user.discriminator}`;
     this.partial = data.partial ?? false;
     this.banner = data.banner ?? null;
     this.id = data.id ?? data.user?.id ?? null;
