@@ -2,6 +2,7 @@ const GuildMemberRoleManager = require("../Managers/GuildMemberRoleManager");
 const Permissions = require("../Util/Permissions");
 const Base = require("../Base/base");
 const GuildMemberFlags = require("../Util/GuildMemberFlags");
+const Bitfield = require("../Util/Bitfield");
 class GuildMember extends Base {
   constructor(data = {}, guildId, client) {
     super(client);
@@ -118,6 +119,11 @@ class GuildMember extends Base {
     const permissions = new Permissions(this._permissions ? BigInt(this._permissions) : 0n);
     this.roles.cache.mapVal((o) => permissions.add(o.permissions.bitfield));
     return permissions.freeze();
+  }
+
+  permissionHas(perm) {
+    const permission = Permissions.Flags[perm];
+    return new Bitfield(this.permissions).has(permission);
   }
 
   get user() {
