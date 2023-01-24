@@ -6,15 +6,12 @@ class RoleFlags extends Bitfield {
   }
 }
 
-RoleFlags.FLAGS = {
-  IN_PROMPT: 1n << 0n,
+RoleFlags.Flags = {
+  In_Prompt: 1n << 0n,
 };
 
-RoleFlags.DEFAULT = 0n;
+RoleFlags.Default = 0n;
 
-RoleFlags.ALL = Object.values(RoleFlags.FLAGS).reduce(
-  (a, b) => a | b,
-  RoleFlags.DEFAULT
-);
+RoleFlags.All = Object.values(RoleFlags.Flags).reduce((a, b) => a | b, RoleFlags.Default);
 
 module.exports = RoleFlags;

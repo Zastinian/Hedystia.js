@@ -1,13 +1,18 @@
 const ActivityFlags = require("../Util/ActivityFlags");
-const { ActivityType } = require("../Util/Constants");
+const {ActivityType} = require("../Util/Constants");
 const Base = require("../Base/base");
+/* It's a class that represents a user's activity */
 class Activity extends Base {
+  /**
+   * It takes in a data object and a client object, and then it sets the properties of the Activity
+   * object to the values of the data object
+   * @param [data] - The data that was sent from the Discord API.
+   * @param client - DiscordClient
+   */
   constructor(data = {}, client) {
     super(client);
     this.name = data.name ?? undefined;
-    this.type =
-      (typeof data.type === "number" ? ActivityType[data.type] : data.type) ??
-      undefined;
+    this.type = (typeof data.type === "number" ? ActivityType[data.type] : data.type) ?? undefined;
     this.url = data.url ?? undefined;
     this.createdAt = data.created_at ? new Date(data.created_at) : undefined;
     this.createdTimestamp = this.createdAt?.getTime() ?? undefined;
@@ -58,6 +63,10 @@ class Activity extends Base {
     this.buttons = data.buttons ?? [];
   }
 
+  /**
+   * It takes the enum value and returns the string value.
+   * @returns The object literal is being returned.
+   */
   toJSON() {
     return {
       name: this.name,

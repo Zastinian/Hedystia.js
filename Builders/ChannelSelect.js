@@ -1,7 +1,7 @@
-const { ComponentType } = require("../Util/Constants");
+const {ComponentType} = require("../Util/Constants");
 class ChannelSelect {
   constructor(data = {}) {
-    this.type = "CHANNEL_SELECT";
+    this.type = "Channel_Select";
     this.customId = data.custom_id ?? data.customId ?? undefined;
     this.options = data.options?.map((o) => ChannelSelect.transformOptions(o));
     this.placeholder = data.placeholder ?? undefined;

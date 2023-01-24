@@ -1,4 +1,4 @@
-const { ComponentType } = require("../Util/Constants");
+const {ComponentType} = require("../Util/Constants");
 const MessageButton = require("./MessageButton");
 const InputText = require("./InputText");
 const StringSelect = require("./StringSelect");
@@ -7,15 +7,12 @@ const RoleSelect = require("./RoleSelect");
 const ChannelSelect = require("./ChannelSelect");
 class MessageActionRow {
   constructor(data = {}) {
-    this.type = "ACTION_ROW";
-    this.components = data.components?.map((o) =>
-      MessageActionRow.transformComponents(o)
-    );
+    this.type = "Action_Row";
+    this.components = data.components?.map((o) => MessageActionRow.transformComponents(o));
   }
 
   static transformComponents(data) {
-    const type =
-      typeof data.type === "string" ? ComponentType[data.type] : data.type;
+    const type = typeof data.type === "string" ? ComponentType[data.type] : data.type;
     let arr = [];
     switch (type) {
       case 2:
@@ -44,13 +41,9 @@ class MessageActionRow {
   addComponents(...components) {
     this.components = [];
     if (Array.isArray(components[0])) {
-      components[0]?.map((o) =>
-        this.components.push(MessageActionRow.transformComponents(o))
-      );
+      components[0]?.map((o) => this.components.push(MessageActionRow.transformComponents(o)));
     } else {
-      components?.map((o) =>
-        this.components.push(MessageActionRow.transformComponents(o))
-      );
+      components?.map((o) => this.components.push(MessageActionRow.transformComponents(o)));
     }
 
     return this;
@@ -58,21 +51,16 @@ class MessageActionRow {
 
   setComponents(...components) {
     if (Array.isArray(components[0])) {
-      this.components = components[0]?.map((o) =>
-        MessageActionRow.transformComponents(o)
-      );
+      this.components = components[0]?.map((o) => MessageActionRow.transformComponents(o));
     } else {
-      this.components = components?.map((o) =>
-        MessageActionRow.transformComponents(o)
-      );
+      this.components = components?.map((o) => MessageActionRow.transformComponents(o));
     }
 
     return this;
   }
 
   validation() {
-    if (!ComponentType[this.type])
-      throw new TypeError(`ComponentType is invalid`);
+    if (!ComponentType[this.type]) throw new TypeError(`ComponentType is invalid`);
     return;
   }
 

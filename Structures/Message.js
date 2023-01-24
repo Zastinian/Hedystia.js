@@ -1,11 +1,11 @@
 const MessageFlags = require("../Util/MessageFlags");
 const MessageActionRow = require("../Builders/MessageActionRow");
 const MessageEmbed = require("../Builders/MessageEmbed");
-const { MessageType } = require("../Util/Constants");
+const {MessageType} = require("../Util/Constants");
 const Snowflake = require("../Util/Snowflake");
 const Base = require("../Base/base");
 const MessageReference = require("./MessageReference");
-const { RaidenCol } = require("../Util/@Collections/RaidenCol");
+const {RaidenCol} = require("../Util/@Collections/RaidenCol");
 const MessageAttachment = require("../Builders/MessageAttachment");
 const MessageMentions = require("./MessageMentions");
 const PartialSticker = require("./PartialSticker");
@@ -17,9 +17,7 @@ class Message extends Base {
       value: data.author,
     });
     this.partial = data.partial ?? false;
-    this.type =
-      (typeof data.type === "number" ? MessageType[data.type] : data.type) ??
-      null;
+    this.type = (typeof data.type === "number" ? MessageType[data.type] : data.type) ?? null;
     this.id = data.id ?? null;
     this.channelId = channelId;
     this.guildId = guildId ?? null;
@@ -29,39 +27,19 @@ class Message extends Base {
         force: true,
       }) ?? null;
     this.content = data.content ?? null;
-    this.createdAt = data.id
-      ? new Date(Snowflake.deconstruct(this.id).timestamp)
-      : null;
+    this.createdAt = data.id ? new Date(Snowflake.deconstruct(this.id).timestamp) : null;
     this.createdTimestamp = this.createdAt?.getTime() ?? null;
-    this.editedAt = data.edited_timestamp
-      ? new Date(data.edited_timestamp)
-      : null;
+    this.editedAt = data.edited_timestamp ? new Date(data.edited_timestamp) : null;
     this.editedTimestamp = this.editedAt?.getTime() ?? null;
     this.tts = data.tts ?? null;
     this.nonce = data.nonce ?? null;
-    this.reference = data.message_reference
-      ? new MessageReference(data.message_reference, this.client)
-      : null;
+    this.reference = data.message_reference ? new MessageReference(data.message_reference, this.client) : null;
     this.embeds = data.embeds?.map((o) => new MessageEmbed(o)) ?? [];
-    this.components =
-      data.components?.map((o) => new MessageActionRow(o)) ?? [];
+    this.components = data.components?.map((o) => new MessageActionRow(o)) ?? [];
     this.flags = new MessageFlags(data.flags ? BigInt(data.flags) : 0n);
-    this.attachments = new RaidenCol(
-      data.attachments?.map((o) => [
-        o.id,
-        new MessageAttachment(o.url, o, o.filename),
-      ])
-    );
-    this.stickers = new RaidenCol(
-      data.sticker_items?.map((o) => [o.id, new PartialSticker(o, this.client)])
-    );
-    this.reactions = new ReactionManager(
-      data.reactions,
-      this.id,
-      this.channelId,
-      this.guildId,
-      this.client
-    );
+    this.attachments = new RaidenCol(data.attachments?.map((o) => [o.id, new MessageAttachment(o.url, o, o.filename)]));
+    this.stickers = new RaidenCol(data.sticker_items?.map((o) => [o.id, new PartialSticker(o, this.client)]));
+    this.reactions = new ReactionManager(data.reactions, this.id, this.channelId, this.guildId, this.client);
     this.thread = this.client.channels._add(data.thread) ?? null;
     this.mentions = new MessageMentions(
       {
@@ -104,23 +82,20 @@ class Message extends Base {
   }
 
   async removeEmbeds() {
-    return await this.edit({ flags: MessageFlags.FLAGS.SUPPRESS_EMBEDS });
+    return await this.edit({flags: MessageFlags.Flags.Suppress_Embeds});
   }
 
   async removeAttachments() {
-    if (this.attachments.size < 1)
-      throw new RangeError(`No hay archivos adjuntos en este mensaje`);
-    return await this.edit({ attachments: [] });
+    if (this.attachments.size < 1) throw new RangeError(`No hay archivos adjuntos en este mensaje`);
+    return await this.edit({attachments: []});
   }
 
   async removeAttachment(attachment) {
     if (!attachment) return await this.removeAttachments();
-    const attachmentId =
-      typeof attachment === "string" ? attachment : attachment.id;
-    if (!this.attachments.has(attachmentId))
-      throw new RangeError(`Este mensaje no tiene este adjunto`);
+    const attachmentId = typeof attachment === "string" ? attachment : attachment.id;
+    if (!this.attachments.has(attachmentId)) throw new RangeError(`Este mensaje no tiene este adjunto`);
     this.attachments.delete(attachmentId);
-    return await this.edit({ attachments: [...this.attachments.values()] });
+    return await this.edit({attachments: [...this.attachments.values()]});
   }
 
   async reply(options = {}) {
@@ -150,15 +125,7 @@ class Message extends Base {
 
   get system() {
     if (!this.type) return null;
-    if (
-      ![
-        "DEFAULT",
-        "REPLY",
-        "APPLICATION_COMMAND",
-        "CONTEXT_MENU_COMMAND",
-      ].includes(this.type)
-    )
-      return true;
+    if (!["DEFAULT", "REPLY", "APPLICATION_COMMAND", "CONTEXT_MENU_COMMAND"].includes(this.type)) return true;
     return false;
   }
 
@@ -169,12 +136,7 @@ class Message extends Base {
 
   equals(message) {
     if (!(message instanceof Message)) return null;
-    return (
-      this.partial === message.partial &&
-      this.type === message.type &&
-      this.guildId === message.guildId &&
-      this.content === message.content
-    );
+    return this.partial === message.partial && this.type === message.type && this.guildId === message.guildId && this.content === message.content;
   }
 
   get author() {
@@ -182,27 +144,21 @@ class Message extends Base {
   }
 
   async createThread(options = {}) {
-    const { reason } = options;
+    const {reason} = options;
     const body = {
       name: options.name ?? undefined,
       auto_archive_duration: options.autoArchiveDuration ?? undefined,
       rate_limit_per_user: options.ratelimit ?? undefined,
     };
 
-    const thread = await this.client.api.post(
-      `${this.client.root}/channels/${this.channelId}/messages/${this.id}/threads`,
-      { reason, body }
-    );
+    const thread = await this.client.api.post(`${this.client.root}/channels/${this.channelId}/messages/${this.id}/threads`, {reason, body});
     return this.client.channels._add(thread, this.guildId);
   }
 
   async addAttachments(attachments = []) {
-    if (this.attachments.size <= 0)
-      throw new RangeError(`Este mensaje no tiene archivos adjuntos`);
+    if (this.attachments.size <= 0) throw new RangeError(`Este mensaje no tiene archivos adjuntos`);
     if (this.attachments.some((o) => attachments.includes(o.id)))
-      throw new RangeError(
-        `Este mensaje ya tiene uno de sus archivos adjuntos especificados`
-      );
+      throw new RangeError(`Este mensaje ya tiene uno de sus archivos adjuntos especificados`);
     return await this.edit({
       attachments: [...this.attachments.values()],
       files: attachments,

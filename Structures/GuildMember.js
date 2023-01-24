@@ -27,18 +27,13 @@ class GuildMember extends Base {
     );
     this.joinedAt = data.joined_at ? new Date(data.joined_at) : null;
     this.joinedTimestamp = this.joinedAt?.getTime() ?? null;
-    this.premiumSince = data.premium_since
-      ? new Date(data.premium_since)
-      : null;
+    this.premiumSince = data.premium_since ? new Date(data.premium_since) : null;
     this.premiumSinceTImestamp = this.premiumSince?.getTime() ?? null;
     this.deaf = data.deaf ?? null;
     this.mute = data.mute ?? null;
     this.pending = data.pending ?? null;
-    this.communicationDisabledUntil = data.communication_disabled_until
-      ? new Date(data.communication_disabled_until)
-      : null;
-    this.communicationDisabledUntilTimestamp =
-      this.communicationDisabledUntil?.getTime() ?? null;
+    this.communicationDisabledUntil = data.communication_disabled_until ? new Date(data.communication_disabled_until) : null;
+    this.communicationDisabledUntilTimestamp = this.communicationDisabledUntil?.getTime() ?? null;
     this.guildId = guildId;
     this.flags = new GuildMemberFlags(data.flags ? BigInt(data.flags) : 0n);
   }
@@ -71,23 +66,23 @@ class GuildMember extends Base {
   }
 
   async setNickname(nickname, reason) {
-    return await this.edit({ nickname, reason });
+    return await this.edit({nickname, reason});
   }
 
   async setMute(mute, reason) {
-    return await this.edit({ mute, reason });
+    return await this.edit({mute, reason});
   }
 
   async setDeaf(deaf, reason) {
-    return await this.edit({ deaf, reason });
+    return await this.edit({deaf, reason});
   }
 
   async setChannel(channel, reason) {
-    return await this.edit({ channel, reason });
+    return await this.edit({channel, reason});
   }
 
   async setCommunicationDisabled(timeout, reason) {
-    return await this.edit({ timeout, reason });
+    return await this.edit({timeout, reason});
   }
 
   get guild() {
@@ -96,32 +91,16 @@ class GuildMember extends Base {
 
   bannerURL(options = {}) {
     if (!this.banner) return this.user?.bannerURL(options);
-    return this.client.cdn.GuildMemberBanner(
-      this.banner,
-      options.dynamic,
-      options.size,
-      options.format,
-      this.id,
-      this.guildId
-    );
+    return this.client.cdn.GuildMemberBanner(this.banner, options.dynamic, options.size, options.format, this.id, this.guildId);
   }
 
   displayAvatarURL(options = {}) {
     if (!this.avatar) return this.user.displayAvatarURL(options);
-    return this.client.cdn.GuildMemberAvatar(
-      this.avatar,
-      options.dynamic,
-      options.size,
-      options.format,
-      this.id,
-      this.guildId
-    );
+    return this.client.cdn.GuildMemberAvatar(this.avatar, options.dynamic, options.size, options.format, this.id, this.guildId);
   }
 
   permissionsIn(channel) {
-    channel = this.client.channels.cache.get(
-      typeof channel === "string" ? channel : channel?.id
-    );
+    channel = this.client.channels.cache.get(typeof channel === "string" ? channel : channel?.id);
     if (channel) return channel.permissionsFor(this);
     throw new RangeError(`Channel not cached.`);
   }
@@ -135,11 +114,8 @@ class GuildMember extends Base {
   }
 
   get permissions() {
-    if (this.guild?.ownerId === this.id)
-      return new Permissions(Permissions.ALL).freeze();
-    const permissions = new Permissions(
-      this._permissions ? BigInt(this._permissions) : 0n
-    );
+    if (this.guild?.ownerId === this.id) return new Permissions(Permissions.All).freeze();
+    const permissions = new Permissions(this._permissions ? BigInt(this._permissions) : 0n);
     this.roles.cache.mapVal((o) => permissions.add(o.permissions.bitfield));
     return permissions.freeze();
   }

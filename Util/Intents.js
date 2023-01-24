@@ -6,33 +6,30 @@ class Intents extends Bitfield {
   }
 }
 
-Intents.FLAGS = {
-  GUILDS: 1n << 0n,
-  GUILD_MEMBERS: 1n << 1n,
-  GUILD_BANS: 1n << 2n,
-  GUILD_EMOJIS_AND_STICKERS: 1n << 3n,
-  GUILD_INTEGRATIONS: 1n << 4n,
-  GUILD_WEBHOOKS: 1n << 5n,
-  GUILD_INVITES: 1n << 6n,
-  GUILD_VOICE_STATES: 1n << 7n,
-  GUILD_PRESENCES: 1n << 8n,
-  GUILD_MESSAGES: 1n << 9n,
-  GUILD_MESSAGE_REACTIONS: 1n << 10n,
-  GUILD_MESSAGE_TYPING: 1n << 11n,
-  DIRECT_MESSAGES: 1n << 12n,
-  DIRECT_MESSAGE_REACTIONS: 1n << 13n,
-  DIRECT_MESSAGE_TYPING: 1n << 14n,
-  MESSAGE_CONTENT: 1n << 15n,
-  GUILD_SCHEDULED_EVENTS: 1n << 16n,
-  AUTO_MODERATION_CONFIGURATION: 1n << 20n,
-  AUTO_MODERATION_EXECUTION: 1n << 21n,
+Intents.Flags = {
+  Guilds: 1n << 0n,
+  Guild_Members: 1n << 1n,
+  Guild_Bans: 1n << 2n,
+  Guild_Emojis_And_Stickers: 1n << 3n,
+  Guild_Integrations: 1n << 4n,
+  Guild_Webhooks: 1n << 5n,
+  Guild_Invites: 1n << 6n,
+  Guild_Voice_States: 1n << 7n,
+  Guild_Presences: 1n << 8n,
+  Guild_Messages: 1n << 9n,
+  Guild_Message_Reactions: 1n << 10n,
+  Guild_Message_Typing: 1n << 11n,
+  Direct_Messages: 1n << 12n,
+  Direct_Message_Reactions: 1n << 13n,
+  Direct_Message_Typing: 1n << 14n,
+  Message_Content: 1n << 15n,
+  Guild_Scheduled_Events: 1n << 16n,
+  Auto_Moderation_Configuration: 1n << 20n,
+  Auto_Moderation_Execution: 1n << 21n,
 };
 
-Intents.DEFAULT = 0n;
+Intents.Default = 0n;
 
-Intents.ALL = Object.values(Intents.FLAGS).reduce(
-  (a, b) => a | b,
-  Intents.DEFAULT
-);
+Intents.All = Object.values(Intents.Flags).reduce((a, b) => a | b, Intents.Default);
 
 module.exports = Intents;

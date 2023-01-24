@@ -1,17 +1,11 @@
 class Button {
-  constructor({ emoji, label, url, customid, style, disabled }) {
-    this.emoji = { ...emoji };
-    this.label = label;
-    this.url = url;
-    this.customid = customid;
-    this.style = style;
-    this.disabled = disabled;
-    if (!this.label) this.label = "";
-    if (!this.customid) this.customid = "";
-    if (!this.style) this.style = "";
-    if (!this.disabled) this.disabled = false;
-    if (!this.emoji) this.emoji = "";
-    if (!this.url) this.url = "";
+  constructor({emoji, label, url, customid, style, disabled}) {
+    this.emoji = {...emoji} ?? undefined;
+    this.label = label ?? undefined;
+    this.url = url ?? undefined;
+    this.customid = customid ?? undefined;
+    this.style = style ?? undefined;
+    this.disabled = disabled ?? false;
     const button = {
       type: 2,
       custom_id: this.customid,
@@ -25,4 +19,4 @@ class Button {
   }
 }
 
-module.exports = Button;
+export default Button;

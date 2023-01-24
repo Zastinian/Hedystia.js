@@ -1,79 +1,28 @@
 class Embed {
-  constructor({
-    title,
-    color,
-    author,
-    url,
-    description,
-    image,
-    footer,
-    timestamp,
-    thumbnail,
-    fields,
-  }) {
-    this.title = title;
-    this.color = color;
-    this.author = { ...author };
-    this.url = url;
-    this.description = description;
-    this.image = image;
-    this.footer = { ...footer };
-    this.timestamp = timestamp;
-    this.thumbnail = thumbnail;
-    this.fields = { ...fields };
-    if (!this.title) {
-      this.title = "";
-    }
-    if (!this.color) {
-      this.color = 0x000000;
-    }
-    if (!this.author.name) {
-      this.author.name = "";
-    }
-    if (!this.author.image) {
-      this.author.image = "";
-    }
-    if (!this.url) {
-      this.url = "";
-    }
-    if (!this.description) {
-      this.description = "";
-    }
-    if (!this.image) {
-      this.image = "";
-    }
-    if (!this.footer) {
-      this.footer.text = "";
-      this.footer.image = "";
-    }
-    if (!this.footer.text) {
-      this.footer.text = "";
-    }
-    if (!this.footer.image) {
-      this.footer.image = "";
-    }
-    if (this.timestamp) {
-      this.timestamp = new Date();
+  constructor({title, color, author, url, description, image, footer, timestamp, thumbnail, fields}) {
+    this.title = title ?? undefined;
+    this.color = color ?? undefined;
+    this.author = {...author} ?? {};
+    this.url = url ?? undefined;
+    this.description = description ?? undefined;
+    this.image = image ?? undefined;
+    this.footer = {...footer} ?? {};
+    this.timestamp = timestamp ?? undefined;
+    this.thumbnail = thumbnail ?? undefined;
+    if (fields) {
+      this.fields = [...fields];
     } else {
-      this.timestamp = "";
+      this.fields = undefined;
     }
-    if (!this.thumbnail) {
-      this.thumbnail = "";
-    }
-    if (!this.fields) {
-      this.fields = "";
-    }
-    this.validation();
     const embed = {
-      type: "rich",
       title: this.title,
       description: this.description,
       url: this.url,
       timestamp: this.timestamp,
       color: this.color,
       footer: {
-        text: this.footer.text,
-        icon_url: this.footer.image,
+        text: this.footer.text ?? undefined,
+        icon_url: this.footer.image ?? undefined,
       },
       image: {
         url: this.image,
@@ -83,31 +32,12 @@ class Embed {
       },
       fields: this.fields,
       author: {
-        name: this.author.name,
-        iconURL: this.author.image,
+        name: this.author.name ?? undefined,
+        url: this.author.image ?? undefined,
       },
     };
     return embed;
   }
-  validation() {
-    if (!this.title && !this.description)
-      throw new RangeError(
-        `El embed no debe estar vacío, necesita al menos un título o una descripción`
-      );
-    if (this.title.length > 256)
-      throw new RangeError(
-        `El título debe ser inferior o igual a 256 caracteres`
-      );
-    if (typeof this.title !== "string" && this.title)
-      throw new TypeError(`El título debe ser un string`);
-    if (typeof this.description !== "string" && this.description)
-      throw new TypeError(`La descripción debe ser un string`);
-    if (this.description.length > 4096)
-      throw new RangeError(
-        `La descripción debe ser menor o igual a 4096 caracteres. Received=${this.description.length}`
-      );
-    return;
-  }
 }
 
-module.exports = Embed;
+export default Embed;

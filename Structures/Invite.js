@@ -1,29 +1,17 @@
 const Base = require("../Base/base");
-const { InviteTargetTypes } = require("../Util/Constants");
+const {InviteTargetTypes} = require("../Util/Constants");
 const ClientApplication = require("./ClientApplication");
 class Invite extends Base {
   constructor(data = {}, guild, client) {
     super(client);
     this.partial = data.partial ?? false;
     this.code = data.code ?? null;
-    this.guild = this.client.guilds._add(data.guild ?? guild, { cache: false });
-    this.channel =
-      this.client.channels._add(
-        data.channel ?? data.channel_id,
-        this.guild?.id,
-        { cache: false }
-      ) ?? null;
-    this.inviter =
-      this.client.users._add(data.inviter, { cache: false, force: true }) ??
-      null;
-    this.targetType =
-      (typeof data.target_type === "number"
-        ? InviteTargetTypes[data.target_type]
-        : data.target_type) ?? null;
+    this.guild = this.client.guilds._add(data.guild ?? guild, {cache: false});
+    this.channel = this.client.channels._add(data.channel ?? data.channel_id, this.guild?.id, {cache: false}) ?? null;
+    this.inviter = this.client.users._add(data.inviter, {cache: false, force: true}) ?? null;
+    this.targetType = (typeof data.target_type === "number" ? InviteTargetTypes[data.target_type] : data.target_type) ?? null;
     this.targetUser = this.client.users._add(data.target_user) ?? null;
-    this.targetApplication = data.target_application
-      ? new ClientApplication(data.target_application, this.client)
-      : null;
+    this.targetApplication = data.target_application ? new ClientApplication(data.target_application, this.client) : null;
     this.approximatePresenceCount = data.approximate_presence_count ?? null;
     this.approximateMemberCount = data.approximate_member_count ?? null;
     this.expiresAt = data.expires_at ? new Date(data.expires_at) : null;

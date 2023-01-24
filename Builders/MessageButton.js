@@ -1,11 +1,9 @@
-const { ButtonStyle, ComponentType } = require("../Util/Constants");
+const {ButtonStyle, ComponentType} = require("../Util/Constants");
 
 class MessageButton {
   constructor(data = {}) {
-    this.type = "BUTTON";
-    this.style =
-      (typeof data.style === "number" ? ButtonStyle[data.style] : data.style) ??
-      "PRIMARY";
+    this.type = "Button";
+    this.style = (typeof data.style === "number" ? ButtonStyle[data.style] : data.style) ?? "Primary";
     this.label = data.label ?? undefined;
     this.emoji = data.emoji ?? undefined;
     this.customId = data.custom_id ?? data.customId ?? undefined;
@@ -53,26 +51,7 @@ class MessageButton {
     return this;
   }
 
-  validation() {
-    if (!ButtonStyle[this.style])
-      throw new TypeError(`El estilo del botón no es válido`);
-    if (!this.customId && !this.url)
-      throw new RangeError(`Se requiere una id personalizada`);
-    if (this.customId && this.customId.length > 100)
-      throw new RangeError(`El ID personalizado debe ser menor o igual a 100`);
-    if (this.label?.length > 80)
-      throw new RangeError(`La etiqueta debe ser menor o igual al 80`);
-    if (typeof this.disabled !== "boolean" && this.disabled)
-      throw new TypeError(`Desactivado debe ser booleano`);
-    if (this.url && this.style !== "LINK")
-      throw new TypeError(
-        `Las URL sólo están disponibles para los botones LINK`
-      );
-    return;
-  }
-
   toJSON() {
-    this.validation();
     return {
       type: ComponentType[this.type],
       label: this.label,

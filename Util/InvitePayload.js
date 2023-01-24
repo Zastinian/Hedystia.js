@@ -1,4 +1,4 @@
-const { InviteTargetTypes } = require("./Constants");
+const {InviteTargetTypes} = require("./Constants")
 
 class InvitePayload {
   static create(payload = {}) {
@@ -7,9 +7,7 @@ class InvitePayload {
       max_uses: payload.maxUses ?? undefined,
       temporary: payload.temporary ?? undefined,
       target_type:
-        typeof payload.targetType === "string"
-          ? InviteTargetTypes[payload.targetType]
-          : payload.targetType,
+        typeof payload.targetType === "string" ? InviteTargetTypes[payload.targetType] : payload.targetType,
       target_user_id:
         typeof payload.targetUser === "string"
           ? payload.targetUser
@@ -18,8 +16,8 @@ class InvitePayload {
         typeof payload.targetApplication === "string"
           ? payload.targetApplication
           : payload.targetApplication?.id ?? undefined,
-    };
+    }
   }
 }
 
-module.exports = InvitePayload;
+module.exports = InvitePayload

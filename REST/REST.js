@@ -1,5 +1,3 @@
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 const DiscordAPIError = require("../Errors/DiscordAPIError");
 const FormData = require("form-data");
 const https = require("node:https");
@@ -16,25 +14,18 @@ class REST {
   }
 
   async _make(url, options = {}) {
-    const agent = new https.Agent({ keepAlive: true });
+    const agent = new https.Agent({keepAlive: true});
     const controller = new AbortController();
-    const timeout = setTimeout(
-      () => controller.abort(),
-      this.client.restRequestTimeout
-    ).unref();
+    const timeout = setTimeout(() => controller.abort(), this.client.restRequestTimeout).unref();
     let headers = {
       "content-type": options.contentType,
-      authorization:
-        options.headers?.["authorization"] ?? this.client.token ?? this.token,
+      authorization: options.headers?.["authorization"] ?? this.client.token ?? this.token,
     };
 
     let body;
     if (options["reason"]) headers["X-Audit-Log-Reason"] = options["reason"];
     if (options.body) {
-      if (
-        options.body instanceof FormData ||
-        options.body?.constructor?.name === "FormData"
-      ) {
+      if (options.body instanceof FormData || options.body?.constructor?.name === "FormData") {
         headers = Object.assign(headers, options.body.getHeaders());
         body = options.body;
       } else {
@@ -50,8 +41,7 @@ class REST {
         if (Array.isArray(val)) URL.set(key, val.join(","));
         else URL.append(key, val);
       }
-      if ([...URL.values()]?.length > 0)
-        url = url.concat(`?${decodeURIComponent(URL)}`);
+      if ([...URL.values()]?.length > 0) url = url.concat(`?${decodeURIComponent(URL)}`);
     }
 
     let responseHeader = {
@@ -61,9 +51,7 @@ class REST {
       headers,
       signal: controller.signal,
     };
-    const response = await fetch(url, responseHeader).finally(() =>
-      clearTimeout(timeout)
-    );
+    const response = await fetch(url, responseHeader).finally(() => clearTimeout(timeout));
     const result = response.status !== 204 ? await response.json() : null;
     if (![201, 200, 204].includes(response.status))
       throw new DiscordAPIError({

@@ -6,14 +6,11 @@ class GuildMemberFlags extends Bitfield {
   }
 }
 
-GuildMemberFlags.FLAGS = {
-  DID_REJOIN: 1n << 0n,
+GuildMemberFlags.Flags = {
+  Did_Rejoin: 1n << 0n,
 };
 
-GuildMemberFlags.DEFAULT = 0n;
-GuildMemberFlags.ALL = Object.values(GuildMemberFlags.FLAGS).reduce(
-  (a, b) => a | b,
-  GuildMemberFlags.DEFAULT
-);
+GuildMemberFlags.Default = 0n;
+GuildMemberFlags.All = Object.values(GuildMemberFlags.Flags).reduce((a, b) => a | b, GuildMemberFlags.Default);
 
 module.exports = GuildMemberFlags;

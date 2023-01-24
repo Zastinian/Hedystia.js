@@ -1,24 +1,11 @@
 class SelectMenu {
-  constructor({
-    customid,
-    placeholder,
-    disabled,
-    minvalues,
-    maxvalues,
-    options,
-  }) {
-    this.customid = customid;
-    this.placeholder = placeholder;
-    this.disabled = disabled;
-    this.minvalues = minvalues;
-    this.maxvalues = maxvalues;
-    this.options = options;
-    if (!this.customid) this.customid = "";
-    if (!this.placeholder) this.placeholder = "";
-    if (!this.disabled) this.disabled = false;
-    if (!this.minvalues) this.minvalues = 1;
-    if (!this.maxvalues) this.maxvalues = 1;
-    if (!this.options) this.options = "";
+  constructor({customid, placeholder, disabled, minvalues, maxvalues, options}) {
+    this.customid = customid ?? undefined;
+    this.placeholder = placeholder ?? undefined;
+    this.disabled = disabled ?? false;
+    this.minvalues = minvalues ?? 1;
+    this.maxvalues = maxvalues ?? 1;
+    this.options = options ?? undefined;
     let select = {
       type: 3,
       custom_id: this.customid,
@@ -32,4 +19,4 @@ class SelectMenu {
   }
 }
 
-module.exports = SelectMenu;
+export default SelectMenu;

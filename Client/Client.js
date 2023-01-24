@@ -1,7 +1,7 @@
 const EventEmitter = require("node:events");
 const ChannelManager = require("../Managers/ChannelManager");
 const WebsocketManager = require("../Managers/WebsocketManager");
-const { ActivityType, CDN } = require("../Util/Constants");
+const {ActivityType, CDN} = require("../Util/Constants");
 const Intents = require("../Util/Intents");
 const REST = require("../REST/REST");
 const UserManager = require("../Managers/UserManager");
@@ -10,7 +10,7 @@ const RoleManager = require("../Managers/RoleManager");
 const Invite = require("../Structures/Invite");
 const GuildPreview = require("../Structures/GuildPreview");
 const GuildWidget = require("../Structures/GuildWidget");
-const { RaidenCol } = require("../Util/@Collections/RaidenCol");
+const {RaidenCol} = require("../Util/@Collections/RaidenCol");
 const VoiceRegion = require("../Structures/VoiceRegion");
 const GuildTemplate = require("../Structures/GuildTemplate");
 const Util = require("../Util/Util");
@@ -18,11 +18,24 @@ const Sticker = require("../Structures/Sticker");
 const StickerPack = require("../Structures/StickerPack");
 const Permissions = require("../Util/Permissions");
 const EmojiManager = require("../Managers/EmojiManager");
+/* It's a class that represents a Discord client */
 class Client extends EventEmitter {
+  /**
+   * "This function is a constructor for the Client class, which is a class that extends the
+   * EventEmitter class, and it takes in an options object as a parameter, and it sets the intents,
+   * token, presence, version, encoding, restRequestTimeout, and partials properties of the Client
+   * class to the values of the options object's intents, token, presence, version, encoding, timeout,
+   * and partials properties, respectively, and it sets the root, oauth2, cdnRoot, websocketURL, and
+   * webhookURL properties of the Client class to the values of the root, oauth2, cdnRoot,
+   * websocketURL, and webhookURL properties of the Client class, respectively, and it sets the readyAt
+   * and application properties of the Client class to null, and it sets the channels, guilds, users,
+   * roles, emojis, and ws properties of the Client class to the values of the ChannelManager
+   * @param [options] - The options that you pass to the client.
+   */
   constructor(options = {}) {
     super(options);
 
-    this.intents = new Intents(options.intents ?? Intents.FLAGS.GUILDS);
+    this.intents = new Intents(options.intents ?? Intents.Flags.Guilds);
     this.token = options.user ? `${options.token}` : `Bot ${options.token}`;
     this.presence = Client.transformPresence(options.presence);
     this.version = options.version ?? "10";
@@ -49,23 +62,31 @@ class Client extends EventEmitter {
     this.ws.connect();
   }
 
-  IniciarSesion() {}
-
+  /**
+   * It returns a new REST object with the token set to the token of the client.
+   * @returns A new instance of the REST class.
+   */
   get api() {
     return new REST(this).setToken(this.token);
   }
 
+  /**
+   * The function returns the value of the CDN variable.
+   * @returns The CDN property.
+   */
   get cdn() {
     return CDN;
   }
 
+  /**
+   * It fetches an invite from the Discord API
+   * @param invite - The invite code
+   * @param query - {
+   * @returns A new Invite object.
+   */
   async fetchInvite(invite, query) {
-    if (!invite)
-      throw new RangeError(
-        `Por favor, especifique un código de invitación para obtenerlo`
-      );
-    if (/^(http(s)?)/gi.test(invite))
-      invite = invite.slice(invite.lastIndexOf("/") + 1);
+    if (!invite) throw new RangeError(`Please specify an invitation code to obtain it`);
+    if (/^(http(s)?)/gi.test(invite)) invite = invite.slice(invite.lastIndexOf("/") + 1);
     const inviteCode = typeof invite === "string" ? invite : invite.code;
     query = Client.transformInviteOptions(query);
     invite = await this.api.get(`${this.root}/invites/${inviteCode}`, {
@@ -74,34 +95,46 @@ class Client extends EventEmitter {
     return new Invite(invite, invite.guild, this);
   }
 
+  /**
+   * It fetches the preview of a guild
+   * @param guild - The guild to fetch the preview for.
+   * @returns A new GuildPreview object.
+   */
   async fetchPreview(guild) {
     const guildId = typeof guild === "string" ? guild : guild?.id;
-    const preview = await this.api.get(
-      `${this.root}/guilds/${guildId}/preview`
-    );
+    const preview = await this.api.get(`${this.root}/guilds/${guildId}/preview`);
     return new GuildPreview(preview, this);
   }
 
+  /**
+   * It fetches the guild widget of a guild
+   * @param guild - The guild object or ID
+   * @returns A new instance of the GuildWidget class.
+   */
   async fetchGuildWidget(guild) {
     const guildId = typeof guild === "string" ? guild : guild?.id;
-    const widget = await this.api.get(
-      `${this.root}/guilds/${guildId}/widget.json`
-    );
+    const widget = await this.api.get(`${this.root}/guilds/${guildId}/widget.json`);
     return new GuildWidget(widget, guildId, this);
   }
 
+  /**
+   * It fetches the voice regions from the Discord API and returns them as a RaidenCol
+   * @returns An array of objects.
+   */
   async fetchVoiceRegions() {
     const regions = await this.api.get(`${this.root}/voice/regions`);
     return new RaidenCol(regions?.map((o) => [o.id, new VoiceRegion(o, this)]));
   }
 
+  /**
+   * It takes a template code and creates a new guild with the template
+   * @param code - The code of the template you want to use.
+   * @param [options] - {
+   * @returns The guild object.
+   */
   async generateTemplate(code, options = {}) {
-    if (!code)
-      throw new RangeError(
-        `Se requiere el código de la plantilla del servidor!`
-      );
-    if (/^(http(s)?)/gi.test(code))
-      code = code.slice(code.lastIndexOf("/") + 1);
+    if (!code) throw new RangeError(`Server template code is required!`);
+    if (/^(http(s)?)/gi.test(code)) code = code.slice(code.lastIndexOf("/") + 1);
     code = typeof code === "string" ? code : code.code;
     const parse = await Client.generateTemplateGuild(options);
     const guild = await this.api.post(`${this.root}/guilds/templates/${code}`, {
@@ -111,8 +144,13 @@ class Client extends EventEmitter {
     return this.guilds._add(guild);
   }
 
+  /**
+   * The function generates an invite link for the user to invite the bot to their server
+   * @param [options] - {
+   * @returns The URL to the OAuth2 page.
+   */
   generateInvite(options = {}) {
-    if (!this.readyAt) throw new RangeError(`El cliente debe estar preparado`);
+    if (!this.readyAt) throw new RangeError(`The customer must be prepared`);
     const url = new URLSearchParams({
       client_id: this.user.id,
     });
@@ -121,16 +159,12 @@ class Client extends EventEmitter {
     }
 
     if (options.permissions) {
-      url.set(
-        "permissions",
-        Permissions.resolve(options.permissions).toString()
-      );
+      url.set("permissions", Permissions.resolve(options.permissions).toString());
     }
 
     if (options.guildSelect) {
       if (options.guild) {
-        const guildId =
-          typeof options.guild === "string" ? options.guild : options.guild?.id;
+        const guildId = typeof options.guild === "string" ? options.guild : options.guild?.id;
         url.set("disabled_guild_select", options.guildSelect);
         url.set("guild_id", guildId);
       }
@@ -143,72 +177,91 @@ class Client extends EventEmitter {
     if ([...url.values()]?.length > 0) return `${this.oauth2}/authorize?${url}`;
   }
 
+  /**
+   * It fetches a sticker from the API and returns a new Sticker object
+   * @param sticker - The sticker object or ID
+   * @returns A new Sticker object.
+   */
   async fetchSticker(sticker) {
     const stickerId = typeof sticker === "string" ? sticker : sticker?.id;
     sticker = await this.api.get(`${this.root}/stickers/${stickerId}`);
     return new Sticker(sticker, sticker.guild_id, this);
   }
 
+  /**
+   * It fetches the sticker packs from the API and returns them as a RaidenCol
+   * @returns A collection of sticker packs.
+   */
   async fetchNitroPacks() {
     const stickerPacks = await this.api.get(`${this.root}/sticker-packs`);
-    return new RaidenCol(
-      stickerPacks.sticker_packs?.map((o) => [o.id, new StickerPack(o, this)])
-    );
+    return new RaidenCol(stickerPacks.sticker_packs?.map((o) => [o.id, new StickerPack(o, this)]));
   }
 
+  /**
+   * It fetches a guild template from the discord api
+   * @param code - The code of the template you want to fetch.
+   * @returns A new GuildTemplate object.
+   */
   async fetchGuildTemplate(code) {
-    if (!code)
-      throw new RangeError(
-        `Se requiere el código de la plantilla del servidor!`
-      );
-    if (/^(http(s)?)/gi.test(code))
-      code = code.slice(code.lastIndexOf("/") + 1);
+    if (!code) throw new RangeError(`Server template code is required!`);
+    if (/^(http(s)?)/gi.test(code)) code = code.slice(code.lastIndexOf("/") + 1);
     code = typeof code === "string" ? code : code.code;
-    const template = await this.api.get(
-      `${this.root}/guilds/templates/${code}`
-    );
+    const template = await this.api.get(`${this.root}/guilds/templates/${code}`);
     return new GuildTemplate(template, this);
   }
 
+  /**
+   * It takes an object with a name and icon property, and returns an object with a name and icon
+   * property
+   * @param [o] - The object that contains the parameters.
+   * @returns an object with the properties name and icon.
+   */
   static async generateTemplateGuild(o = {}) {
-    if (o.icon)
-      o.icon = `data:image/png;base64,${(await Util.getBuffer(o.icon)).toString(
-        "base64"
-      )}`;
+    if (o.icon) o.icon = `data:image/png;base64,${(await Util.getBuffer(o.icon)).toString("base64")}`;
     return {
       name: o.name ?? undefined,
       icon: o.icon ?? undefined,
     };
   }
 
+  /**
+   * It takes an object with properties that are camelCase and returns an object with properties that
+   * are snake_case
+   * @param [o] - The options object.
+   * @returns an object with the following properties:
+   */
   static transformInviteOptions(o = {}) {
     return {
       with_counts: o.withCounts ?? undefined,
       with_expiration: o.withExpiration ?? undefined,
-      guild_scheduled_event_id:
-        typeof o.guildScheduledEvent === "string"
-          ? o.guildScheduledEvent
-          : o.guildScheduledEvent?.id ?? undefined,
+      guild_scheduled_event_id: typeof o.guildScheduledEvent === "string" ? o.guildScheduledEvent : o.guildScheduledEvent?.id ?? undefined,
     };
   }
 
+  /**
+   * It transforms a presence object into a presence object
+   * @param [presence] - The presence object to transform.
+   * @returns The presence object is being returned.
+   */
   static transformPresence(presence = {}) {
     return {
       status: presence.status ?? "online",
-      activities:
-        presence.activities?.map((o) => this.transformActivities(o)) ?? [],
+      activities: presence.activities?.map((o) => this.transformActivities(o)) ?? [],
       since: Date.now() * 1000,
       afk: presence.afk ?? false,
     };
   }
 
+  /**
+   * It takes an object with a name, type, and url property, and returns an object with the same
+   * properties, but with the type property converted to a number.
+   * @param [activities] - {
+   * @returns An object with the properties name, type, and url.
+   */
   static transformActivities(activities = {}) {
     return {
       name: activities.name ?? undefined,
-      type:
-        (typeof activities.type === "string"
-          ? ActivityType[activities.type]
-          : activities.type) ?? 0,
+      type: (typeof activities.type === "string" ? ActivityType[activities.type] : activities.type) ?? 0,
       url: activities.url ?? undefined,
     };
   }

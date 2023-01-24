@@ -101,9 +101,7 @@ class MessageEmbed {
 
   addFields(...fields) {
     if (Array.isArray(fields[0])) {
-      fields[0]?.map((val) =>
-        this.fields.push(MessageEmbed.transformFields(val))
-      );
+      fields[0]?.map((val) => this.fields.push(MessageEmbed.transformFields(val)));
     } else {
       fields?.map((val) => this.fields.push(MessageEmbed.transformFields(val)));
     }
@@ -131,70 +129,7 @@ class MessageEmbed {
     return this;
   }
 
-  validation() {
-    if (
-      !this.title &&
-      !this.description &&
-      this.fields?.length < 1 &&
-      !this.image &&
-      !this.thumbnail &&
-      !this.footer &&
-      !this.author
-    )
-      throw new RangeError(
-        `El embed no debe estar vacío, necesita al menos un título o una descripción`
-      );
-    if (this.title?.length > 256)
-      throw new RangeError(
-        `El título debe ser inferior o igual a 256 caracteres`
-      );
-    if (typeof this.title !== "string" && this.title)
-      throw new TypeError(`El título debe ser un string`);
-    if (typeof this.description !== "string" && this.description)
-      throw new TypeError(`La descripción debe ser un string`);
-    if (this.description?.length > 4096)
-      throw new RangeError(
-        `La descripción debe ser menor o igual a 4096 caracteres. Received=${this.description.length}`
-      );
-    if (this.footer?.text?.length > 2048)
-      throw new RangeError(
-        `El texto del pie de página debe ser inferior a 2048`
-      );
-    if (typeof this.footer?.text !== "string" && this.footer)
-      throw new TypeError(`El texto del pie de página debe ser un string`);
-    if (this.author?.name?.length > 256)
-      throw new RangeError(
-        `El nombre del autor debe tener una longitud menor o igual a 256`
-      );
-    if (typeof this.author?.name !== "string" && this.author)
-      throw new TypeError(`El nombre del autor debe ser un string`);
-    if (this.fields?.length > 25)
-      throw new RangeError(`La longitud de los campos excede su límite de 25`);
-    for (const [index, value] of this.fields?.entries()) {
-      if (!value.name || typeof value.name !== "string")
-        throw new RangeError(
-          `Campo[${index}]: el nombre debe ser un string no vacío`
-        );
-      if (!value.value || typeof value.value !== "string")
-        throw new RangeError(
-          `Campo[${index}]: el valor debe ser un string no vacío`
-        );
-      if (value.name?.length > 256)
-        throw new RangeError(
-          `Campo[${index}]: el nombre debe tener una longitud menor o igual a 256`
-        );
-      if (value.value?.length > 1024)
-        throw new RangeError(
-          `Campo[${index}]: el nombre debe tener una longitud menor o igual a 1024`
-        );
-      if (typeof value.inline !== "boolean" && value.inline)
-        throw new TypeError(`Campo[${index}]: inline debe ser booleano`);
-    }
-    return;
-  }
-
   toJSON() {
-    this.validation();
     return {
       type: this.type,
       title: this.title,

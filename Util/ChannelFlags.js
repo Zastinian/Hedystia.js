@@ -6,16 +6,13 @@ class ChannelFlags extends Bitfield {
   }
 }
 
-ChannelFlags.DEFAULT = 0n;
-ChannelFlags.FLAGS = {
-  GUILD_FEED_REMOVED: 1n << 0n,
-  PINNED: 1n << 1n,
-  ACTIVE_CHANNELS_REMOVED: 1n << 2n,
-  REQUIRE_TAG: 1n << 4n,
+ChannelFlags.Default = 0n;
+ChannelFlags.Flags = {
+  Guild_Feed_Removed: 1n << 0n,
+  Pinned: 1n << 1n,
+  Active_Channels_Removed: 1n << 2n,
+  Require_Tag: 1n << 4n,
 };
-ChannelFlags.ALL = Object.values(ChannelFlags.FLAGS).reduce(
-  (a, b) => a | b,
-  ChannelFlags.DEFAULT
-);
+ChannelFlags.All = Object.values(ChannelFlags.Flags).reduce((a, b) => a | b, ChannelFlags.Default);
 
 module.exports = ChannelFlags;

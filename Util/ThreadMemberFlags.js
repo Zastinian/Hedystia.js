@@ -6,18 +6,15 @@ class ThreadMemberFlags extends Bitfield {
   }
 }
 
-ThreadMemberFlags.FLAGS = {
-  HAS_INTERACTED: 1n << 0n,
-  ALL_MESSAGES: 1n << 1n,
-  ONLY_MENTIONS: 1n << 2n,
-  NO_MESSAGES: 1n << 3n,
+ThreadMemberFlags.Flags = {
+  Has_Interacted: 1n << 0n,
+  All_Messages: 1n << 1n,
+  Only_Mentions: 1n << 2n,
+  No_Messages: 1n << 3n,
 };
 
-ThreadMemberFlags.DEFAULT = 0n;
+ThreadMemberFlags.Default = 0n;
 
-ThreadMemberFlags.ALL = Object.values(ThreadMemberFlags.FLAGS).reduce(
-  (a, b) => a | b,
-  ThreadMemberFlags.DEFAULT
-);
+ThreadMemberFlags.All = Object.values(ThreadMemberFlags.Flags).reduce((a, b) => a | b, ThreadMemberFlags.Default);
 
 module.exports = ThreadMemberFlags;

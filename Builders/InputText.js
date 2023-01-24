@@ -1,13 +1,10 @@
-const { TextInputStyle, ComponentType } = require("../Util/Constants");
+const {TextInputStyle, ComponentType} = require("../Util/Constants");
 
 class InputText {
   constructor(data = {}) {
-    this.type = "INPUT_TEXT";
+    this.type = "Input_Text";
     this.customId = data.custom_id ?? data.customId ?? undefined;
-    this.style =
-      (typeof data.style === "number"
-        ? TextInputStyle[data.style]
-        : data.style) ?? "SHORT";
+    this.style = (typeof data.style === "number" ? TextInputStyle[data.style] : data.style) ?? "SHORT";
     this.label = data.label ?? undefined;
     this.minLength = data.min_length ?? data.minLength ?? undefined;
     this.maxLength = data.max_length ?? data.maxLength ?? undefined;

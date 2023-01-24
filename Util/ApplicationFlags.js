@@ -5,26 +5,23 @@ class ApplicationFlags extends Bitfield {
   }
 }
 
-ApplicationFlags.FLAGS = {
-  EMBEDDED_RELEASED: 1n << 1n,
-  MANAGED_EMOJI: 1n << 2n,
-  GROUP_DM_CREATE: 1n << 4n,
-  GATEWAY_PRESENCE: 1n << 12n,
-  GATEWAY_PRESENCE_LIMITED: 1n << 13n,
-  GATEWAY_GUILD_MEMBERS: 1n << 14n,
-  GATEWAY_GUILD_MEMBERS_LIMITED: 1n << 15n,
-  VERIFICATION_PENDING_GUILD_LIMIT: 1n << 16n,
-  EMBEDDED: 1n << 17n,
-  GATEWAY_MESSAGE_CONTENT: 1n << 18n,
-  GATEWAY_MESSAGE_CONTENT_LIMITED: 1n << 19n,
-  EMBEDDED_FIRST_PARTY: 1n << 20n,
+ApplicationFlags.Flags = {
+  Embedded_Released: 1n << 1n,
+  Managed_Emoji: 1n << 2n,
+  Group_Dm_Create: 1n << 4n,
+  Gateway_Presence: 1n << 12n,
+  Gateway_Presence_Limited: 1n << 13n,
+  Gateway_Guild_Members: 1n << 14n,
+  Gateway_Guild_Members_Limited: 1n << 15n,
+  Verification_Pending_Guild_Limit: 1n << 16n,
+  Embedded: 1n << 17n,
+  Gateway_Message_Content: 1n << 18n,
+  Gateway_Message_Content_Limited: 1n << 19n,
+  Embedded_First_Party: 1n << 20n,
 };
 
-ApplicationFlags.DEFAULT = 0n;
+ApplicationFlags.Default = 0n;
 
-ApplicationFlags.ALL = Object.values(ApplicationFlags.FLAGS).reduce(
-  (a, b) => a | b,
-  ApplicationFlags.DEFAULT
-);
+ApplicationFlags.All = Object.values(ApplicationFlags.Flags).reduce((a, b) => a | b, ApplicationFlags.Default);
 
 module.exports = ApplicationFlags;

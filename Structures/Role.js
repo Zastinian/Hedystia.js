@@ -14,11 +14,8 @@ class Role extends Base {
     this.icon = data.icon ?? null;
     this.unicodeEmoji = data.unicode_emoji ?? null;
     this.position = data.position ?? null;
-    this.permissions = new Permissions(
-      data.permissions ? BigInt(data.permissions) : 0n
-    );
-    this.createdAt =
-      "id" in data ? Snowflake.deconstruct(data.id).createdAt : null;
+    this.permissions = new Permissions(data.permissions ? BigInt(data.permissions) : 0n);
+    this.createdAt = "id" in data ? Snowflake.deconstruct(data.id).createdAt : null;
     this.createdTimestamp = this.createdAt?.getTime() ?? null;
     this.managed = data.managed ?? null;
     this.mentionable = data.mentionable ?? null;
@@ -49,31 +46,31 @@ class Role extends Base {
   }
 
   async setName(name, reason) {
-    return await this.edit({ name, reason });
+    return await this.edit({name, reason});
   }
 
   async setPermissions(permissions, reason) {
-    return await this.edit({ permissions, reason });
+    return await this.edit({permissions, reason});
   }
 
   async setColor(color, reason) {
-    return await this.edit({ color, reason });
+    return await this.edit({color, reason});
   }
 
   async setHoist(hoist, reason) {
-    return await this.edit({ hoist, reason });
+    return await this.edit({hoist, reason});
   }
 
   async setIcon(icon, reason) {
-    return await this.edit({ icon, reason });
+    return await this.edit({icon, reason});
   }
 
   async setUnicodeEmoji(unicodeEmoji, reason) {
-    return await this.edit({ unicodeEmoji, reason });
+    return await this.edit({unicodeEmoji, reason});
   }
 
   async setMentionable(mentionable, reason) {
-    return await this.edit({ mentionable, reason });
+    return await this.edit({mentionable, reason});
   }
 
   async setPosition(position, reason) {
@@ -90,21 +87,15 @@ class Role extends Base {
   }
 
   permissionsIn(channel) {
-    channel = this.client.channels.cache.get(
-      typeof channel === "string" ? channel : channel?.id
-    );
+    channel = this.client.channels.cache.get(typeof channel === "string" ? channel : channel?.id);
     if (!channel) throw new RangeError(`Canal no cacheado`);
     return channel.permissionsFor(this);
   }
 
   deniedPermissionsIn(channel) {
-    channel = this.client.channels.cache.get(
-      typeof channel === "string" ? channel : channel?.id
-    );
+    channel = this.client.channels.cache.get(typeof channel === "string" ? channel : channel?.id);
     if (!channel) throw new RangeError(`Canal no cacheado`);
-    const overwrite = channel.permissionOverwrites.cache
-      .filter((o) => o.type === "ROLE" && o.id === this.id)
-      .first();
+    const overwrite = channel.permissionOverwrites.cache.filter((o) => o.type === "Role" && o.id === this.id).first();
     if (!overwrite) return null;
     return overwrite.deny;
   }
@@ -115,19 +106,11 @@ class Role extends Base {
 
   iconURL(options = {}) {
     if (!this.icon) return null;
-    return this.client.cdn.RoleIcon(
-      this.icon,
-      options.dynamic,
-      options.size,
-      options.format,
-      this.id
-    );
+    return this.client.cdn.RoleIcon(this.icon, options.dynamic, options.size, options.format, this.id);
   }
 
   get members() {
-    const filter = this.guild?.members.cache.filter((member) =>
-      member.roles.cache.has(this.id)
-    );
+    const filter = this.guild?.members.cache.filter((member) => member.roles.cache.has(this.id));
     return filter;
   }
 }

@@ -1,17 +1,16 @@
 {
-  "name": "esmile-client",
-  "version": "0.0.23",
-  "description": "Un cliente para discord",
+  "name": "esmile.js",
+  "version": "1.0.0",
+  "description": "Discord Client",
   "main": "index.js",
-  "author": "Zastinian#8451",
-  "license": "Copyright",
+  "author": "contact@mresmile.com",
+  "license": "ISC",
   "dependencies": {
     "form-data": "^4.0.0",
-    "node-fetch": "^3.2.8",
     "ws": "^8.8.0"
   },
   "engines": {
-    "node": ">=16.9.0"
+    "node": ">=18.7.0"
   },
-  "repository": "https://github.com/Zastinian/EsmileClient"
+  "repository": "https://github.com/Zastinian/Esmile.js"
 }

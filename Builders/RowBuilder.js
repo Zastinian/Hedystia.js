@@ -9,4 +9,4 @@ class Row {
   }
 }
 
-module.exports = Row;
+export default Row;

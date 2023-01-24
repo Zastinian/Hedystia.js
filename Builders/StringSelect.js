@@ -1,10 +1,9 @@
-const { ComponentType } = require("../Util/Constants");
+const {ComponentType} = require("../Util/Constants");
 class StringSelect {
   constructor(data = {}) {
-    this.type = "STRING_SELECT";
+    this.type = "String_Select";
     this.customId = data.custom_id ?? data.customId ?? undefined;
-    this.options =
-      data.options?.map((o) => StringSelect.transformOptions(o)) ?? [];
+    this.options = data.options?.map((o) => StringSelect.transformOptions(o)) ?? [];
     this.placeholder = data.placeholder ?? undefined;
     this.minValues = data.min_values ?? data.minValues ?? undefined;
     this.maxValues = data.max_values ?? data.maxValues ?? undefined;
@@ -14,8 +13,7 @@ class StringSelect {
   static transformOptions(options = {}) {
     if (!options.label) throw new RangeError(`Label is required`);
     if (!options.value) throw new RangeError(`Value is required`);
-    if (typeof options.default !== "boolean" && options.default)
-      throw new RangeError(`Por defecto debe ser booleano`);
+    if (typeof options.default !== "boolean" && options.default) throw new RangeError(`By default it should be Boolean`);
     return {
       label: options.label ?? undefined,
       value: options.value ?? undefined,
@@ -65,17 +63,13 @@ class StringSelect {
   }
 
   setOptions(options = []) {
-    if (options.length > 25)
-      throw new RangeError(`El menú de selección debe tener sólo 25 opciones`);
+    if (options.length > 25) throw new RangeError(`The selection menu must have only 25 options`);
     this.options = options?.map((o) => StringSelect.transformOptions(o));
     return this;
   }
 
   addOptions(options = []) {
-    if (this.options?.length > 25)
-      throw new RangeError(
-        `Seleccionar la opción de Menú superó su longitud de 25`
-      );
+    if (this.options?.length > 25) throw new RangeError(`Selecting the Menu option exceeded your length of 25`);
     if (options.length >= 1) {
       options.map((o) => this.options?.push(StringSelect.transformOptions(o)));
       return this;
@@ -84,30 +78,7 @@ class StringSelect {
     throw new RangeError(`Por favor, añada opciones`);
   }
 
-  validation() {
-    if (!this.customId)
-      throw new RangeError(`Se requiere una id personalizada`);
-    if (this.options?.length < 1)
-      throw new RangeError(`Especifique las opciones`);
-    if (this.placeholder?.length > 250)
-      throw new RangeError(
-        `El marcador de posición debe tener una longitud inferior o igual a 150`
-      );
-    if (this.minValues < 0 && this.minValues > 25 && this.minValues)
-      throw new RangeError(
-        `Los valores mínimos deben ser inferiores a 25 y/o 0 de longitud`
-      );
-    if (this.maxValues < 0 && this.maxValues > 25 && this.maxValues)
-      throw new RangeError(
-        `Los valores máximos deben ser inferiores a 25 y/o 0 de longitud`
-      );
-    if (typeof this.disabled !== "boolean" && this.disabled)
-      throw new TypeError(`Desactivado debe ser booleano`);
-    return;
-  }
-
   toJSON() {
-    this.validation();
     return {
       type: ComponentType[this.type],
       custom_id: this.customId,

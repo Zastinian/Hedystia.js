@@ -1,16 +1,12 @@
-const { OptionType } = require("../../Util/Constants");
+const {OptionType} = require("../../Util/Constants");
 const SlashOption = require("./SlashOption");
 class SlashSubCommands {
   constructor(data = {}) {
-    this.type = "SUB_COMMAND";
+    this.type = "Sub_Command";
     this.name = data.name ?? undefined;
     this.description = data.description ?? undefined;
-    this.nameLocalizations =
-      data.name_localizations ?? data.nameLocalizations ?? undefined;
-    this.descriptionLocalizations =
-      data.description_localizations ??
-      data.descriptionLocalizations ??
-      undefined;
+    this.nameLocalizations = data.name_localizations ?? data.nameLocalizations ?? undefined;
+    this.descriptionLocalizations = data.description_localizations ?? data.descriptionLocalizations ?? undefined;
     this.options = data.options?.map((o) => new SlashOption(o).toJSON()) ?? [];
   }
 
@@ -38,12 +34,8 @@ class SlashSubCommands {
     if (typeof fn === "object") {
       this.options = fn?.map((o) => new SlashOption(o).toJSON());
     } else {
-      const result =
-        typeof fn === "function" ? fn(new SlashOption()) : undefined;
-      if (!result)
-        throw new RangeError(
-          `Expected an option bulder but received=${typeof result}`
-        );
+      const result = typeof fn === "function" ? fn(new SlashOption()) : undefined;
+      if (!result) throw new RangeError(`Expected an option bulder but received=${typeof result}`);
       this.options.push(result.toJSON());
     }
     return this;

@@ -1,19 +1,14 @@
-const { OptionType } = require("../../Util/Constants");
+const {OptionType} = require("../../Util/Constants");
 const SlashSubCommands = require("./SlashSubCommands");
 
 class SlashSubCommandGroups {
   constructor(data = {}) {
-    this.type = "SUB_COMMAND_GROUP";
+    this.type = "Sub_Command_Group";
     this.name = data.name ?? undefined;
     this.description = data.description ?? undefined;
-    this.nameLocalizations =
-      data.name_localizations ?? data.nameLocalizations ?? undefined;
-    this.descriptionLocalizations =
-      data.description_localizations ??
-      data.descriptionLocalizations ??
-      undefined;
-    this.options =
-      data.options?.map((o) => new SlashSubCommands(o).toJSON()) ?? [];
+    this.nameLocalizations = data.name_localizations ?? data.nameLocalizations ?? undefined;
+    this.descriptionLocalizations = data.description_localizations ?? data.descriptionLocalizations ?? undefined;
+    this.options = data.options?.map((o) => new SlashSubCommands(o).toJSON()) ?? [];
   }
 
   setName(name) {
@@ -40,12 +35,8 @@ class SlashSubCommandGroups {
     if (Array.isArray(fn)) {
       this.options = fn?.map((o) => new SlashSubCommands(o).toJSON());
     } else {
-      const result =
-        typeof fn === "function" ? fn(new SlashSubCommands()) : undefined;
-      if (!result)
-        throw new RangeError(
-          `Expected SlashSubCommandBuilder but received=${typeof result}`
-        );
+      const result = typeof fn === "function" ? fn(new SlashSubCommands()) : undefined;
+      if (!result) throw new RangeError(`Expected SlashSubCommandBuilder but received=${typeof result}`);
       this.options.push(result.toJSON());
     }
 

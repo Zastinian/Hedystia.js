@@ -2,10 +2,7 @@ class GuildMemberVerificationFields {
   constructor(data = {}) {
     this.enabled = data.enabled ?? undefined;
     this.description = data.description ?? undefined;
-    this.fields =
-      data.fields?.map((o) =>
-        GuildMemberVerificationFields.transformFields(o)
-      ) ?? [];
+    this.fields = data.fields?.map((o) => GuildMemberVerificationFields.transformFields(o)) ?? [];
   }
 
   setEnabled(enabled) {
@@ -20,13 +17,9 @@ class GuildMemberVerificationFields {
 
   setFields(...fields) {
     if (Array.isArray(fields[0])) {
-      this.fields = fields[0]?.map((o) =>
-        GuildMemberVerificationFields.transformFields(o)
-      );
+      this.fields = fields[0]?.map((o) => GuildMemberVerificationFields.transformFields(o));
     } else {
-      this.fields = fields?.map((o) =>
-        GuildMemberVerificationFields.transformFields(o)
-      );
+      this.fields = fields?.map((o) => GuildMemberVerificationFields.transformFields(o));
     }
 
     return this;
@@ -34,13 +27,9 @@ class GuildMemberVerificationFields {
 
   addFields(...fields) {
     if (Array.isArray(fields[0])) {
-      fields[0]?.map((o) =>
-        this.fields.push(GuildMemberVerificationFields.transformFields(o))
-      );
+      fields[0]?.map((o) => this.fields.push(GuildMemberVerificationFields.transformFields(o)));
     } else {
-      fields?.map((o) =>
-        this.fields.push(GuildMemberVerificationFields.transformFields(o))
-      );
+      fields?.map((o) => this.fields.push(GuildMemberVerificationFields.transformFields(o)));
     }
 
     return this;

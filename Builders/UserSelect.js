@@ -1,7 +1,7 @@
-const { ComponentType } = require("../Util/Constants");
+const {ComponentType} = require("../Util/Constants");
 class UserSelect {
   constructor(data = {}) {
-    this.type = "USER_SELECT";
+    this.type = "User_Select";
     this.customId = data.custom_id ?? data.customId ?? undefined;
     this.options = data.options?.map((o) => UserSelect.transformOptions(o));
     this.placeholder = data.placeholder ?? undefined;

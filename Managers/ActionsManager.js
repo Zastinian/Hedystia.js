@@ -51,8 +51,15 @@ const ThreadUpdate = require("../Actions/THREAD_UPDATE");
 const UserUpdate = require("../Actions/USER_UPDATE");
 const VoiceStateUpdate = require("../Actions/VOICE_STATE_UPDATE");
 const WebhooksUpdate = require("../Actions/WEBHOOKS_UPDATE");
-const { Opcodes } = require("../Util/Constants");
+const {Opcodes} = require("../Util/Constants");
+/* It's a class that handles all the events that the client receives from the Discord API.
+</code> */
 class ActionsManager {
+  /**
+   * It defines a property called client, and sets it to the client variable
+   * @param message - The message object that was sent.
+   * @param client - The client that instantiated the message.
+   */
   constructor(message, client) {
     Object.defineProperty(this, "client", {
       value: client,
@@ -61,11 +68,17 @@ class ActionsManager {
     this._patch(message);
   }
 
+  /**
+   * It takes a message from the websocket and returns a class that represents the message.
+   * </code>
+   * @param message - The message that was received from the websocket.
+   * @returns The event is being returned.
+   */
   _patch(message) {
-    if (message.op === Opcodes.HEARTBEAT_ACK)
+    if (message.op === Opcodes.Heartbeat_Ack)
       this.client.emit(
         "debug",
-        `[Heartbeat Acknowledged]: Reconocido con éxito el latido del corazón. Enviando el siguiente latido en ${this.client.heartbeatInterval}ms`
+        `[Heartbeat Acknowledged]: Successfully recognized heartbeat. Sending the next heartbeat in ${this.client.heartbeatInterval}ms`
       );
     this.client.seq = message.s;
     switch (message.t) {
