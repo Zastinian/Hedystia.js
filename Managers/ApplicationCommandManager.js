@@ -25,7 +25,7 @@ class ApplicationCommandManager extends Base {
    * @returns The command object.
    */
   _add(commands, guild = this.guildId, options = {cache: true, force: false}) {
-    const commandId = typeof commands === "string" ? commands : commands.id;
+    const commandId = typeof commands === "string" ? commands : commands.commandId;
     let command;
     if (this.cache.has(commandId) && !options.force) {
       command = this.cache.get(commandId);
@@ -108,7 +108,7 @@ class ApplicationCommandManager extends Base {
    * @returns The deleted command.
    */
   async delete(command, guild = this.guildId) {
-    const commandId = typeof command === "string" ? command : command?.id;
+    const commandId = typeof command === "string" ? command : command?.commandId;
     const guildId = typeof guild === "string" ? guild : guild?.id;
     if (!commandId) throw new RangeError(`Please specify an ApplicationCommand to remove`);
     const deletedCommand = this._add(command, guildId);
@@ -127,7 +127,7 @@ class ApplicationCommandManager extends Base {
    */
   async edit(command, options = {}, guild = this.guildId) {
     const body = ApplicationCommandManager.transformPayload(options);
-    const commandId = typeof command === "string" ? command : command?.id;
+    const commandId = typeof command === "string" ? command : command?.commandId;
     if (!commandId) throw new RangeError(`The application command is required`);
     const guildId = typeof guild === "string" ? guild : guild?.id;
     command = await this.client.api.patch(
@@ -147,10 +147,10 @@ class ApplicationCommandManager extends Base {
    */
   async _fetchId(command, cache = true, force = false, guild = this.guildId) {
     const guildId = typeof guild === "string" ? guild : guild?.id;
-    const commandId = typeof command === "string" ? command : command.id;
+    const commandId = typeof command === "string" ? command : command.commandId;
     if (this.cache.has(commandId) && !force) return this.cache.get(commandId);
     command = await this.client.api.get(
-      `${this.client.root}/applications/${this.client.user.id}${guildId ? `/guilds/commands/${commandId}` : `/commands/${commandId}`}`
+      `${this.client.root}/applications/${this.client.user.id}${guildId ? `/guilds/${guildId}/commands/${commandId}` : `/commands/${commandId}`}`
     );
     return this._add(command, guildId, {cache, force: true});
   }
