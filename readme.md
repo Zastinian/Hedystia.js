@@ -1,18 +1,15 @@
-<img width="170" height="170" align="left" style="float: left; margin: 0 10px 0 0; border-radius: 50%;" alt="Esmile" src="https://cdn.discordapp.com/attachments/851919671878746112/906308286536642592/logoooo_1.png">
+## Installation
 
-## Esmile
+```
+npm i esmile.js
 
-<br><br><br>
+yarn add esmile.js
+```
 
-## Cliente de Discord
+## Nodejs Version
 
-<br>
+- `v18.7.0` or higher
 
-## Enlaces
+## Links
 
-- [Documentacion](https://discord.gg/ZggF6k7FEc) [Cuando el cliente este listo]
-- [Servidor de Discord](https://discord.gg/YtMrX3uNJy) [Unete para estar informado de todo]
-
-## Encargados
-
-- [@Zastinian](https://github.com/Zastinian) (Todo el cliente)
+- [Discord](https://discord.gg/aXvuUpvRQs) [Esmile Discord]
