@@ -1,40 +1,38 @@
-const FormData = require("form-data")
-const DataManager = require("./DataManager")
+const FormData = require("form-data");
+const DataManager = require("./DataManager");
 class StickerPayload {
   static async create(payload = {}) {
-    const data = this.resolveData(payload)
+    const data = this.resolveData(payload);
     if (payload.file) {
-      const file = await DataManager.resolveFile(payload.file)
-      const form = new FormData()
+      const file = await DataManager.resolveFile(payload.file);
+      const form = new FormData();
       for (let [key, val] of Object.entries(data)) {
         form.append(key, val, {
           contentType: "application/json",
-        })
+        });
       }
 
       form.append("file", file.file ?? file, {
         filename: file.filename ?? "index.png",
-      })
+      });
 
-      return form
+      return form;
     }
 
-    return data
+    return data;
   }
 
   static resolveData(data = {}) {
-    if (data.name?.length > 30 || data.name?.length < 2)
-      throw new RangeError(`El nombre de la pegatina debe tener una longitud de entre 2 y 30`)
+    if (data.name?.length > 30 || data.name?.length < 2) throw new RangeError(`The name on the sticker should be between 2 and 30`);
     if (data.description?.length > 100 || data.description?.length < 2)
-      throw new RangeError(`La descripción de la pegatina debe tener una longitud de entre 2 y 100`)
-    if (data.tags?.length > 200)
-      throw new RangeError(`La longitud de las etiquetas de las pegatinas debe ser igual o inferior a 200`)
+      throw new RangeError(`The description of the sticker must be between 2 and 100`);
+    if (data.tags?.length > 200) throw new RangeError(`The length of sticker labels must be less than or equal to 200`);
     return {
       name: data.name ?? undefined,
       description: data.description ?? undefined,
       tags: data.tags ?? undefined,
-    }
+    };
   }
 }
 
-module.exports = StickerPayload
+module.exports = StickerPayload;

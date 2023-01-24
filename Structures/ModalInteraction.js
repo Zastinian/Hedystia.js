@@ -15,7 +15,7 @@ class ModalInteraction extends MessageComponentInteraction {
       return modal.components[0].value ?? null;
     }
 
-    if (required) throw new RangeError(`No se ha encontrado el módulo requerido`);
+    if (required) throw new RangeError(`The required module was not found`);
     return null;
   }
 
@@ -23,11 +23,11 @@ class ModalInteraction extends MessageComponentInteraction {
     const modal = this.data.components?.find((o) => o.components.find((o) => o.custom_id === customId));
     if (modal) {
       if (modal.components[0].type !== 3)
-        throw new RangeError(`El tipo de modalidad seleccionada no es String_Select. Received=${ComponentType[modal.components[0].type]}`);
+        throw new RangeError(`Mode type selected is not String_Select. Received=${ComponentType[modal.components[0].type]}`);
       return modal.components[0].values ?? null;
     }
 
-    if (required) throw new RangeError(`No se ha encontrado el módulo requerido`);
+    if (required) throw new RangeError(`The required module was not found`);
     return null;
   }
 

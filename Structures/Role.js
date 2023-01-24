@@ -88,13 +88,13 @@ class Role extends Base {
 
   permissionsIn(channel) {
     channel = this.client.channels.cache.get(typeof channel === "string" ? channel : channel?.id);
-    if (!channel) throw new RangeError(`Canal no cacheado`);
+    if (!channel) throw new RangeError(`Channel not cached`);
     return channel.permissionsFor(this);
   }
 
   deniedPermissionsIn(channel) {
     channel = this.client.channels.cache.get(typeof channel === "string" ? channel : channel?.id);
-    if (!channel) throw new RangeError(`Canal no cacheado`);
+    if (!channel) throw new RangeError(`Channel not cached`);
     const overwrite = channel.permissionOverwrites.cache.filter((o) => o.type === "Role" && o.id === this.id).first();
     if (!overwrite) return null;
     return overwrite.deny;

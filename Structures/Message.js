@@ -86,14 +86,14 @@ class Message extends Base {
   }
 
   async removeAttachments() {
-    if (this.attachments.size < 1) throw new RangeError(`No hay archivos adjuntos en este mensaje`);
+    if (this.attachments.size < 1) throw new RangeError(`There are no attachments in this message`);
     return await this.edit({attachments: []});
   }
 
   async removeAttachment(attachment) {
     if (!attachment) return await this.removeAttachments();
     const attachmentId = typeof attachment === "string" ? attachment : attachment.id;
-    if (!this.attachments.has(attachmentId)) throw new RangeError(`Este mensaje no tiene este adjunto`);
+    if (!this.attachments.has(attachmentId)) throw new RangeError(`This message does not have this attachment`);
     this.attachments.delete(attachmentId);
     return await this.edit({attachments: [...this.attachments.values()]});
   }
@@ -125,7 +125,7 @@ class Message extends Base {
 
   get system() {
     if (!this.type) return null;
-    if (!["DEFAULT", "REPLY", "APPLICATION_COMMAND", "CONTEXT_MENU_COMMAND"].includes(this.type)) return true;
+    if (!["Default", "Reply", "Application_Command", "Context_Menu_Command"].includes(this.type)) return true;
     return false;
   }
 
@@ -156,9 +156,8 @@ class Message extends Base {
   }
 
   async addAttachments(attachments = []) {
-    if (this.attachments.size <= 0) throw new RangeError(`Este mensaje no tiene archivos adjuntos`);
-    if (this.attachments.some((o) => attachments.includes(o.id)))
-      throw new RangeError(`Este mensaje ya tiene uno de sus archivos adjuntos especificados`);
+    if (this.attachments.size <= 0) throw new RangeError(`This message has no attachments`);
+    if (this.attachments.some((o) => attachments.includes(o.id))) throw new RangeError(`This message already has one of its specified attachments`);
     return await this.edit({
       attachments: [...this.attachments.values()],
       files: attachments,
