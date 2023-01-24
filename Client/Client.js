@@ -59,7 +59,9 @@ class Client extends EventEmitter {
     this.emojis = new EmojiManager(this);
     this.ws = new WebsocketManager(this);
 
-    this.ws.connect();
+    setTimeout(() => {
+      this.ws.connect();
+    }, 1000);
   }
 
   /**
