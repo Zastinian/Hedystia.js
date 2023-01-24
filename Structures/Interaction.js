@@ -71,6 +71,10 @@ class Interaction extends Base {
     return false;
   }
 
+  getValue(name) {
+    return this.options.options.filter((data) => data.name == name)[0].value;
+  }
+
   get channel() {
     return this.client.channels._add(this.channelId) ?? null;
   }
