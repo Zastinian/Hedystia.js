@@ -1,4 +1,12 @@
+/* It takes in an object with the properties of emoji, label, url, customid, style, and disabled, and
+returns an object with the properties of type, custom_id, style, label, emoji, disabled, and url.
+</code> */
 class Button {
+  /**
+   * It takes in an object with the properties of emoji, label, url, customid, style, and disabled, and
+   * returns an object with the properties of type, custom_id, style, label, emoji, disabled, and url.
+   * @returns The button object.
+   */
   constructor({emoji, label, url, customid, style, disabled}) {
     this.emoji = {...emoji} ?? undefined;
     this.label = label ?? undefined;
@@ -19,4 +27,4 @@ class Button {
   }
 }
 
-export default Button;
+module.exports = Button;

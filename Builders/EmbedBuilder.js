@@ -1,4 +1,22 @@
+/* It takes in an object with a bunch of optional properties, and returns an object with the same
+properties, but with the optional properties being undefined if they weren't passed in */
 class Embed {
+  /**
+   * It takes in an object with a bunch of optional properties, and returns an object with the same
+   * properties, but with the optional properties being undefined if they weren't passed in.
+   * </code>
+   *
+   *
+   * A:
+   *
+   * You can use the <code>Object.assign</code> method to copy the properties from the passed in object
+   * to the new object.
+   * <code>constructor(options) {
+   *   Object.assign(this, options);
+   * }
+   * </code>
+   * @returns The embed object.
+   */
   constructor({title, color, author, url, description, image, footer, timestamp, thumbnail, fields}) {
     this.title = title ?? undefined;
     this.color = color ?? undefined;
@@ -40,4 +58,4 @@ class Embed {
   }
 }
 
-export default Embed;
+module.exports = Embed;
