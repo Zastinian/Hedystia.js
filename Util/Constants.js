@@ -421,11 +421,11 @@ module.exports.Status = {
 };
 
 module.exports.ButtonStyle = {
-  Primary: "Primary",
-  Secondary: "Secondary",
-  Success: "Success",
-  Danger: "Danger",
-  Link: "Link",
+  Primary: 1,
+  Secondary: 2,
+  Success: 3,
+  Danger: 4,
+  Link: 5,
 };
 
 module.exports.InputTextStyle = {
