@@ -46,3 +46,4 @@ exports.InteractionWebhook = require("./Structures/InteractionWebhook");
 exports.GuildMemberVerificationFields = require("./Builders/GuildMemberVerificationFields");
 exports.RaidenCol = require("./Util/@Collections/RaidenCol").RaidenCol;
 exports.Snowflake = require("./Util/Snowflake");
+exports.Version = require("./package.json").version;
