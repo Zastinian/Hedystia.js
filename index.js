@@ -21,6 +21,7 @@ exports.ChannelSelect = require("./Builders/ChannelSelect");
 exports.InputText = require("./Builders/InputText");
 exports.MessageAttachment = require("./Builders/MessageAttachment");
 exports.MessageEmbed = require("./Builders/MessageEmbed");
+exports.Modal = require("./Builders/Modal");
 exports.Embed = require("./Builders/EmbedBuilder");
 exports.Button = require("./Builders/ButtonBuilder");
 exports.Row = require("./Builders/RowBuilder");
