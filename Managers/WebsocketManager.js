@@ -35,17 +35,19 @@ class WebsocketManager extends WebSocket {
         },
       },
     });
-    setInterval(() => {
-      this.send(
-        JSON.stringify({
-          op: 1,
-          d: this.sequence,
-        })
-      );
-    }, 300000);
     const gatewayMessage = `[Websocket]: Info:\nURL: ${gatewayInfo.url}\nShards: ${gatewayInfo.shards}\nLogin Remaining: ${gatewayInfo.session_start_limit?.remaining}/1000\nReset: ${gatewayInfo.session_start_limit?.reset_after}`;
     this.client.emit("debug", gatewayMessage);
+    this.on("message", this.notShutDown.bind(this));
     return this._handleConnect();
+  }
+
+  notShutDown(data) {
+    data = JSON.parse(data);
+    if (data.op === 10) {
+      this.heartbeatInterval = setInterval(() => {
+        this.send(JSON.stringify({op: 1, d: this.sequence}));
+      }, data.d.heartbeat_interval);
+    }
   }
 
   /**
