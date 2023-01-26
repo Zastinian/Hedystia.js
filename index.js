@@ -1,5 +1,5 @@
 exports.REST = require("./REST/REST");
-exports.Client = require("./Client/client");
+exports.Client = require("./Client/Client");
 exports.Bitfield = require("./Util/Bitfield");
 exports.Intents = require("./Util/Intents");
 exports.Permissions = require("./Util/Permissions");

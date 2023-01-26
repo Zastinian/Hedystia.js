@@ -52,25 +52,6 @@ class ClientApplication extends Base {
   /**
    * It returns a new instance of the ApplicationCommandManager class, which is a class that is defined
    * in the file ApplicationCommandManager.js.
-   *
-   * The ApplicationCommandManager class is a class that is defined in the file
-   * ApplicationCommandManager.js.
-   *
-   * The ApplicationCommandManager class is a class that is defined in the file
-   * ApplicationCommandManager.js.
-   *
-   * The ApplicationCommandManager class is a class that is defined in the file
-   * ApplicationCommandManager.js.
-   *
-   * The ApplicationCommandManager class is a class that is defined in the file
-   * ApplicationCommandManager.js.
-   *
-   * The ApplicationCommandManager class is a class that is defined in the file
-   * ApplicationCommandManager.js.
-   *
-   * The ApplicationCommandManager class is a class that is defined in the file
-   * ApplicationCommandManager.js.
-   *
    * The ApplicationCommandManager class is a class that is defined in
    * @returns A new instance of the ApplicationCommandManager class.
    */
