@@ -2,6 +2,7 @@ const WebsocketError = require("../Errors/WebsocketError");
 const {Opcodes} = require("../Util/Constants");
 const ActionsManager = require("./ActionsManager");
 const WebSocket = require("ws");
+
 /* It's a class that extends the WebSocket class and handles the connection to the Discord API */
 class WebsocketManager extends WebSocket {
   /**
@@ -35,19 +36,19 @@ class WebsocketManager extends WebSocket {
         },
       },
     });
+    let heartbeatInterval = 0;
+    this.on("message", (data) => {
+      const payload = JSON.parse(data);
+      if (payload.op === 10) {
+        heartbeatInterval = payload.d.heartbeat_interval;
+        setInterval(() => {
+          this.send({op: Opcodes.Heartbeat, d: null});
+        }, heartbeatInterval);
+      }
+    });
     const gatewayMessage = `[Websocket]: Info:\nURL: ${gatewayInfo.url}\nShards: ${gatewayInfo.shards}\nLogin Remaining: ${gatewayInfo.session_start_limit?.remaining}/1000\nReset: ${gatewayInfo.session_start_limit?.reset_after}`;
     this.client.emit("debug", gatewayMessage);
-    this.on("message", this.notShutDown.bind(this));
     return this._handleConnect();
-  }
-
-  notShutDown(data) {
-    data = JSON.parse(data);
-    if (data.op === 10) {
-      this.heartbeatInterval = setInterval(() => {
-        this.send(JSON.stringify({op: 1, d: this.sequence}));
-      }, data.d.heartbeat_interval);
-    }
   }
 
   /**
