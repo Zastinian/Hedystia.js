@@ -1,6 +1,6 @@
 {
   "name": "esmile.js",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "Discord Client",
   "main": "index.js",
   "author": "contact@mresmile.com",
@@ -11,5 +11,13 @@
   "engines": {
     "node": ">=18.7.0"
   },
-  "repository": "https://github.com/Zastinian/Esmile.js"
+  "repository": "https://github.com/Zastinian/Esmile.js",
+  "keywords": [
+    "client",
+    "discord",
+    "discord-client",
+    "discord-api",
+    "esmile",
+    "nodejs"
+  ]
 }
