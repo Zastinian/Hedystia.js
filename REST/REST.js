@@ -1,5 +1,4 @@
 const DiscordAPIError = require("../Errors/DiscordAPIError");
-const FormData = require("form-data");
 const https = require("node:https");
 class REST {
   constructor(client) {
@@ -25,7 +24,7 @@ class REST {
     let body;
     if (options["reason"]) headers["X-Audit-Log-Reason"] = options["reason"];
     if (options.body) {
-      if (options.body instanceof FormData || options.body?.constructor?.name === "FormData") {
+      if (options.body?.constructor?.name === "FormData") {
         headers = Object.assign(headers, options.body.getHeaders());
         body = options.body;
       } else {

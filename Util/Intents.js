@@ -9,7 +9,7 @@ class Intents extends Bitfield {
 Intents.Flags = {
   Guilds: 1n << 0n,
   Guild_Members: 1n << 1n,
-  Guild_Bans: 1n << 2n,
+  Guild_Moderation: 1n << 2n,
   Guild_Emojis_And_Stickers: 1n << 3n,
   Guild_Integrations: 1n << 4n,
   Guild_Webhooks: 1n << 5n,

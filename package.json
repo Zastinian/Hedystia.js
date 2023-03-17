@@ -1,12 +1,11 @@
 {
   "name": "esmile.js",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Discord Client",
   "main": "index.js",
   "author": "contact@mresmile.com",
   "license": "ISC",
   "dependencies": {
-    "form-data": "^4.0.0",
     "ws": "^8.13.0"
   },
   "engines": {

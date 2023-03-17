@@ -1,4 +1,4 @@
-const EventEmitter = require("node:events");
+const {EventEmitter} = require("events");
 const ChannelManager = require("../Managers/ChannelManager");
 const WebsocketManager = require("../Managers/WebsocketManager");
 const {ActivityType, CDN} = require("../Util/Constants");
@@ -38,6 +38,9 @@ class Client extends EventEmitter {
     this.intents = new Intents(options.intents ?? Intents.Flags.Guilds);
     this.token = options.user ? `${options.token}` : `Bot ${options.token}`;
     this.presence = Client.transformPresence(options.presence);
+    this.maxShards = options.maxShards ?? 1;
+    this.shardId = options.shardId ?? 0;
+
     this.version = options.version ?? "10";
     this.encoding = options.encoding ?? "json";
     this.restRequestTimeout = options.timeout ?? 1000 * 15;

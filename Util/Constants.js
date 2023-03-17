@@ -265,7 +265,7 @@ module.exports.GuildAuditLogEntryActionTypes = createEnum([
   "Role_Prompt_Delete",
 ]);
 module.exports.WebhookType = createEnum([null, "Incoming", "Channel Follower", "Application"]);
-module.exports.GuildAutoModTriggerTypes = createEnum([null, "Keyword", "Harmful_Link", "Spam", "Keyword_Preset"]);
+module.exports.GuildAutoModTriggerTypes = createEnum([null, "Keyword", "Spam", "Keyword_Preset", "Mention_Spam"]);
 module.exports.GuildAutoModEventTypes = createEnum([null, "Message_Send"]);
 module.exports.GuildAutoModPresetTypes = createEnum([null, "Profanity", "Sexual_Content", "Slurs"]);
 module.exports.GuildAutoModActionTypes = createEnum([null, "Block_Message", "Send_Alert_Message", "Timeout"]);

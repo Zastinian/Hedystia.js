@@ -17,7 +17,6 @@ class BaseAction {
     for (const member of users.members) {
       this.client.users._add(member.user, {force: true, cache: true});
     }
-
     return;
   }
 

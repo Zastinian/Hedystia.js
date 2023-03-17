@@ -6,11 +6,13 @@ const AutoModerationRuleUpdate = require("../Actions/AUTO_MODERATION_RULE_UPDATE
 const ChannelCreate = require("../Actions/CHANNEL_CREATE");
 const ChannelDelete = require("../Actions/CHANNEL_DELETE");
 const ChannelUpdate = require("../Actions/CHANNEL_UPDATE");
+const GuildAuditLogEntryCreate = require("../Actions/GUILD_AUDIT_LOG_ENTRY_CREATE");
 const GuildBanAdd = require("../Actions/GUILD_BAN_ADD");
 const GuildBanRemove = require("../Actions/GUILD_BAN_REMOVE");
 const GuildCreate = require("../Actions/GUILD_CREATE");
 const GuildDelete = require("../Actions/GUILD_DELETE");
 const GuildEmojisCreate = require("../Actions/GUILD_EMOJIS_UPDATE");
+const GuildIntegrationUpdate = require("../Actions/GUILD_INTEGRATION_UPDATE");
 const GuildMembersChunk = require("../Actions/GUILD_MEMBERS_CHUNK");
 const GuildMemberAdd = require("../Actions/GUILD_MEMBER_ADD");
 const GuildMemberRemove = require("../Actions/GUILD_MEMBER_REMOVE");
@@ -104,6 +106,8 @@ class ActionsManager {
         return new ChannelUpdate(message, this.client);
       case "CHANNEL_DELETE":
         return new ChannelDelete(message, this.client);
+      case "GUILD_AUDIT_LOG_ENTRY_CREATE":
+        return new GuildAuditLogEntryCreate(message, this.client);
       case "GUILD_MEMBERS_CHUNK":
         return new GuildMembersChunk(message, this.client);
       case "USER_UPDATE":
@@ -112,6 +116,8 @@ class ActionsManager {
         return new IntegrationCreate(message, this.client);
       case "INTEGRATION_UPDATE":
         return new IntegrationUpdate(message, this.client);
+      case "GUILD_INTEGRATION_UPDATE":
+        return new GuildIntegrationUpdate(message, this.client);
       case "GUILD_ROLE_CREATE":
         return new RoleCreate(message, this.client);
       case "GUILD_ROLE_UPDATE":

@@ -1,22 +1,23 @@
-const FormData = require("form-data");
 const DataManager = require("./DataManager");
 class StickerPayload {
   static async create(payload = {}) {
     const data = this.resolveData(payload);
     if (payload.file) {
       const file = await DataManager.resolveFile(payload.file);
-      const form = new FormData();
+      const formData = {};
+
       for (let [key, val] of Object.entries(data)) {
-        form.append(key, val, {
-          contentType: "application/json",
-        });
+        formData[key] = JSON.stringify(val);
       }
 
-      form.append("file", file.file ?? file, {
-        filename: file.filename ?? "index.png",
-      });
+      formData.file = {
+        value: file.file || file,
+        options: {
+          filename: file.filename || "index.png",
+        },
+      };
 
-      return form;
+      return formData;
     }
 
     return data;
