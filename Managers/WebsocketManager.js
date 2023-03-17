@@ -113,7 +113,7 @@ class WebsocketManager extends EventEmitter {
         });
       default:
         this.client.emit("debug", `[Websocket]: Disconnected due to unknown error`);
-        return console.error(error);
+        break;
     }
   }
 
