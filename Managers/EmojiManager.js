@@ -17,7 +17,7 @@ class EmojiManager extends Base {
    * @param emojis - The emoji(s) to add to the cache. Can be an emoji object, an emoji ID, or an emoji
    * name.
    * @param [guildId] - The ID of the guild the emoji is in.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A new Emoji object
    */
   _add(emojis, guildId = this.guildId, options = {cache: true, force: false}) {

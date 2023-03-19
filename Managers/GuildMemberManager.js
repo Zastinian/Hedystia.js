@@ -23,7 +23,7 @@ class GuildMemberManager extends Base {
    * @param members - The member(s) to add to the cache. Can be a string, a user object, or a guild
    * member object.
    * @param [guildId] - The ID of the guild the member is in.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A new GuildMember object
    */
   _add(members, guildId = this.guildId, options = {cache: true, force: false}) {

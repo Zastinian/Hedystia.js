@@ -5,7 +5,16 @@ const StringSelect = require("./StringSelect");
 const UserSelect = require("./UserSelect");
 const RoleSelect = require("./RoleSelect");
 const ChannelSelect = require("./ChannelSelect");
+
+/**
+ * Represents an action row containing components, such as buttons or selects, to be added to a message.
+ * @class
+ */
 class MessageActionRow {
+  /**
+   * @param {Object} data - The data for the action row.
+   * @param {Array} data.components - The components to be added to the action row.
+   */
   constructor(data = {}) {
     this.type = "Action_Row";
     this.components = data.components?.map((o) => MessageActionRow.transformComponents(o));
@@ -38,6 +47,11 @@ class MessageActionRow {
     return arr.reduce((a, b) => a);
   }
 
+  /**
+   * Adds one or more components to the action row.
+   * @param  {...any} components - The components to be added to the action row.
+   * @returns {MessageActionRow} - The action row with the new components added.
+   */
   addComponents(...components) {
     this.components = [];
     if (Array.isArray(components[0])) {
@@ -49,6 +63,11 @@ class MessageActionRow {
     return this;
   }
 
+  /**
+   * Sets the components of the action row.
+   * @param  {...any} components - The components to be set as the action row's components.
+   * @returns {MessageActionRow} - The action row with the new components set.
+   */
   setComponents(...components) {
     if (Array.isArray(components[0])) {
       this.components = components[0]?.map((o) => MessageActionRow.transformComponents(o));
@@ -59,11 +78,20 @@ class MessageActionRow {
     return this;
   }
 
+  /**
+   * Validates that the action row's type is valid.
+   * @returns {void}
+   * @throws {TypeError} If the action row's type is invalid.
+   */
   validation() {
     if (!ComponentType[this.type]) throw new TypeError(`ComponentType is invalid`);
     return;
   }
 
+  /**
+   * Returns the action row's data in JSON format.
+   * @returns {Object} - The action row's data in JSON format.
+   */
   toJSON() {
     this.validation();
     return {

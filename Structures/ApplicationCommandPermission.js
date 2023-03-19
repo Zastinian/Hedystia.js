@@ -2,7 +2,7 @@ const {RaidenCol} = require("../Util/@Collections/RaidenCol");
 const {ApplicationCommandPermissionType} = require("../Util/Constants");
 const Base = require("../Base/base");
 /* It's a class that stores the permissions of a command in a guild.
-</code> */
+ */
 class ApplicationCommandPermission extends Base {
   /**
    * It's a constructor function that takes in a data object, a guildId, and a client, and then sets the

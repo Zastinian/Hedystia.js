@@ -1,5 +1,10 @@
 const BitfieldInvalid = require("../Errors/BitfieldInvalid");
 
+/**
+ * It's a class that allows you to create a bitfield, and then you can add, remove, and check if a
+bitfield has a certain bit
+ * @module Bitfield
+ */
 class Bitfield {
   constructor(bit = this.constructor.defaultBit) {
     this.bitfield = this.constructor.resolve(bit);

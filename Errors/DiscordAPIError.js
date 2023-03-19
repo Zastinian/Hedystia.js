@@ -1,3 +1,7 @@
+/**
+ * It's a class that extends the Error class and has a constructor that takes an object as an argument
+ * @module DiscordAPIError
+ */
 class DiscordAPIError extends Error {
   constructor(data = {}) {
     super(data.message);

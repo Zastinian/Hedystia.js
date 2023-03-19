@@ -3,7 +3,7 @@ const {ApplicationCommandPermissionType} = require("../Util/Constants");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
 /* It's a class that manages the permissions of a command for a specific guild.
-</code> */
+ */
 class ApplicationCommandPermissionManager extends Base {
   /**
    * This function is a constructor for the class GuildSettings. It takes in a client and a guildId and
@@ -21,7 +21,7 @@ class ApplicationCommandPermissionManager extends Base {
    * _add(commands, guildId = this.guildId, options = {cache: true, force: false})
    * @param commands - The command or command ID to add.
    * @param [guildId] - The ID of the guild to get the permissions for.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns The return value is a new instance of the ApplicationCommandPermission class.
    */
   _add(commands, guildId = this.guildId, options = {cache: true, force: false}) {
@@ -97,7 +97,7 @@ class ApplicationCommandPermissionManager extends Base {
    * "If the object has an id property, and that property is a string, then return that property,
    * otherwise if the object has an id property, and that property has an id property, then return that
    * property, otherwise return undefined."
-   * </code>
+   *
    * @param [o] - {} -&gt; this is the object that is being passed in.
    * @returns The return value is an object with the following properties:
    */

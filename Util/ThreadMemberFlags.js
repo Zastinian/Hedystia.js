@@ -1,11 +1,23 @@
 const Bitfield = require("./Bitfield");
 
+/**
+ * A bitfield of flags for a thread member.
+ * @extends {Bitfield}
+ */
 class ThreadMemberFlags extends Bitfield {
+  /**
+   * @param {...bigint} bit - Bit(s) to set in the bitfield.
+   */
   constructor(...bit) {
     super(bit);
   }
 }
 
+/**
+ * Thread member flags.
+ * @enum {bigint}
+ * @static
+ */
 ThreadMemberFlags.Flags = {
   Has_Interacted: 1n << 0n,
   All_Messages: 1n << 1n,
@@ -13,8 +25,18 @@ ThreadMemberFlags.Flags = {
   No_Messages: 1n << 3n,
 };
 
+/**
+ * Default bit value for a thread member.
+ * @type {bigint}
+ * @static
+ */
 ThreadMemberFlags.Default = 0n;
 
+/**
+ * Bitfield representing all available thread member flags.
+ * @type {bigint}
+ * @static
+ */
 ThreadMemberFlags.All = Object.values(ThreadMemberFlags.Flags).reduce((a, b) => a | b, ThreadMemberFlags.Default);
 
 module.exports = ThreadMemberFlags;

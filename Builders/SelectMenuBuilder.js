@@ -1,34 +1,18 @@
-/* It takes in an object with the following properties: customid, placeholder, disabled, minvalues,
-maxvalues, options. It then assigns the properties to the object's properties. It then returns an
-object with the following properties: type, custom_id, placeholder, options, min_values, max_values,
-disabled. The problem is that I want to be able to pass in an object with the following properties:
-customid, placeholder, disabled, minvalues, maxvalues, options. I want to be able to pass in an
-object with the following properties: customid, placeholder, disabled, minvalues, maxvalues,
-options. I want to be able to pass in an object with the following properties: customid,
-placeholder, disabled, minvalues, maxvalues, options. I want to be able to pass in an object with
-the following properties: customid, placeholder, disabled, minvalues, maxvalues, options. I want to
-be able to pass in an object */
+/**
+ * Class representing a select menu component.
+ * @class
+ */
 class SelectMenu {
   /**
-   * It takes in an object with the following properties: customid, placeholder, disabled, minvalues,
-   * maxvalues, options.
-   *
-   * It then assigns the properties to the object's properties.
-   *
-   * It then returns an object with the following properties: type, custom_id, placeholder, options,
-   * min_values, max_values, disabled.
-   *
-   * The problem is that I want to be able to pass in an object with the following properties: customid,
-   * placeholder, disabled, minvalues, maxvalues, options.
-   *
-   * I want to be able to pass in an object with the following properties: customid, placeholder,
-   * disabled, minvalues, maxvalues, options.
-   *
-   * I want to be able to pass in an object with the following properties: customid, placeholder,
-   * disabled, minvalues, maxvalues, options.
-   *
-   * I want to be able to pass in an object with
-   * @returns The object that is being returned is the object that is being created.
+   * Create a select menu.
+   * @param {Object} options - The options for the select menu.
+   * @param {string} options.customid - The custom ID for the select menu.
+   * @param {string} options.placeholder - The placeholder text for the select menu.
+   * @param {boolean} [options.disabled=false] - Whether the select menu is disabled.
+   * @param {number} [options.minvalues=1] - The minimum number of values that can be selected.
+   * @param {number} [options.maxvalues=1] - The maximum number of values that can be selected.
+   * @param {Array} [options.options] - The options for the select menu.
+   * @returns {Object} - The select menu component.
    */
   constructor({customid, placeholder, disabled, minvalues, maxvalues, options}) {
     this.customid = customid ?? undefined;

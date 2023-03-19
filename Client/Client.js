@@ -18,19 +18,25 @@ const Sticker = require("../Structures/Sticker");
 const StickerPack = require("../Structures/StickerPack");
 const Permissions = require("../Util/Permissions");
 const EmojiManager = require("../Managers/EmojiManager");
-/* It's a class that represents a Discord client */
+
+/**
+ * Client class representing a Discord bot client.
+ * @extends EventEmitter
+ * @class
+ */
 class Client extends EventEmitter {
   /**
-   * "This function is a constructor for the Client class, which is a class that extends the
-   * EventEmitter class, and it takes in an options object as a parameter, and it sets the intents,
-   * token, presence, version, encoding, restRequestTimeout, and partials properties of the Client
-   * class to the values of the options object's intents, token, presence, version, encoding, timeout,
-   * and partials properties, respectively, and it sets the root, oauth2, cdnRoot, websocketURL, and
-   * webhookURL properties of the Client class to the values of the root, oauth2, cdnRoot,
-   * websocketURL, and webhookURL properties of the Client class, respectively, and it sets the readyAt
-   * and application properties of the Client class to null, and it sets the channels, guilds, users,
-   * roles, emojis, and ws properties of the Client class to the values of the ChannelManager
-   * @param [options] - The options that you pass to the client.
+   * @constructor
+   * @param {Object} [options={}] - The options to set for the client.
+   * @param {Array<String>} [options.intents=["GUILDS"]] - The intents to use for the client.
+   * @param {String} options.token - The bot token to use for authorization.
+   * @param {Object} [options.presence={}] - The presence options for the client.
+   * @param {Number} [options.maxShards=1] - The maximum number of shards for the client.
+   * @param {Number} [options.shardId=0] - The shard ID for the client.
+   * @param {String} [options.version="10"] - The API version to use for the client.
+   * @param {String} [options.encoding="json"] - The encoding to use for the client.
+   * @param {Number} [options.timeout=15000] - The timeout for REST requests.
+   * @param {Array<String>} [options.partials=[]] - The partials to use for the client.
    */
   constructor(options = {}) {
     super(options);

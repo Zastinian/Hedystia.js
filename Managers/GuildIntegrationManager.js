@@ -19,7 +19,7 @@ class GuildIntegrationManager extends Base {
    * _add(integrations, guildId = this.guildId, options = {cache: true, force: false})
    * @param integrations - The integrations object
    * @param [guildId] - The ID of the guild
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns The integration object
    */
   _add(integrations, guildId = this.guildId, options = {cache: true, force: false}) {
@@ -50,7 +50,7 @@ class GuildIntegrationManager extends Base {
 
   /**
    * It fetches the integrations for a guild
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @param [guild] - The guild ID or guild object.
    * @returns An array of objects.
    */

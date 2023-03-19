@@ -23,7 +23,7 @@ class MessageManager extends Base {
    * @param messages - The message object
    * @param [guildId] - The guild ID of the message
    * @param [channelId] - The channel ID of the channel the message is in.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns The message object
    */
   _add(messages, guildId = this.guildId, channelId = this.channelId, options = {cache: true, force: false}) {

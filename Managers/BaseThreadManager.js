@@ -18,7 +18,7 @@ class BaseThreadManager extends Base {
    * It adds a thread to the cache
    * @param threads - The thread object or thread ID.
    * @param [guildId] - The guild ID of the guild the thread is in.
-   * @param [options] - {cache: true, force: true}
+   * @param [options] - cache = true, force = true
    * @returns A thread object
    */
   _add(threads, guildId = this.guildId, options = {cache: true, force: true}) {

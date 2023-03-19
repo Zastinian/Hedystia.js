@@ -1,5 +1,9 @@
 const DiscordAPIError = require("../Errors/DiscordAPIError");
 const https = require("node:https");
+/**
+ * It's a class that makes requests to the Discord API
+ * @module REST
+ */
 class REST {
   constructor(client) {
     Object.defineProperty(this, "client", {

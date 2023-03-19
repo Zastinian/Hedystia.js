@@ -1,21 +1,26 @@
-/* It takes in an object with a bunch of optional properties, and returns an object with the same
-properties, but with the optional properties being undefined if they weren't passed in */
+/**
+ * Class representing an embed object for use in Discord messages.
+ * @class
+ */
 class Embed {
   /**
-   * It takes in an object with a bunch of optional properties, and returns an object with the same
-   * properties, but with the optional properties being undefined if they weren't passed in.
-   * </code>
-   *
-   *
-   * A:
-   *
-   * You can use the <code>Object.assign</code> method to copy the properties from the passed in object
-   * to the new object.
-   * <code>constructor(options) {
-   *   Object.assign(this, options);
-   * }
-   * </code>
-   * @returns The embed object.
+   * Create a new Embed object.
+   * @param {Object} options - The options to use for the Embed object.
+   * @param {string} [options.title] - The title of the embed.
+   * @param {number} [options.color] - The color of the embed.
+   * @param {Object} [options.author] - The author of the embed.
+   * @param {string} [options.author.name] - The name of the author.
+   * @param {string} [options.author.image] - The image of the author.
+   * @param {string} [options.url] - The URL of the embed.
+   * @param {string} [options.description] - The description of the embed.
+   * @param {string} [options.image] - The image of the embed.
+   * @param {Object} [options.footer] - The footer of the embed.
+   * @param {string} [options.footer.text] - The text of the footer.
+   * @param {string} [options.footer.image] - The image of the footer.
+   * @param {string} [options.timestamp] - The timestamp of the embed.
+   * @param {string} [options.thumbnail] - The thumbnail of the embed.
+   * @param {Array} [options.fields] - The fields of the embed.
+   * @returns {Object} - The new Embed object.
    */
   constructor({title, color, author, url, description, image, footer, timestamp, thumbnail, fields}) {
     this.title = title ?? undefined;

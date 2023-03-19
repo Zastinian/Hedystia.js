@@ -1,6 +1,20 @@
 const {OptionType} = require("../../Util/Constants");
 const SlashOption = require("./SlashOption");
+
+/**
+ * A class representing a slash subcommand for Discord slash commands.
+ * @class
+ */
 class SlashSubCommands {
+  /**
+   * Create a new SlashSubCommands instance.
+   * @param {Object} data - The data for the subcommand.
+   * @param {string} data.name - The name of the subcommand.
+   * @param {string} data.description - The description of the subcommand.
+   * @param {Object} data.name_localizations - The localized names of the subcommand.
+   * @param {Object} data.description_localizations - The localized descriptions of the subcommand.
+   * @param {Array<Object>} data.options - The options for the subcommand.
+   */
   constructor(data = {}) {
     this.type = "Sub_Command";
     this.name = data.name ?? undefined;
@@ -10,26 +24,51 @@ class SlashSubCommands {
     this.options = data.options?.map((o) => new SlashOption(o).toJSON()) ?? [];
   }
 
+  /**
+   * Set the name of the subcommand.
+   * @param {string} name - The name of the subcommand.
+   * @returns {SlashSubCommands} The updated SlashSubCommands instance.
+   */
   setName(name) {
     this.name = name;
     return this;
   }
 
+  /**
+   * Set the description of the subcommand.
+   * @param {string} description - The description of the subcommand.
+   * @returns {SlashSubCommands} The updated SlashSubCommands instance.
+   */
   setDescription(description) {
     this.description = description;
     return this;
   }
 
+  /**
+   * Set the localized descriptions of the subcommand.
+   * @param {Object} localizations - The localized descriptions of the subcommand.
+   * @returns {SlashSubCommands} The updated SlashSubCommands instance.
+   */
   setDescriptionLocalizations(localizations) {
     this.descriptionLocalizations = localizations;
     return this;
   }
 
+  /**
+   * Set the localized names of the subcommand.
+   * @param {Object} localizations - The localized names of the subcommand.
+   * @returns {SlashSubCommands} The updated SlashSubCommands instance.
+   */
   setNameLocalizations(localizations = {}) {
     this.nameLocalizations = localizations;
     return this;
   }
 
+  /**
+   * Set the options for the subcommand.
+   * @param {Object|function} fn - The options for the subcommand.
+   * @returns {SlashSubCommands} The updated SlashSubCommands instance.
+   */
   setOptions(fn) {
     if (typeof fn === "object") {
       this.options = fn?.map((o) => new SlashOption(o).toJSON());
@@ -41,6 +80,10 @@ class SlashSubCommands {
     return this;
   }
 
+  /**
+   * Convert the SlashSubCommands instance to a JSON object.
+   * @returns {Object} The JSON representation of the SlashSubCommands instance.
+   */
   toJSON() {
     return {
       type: OptionType[this.type],

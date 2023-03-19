@@ -17,7 +17,7 @@ class UserManager extends Base {
   /**
    * It adds a user to the cache
    * @param users - The user object or user ID to add to the cache.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A user object.
    */
   _add(users, options = {cache: true, force: false}) {
@@ -59,7 +59,7 @@ class UserManager extends Base {
   /**
    * It fetches a user from the API and adds it to the cache
    * @param user - The user object or user ID.
-   * @param [options] - {cache = true, force = false}
+   * @param [options] - cache = true, force = false
    * @returns The user object.
    */
   async fetch(user, options = {}) {

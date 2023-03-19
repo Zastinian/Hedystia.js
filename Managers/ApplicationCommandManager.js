@@ -21,7 +21,7 @@ class ApplicationCommandManager extends Base {
    * _add(commands, guild = this.guildId, options = {cache: true, force: false})
    * @param commands - The command or commands to add.
    * @param [guild] - The guild ID
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns The command object.
    */
   _add(commands, guild = this.guildId, options = {cache: true, force: false}) {
@@ -157,7 +157,7 @@ class ApplicationCommandManager extends Base {
 
   /**
    * It returns a new ApplicationCommandPermissionManager object, which is a class that I made.
-   * </code>
+   *
    * I'm not sure if this is the right place to ask this question, but I'm not sure where else to ask
    * it.
    * @returns A new instance of the ApplicationCommandPermissionManager class.

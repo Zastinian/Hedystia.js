@@ -1,10 +1,24 @@
 const Bitfield = require("./Bitfield");
+
+/**
+ * Represents a bitfield for Discord message flags.
+ * @extends Bitfield
+ */
 class MessageFlags extends Bitfield {
+  /**
+   * @param {...number} bit Positions to enable in the bitfield.
+   */
   constructor(...bit) {
     super(bit);
   }
 }
 
+/**
+ * An object mapping flag names to their corresponding bit positions.
+ * @type {Object<string, BigInt>}
+ * @readonly
+ * @static
+ */
 MessageFlags.Flags = {
   Crossposted: 1n << 0n,
   Is_Crosspost: 1n << 1n,
@@ -18,8 +32,20 @@ MessageFlags.Flags = {
   Should_Show_Link_Not_Discord_Warning: 1n << 10n,
 };
 
+/**
+ * The default bitfield value for a new instance.
+ * @type {BigInt}
+ * @readonly
+ * @static
+ */
 MessageFlags.Default = 0n;
 
+/**
+ * The bitfield value with all bits set to 1.
+ * @type {BigInt}
+ * @readonly
+ * @static
+ */
 MessageFlags.All = Object.values(MessageFlags.Flags).reduce((a, b) => a | b, MessageFlags.Default);
 
 module.exports = MessageFlags;

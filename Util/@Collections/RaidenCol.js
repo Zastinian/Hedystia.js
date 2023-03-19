@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * It's a Map with some extra methods.
+ * @module Map
+ * */
 class RaidenCol extends Map {
   get size() {
     return super.size;

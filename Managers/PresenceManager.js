@@ -15,7 +15,7 @@ class PresenceManager extends Base {
    * It adds a presence to the cache
    * @param presences - The presence(s) to add. Can be a string, a presence object, or an array of
    * either.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A presence object
    */
   _add(presences, options = {cache: true, force: false}) {

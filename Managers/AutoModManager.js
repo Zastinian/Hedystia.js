@@ -16,7 +16,7 @@ class AutoModManager extends Base {
    * It adds a rule to the cache
    * @param rules - The rule object or ID of the rule to add.
    * @param [guildId] - The ID of the guild to fetch the rule from.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns The rule object
    */
   _add(rules, guildId = this.guildId, options = {cache: true, force: false}) {

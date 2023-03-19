@@ -55,7 +55,7 @@ const VoiceStateUpdate = require("../Actions/VOICE_STATE_UPDATE");
 const WebhooksUpdate = require("../Actions/WEBHOOKS_UPDATE");
 const {Opcodes} = require("../Util/Constants");
 /* It's a class that handles all the events that the client receives from the Discord API.
-</code> */
+ */
 class ActionsManager {
   /**
    * It defines a property called client, and sets it to the client variable
@@ -72,7 +72,7 @@ class ActionsManager {
 
   /**
    * It takes a message from the websocket and returns a class that represents the message.
-   * </code>
+   *
    * @param message - The message that was received from the websocket.
    * @returns The event is being returned.
    */

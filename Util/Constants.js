@@ -1,3 +1,9 @@
+/**
+ * It creates an object with the keys being the index of the value in the array and the value being the
+ * value in the array.
+ * @param keys - An array of strings that will be used to create the enum.
+ * @returns The return value is an object with the following properties:
+ */
 module.exports.ActivityType = createEnum(["Playing", "Streaming", "Listening", "Watching", "Custom", "Competing"]);
 module.exports.InteractionType = createEnum([
   null,

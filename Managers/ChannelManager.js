@@ -29,7 +29,7 @@ class ChannelManager extends Base {
    * It takes a channel object, and returns a channel object
    * @param channels - The channel object or channel ID.
    * @param [guildId] - The ID of the guild the channel is in.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A channel object.
    */
   _add(channels, guildId = this.guildId, options = {cache: true, force: false}) {

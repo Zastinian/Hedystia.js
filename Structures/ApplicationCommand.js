@@ -4,23 +4,17 @@ const Base = require("../Base/base");
 const Snowflake = require("../Util/Snowflake");
 const SlashOption = require("./Interface/SlashOption");
 const Permissions = require("../Util/Permissions");
-/* It's a class that represents a command for a bot */
+
+/**
+ * Class representing an application command.
+ * @class
+ */
 class ApplicationCommand extends Base {
   /**
-   * It's a constructor for a class that extends a class that extends a class that extends a class that
-   * extends a class that extends a class that extends a class that extends a class that extends a class
-   * that extends a class that extends a class that extends a class that extends a class that extends a
-   * class that extends a class that extends a class that extends a class that extends a class that
-   * extends a class that extends a class that extends a class that extends a class that extends a class
-   * that extends a class that extends a class that extends a class that extends a class that extends a
-   * class that extends a class that extends a class that extends a class that extends a class that
-   * extends a class that extends a class that extends a class that extends a class that extends a class
-   * that extends a class that extends a class that extends a class that extends a class that extends a
-   * class that extends a class that extends a class that extends a class that extends a class that
-   * extends a class that extends a class that extends a class that
-   * @param [data] - The data that is passed to the constructor
-   * @param guildId - The guild ID
-   * @param client - The client
+   * Create an application command object.
+   * @param data - The data object for the command.
+   * @param guildId - The ID of the guild the command belongs to.
+   * @param client - The client object for the command.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -42,15 +36,15 @@ class ApplicationCommand extends Base {
   }
 
   /**
-   * It returns the guild object if it exists, otherwise it returns null
-   * @returns The guild object or null
+   * Get the guild object if it exists, otherwise return null.
+   * @returns The guild object or null.
    */
   get guild() {
     return this.client.guilds.cache.get(this.guildId) ?? null;
   }
 
   /**
-   * It fetches the command from the guild or the client
+   * Fetch the command from the guild or the client.
    * @param [options] - The options to pass to the command.
    * @returns The command object.
    */
@@ -60,10 +54,9 @@ class ApplicationCommand extends Base {
   }
 
   /**
-   * It edits a command
+   * Edit the command.
    * @param [options] - The options to edit the command with.
-   * @returns The return value of the edit method of the commands property of the guild or application
-   * object.
+   * @returns The return value of the edit method of the commands property of the guild or application object.
    */
   async edit(options = {}) {
     if (options.guild || this.guildId) return await this.guild?.commands.edit(this, options);
@@ -71,7 +64,7 @@ class ApplicationCommand extends Base {
   }
 
   /**
-   * It deletes the command from the commands collection
+   * Delete the command from the commands collection.
    * @returns The return value of the delete method.
    */
   async delete() {

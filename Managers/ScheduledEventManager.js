@@ -17,7 +17,7 @@ class ScheduledEventManager extends Base {
    * It adds a scheduled event to the cache.
    * @param events - The event to add. Can be a string or a GuildScheduledEvent object.
    * @param [guildId] - The ID of the guild the event is in.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A new instance of the GuildScheduledEvent class.
    */
   _add(events, guildId = this.guildId, options = {cache: true, force: false}) {

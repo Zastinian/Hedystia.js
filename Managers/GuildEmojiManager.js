@@ -15,7 +15,7 @@ class GuildEmojiManager extends EmojiManager {
   /**
    * `_add` is a function that adds emojis to a guild
    * @param emojis - The emojis to add. This can be a single emoji, or an array of emojis.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns The return value of the super._add method.
    */
   _add(emojis, options = {cache: true, force: false}) {

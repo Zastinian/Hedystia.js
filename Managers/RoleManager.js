@@ -17,7 +17,7 @@ class RoleManager extends Base {
    * It adds a role to the cache
    * @param roles - The role object or role ID to add to the cache.
    * @param [guildId] - The guild ID to use for the role.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A role object
    */
   _add(roles, guildId = this.guildId, options = {cache: true, force: false}) {

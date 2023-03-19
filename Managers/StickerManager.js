@@ -16,7 +16,7 @@ class StickerManager extends Base {
    * It adds a sticker to the cache
    * @param stickers - The sticker object or sticker ID.
    * @param [guildId] - The guild ID to use for the sticker.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A sticker object
    */
   _add(stickers, guildId = this.guildId, options = {cache: true, force: false}) {

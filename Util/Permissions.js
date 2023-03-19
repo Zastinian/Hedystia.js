@@ -1,10 +1,24 @@
 const Bitfield = require("./Bitfield");
+
+/**
+ * Class representing a Discord permission bitfield.
+ * @extends Bitfield
+ */
 class Permissions extends Bitfield {
+  /**
+   * Create a new Permissions bitfield
+   * @param {...bigint} bit - Bit positions to enable
+   */
   constructor(...bit) {
     super(bit);
   }
 }
 
+/**
+ * Object containing bit flags for Permissions
+ * @readonly
+ * @enum {bigint}
+ */
 Permissions.Flags = {
   Create_Instant_Invite: 1n << 0n,
   Kick_Members: 1n << 1n,
@@ -50,8 +64,18 @@ Permissions.Flags = {
   View_Creator_Monetization_Analytics: 1n << 41n,
 };
 
+/**
+ * The default Permissions bitfield value
+ * @type {bigint}
+ * @readonly
+ */
 Permissions.Default = 0n;
 
+/**
+ * Bitfield representing all permissions
+ * @type {bigint}
+ * @readonly
+ */
 Permissions.All = Object.values(Permissions.Flags).reduce((a, b) => a | b, Permissions.Default);
 
 module.exports = Permissions;

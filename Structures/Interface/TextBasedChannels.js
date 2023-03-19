@@ -2,7 +2,7 @@ const MessageManager = require("../../Managers/MessageManager");
 const Channel = require("../Channel");
 /* It's a class that extends the Channel class, and it adds a few more properties and methods to the
 Channel class.
-</code> */
+ */
 class TextBasedChannels extends Channel {
   /**
    * It's a constructor function that takes in a data object, a guildId, and a client, and then sets the

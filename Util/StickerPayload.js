@@ -1,4 +1,9 @@
 const DataManager = require("./DataManager");
+
+/**
+ * It's a class that creates a payload for the VK API.
+ * @module StickerPayload
+ */
 class StickerPayload {
   static async create(payload = {}) {
     const data = this.resolveData(payload);

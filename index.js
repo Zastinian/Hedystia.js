@@ -1,3 +1,4 @@
+/* It's exporting all the functions and class in the file. */
 exports.REST = require("./REST/REST");
 exports.Client = require("./Client/Client");
 exports.Bitfield = require("./Util/Bitfield");

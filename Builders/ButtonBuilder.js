@@ -1,11 +1,19 @@
-/* It takes in an object with the properties of emoji, label, url, customid, style, and disabled, and
-returns an object with the properties of type, custom_id, style, label, emoji, disabled, and url.
-</code> */
+/**
+ * A class representing a Discord button.
+ * @class
+ */
 class Button {
   /**
-   * It takes in an object with the properties of emoji, label, url, customid, style, and disabled, and
-   * returns an object with the properties of type, custom_id, style, label, emoji, disabled, and url.
-   * @returns The button object.
+   * Create a new Button.
+   * @constructor
+   * @param {Object} options - The options for the button.
+   * @param {Object} options.emoji - The emoji displayed on the button (if any).
+   * @param {string} options.label - The text displayed on the button.
+   * @param {string} options.url - The URL the button leads to (if any).
+   * @param {string} options.customid - The custom ID of the button (if any).
+   * @param {string} options.style - The visual style of the button (if any).
+   * @param {boolean} options.disabled - Whether the button is disabled or not.
+   * @returns {Object} - The button object.
    */
   constructor({emoji, label, url, customid, style, disabled}) {
     this.emoji = {...emoji} ?? undefined;

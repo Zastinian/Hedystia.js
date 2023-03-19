@@ -6,7 +6,7 @@ guildId, and a client */
 class ApplicationCommandInteraction extends Interaction {
   /**
    * It's a constructor for a class that extends another class.
-   * </code>
+   *
    * @param [data] - The data from the API
    * @param guildId - The guild ID
    * @param client - Discord.Client

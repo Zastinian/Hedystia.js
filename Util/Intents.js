@@ -1,11 +1,23 @@
 const Bitfield = require("./Bitfield");
 
+/**
+ * Represents the intents that the bot wishes to subscribe to.
+ */
 class Intents extends Bitfield {
+  /**
+   * Creates a new Intents bitfield.
+   * @param {...number} bit - Bit(s) to set in the bitfield.
+   */
   constructor(...bit) {
     super(bit);
   }
 }
 
+/**
+ * The available flags for the Intents bitfield.
+ * @readonly
+ * @enum {bigint}
+ */
 Intents.Flags = {
   Guilds: 1n << 0n,
   Guild_Members: 1n << 1n,
@@ -28,8 +40,18 @@ Intents.Flags = {
   Auto_Moderation_Execution: 1n << 21n,
 };
 
+/**
+ * The default value for the Intents bitfield.
+ * @readonly
+ * @type {bigint}
+ */
 Intents.Default = 0n;
 
+/**
+ * The value that represents all flags in the Intents bitfield.
+ * @readonly
+ * @type {bigint}
+ */
 Intents.All = Object.values(Intents.Flags).reduce((a, b) => a | b, Intents.Default);
 
 module.exports = Intents;

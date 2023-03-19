@@ -22,7 +22,7 @@ class ThreadMemberManager extends Base {
    * members.
    * @param [guildId] - The guild ID of the guild the thread is in.
    * @param [threadId] - The ID of the thread
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A new ThreadMember object
    */
   _add(members, guildId = this.guildId, threadId = this.threadId, options = {cache: true, force: false}) {

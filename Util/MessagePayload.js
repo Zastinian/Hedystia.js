@@ -5,6 +5,10 @@ const path = require("path");
 const MessageReference = require("../Structures/MessageReference");
 const MessageEmbed = require("../Builders/MessageEmbed");
 const MessageFlags = require("./MessageFlags");
+/**
+ * It takes a payload object and returns a payload object
+ * @module MessagePayload
+ */
 class MessagePayload {
   static async create(payload = {}, type) {
     let data = this.resolveData(payload);

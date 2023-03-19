@@ -20,7 +20,7 @@ class GuildManager extends Base {
   /**
    * It adds a guild to the cache
    * @param guilds - The guild object or ID of the guild to add.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A new instance of the Guild class.
    */
   _add(guilds, options = {cache: true, force: false}) {
@@ -65,8 +65,8 @@ class GuildManager extends Base {
   /**
    * It fetches the guilds of the user
    * @param guild - The guild to fetch.
-   * @param options - {
-   * @returns A new cache.constructor(guilds?.map((o) => [o.id, this._add(o, {cache, force})]))
+   * @param options
+   * @returns {Function} constructor cache
    */
   async fetch(guild, options) {
     if (typeof guild?.id !== "undefined" || typeof guild === "string") return this._fetchId(guild, options);
@@ -204,7 +204,7 @@ class GuildManager extends Base {
    * It takes an object with optional properties `before`, `after`, and `limit`, and returns an object
    * with the same properties, but with the `before` and `after` properties converted to strings if
    * they are not already strings.
-   * </code>
+   *
    * @param [o] - The options object.
    * @returns The return value is an object with the following properties:
    */

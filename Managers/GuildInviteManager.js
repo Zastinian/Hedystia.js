@@ -19,7 +19,7 @@ class GuildInviteManager extends Base {
    * It adds an invite to the cache
    * @param invites - The invite code or invite object.
    * @param [guild] - The guild the invite is for.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns The invite object
    */
   _add(invites, guild = this.guild, options = {cache: true, force: false}) {

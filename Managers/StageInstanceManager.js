@@ -16,7 +16,7 @@ class StageInstanceManager extends Base {
    * It adds a stage instance to the cache.
    * @param stageInstances - This is the stage instance object or the stage instance ID.
    * @param [guildId] - The guild ID of the guild the stage instance is in.
-   * @param [options] - {cache: true, force: false}
+   * @param [options] - cache = true, force = false
    * @returns A new StageInstance object
    */
   _add(stageInstances, guildId = this.guildId, options = {cache: true, force: false}) {

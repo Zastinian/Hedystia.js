@@ -1,11 +1,22 @@
 const Bitfield = require("./Bitfield");
 
+/**
+ * @typedef {Object} UserFlags
+ * @property {bigint} value - The raw bitfield value.
+ */
 class UserFlags extends Bitfield {
+  /**
+   * @param {...number|string|bigint} bit - Bit(s) to set in the bitfield.
+   */
   constructor(...bit) {
     super(bit);
   }
 }
 
+/**
+ * @readonly
+ * @enum {bigint}
+ */
 UserFlags.Flags = {
   Staff: 1n << 0n,
   Partner: 1n << 1n,
@@ -29,8 +40,10 @@ UserFlags.Flags = {
   Quarantined: 1n << 44n,
 };
 
+/* Setting the default value of the bitfield to 0. */
 UserFlags.Default = 0n;
 
+/* It's taking all the values in the `UserFlags.Flags` object and reducing them to a single value. */
 UserFlags.All = Object.values(UserFlags.Flags).reduce((a, b) => a | b, UserFlags.Default);
 
 module.exports = UserFlags;
