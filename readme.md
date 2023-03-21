@@ -13,6 +13,8 @@ yarn add esmile.js
 ## Links
 
 - [Discord](https://discord.gg/aXvuUpvRQs) [Esmile Discord]
+- [Bot](https://discord.com/oauth2/authorize?client_id=931228076094930996&permissions=137710923254&scope=bot%20applications.commands) [Esmile Discord Bot]
+- [Docs](https://docs.mresmile.com/docs/client/start)
 
 ## Example
 
