@@ -1,7 +1,18 @@
 const Base = require("../Base/base");
 const {InviteTargetTypes} = require("../Util/Constants");
 const ClientApplication = require("./ClientApplication");
+/**
+ * It's a class that represents an invite.
+ * @class
+ * @extends Base
+ */
 class Invite extends Base {
+  /**
+   * It's a constructor function that takes in data, guild, and client as parameters.
+   * @param data - The data that was received from the API.
+   * @param guild - Guild
+   * @param client - Discord.Client
+   */
   constructor(data = {}, guild, client) {
     super(client);
     this.partial = data.partial ?? false;
@@ -25,10 +36,20 @@ class Invite extends Base {
     this.url = `https://discord.gg/${this.code}`;
   }
 
+  /**
+   * It fetches the invite from the Discord API
+   * @param options - An object containing the following properties:
+   * @returns The invite object.
+   */
   async fetch(options) {
     return await this.client.fetchInvite(this, options);
   }
 
+  /**
+   * It deletes the invite
+   * @param reason - The reason for deleting the invite.
+   * @returns The return value is the invite object.
+   */
   async delete(reason) {
     return await this.guild?.invites.delete(this, reason);
   }
