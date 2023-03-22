@@ -1,7 +1,18 @@
 const {IntegrationExpireBehavior} = require("../Util/Constants");
 const Base = require("../Base/base");
 const ClientApplication = require("./ClientApplication");
+
+/**
+ * Represents a Guild Integration on Discord.
+ * @class
+ * @extends Base
+ */
 class GuildIntegration extends Base {
+  /**
+   * @param {Object} data The data for the guild integration.
+   * @param {Snowflake} guildId The ID of the guild this integration belongs to.
+   * @param {Client} client The client that instantiated this integration.
+   */
   constructor(data = {}, guildId, client) {
     super(client);
     this.partial = data.partial ?? false;
@@ -24,6 +35,11 @@ class GuildIntegration extends Base {
     this.application = new ClientApplication(data.application, this.client);
   }
 
+  /**
+   * The `Guild` object corresponding to this `GuildIntegration`.
+   * @type {?Guild}
+   * @readonly
+   */
   get guild() {
     return this.client.guilds._add(this.guildId);
   }
