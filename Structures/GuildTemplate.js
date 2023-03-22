@@ -48,7 +48,7 @@ class GuildTemplate extends Base {
 
   /**
    * It edits a template
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The return value of the function is the return value of the function that is being
    * called.
    */

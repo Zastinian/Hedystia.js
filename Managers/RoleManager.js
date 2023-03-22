@@ -64,7 +64,7 @@ class RoleManager extends Base {
 
   /**
    * It creates a role
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new role object
    */
   async create(options = {}) {
@@ -85,7 +85,7 @@ class RoleManager extends Base {
   /**
    * It edits a role
    * @param role - The role to edit. Can be a role object or a role ID.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The role object
    */
   async edit(role, options = {}) {
@@ -131,7 +131,7 @@ class RoleManager extends Base {
   /**
    * It takes an array of role objects, transforms them into a format that the API can understand, and
    * then sends them to the API
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new cache object with the roles that were modified.
    */
   async modifyPosition(options = {}) {

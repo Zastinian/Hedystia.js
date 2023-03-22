@@ -16,7 +16,7 @@ class GuildMemberVerificationManager extends Base {
 
   /**
    * `fetch` fetches the guild's member verification settings
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new GuildMemberVerification object
    */
   async fetch(options = {}) {
@@ -31,7 +31,7 @@ class GuildMemberVerificationManager extends Base {
 
   /**
    * It edits the verification form
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new GuildMemberVerification object
    */
   async edit(options = {}) {

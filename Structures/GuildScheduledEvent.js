@@ -54,7 +54,7 @@ class GuildScheduledEvent extends Base {
 
   /**
    * It edits the event
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The return value of the edit method.
    */
   async edit(options = {}) {

@@ -75,7 +75,7 @@ class StickerManager extends Base {
 
   /**
    * It creates a sticker.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new sticker object
    */
   async create(options = {}) {
@@ -91,7 +91,7 @@ class StickerManager extends Base {
   /**
    * It edits a sticker.
    * @param sticker - The sticker to edit. Can be a sticker object or a sticker ID.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A sticker object
    */
   async edit(sticker, options = {}) {

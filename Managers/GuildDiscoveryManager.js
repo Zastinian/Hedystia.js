@@ -48,7 +48,7 @@ class GuildDiscoveryManager extends Base {
   /**
    * `edit` edits the discovery metadata of a guild
    * @param [guild] - The guild ID or guild object to edit the discovery metadata for.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The discovery object
    */
   async edit(guild = this.guildId, options = {}) {

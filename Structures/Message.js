@@ -238,7 +238,7 @@ class Message extends Base {
 
   /**
    * It creates a thread
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The thread object.
    */
   async createThread(options = {}) {

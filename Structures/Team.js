@@ -29,7 +29,7 @@ class Team extends Base {
    * "If the team has an icon, return the icon URL, otherwise return null."
    *
    * The function takes an optional parameter, options, which is an object
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The URL of the team icon.
    */
   iconURL(options = {}) {

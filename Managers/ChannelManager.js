@@ -187,7 +187,7 @@ class ChannelManager extends Base {
   /**
    * It edits a channel
    * @param channel - The channel to edit.
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The channel object.
    */
   async edit(channel, options = {}) {
@@ -214,7 +214,7 @@ class ChannelManager extends Base {
   /**
    * It creates an invite for a channel
    * @param channel - The channel to create the invite for.
-   * @param [options] - {
+   * @param [options] - Object
    * @returns An invite object.
    */
   async createInvite(channel, options = {}) {
@@ -231,7 +231,7 @@ class ChannelManager extends Base {
   /**
    * It follows a channel
    * @param news - The channel you want to follow.
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The channel that was followed.
    */
   async follow(news, options = {}) {

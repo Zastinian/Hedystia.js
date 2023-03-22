@@ -88,7 +88,7 @@ class AutoModManager extends Base {
   /**
    * It edits an existing rule
    * @param rule - The rule to edit. Can be a rule object or a rule ID.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The rule that was edited.
    */
   async edit(rule, options = {}) {

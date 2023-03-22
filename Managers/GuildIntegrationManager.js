@@ -63,7 +63,7 @@ class GuildIntegrationManager extends Base {
 
   /**
    * It deletes an integration from a guild.
-   * @param [options] - {
+   * @param [options] - Object
    * @param reason - The reason for the audit log.
    * @returns The integration object.
    */

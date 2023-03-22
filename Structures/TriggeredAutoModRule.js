@@ -64,7 +64,7 @@ class TriggeredAutoModRule extends Base {
 
   /**
    * It fetches the rule from the database
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The rule object.
    */
   async fetch(options = {}) {
@@ -73,7 +73,7 @@ class TriggeredAutoModRule extends Base {
 
   /**
    * It edits a rule in the guild's automod
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The return value is the edited rule.
    */
   async edit(options = {}) {

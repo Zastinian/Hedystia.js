@@ -53,7 +53,7 @@ class EmojiManager extends Base {
 
   /**
    * It creates a new emoji
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new emoji object
    */
   async create(options = {}) {
@@ -69,7 +69,7 @@ class EmojiManager extends Base {
   /**
    * It edits an emoji
    * @param emoji - The emoji to edit. Can be an emoji object, or an emoji ID.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The emoji object
    */
   async edit(emoji, options = {}) {

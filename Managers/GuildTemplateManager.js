@@ -49,7 +49,7 @@ class GuildTemplateManager extends Base {
 
   /**
    * It fetches all the templates from the API and returns a new cache of them
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new instance of the cache constructor.
    */
   async fetch(options = {}) {
@@ -60,7 +60,7 @@ class GuildTemplateManager extends Base {
 
   /**
    * `create` creates a new guild template
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new GuildTemplate instance.
    */
   async create(options = {}) {
@@ -74,7 +74,7 @@ class GuildTemplateManager extends Base {
   /**
    * It edits a guild template
    * @param code - The code of the template you want to edit.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new GuildTemplate instance.
    */
   async edit(code, options = {}) {

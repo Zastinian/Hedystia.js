@@ -43,7 +43,7 @@ class PermissionOverwriteManager extends Base {
    * It creates a new permission overwrite for a user or role
    * @param user - The user or role to add the overwrite to.
    * @param overwrites - An object containing the permissions to overwrite.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The channel object
    */
   async create(user, overwrites, options = {}) {

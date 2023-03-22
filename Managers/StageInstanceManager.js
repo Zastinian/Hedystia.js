@@ -48,7 +48,7 @@ class StageInstanceManager extends Base {
   /**
    * It fetches a stage instance from the API and adds it to the cache
    * @param channel - The channel to fetch. Can be a channel ID or a channel object.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The stage instance
    */
   async fetch(channel, options = {}) {
@@ -60,7 +60,7 @@ class StageInstanceManager extends Base {
 
   /**
    * It creates a new stage instance.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new StageInstance object
    */
   async create(options = {}) {

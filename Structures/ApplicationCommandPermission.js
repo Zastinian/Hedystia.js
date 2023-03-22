@@ -25,7 +25,7 @@ class ApplicationCommandPermission extends Base {
 
   /**
    * It fetches the permissions of the command
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The return value is the result of the await expression.
    */
   async fetch(options = {}) {

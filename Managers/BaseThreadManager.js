@@ -93,7 +93,7 @@ class BaseThreadManager extends Base {
 
   /**
    * This function fetches archived threads from a channel
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new FetchedThreads object
    */
   async fetchArchivedThread(options = {}) {

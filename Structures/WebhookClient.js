@@ -32,7 +32,7 @@ class WebhookClient extends Base {
 
   /**
    * It sends a message to a channel using a webhook
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The message object.
    */
   async send(options = {}) {

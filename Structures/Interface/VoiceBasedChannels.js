@@ -22,7 +22,7 @@ class VoiceBasedChannels extends Channel {
 
   /**
    * It sends a packet to the Discord API to join the voice channel
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The VoiceChannel object.
    */
   join(options = {}) {

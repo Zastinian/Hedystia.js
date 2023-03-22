@@ -87,7 +87,7 @@ class GuildMemberManager extends Base {
 
   /**
    * It gets a list of members from the API and returns a cache of the members
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new cache constructor
    */
   async list(options = {limit: 50}) {
@@ -107,7 +107,7 @@ class GuildMemberManager extends Base {
 
   /**
    * It searches for members in a guild
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new cache constructor
    */
   async search(options = {limit: 50}) {
@@ -147,7 +147,7 @@ class GuildMemberManager extends Base {
   /**
    * It bans a member from a guild
    * @param member - The member to ban.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The member that was banned.
    */
   async ban(member, options = {}) {

@@ -15,7 +15,7 @@ class GuildVoiceStateManager extends VoiceStateManager {
   /**
    * It edits the voice state of a user in a guild
    * @param user - The user to edit the voice state of.
-   * @param [options] - {
+   * @param [options] - Object
    * @returns undefined
    */
   async edit(user, options = {}) {

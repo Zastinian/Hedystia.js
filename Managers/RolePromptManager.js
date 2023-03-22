@@ -50,7 +50,7 @@ class RolePromptManager extends Base {
 
   /**
    * It fetches all role prompts from the API and returns them in a cache
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new instance of the cache constructor.
    */
   async fetch(options = {}) {
@@ -61,7 +61,7 @@ class RolePromptManager extends Base {
 
   /**
    * It sets the role prompts for the guild
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new cache.constructor
    */
   async set(options = {}) {

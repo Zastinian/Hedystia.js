@@ -92,7 +92,7 @@ class Webhook extends Base {
 
   /**
    * It deletes a webhook
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The webhook object.
    */
   async delete(options = {}) {
@@ -113,7 +113,7 @@ class Webhook extends Base {
 
   /**
    * If the avatar is not set, return the default avatar URL, otherwise return the avatar URL.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The avatar URL of the webhook.
    */
   displayAvatarURL(options = {}) {

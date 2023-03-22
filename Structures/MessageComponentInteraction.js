@@ -24,7 +24,7 @@ class MessageComponentInteraction extends Interaction {
   /**
    * It takes an object as an argument, creates a new MessagePayload object with the options and a 6,
    * then posts to the API with the body of the MessagePayload object.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The response from the API.
    */
   async deferUpdate(options = {}) {
@@ -36,7 +36,7 @@ class MessageComponentInteraction extends Interaction {
 
   /**
    * It updates the message with the given options and returns the reply if fetchReply is true
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The return value is the result of the await expression.
    */
   async update(options = {}) {

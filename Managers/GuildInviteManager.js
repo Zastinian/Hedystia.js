@@ -50,7 +50,7 @@ class GuildInviteManager extends Base {
 
   /**
    * It fetches all the invites for the guild and returns a new cache of the invites
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new instance of the cache constructor.
    */
   async fetch(options = {}) {

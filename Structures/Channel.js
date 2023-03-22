@@ -387,7 +387,7 @@ class Channel extends Base {
 
   /**
    * It creates a webhook for the channel
-   * @param [options] - {
+   * @param [options] - Object
    * @returns A webhook object.
    */
   async createWebhook(options = {}) {

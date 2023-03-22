@@ -25,7 +25,7 @@ class WelcomeScreenManager extends Base {
 
   /**
    * It edits the welcome screen of a guild.
-   * @param [options] - {
+   * @param [options] - Object
    * @returns A new WelcomeScreen object.
    */
   async edit(options = {}) {

@@ -50,7 +50,7 @@ class GuildManager extends Base {
 
   /**
    * It creates a new guild
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The guild object.
    */
   async create(options = {}) {
@@ -105,7 +105,7 @@ class GuildManager extends Base {
   /**
    * It edits a guild
    * @param guilds - The guild object
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The guilds object.
    */
   async edit(guilds, options = {}) {
@@ -143,7 +143,7 @@ class GuildManager extends Base {
   /**
    * It modifies the MFA level of a guild
    * @param guild - The guild to modify the MFA level of.
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The client.guilds._add(guildId)
    */
   async modifyMFALevel(guild, options = {}) {

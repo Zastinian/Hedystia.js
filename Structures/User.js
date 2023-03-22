@@ -56,7 +56,7 @@ class User extends Base {
 
   /**
    * It sends a message to a user
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The user object.
    */
   async send(options = {}) {

@@ -18,7 +18,7 @@ class GuildBanManager extends Base {
    * It adds a ban to the cache
    * @param bans - The ban object or ID of the ban to add to the cache.
    * @param [guildId] - The ID of the guild to fetch the bans from.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new instance of the GuildBan class.
    */
   _add(bans, guildId = this.guildId, options = {cache: true, force: false}) {
@@ -50,7 +50,7 @@ class GuildBanManager extends Base {
   /**
    * It bans a user from the guild.
    * @param user - The user to ban.
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new instance of the GuildBanManager class.
    */
   async create(user, options = {}) {

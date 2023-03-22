@@ -15,7 +15,7 @@ class GuildChannelManager extends ChannelManager {
 
   /**
    * It creates a new channel in the guild.
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The channel object.
    */
   async create(options = {}) {
@@ -30,7 +30,7 @@ class GuildChannelManager extends ChannelManager {
 
   /**
    * It takes an array of objects, transforms them, and then sends them to the API
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns A new cache object.
    */
   async modifyPosition(options = {}) {

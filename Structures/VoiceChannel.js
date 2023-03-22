@@ -28,7 +28,7 @@ class VoiceChannel extends VoiceBasedChannels {
 
   /**
    * It sends a message to the channel
-   * @param [options] - An object containing the following properties:
+   * @param [options] - Object
    * @returns The return value is the result of the send() method.
    */
   async send(options = {}) {

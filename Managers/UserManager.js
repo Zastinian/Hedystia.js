@@ -101,7 +101,7 @@ class UserManager extends Base {
    * It creates a message payload, creates a DM channel, and sends the message payload to the DM
    * channel.
    * @param user - The user to send the message to.
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The message that was sent.
    */
   async send(user, options = {}) {

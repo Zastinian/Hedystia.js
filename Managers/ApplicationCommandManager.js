@@ -177,7 +177,7 @@ class ApplicationCommandManager extends Base {
   /**
    * If the option type is a sub command group or sub command, return a new instance of the respective
    * class, otherwise return a new instance of the SlashOption class
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The return value is a JSON object.
    */
   static transformOptions(options = {}) {

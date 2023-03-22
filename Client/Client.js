@@ -140,7 +140,7 @@ class Client extends EventEmitter {
   /**
    * It takes a template code and creates a new guild with the template
    * @param code - The code of the template you want to use.
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The guild object.
    */
   async generateTemplate(code, options = {}) {
@@ -157,7 +157,7 @@ class Client extends EventEmitter {
 
   /**
    * The function generates an invite link for the user to invite the bot to their server
-   * @param [options] - {
+   * @param [options] - Object
    * @returns The URL to the OAuth2 page.
    */
   generateInvite(options = {}) {
