@@ -4,12 +4,12 @@ const Base = require("../Base/base");
 /**
  * Represents an action taken by the guild automod system.
  * @class
- * @extends {Base}
+ * @extends Base
  */
 class GuildAutoModActions extends Base {
   /**
    * @param {Object} data - The data for the action.
-   * @param {import("../Client/Client")} client - The client.
+   * @param {Client} client - The instantiating client
    */
   constructor(data = {}, client) {
     super(client);

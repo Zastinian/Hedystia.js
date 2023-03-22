@@ -3,13 +3,13 @@ const Base = require("../Base/base");
 /**
  * Represents a ban for a user in a guild.
  * @class
- * @extends {Base}
+ * @extends Base
  */
 class GuildBan extends Base {
   /**
    * @param {Object} data - The data for the ban.
    * @param {string} guildId - The ID of the guild.
-   * @param {import("../Client/Client")} client - The client.
+   * @param {Client} client - The instantiating client
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -28,7 +28,6 @@ class GuildBan extends Base {
 
     /**
      * The user who was banned.
-     * @type {import("./User")}
      */
     this.user = this.client.users._add(data.user);
 

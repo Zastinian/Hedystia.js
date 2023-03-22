@@ -4,7 +4,7 @@ const VerificationFormFields = require("./VerificationFormFields");
 /**
  * Represents the verification requirements for a guild member.
  * @class
- * @extends {Base}
+ * @extends Base
  */
 class GuildMemberVerification extends Base {
   /**

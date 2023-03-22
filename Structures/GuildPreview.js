@@ -5,7 +5,7 @@ const Base = require("../Base/base");
 /**
  * Represents the preview for a guild.
  * @class
- * @extends {Base}
+ * @extends Base
  */
 class GuildPreview extends Base {
   /**
