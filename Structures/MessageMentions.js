@@ -1,6 +1,18 @@
 const Base = require("../Base/base");
 const {RaidenCol} = require("../Util/@Collections/RaidenCol");
+/**
+ * It's a class that stores mentions in a message
+ * @class
+ * @extends Base
+ */
 class MessageMentions extends Base {
+  /**
+   * It takes in a data object, a guildId, and a client, and then it sets the guildId, users, members,
+   * roles, channels, and everyone properties of the object
+   * @param [data] - The data that is passed to the constructor.
+   * @param guildId - The guild id
+   * @param client - The client
+   */
   constructor(data = {}, guildId, client) {
     super(client);
     this.guildId = guildId;
@@ -22,6 +34,10 @@ class MessageMentions extends Base {
     this.everyone = data.everyone ?? null;
   }
 
+  /**
+   * It returns the guild object of the guild ID that is stored in the database
+   * @returns The guild object.
+   */
   get guild() {
     return this.client.guilds._add(this.guildId);
   }
