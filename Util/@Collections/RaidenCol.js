@@ -2,8 +2,9 @@
 
 /**
  * It's a Map with some extra methods.
- * @module Map
- * */
+ * @class RaidenCol
+ * @extends Map
+ */
 class RaidenCol extends Map {
   /**
    * The size() method returns the number of elements in the array
