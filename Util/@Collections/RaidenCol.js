@@ -310,7 +310,7 @@ class RaidenCol extends Map {
     const collectionArr = this.array();
     return collectionArr[index];
   }
-  
+
   /**
    * If one is greater than two, return 1. If one is equal to two, return 0. If one is less than two,
    * return -1.
