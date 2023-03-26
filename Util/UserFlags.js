@@ -32,12 +32,7 @@ UserFlags.Flags = {
   Verified_Developer: 1n << 17n,
   Certified_Moderator: 1n << 18n,
   Bot_Http_Interactions: 1n << 19n,
-  Spammer: 1n << 20n,
-  Disable_Premium: 1n << 21n,
-  Mfa_Sms: 1n << 4n,
-  Premium_Promo_Dismissed: 1n << 5n,
-  Has_Unread_Urgent_Messages: 1n << 13n,
-  Quarantined: 1n << 44n,
+  Active_Developer: 1n << 22n,
 };
 
 /* Setting the default value of the bitfield to 0. */
