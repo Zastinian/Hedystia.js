@@ -1,3 +1,5 @@
+const Bitfield = require("./Bitfield");
+
 /**
  * A bitfield for application flags.
  * @extends {Bitfield}

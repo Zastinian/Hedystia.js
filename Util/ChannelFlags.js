@@ -1,3 +1,5 @@
+const Bitfield = require("./Bitfield");
+
 /**
  * Class representing bitfields of Channel flags.
  * @extends Bitfield
