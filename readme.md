@@ -22,7 +22,7 @@ yarn add esmile.js
 const {Client, Intents, Status} = require("esmile.js");
 
 const client = new Client({
-  token: "<TOKEN>",
+  token: "<BOT_TOKEN>",
   intents: [Intents.Flags.Guilds, Intents.Flags.Guild_Members, Intents.Flags.Message_Content, Intents.Flags.Guild_Messages],
   presence: {
     status: Status.Idle,
