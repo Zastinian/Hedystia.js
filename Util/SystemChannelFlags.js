@@ -22,14 +22,8 @@ SystemChannelFlags.Default = 0n;
 /**
  * Available flags for a system channel.
  * @type {Object<string, bigint>}
- * @property {bigint} Suppress_Join_Notifications              - Suppress member join notifications.
- * @property {bigint} Suppress_Premium_Subscriptions            - Suppress server boost notifications.
- * @property {bigint} Suppress_Guild_Reminder_Notifications     - Suppress server event notifications.
- * @property {bigint} Suppress_Join_Notification_Replies        - Suppress replies to member join notifications.
- * @property {bigint} Suppress_Role_Subscription_Purchase_Notifications
- *                                                               - Suppress role subscription notifications.
- * @property {bigint} Suppress_Role_Subscription_Purchase_Notification_Replies
- *                                                               - Suppress replies to role subscription notifications.
+ * @readonly
+ * @enum {bigint}
  */
 SystemChannelFlags.Flags = {
   Suppress_Join_Notifications: 1n << 0n,
