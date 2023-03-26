@@ -16,7 +16,9 @@ class ActivityFlags extends Bitfield {
 
 /**
  * The individual flags that can be used to represent activity options.
- * @enum {number}
+ * @type {Object<string, bigint>}
+ * @readonly
+ * @enum {bigint}
  */
 ActivityFlags.Flags = {
   Instance: 1n << 0n,

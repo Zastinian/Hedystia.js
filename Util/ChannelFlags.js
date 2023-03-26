@@ -22,8 +22,9 @@ ChannelFlags.Default = 0n;
 
 /**
  * Channel flags and their corresponding bit numbers.
- * @type {Object}
- * @enum {number}
+ * @type {Object<string, bigint>}
+ * @readonly
+ * @enum {bigint}
  */
 ChannelFlags.Flags = {
   Pinned: 1n << 1n,

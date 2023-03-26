@@ -16,6 +16,7 @@ class Permissions extends Bitfield {
 
 /**
  * Object containing bit flags for Permissions
+ * @type {Object<string, bigint>}
  * @readonly
  * @enum {bigint}
  */

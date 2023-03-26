@@ -15,7 +15,7 @@ class MessageFlags extends Bitfield {
 
 /**
  * An object mapping flag names to their corresponding bit positions.
- * @type {Object<string, BigInt>}
+ * @type {Object<string, bigint>}
  * @readonly
  * @enum {bigint}
  */

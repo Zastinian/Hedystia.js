@@ -15,8 +15,9 @@ class ThreadMemberFlags extends Bitfield {
 
 /**
  * Thread member flags.
+ * @type {Object<string, bigint>}
+ * @readonly
  * @enum {bigint}
- * @static
  */
 ThreadMemberFlags.Flags = {
   Has_Interacted: 1n << 0n,

@@ -16,8 +16,9 @@ class ApplicationFlags extends Bitfield {
 
 /**
  * Application flag bitfields.
+ * @type {Object<string, bigint>}
  * @readonly
- * @enum {number}
+ * @enum {bigint}
  */
 ApplicationFlags.Flags = {
   Gateway_Presence: 1n << 12n,

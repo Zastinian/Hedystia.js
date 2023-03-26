@@ -15,6 +15,7 @@ class Intents extends Bitfield {
 
 /**
  * The available flags for the Intents bitfield.
+ * @type {Object<string, bigint>}
  * @readonly
  * @enum {bigint}
  */

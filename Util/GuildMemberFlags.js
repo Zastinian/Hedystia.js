@@ -15,6 +15,7 @@ class GuildMemberFlags extends Bitfield {
 
 /**
  * The flags for a guild member.
+ * @type {Object<string, bigint>}
  * @readonly
  * @enum {bigint}
  */
