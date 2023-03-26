@@ -20,6 +20,9 @@ class GuildMemberFlags extends Bitfield {
  */
 GuildMemberFlags.Flags = {
   Did_Rejoin: 1n << 0n,
+  Completed_Onboarding: 1n << 1n,
+  Bypasses_Verification: 1n << 2n,
+  Started_Onboarding: 1n << 3n,
 };
 
 /**
