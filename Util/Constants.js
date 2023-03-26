@@ -20,14 +20,14 @@ module.exports.ChannelType = createEnum([
   "Guild_Voice",
   "Group_Dm",
   "Guild_Category",
-  "Guild_News",
-  "Guild_Store",
+  "Guild_Announcement",
   null,
   null,
   null,
-  "Guild_News_Thread",
-  "Guild_Public_Thread",
-  "Guild_Private_Thread",
+  null,
+  "Announcement_Thread",
+  "Public_Thread",
+  "Private_Thread",
   "Guild_Stage_Voice",
   "Guild_Directory",
   "Guild_Forum",
@@ -58,7 +58,6 @@ module.exports.OptionType = createEnum([
   "Mentionable",
   "Number",
   "Attachment",
-  "Date",
 ]);
 module.exports.VideoQualityMode = createEnum([null, "Auto", "Full"]);
 module.exports.ApplicationCommandPermissionType = createEnum([null, "Role", "User", "Channel"]);
@@ -78,7 +77,6 @@ module.exports.MessageType = createEnum([
   "Guild_Boost_Tier_2",
   "Guild_Boost_Tier_3",
   "Channel_Follow_Add",
-  "Guild_Stream",
   "Guild_Discovery_Disqualified",
   "Guild_Discovery_Requalified",
   "Guild_Discovery_Grace_Period_Initial_Warning",
@@ -90,21 +88,28 @@ module.exports.MessageType = createEnum([
   "Guild_Invite_Reminder",
   "Context_Menu_Command",
   "Auto_Moderation_Action",
+  "Role_Subscription_Purchase",
+  "Interaction_Premium_Upsell",
+  "Stage_Start",
+  "Stage_End",
+  "Stage_Speaker",
+  "Stage_Topic",
+  "Guild_Application_Premium_Subscription",
 ]);
 module.exports.VerificationLevel = createEnum(["None", "Low", "Medium", "High", "Very_High"]);
 module.exports.DefaultMessageNotifications = createEnum(["All_Messages", "Only_Mentions"]);
 module.exports.ExplicitContentFilter = createEnum(["Disabled", "Members_Without_Roles", "All_Members"]);
 module.exports.MfaLevel = createEnum(["None", "Elevated"]);
 module.exports.PremiumTier = createEnum(["None", "Tier_1", "Tier_2", "Tier_3"]);
-module.exports.NsfwLevel = createEnum(["DEFAULT", "EXPLICIT", "SAFE", "AGE_RESTRICTED"]);
+module.exports.NsfwLevel = createEnum(["Default", "Explicit", "Safe", "Age_Restricted"]);
 module.exports.IntegrationExpireBehavior = createEnum(["Remove role", "Kick"]);
 module.exports.InviteTargetTypes = createEnum([null, "Stream", "Embedded_Application"]);
 module.exports.PrivacyLevel = createEnum([null, "Public", "Guild_Only"]);
 module.exports.GuildScheduledEventPrivacyLevel = createEnum([null, null, "Guild_Only"]);
 module.exports.GuildScheduledEventStatus = createEnum([null, "Scheduled", "Active", "Completed", "Canceled"]);
 module.exports.GuildScheduledEventEntityType = createEnum([null, "Stage_Instance", "Voice", "External"]);
-module.exports.StickerType = createEnum([null, "Standard", "Sticker"]);
-module.exports.StickerFormatType = createEnum([null, "Png", "Apng", "Lottie"]);
+module.exports.StickerType = createEnum([null, "Standard", "Guild"]);
+module.exports.StickerFormatType = createEnum([null, "Png", "Apng", "Lottie", "Gif"]);
 module.exports.GuildAuditLogEntryActionTypes = createEnum([
   null,
   "Guild_Update",
@@ -146,9 +151,9 @@ module.exports.GuildAuditLogEntryActionTypes = createEnum([
   null,
   null,
   null,
-  "INVITE_CREATE",
-  "INVITE_UPDATE",
-  "INVITE_DELETE",
+  "Invite_Create",
+  "Invite_Update",
+  "Invite_Delete",
   null,
   null,
   null,
@@ -250,25 +255,8 @@ module.exports.GuildAuditLogEntryActionTypes = createEnum([
   "Auto_Moderation_Rule_Update",
   "Auto_Moderation_Rule_Delete",
   "Auto_Moderation_Block_Message",
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  "Role_Prompt_Create",
-  "Role_Prompt_Update",
-  "Role_Prompt_Delete",
+  "Auto_Moderation_Flag_To_Channel",
+  "Auto_Moderation_User_Communication_Disabled",
 ]);
 module.exports.WebhookType = createEnum([null, "Incoming", "Channel Follower", "Application"]);
 module.exports.GuildAutoModTriggerTypes = createEnum([null, "Keyword", "Spam", "Keyword_Preset", "Mention_Spam"]);
@@ -351,8 +339,12 @@ module.exports.OverwriteType = {
 module.exports.ComponentTypes = {
   Action_Row: 1,
   Button: 2,
-  Select_Menu: 3,
-  Text_Input: 4,
+  String_Select: 3,
+  Input_Text: 4,
+  User_Select: 5,
+  Role_Select: 6,
+  Mentionable_Select: 7,
+  Channel_Select: 8,
 };
 
 module.exports.Opcodes = {
