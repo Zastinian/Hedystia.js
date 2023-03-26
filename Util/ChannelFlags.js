@@ -21,15 +21,10 @@ ChannelFlags.Default = 0n;
 /**
  * Channel flags and their corresponding bit numbers.
  * @type {Object}
- * @property {bigint} Guild_Feed_Removed - Flag for guild feeds being removed.
- * @property {bigint} Pinned - Flag for pinned messages.
- * @property {bigint} Active_Channels_Removed - Flag for active channels being removed.
- * @property {bigint} Require_Tag - Flag for tags being required.
+ * @enum {number}
  */
 ChannelFlags.Flags = {
-  Guild_Feed_Removed: 1n << 0n,
   Pinned: 1n << 1n,
-  Active_Channels_Removed: 1n << 2n,
   Require_Tag: 1n << 4n,
 };
 
