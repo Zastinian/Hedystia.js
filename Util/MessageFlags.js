@@ -17,7 +17,7 @@ class MessageFlags extends Bitfield {
  * An object mapping flag names to their corresponding bit positions.
  * @type {Object<string, BigInt>}
  * @readonly
- * @static
+ * @enum {bigint}
  */
 MessageFlags.Flags = {
   Crossposted: 1n << 0n,
@@ -29,7 +29,7 @@ MessageFlags.Flags = {
   Ephemeral: 1n << 6n,
   Loading: 1n << 7n,
   Failed_To_Mention_Some_Roles_In_Thread: 1n << 8n,
-  Should_Show_Link_Not_Discord_Warning: 1n << 10n,
+  Suppress_Notifications: 1n << 12n,
 };
 
 /**
