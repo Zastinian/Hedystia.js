@@ -61,7 +61,6 @@ Permissions.Flags = {
   Send_Messages_In_Threads: 1n << 38n,
   Use_Embedded_Activities: 1n << 39n,
   Moderate_Members: 1n << 40n,
-  View_Creator_Monetization_Analytics: 1n << 41n,
 };
 
 /**
