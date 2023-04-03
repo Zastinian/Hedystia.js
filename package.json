@@ -1,7 +1,7 @@
 {
   "name": "esmile.js",
-  "version": "1.7.5",
-  "description": "Discord Client",
+  "version": "1.7.6",
+  "description": "JavaScript library for interacting with the Discord API",
   "main": "index.js",
   "author": "contact@mresmile.com",
   "license": "ISC",
@@ -11,7 +11,7 @@
   "engines": {
     "node": ">=18.7.0"
   },
-  "repository": "https://github.com/EsmileCompany/Esmile.js.git",
+  "repository": "https://github.com/Zastinian/Esmile.js.git",
   "keywords": [
     "client",
     "discord",
