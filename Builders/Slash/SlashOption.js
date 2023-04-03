@@ -23,7 +23,7 @@ class SlashOption {
    * @param {boolean} [data.autocomplete] - Whether the option should be autocompleted or not.
    */
   constructor(data = {}) {
-    this.type = (typeof data.type === "number" ? OptionType[data.type] : data.type) ?? "String";
+    this.type = (typeof data.type === "Number" ? OptionType[data.type] : data.type) ?? "String";
     this.name = data.name ?? undefined;
     this.nameLocalizations = data.name_localizations ?? data.nameLocalizations ?? undefined;
     this.description = data.description ?? undefined;

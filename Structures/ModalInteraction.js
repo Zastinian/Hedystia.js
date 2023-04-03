@@ -60,7 +60,7 @@ class ModalInteraction extends MessageComponentInteraction {
   /**
    * It takes an object with a property called "type" and a property called "components" and returns an
    * object with a property called "type" and a property called "components"
-   * @param [fields] - {
+   * @param [fields]
    * @returns An object with the following properties:
    */
   static transformResolvedFields(fields = {}) {

@@ -7,7 +7,7 @@ const Team = require("./Team");
 class ClientApplication extends Base {
   /**
    * It's a constructor for the Application class.
-   * @param [data] - {
+   * @param [data]
    * @param client - DiscordClient
    */
   constructor(data = {}, client) {

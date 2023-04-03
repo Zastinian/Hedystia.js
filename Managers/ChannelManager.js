@@ -158,7 +158,7 @@ class ChannelManager extends Base {
   /**
    * It fetches all the channels in a guild.
    * @param channel - The channel ID or object.
-   * @param options - {
+   * @param options
    * @returns An array of objects.
    */
   async fetch(channel, options) {

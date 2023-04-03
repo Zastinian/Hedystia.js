@@ -84,7 +84,7 @@ class ApplicationCommandManager extends Base {
   /**
    * It fetches commands from the API
    * @param command - The command to fetch.
-   * @param options - {
+   * @param options
    * @returns An array of objects.
    */
   async fetch(command, options) {
@@ -205,6 +205,7 @@ class ApplicationCommandManager extends Base {
       description: payload.description,
       description_localizations: payload.descriptionLocalizations ?? payload.description_localizations ?? undefined,
       options: payload.options?.map((o) => this.transformOptions(o)) ?? undefined,
+      dm_permission: payload.dmPermission ?? payload.dm_permission ?? true,
       default_member_permissions:
         payload.defaultMemberPermissions ?? payload.default_member_permissions
           ? new Permissions(BigInt(payload.defaultMemberPermissions ?? payload.default_member_permissions)).toString()

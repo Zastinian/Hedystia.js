@@ -55,7 +55,7 @@ class GuildMemberManager extends Base {
   /**
    * It fetches the members of a guild
    * @param member - The member to fetch. Can be a user ID, a user object, or a guild member object.
-   * @param options - {
+   * @param options
    * @returns A promise that resolves to a new cache.constructor
    */
   async fetch(member, options) {

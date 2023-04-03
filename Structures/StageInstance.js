@@ -33,7 +33,7 @@ class StageInstance extends Base {
 
   /**
    * It edits the stage instance
-   * @param options - {
+   * @param options
    * @returns The return value of the edit method.
    */
   async edit(options) {

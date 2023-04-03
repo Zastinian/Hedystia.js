@@ -109,7 +109,7 @@ class MessageManager extends Base {
   /**
    * It edits a message.
    * @param message - The message to edit.
-   * @param options - {
+   * @param options
    * @returns A message object.
    */
   async edit(message, options) {
@@ -122,7 +122,7 @@ class MessageManager extends Base {
   /**
    * It fetches messages from a channel
    * @param message - The message to fetch. Can be a message object, a message ID, or a string.
-   * @param options - {
+   * @param options
    * @returns An array of objects.
    */
   async fetch(message, options) {

@@ -44,7 +44,7 @@ class AutocompleteInteraction extends Interaction {
   /**
    * It takes an object with a name and value property and returns an object with a name and value
    * property
-   * @param [choices] - {
+   * @param [choices]
    * @returns The transformed choices object.
    */
   static transformChoices(choices = {}) {

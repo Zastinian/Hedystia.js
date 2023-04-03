@@ -52,7 +52,7 @@ class ApplicationCommandPermissionManager extends Base {
   /**
    * It fetches the command permissions for a guild
    * @param commands - The command ID or an array of command IDs to fetch.
-   * @param options - {
+   * @param options
    * @returns The return value is a new instance of the cache constructor.
    */
   async fetch(commands, options) {
@@ -98,7 +98,7 @@ class ApplicationCommandPermissionManager extends Base {
    * otherwise if the object has an id property, and that property has an id property, then return that
    * property, otherwise return undefined."
    *
-   * @param [o] - {} -&gt; this is the object that is being passed in.
+   * @param [o] This is the object that is being passed in.
    * @returns The return value is an object with the following properties:
    */
   static transformPermissions(o = {}) {

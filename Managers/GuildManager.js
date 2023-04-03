@@ -84,7 +84,7 @@ class GuildManager extends Base {
   /**
    * It fetches a guild by ID
    * @param guild - The guild object or ID
-   * @param options - {
+   * @param options
    * @returns The guild object.
    */
   async _fetchId(guild, options) {
@@ -171,7 +171,7 @@ class GuildManager extends Base {
   /**
    * It takes a payload object, and returns a new object with the same keys, but with the values
    * transformed
-   * @param [payload] - {
+   * @param [payload]
    * @returns The payload is being returned.
    */
   static async transformPayload(payload = {}) {

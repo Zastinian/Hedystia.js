@@ -59,7 +59,7 @@ class ApplicationCommandPermission extends Base {
    * property converted to a string if it was a number.
    *
    * The function is called like this:
-   * @param [permissions] - {
+   * @param [permissions]
    * @returns The return value is an object with the following properties:
    * id: The id of the permission.
    * type: The type of the permission.

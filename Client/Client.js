@@ -92,7 +92,7 @@ class Client extends EventEmitter {
   /**
    * It fetches an invite from the Discord API
    * @param invite - The invite code
-   * @param query - {
+   * @param query
    * @returns A new Invite object.
    */
   async fetchInvite(invite, query) {
@@ -266,7 +266,7 @@ class Client extends EventEmitter {
   /**
    * It takes an object with a name, type, and url property, and returns an object with the same
    * properties, but with the type property converted to a number.
-   * @param [activities] - {
+   * @param [activities]
    * @returns An object with the properties name, type, and url.
    */
   static transformActivities(activities = {}) {
