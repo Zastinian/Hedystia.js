@@ -19,7 +19,7 @@ const SlashSubCommands = require("./SlashSubCommands");
  */
 class Slash {
   constructor(data = {}) {
-    this.type = (typeof data.type === "Number" ? ApplicationCommandTypes[data.type] : data.type) ?? "Chat_Input";
+    this.type = (typeof data.type === "number" ? ApplicationCommandTypes[data.type] : data.type) ?? "Chat_Input";
     this.name = data.name ?? undefined;
     this.nameLocalizations = data.name_localizations ?? undefined;
     this.description = data.description ?? undefined;
@@ -154,7 +154,7 @@ class Slash {
    */
   validation() {
     if (!ApplicationCommandTypes[this.type]) throw new TypeError(`Application Command Type is invalid`);
-    if (["USER", "MESSAGE"].includes(this.type) && (this.description || this.options?.length >= 1))
+    if (["User", "Message"].includes(this.type) && (this.description || this.options?.length >= 1))
       throw new RangeError(`Context Menu commands must not have description or options`);
     if (this.name?.length > 32 || this.name?.length < 1) throw new RangeError(`Slash name must be between 1-32 in length`);
     if (this.description?.length > 100 || this.description?.length < 1) throw new RangeError(`Slash description must be between 1-100 in length`);

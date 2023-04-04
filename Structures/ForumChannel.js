@@ -14,6 +14,12 @@ class ForumChannel extends Channel {
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
+    this.availableTags = data.available_tags ?? null;
+    this.appliedTags = data.applied_tags ?? null;
+    this.defaultReactionEmoji = data.default_reaction_emoji ?? null;
+    this.defaultThreadRateLimitPerUser = data.default_thread_rate_limit_per_user ?? null;
+    this.defaultSortOrder = data.default_sort_order ?? null;
+    this.defaultForumLayout = data.default_forum_layout ?? null;
   }
 
   /**

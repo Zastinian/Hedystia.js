@@ -16,7 +16,7 @@ class Slash extends Base {
     this.name = data.name ?? undefined;
     this.description = data.description ?? undefined;
     this.options = data.options?.map((o) => new SlashOption(o));
-    this.defaultPermission = data.default_permission ?? true;
+    this.defaultMemberPermissions = data.default_member_permissions ?? true;
   }
 }
 

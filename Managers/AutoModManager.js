@@ -152,6 +152,7 @@ class AutoModManager extends Base {
         ? {
             channel_id: typeof actions.metadata.channel === "string" ? actions.metadata.channel : actions.metadata.channel?.id,
             duration_seconds: actions.metadata.durationSeconds,
+            custom_message: actions.metadata.customMessage,
           }
         : undefined,
     };

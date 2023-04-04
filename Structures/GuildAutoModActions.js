@@ -28,6 +28,7 @@ class GuildAutoModActions extends Base {
       ? {
           channelId: data.metadata.channel_id,
           durationSeconds: data.metadata.duration_seconds,
+          customMessage: data.metadata.custom_message,
         }
       : null;
   }
