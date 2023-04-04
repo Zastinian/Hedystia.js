@@ -1,6 +1,6 @@
 {
   "name": "esmile.js",
-  "version": "1.7.6",
+  "version": "1.7.7",
   "description": "JavaScript library for interacting with the Discord API",
   "main": "index.js",
   "author": "contact@mresmile.com",
