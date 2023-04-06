@@ -15,7 +15,7 @@ class ModalInteraction extends MessageComponentInteraction {
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
-    this.componentType = "INPUT_TEXT";
+    this.componentType = "Input_Text";
     this.fields = data.data.components?.map((o) => ModalInteraction.transformResolvedFields(o));
   }
 

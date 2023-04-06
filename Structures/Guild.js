@@ -71,16 +71,16 @@ class Guild extends Base {
     this.widgetEnabled = data.widget_enabled ?? null;
     this.widgetChannelid = data.widget_channel_id ?? null;
     this.verificationLevel =
-      (typeof data.verification_level === "number" ? VerificationLevel[data.verification_level] : data.verification_level) ?? "NONE";
+      (typeof data.verification_level === "number" ? VerificationLevel[data.verification_level] : data.verification_level) ?? "None";
     this.defaultMessageNotifications =
       (typeof data.default_message_notifications === "number"
         ? DefaultMessageNotifications[data.default_message_notifications]
-        : data.default_message_notifications) ?? "ALL_MESSAGES";
+        : data.default_message_notifications) ?? "All_Messages";
     this.explicitContentFilter =
       (typeof data.explicit_content_filter === "number" ? ExplicitContentFilter[data.explicit_content_filter] : data.explicit_content_filter) ??
-      "DISABLED";
+      "Disabled";
     this.features = data.features ?? null;
-    this.mfaLevel = (typeof data.mfa_level === "number" ? MfaLevel[data.mfa_level] : data.mfa_level) ?? "NONE";
+    this.mfaLevel = (typeof data.mfa_level === "number" ? MfaLevel[data.mfa_level] : data.mfa_level) ?? "None";
     this.applicationId - data.application_id ?? null;
     this.systemChannelId = data.system_channel_id ?? null;
     this.systemChannelFlags = new SystemChannelFlags(data.system_channel_flags ? BigInt(data.system_channel_flags) : 0n);
@@ -92,14 +92,14 @@ class Guild extends Base {
     this.vanityUrlCode = data.vanity_url_code ?? null;
     this.description = data.description ?? null;
     this.banner = data.banner ?? null;
-    this.premiumTier = (typeof data.premium_tier === "number" ? PremiumTier[data.premium_tier] : data.premium_tier) ?? "NONE";
+    this.premiumTier = (typeof data.premium_tier === "number" ? PremiumTier[data.premium_tier] : data.premium_tier) ?? "None";
     this.premiumSubscriptionCount = data.premium_subscription_count ?? null;
     this.preferredLocale = data.preferred_locale ?? null;
     this.publicUpdatesChannelId = data.public_updates_channel_id ?? null;
     this.maxVideoChannelUsers = data.max_video_channel_users ?? null;
     this.approximateMemberCount = data.approximate_member_count ?? null;
     this.approximatePresenceCount = data.approximate_presence_count ?? null;
-    this.nsfwLevel = (typeof data.nsfw_level === "number" ? NsfwLevel[data.nsfw_level] : data.nsfw_level) ?? "DEFAULT";
+    this.nsfwLevel = (typeof data.nsfw_level === "number" ? NsfwLevel[data.nsfw_level] : data.nsfw_level) ?? "Default";
     this.premiumProgressBar = data.premium_progress_bar_enabled ?? null;
     this.channels = new GuildChannelManager(this.id, this.client);
     this.roles = new GuildRoleManager(this.id, this.client);

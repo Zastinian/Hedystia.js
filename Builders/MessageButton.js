@@ -11,14 +11,8 @@ class MessageButton {
    * @param {Object} [data={}] - The data to initialize the message button with.
    */
   constructor(data = {}) {
-    let styleData = ButtonStyle["Primary"];
-    if (typeof data.style === "number") {
-      styleData = data.style;
-    } else {
-      styleData = ButtonStyle[data.style];
-    }
     this.type = "Button";
-    this.style = styleData;
+    this.style = typeof data.style === "number" ? data.style : ButtonStyle[data.style || "Primary"];
     this.label = data.label ?? undefined;
     this.emoji = data.emoji ?? undefined;
     this.customId = data.custom_id ?? data.customId ?? undefined;

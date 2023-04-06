@@ -19,15 +19,9 @@ class InputText {
    * @param {string} [data.placeholder] - The placeholder text for the text input.
    */
   constructor(data = {}) {
-    let styleData = ButtonStyle["Short"];
-    if (typeof data.style === "number") {
-      styleData = data.style;
-    } else {
-      styleData = TextInputStyle[data.style];
-    }
     this.type = "Input_Text";
     this.customId = data.custom_id ?? data.customId ?? undefined;
-    this.style = styleData;
+    this.style = typeof data.style === "number" ? data.style : TextInputStyle[data.style || "Short"];
     this.label = data.label ?? undefined;
     this.minLength = data.min_length ?? data.minLength ?? undefined;
     this.maxLength = data.max_length ?? data.maxLength ?? undefined;
@@ -112,7 +106,7 @@ class InputText {
    * @returns {InputText} This component.
    */
   setStyle(style) {
-    this.style = typeof style === "number" ? TextInputStyle[style] : style;
+    this.style = typeof style === "number" ? style : TextInputStyle[style];
     return this;
   }
 

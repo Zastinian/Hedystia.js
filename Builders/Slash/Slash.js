@@ -19,7 +19,7 @@ const SlashSubCommands = require("./SlashSubCommands");
  */
 class Slash {
   constructor(data = {}) {
-    this.type = (typeof data.type === "number" ? ApplicationCommandTypes[data.type] : data.type) ?? "Chat_Input";
+    this.type = typeof data.type === "number" ? data.type : ApplicationCommandTypes[data.type || "Chat_Input"];
     this.name = data.name ?? undefined;
     this.nameLocalizations = data.name_localizations ?? undefined;
     this.description = data.description ?? undefined;
@@ -172,7 +172,7 @@ class Slash {
   toJSON() {
     this.validation();
     return {
-      type: typeof this.type === "string" ? ApplicationCommandTypes[this.type] : this.type,
+      type: this.type,
       name: this.name,
       name_localizations: this.nameLocalizations,
       description: this.description,
