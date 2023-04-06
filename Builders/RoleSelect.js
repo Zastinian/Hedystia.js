@@ -9,10 +9,13 @@ class RoleSelect {
    * Create a role select component.
    * @param {Object} [data={}] - The data to set in the component.
    * @param {string} [data.custom_id] - The custom ID of the component.
+   * @param {string} [data.customId] - The custom ID of the component.
    * @param {Object[]} [data.options] - The options of the component.
    * @param {string} [data.placeholder] - The placeholder text of the component.
    * @param {number} [data.min_values] - The minimum number of values that can be selected.
    * @param {number} [data.max_values] - The maximum number of values that can be selected.
+   * @param {number} [data.minValues] - The minimum number of values that can be selected.
+   * @param {number} [data.maxValues] - The maximum number of values that can be selected.
    * @param {boolean} [data.disabled] - Whether the component is disabled or not.
    */
   constructor(data = {}) {
