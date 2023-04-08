@@ -24,6 +24,7 @@ class Interaction extends Base {
     this.token = data.token ?? null;
     this.applicationId = data.application_id ?? null;
     this.channelId = data.channel_id ?? null;
+    this.channel = this.client.channels._add(data.channel, this.guild?.id, {cache: false}) ?? null;
     this.locale = data.locale ?? null;
     this.guildLocale = data.guild_locale ?? null;
     this.version = data.version ?? null;
@@ -130,14 +131,6 @@ class Interaction extends Base {
    */
   getValue(name) {
     return this.options.options.filter((data) => data.name == name)[0].value;
-  }
-
-  /**
-   * It returns the channel object of the channel ID that is stored in the message object
-   * @returns The channel object.
-   */
-  get channel() {
-    return this.client.channels._add(this.channelId) ?? null;
   }
 
   /**
