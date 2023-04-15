@@ -136,8 +136,8 @@ class WebsocketManager extends EventEmitter {
         presence: this.client.presence,
         properties: {
           $os: process.platform,
-          $browser: "Esmile",
-          $device: "Esmile",
+          $browser: "Hedystia",
+          $device: "Hedystia",
         },
         shard: [this.client.shardId, this.client.maxShards],
       },
