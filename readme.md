@@ -14,7 +14,7 @@ yarn add hedystia.js
 
 - [Discord](https://discord.gg/aXvuUpvRQs) [Hedystia Discord]
 - [Bot](https://discord.com/oauth2/authorize?client_id=931228076094930996&permissions=137710923254&scope=bot%20applications.commands) [Hedystia Discord Bot]
-- [Docs](https://docs.mresmile.com/docs/client/start)
+- [Docs](https://docs.hedystia.com/docs/client/start)
 
 ## Examples
 
@@ -88,12 +88,12 @@ client.on("interactionCreate", (interaction) => {
     const helpEmbed = new MessageEmbed()
       .setColor(0x0099ff)
       .setTitle("Help Menu")
-      .setURL("https://docs.mresmile.com/docs/client/start")
+      .setURL("https://docs.hedystia.com/docs/client/start")
       .setAuthor({
         name: "Name",
         iconURL:
           "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTMyYzU4YTVjNjNlZWUwZTgwN2ZiMDgxYzVlOGE0NGRhYTM3MmE1NCZjdD1z/K9svE9i7P3Ox2/giphy.gif",
-        url: "https://docs.mresmile.com/docs/client/start",
+        url: "https://docs.hedystia.com/docs/client/start",
       })
       .setDescription("Help Description")
       .setThumbnail({
@@ -115,7 +115,7 @@ client.on("interactionCreate", (interaction) => {
     const userEmbed = new MessageEmbed()
       .setColor(0x0099ff)
       .setTitle("User Info")
-      .setURL("https://docs.mresmile.com/docs/client/start")
+      .setURL("https://docs.hedystia.com/docs/client/start")
       .addFields({name: "Username", value: user.username, inline: true}, {name: "Discriminator", value: user.discriminator, inline: true})
       .setThumbnail({
         url: user.displayAvatarURL(),
