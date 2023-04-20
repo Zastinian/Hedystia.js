@@ -3,6 +3,12 @@
  * @module DiscordAPIError
  */
 class DiscordAPIError extends Error {
+  /**
+   * This is a constructor function that creates an error object with various properties based on the
+   * input data.
+   * @param [data] - An object containing information about the error, including the error message,
+   * error code, HTTP method used, HTTP error status, request path, raw error data, and request data.
+   */
   constructor(data = {}) {
     super(data.message);
     this.name = `DiscordAPIError[${data.code}]`;
