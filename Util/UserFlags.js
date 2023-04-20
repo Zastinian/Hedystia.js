@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * @typedef {Object} UserFlags
  * @property {bigint} value - The raw bitfield value.
  */
-class UserFlags extends Bitfield {
+class UserFlags {
   /**
    * @param {...number|string|bigint} bit - Bit(s) to set in the bitfield.
    */

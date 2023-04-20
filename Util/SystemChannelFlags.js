@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * A bitfield that represents the system channel flags.
  * @extends {Bitfield}
  */
-class SystemChannelFlags extends Bitfield {
+class SystemChannelFlags {
   /**
    * @param {...number} bit - Bit(s) to set initially.
    */

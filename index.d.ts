@@ -1,3 +1,5 @@
+import {EventEmitter} from "events";
+
 /**
  * Client class representing a Discord bot client.
  * @extends EventEmitter
@@ -160,7 +162,7 @@ export class ChannelSelect {
    * Class representing a Channel Select component for Discord message components.
    * @class
    */
-  constructor(data: {custom_id: string; options: Array; placeholder: string; min_values: number; max_values: number; disabled: boolean});
+  constructor(data: {custom_id: string; options: any; placeholder: string; min_values: number; max_values: number; disabled: boolean});
 
   /**
    * Transforms the given options data into a format compatible with the select component.
@@ -254,7 +256,7 @@ export class Embed {
     footer?: Object;
     timestamp?: string;
     thumbnail?: string;
-    fields?: Array;
+    fields?: any;
   });
 }
 
@@ -267,7 +269,7 @@ export class GuildMemberVerificationFields {
    * A class representing fields for guild member verification.
    * @class
    */
-  constructor(data: {enabled: boolean; description: string; fields: Array});
+  constructor(data: {enabled: boolean; description: string; fields: any});
 
   /**
    * Sets whether or not the verification fields are enabled.
@@ -403,7 +405,7 @@ export class MessageActionRow {
    * Represents an action row containing components, such as buttons or selects, to be added to a message.
    * @class
    */
-  constructor(data: {components: Array});
+  constructor(data: {components: any});
 
   /**
    * Adds one or more components to the action row.
@@ -449,7 +451,7 @@ export class MessageAttachment {
    * @param {BufferResolvable|Stream} file - The file to attach.
    * @returns {MessageAttachment} This attachment.
    */
-  setFile(file: BufferResolvable | Stream): MessageAttachment;
+  setFile(file: any): MessageAttachment;
 
   /**
    * Sets the name of the file.
@@ -804,7 +806,7 @@ export class SelectMenu {
    * Class representing a select menu component.
    * @class
    */
-  constructor(options: {customid: string; placeholder: string; disabled?: boolean; minvalues?: number; maxvalues?: number; options?: Array});
+  constructor(options: {customid: string; placeholder: string; disabled?: boolean; minvalues?: number; maxvalues?: number; options?: any});
 }
 
 /**
@@ -1182,7 +1184,7 @@ export class RaidenCol extends Map {
  * It's a custom error class that extends the built-in Error class
  * @module BitfieldInvalid
  */
-module BitfieldInvalid {
+export module BitfieldInvalid {
   /**
    * This is a constructor function that sets properties for a BitfieldInvalid object.
    * @param data - The `data` parameter is an object that contains two properties: `message` and `bit`.
@@ -1206,7 +1208,7 @@ module BitfieldInvalid {
  * It's a class that extends the Error class and has a constructor that takes an object as an argument
  * @module DiscordAPIError
  */
-module DiscordAPIError {
+export module DiscordAPIError {
   /**
    * This is a constructor function that creates an error object with various properties based on the
    * input data.
@@ -1228,7 +1230,7 @@ module DiscordAPIError {
  * It's a class that extends the Error class and adds a code and rawError property to it.
  * @module WebsocketError
  */
-module WebsocketError {
+export module WebsocketError {
   /**
    * This is a constructor function that sets properties for an error object.
    * @param [error] - The `error` parameter is an object that contains information about an error that
@@ -1245,52 +1247,6 @@ module WebsocketError {
 }
 
 /**
- * It takes in a data object and a client object, and then it sets the type, name, description,
- * options, and defaultPermission properties of the class to the values of the data object's type,
- * name, description, options, and defaultPermission properties, respectively
- * @param [data] - The data object that is returned from the API.
- * @param client - The client instance.
- */
-export class Slash {
-  /**
-   * It takes in a data object and a client object, and then it sets the type, name, description,
-   * options, and defaultPermission properties of the class to the values of the data object's type,
-   * name, description, options, and defaultPermission properties, respectively
-   * @param [data] - The data object that is returned from the API.
-   * @param client - The client instance.
-   */
-  constructor(data?: any, client: any);
-}
-
-/**
- * It takes in a JSON object and returns a SlashOption object
- * @param [data] - The data that is passed to the constructor.
- * @param client - The client that instantiated the object.
- */
-export class SlashOption {
-  /**
-   * It takes in a JSON object and returns a SlashOption object
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - The client that instantiated the object.
-   */
-  constructor(data?: any, client: any);
-
-  /**
-   * It takes an object and returns a new object with the same keys but with the values transformed
-   * @param [o] - The object to transform.
-   * @returns An object with the properties name and value.
-   */
-  static transformChoices(o?: any): any;
-
-  /**
-   * It takes a channel object and returns the channel type
-   * @param [channel] - The channel to transform.
-   * @returns The channel type is being returned.
-   */
-  static transformChannelTypes(channel?: any): any;
-}
-
-/**
  * It creates a new SlashCommand object, and if the data object is not empty, it sets the name,
  * description, and options properties to the values in the data object
  * @param [data] - The data that is passed to the constructor.
@@ -1303,21 +1259,7 @@ export class SlashSubCommand {
    * @param [data] - The data that is passed to the constructor.
    * @param client - The client object.
    */
-  constructor(data?: any, client: any);
-}
-
-/**
- * It creates a new SlashSubCommandGroup object, which is a collection of SlashSubCommand objects
- * @param [data] - The data that is passed to the constructor.
- * @param client - The client that the command is being registered to.
- */
-export class SlashSubCommandGroups {
-  /**
-   * It creates a new SlashSubCommandGroup object, which is a collection of SlashSubCommand objects
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - The client that the command is being registered to.
-   */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 }
 
 /**
@@ -1337,7 +1279,7 @@ export class TextBasedChannels {
    * @param guildId - The ID of the guild the channel is in.
    * @param client - The client that instantiated the channel.
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It returns a new MessageManager object, which is a class that manages messages
@@ -1402,7 +1344,7 @@ export class VoiceBasedChannels {
    * @param guildId - The ID of the guild the voice channel is in.
    * @param client - Discord.Client
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It sends a packet to the Discord API to join the voice channel
@@ -1451,7 +1393,7 @@ export class ActionsManager {
    * @param message - The message object that was sent.
    * @param client - The client that instantiated the message.
    */
-  constructor(message: any, client: any);
+  constructor(message: any, client?: any);
 
   /**
    * It takes a message from the websocket and returns a class that represents the message.
@@ -1997,7 +1939,7 @@ export class GuildApplicationCommandManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 }
 
 /**
@@ -2013,7 +1955,7 @@ export class GuildAutoModManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * `return super.cache.filter((o) => o.guildId === this.guildId)`
@@ -2035,7 +1977,7 @@ export class GuildBanManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It adds a ban to the cache
@@ -2108,7 +2050,7 @@ export class GuildChannelManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run from.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It creates a new channel in the guild.
@@ -2144,7 +2086,7 @@ export class GuildDiscoveryManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * `_add` is a function that takes a `discovery` parameter and returns a new `GuildDiscovery` object.
@@ -2188,7 +2130,7 @@ export class GuildEmojiManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * `_add` is a function that adds emojis to a guild
@@ -2218,7 +2160,7 @@ export class GuildIntegrationManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run from.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * _add(integrations, guildId = this.guildId, options = {cache: true, force: false})
@@ -2243,7 +2185,7 @@ export class GuildIntegrationManager {
    * @param reason - The reason for the audit log.
    * @returns The integration object.
    */
-  delete(options?: any, reason: any): any;
+  delete(options?: any, reason?: any): any;
 
   /**
    * It returns a collection of all the elements in the document with the given tag name.
@@ -2265,7 +2207,7 @@ export class GuildInviteManager {
    * @param guild - The guild object that the event is being emitted for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guild: any, client: any);
+  constructor(guild: any, client?: any);
 
   /**
    * It adds an invite to the cache
@@ -2410,7 +2352,7 @@ export class GuildMemberManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It creates a new GuildMember object if the member isn't cached, or returns the cached member if it
@@ -2529,7 +2471,7 @@ export class GuildMemberRoleManager {
    * @param member - The member object of the member who left the guild.
    * @param client - The client that the command is being run from.
    */
-  constructor(guildId: any, member: any, client: any);
+  constructor(guildId: any, member: any, client?: any);
 
   /**
    * It sorts the cache by position, then returns the first item in the sorted collection
@@ -2591,7 +2533,7 @@ export class GuildMemberVerificationManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * `fetch` fetches the guild's member verification settings
@@ -2637,7 +2579,7 @@ export class GuildPruneManager {
    * @param guildid - The ID of the guild you want to get the settings for.
    * @param client - The client object
    */
-  constructor(guildid: any, client: any);
+  constructor(guildid: any, client?: any);
 
   /**
    * It prunes members from a guild
@@ -2681,7 +2623,7 @@ export class GuildRoleManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It sorts the roles in the cache by their position, and then returns the first one
@@ -2714,7 +2656,7 @@ export class GuildScheduledEventManager {
    * @param guildId - The ID of the guild the event is in
    * @param client - The client that the manager is being created for.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It returns the cache, but only the cache that has the same guildId as the current guild
@@ -2736,7 +2678,7 @@ export class GuildScheduledEventUsersManager {
    * @param guildId - The ID of the guild the event is being emitted in.
    * @param client - The client object
    */
-  constructor(event: any, guildId: any, client: any);
+  constructor(event: any, guildId?: any, client?: any);
 
   /**
    * If the scheduledEventUser is a string, it's a user ID, so we return a partial
@@ -2781,7 +2723,7 @@ export class GuildStageInstanceManger {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * `return super.cache.filter((o) => o.guildId === this.guildId)`
@@ -2805,7 +2747,7 @@ export class GuildStickerManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * `return super.cache.filter((o) => o.guildId === this.guildId)`
@@ -2831,7 +2773,7 @@ export class GuildTemplateManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It adds a template to the cache
@@ -2902,7 +2844,7 @@ export class GuildVanityManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run from.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It fetches the vanity url of a guild
@@ -2931,7 +2873,7 @@ export class GuildVoiceStateManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It edits the voice state of a user in a guild
@@ -2961,7 +2903,7 @@ export class GuildWidgetManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It fetches the guild widget settings and returns a new GuildWidgetSettings object.
@@ -3004,7 +2946,7 @@ export class MessageManager {
    * @param channelId - The channel ID of the channel you want to send the message to.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, channelId: any, client: any);
+  constructor(guildId: any, channelId: any, client?: any);
 
   /**
    * _add(messages, guildId = this.guildId, channelId = this.channelId, options = {cache: true, force:
@@ -3032,7 +2974,7 @@ export class MessageManager {
    * @param reason - The reason for the bulk delete.
    * @returns An array of messages.
    */
-  bulkDelete(channel?: any, message?: any, reason: any): any;
+  bulkDelete(channel?: any, message?: any, reason?: any): any;
 
   /**
    * It deletes a message from a channel.
@@ -3140,7 +3082,7 @@ export class PermissionOverwriteManager {
    * @param [overwrites] - An object containing the overwrites for the channel.
    * @param client - The client that is creating the channel.
    */
-  constructor(channelId: any, overwrites?: any, client: any);
+  constructor(channelId: any, overwrites?: any, client?: any);
 
   /**
    * It takes an object, and returns a new PermissionOverwrite object
@@ -3209,7 +3151,7 @@ export class PermissionOverwriteManager {
    * @param [overwrites] - The overwrites object that is passed in from the user.
    * @param type - The type of the permission. This is either "role" or "member".
    */
-  static transformOverwrites(existing: any, overwrites?: any, type: any): void;
+  static transformOverwrites(existing: any, overwrites?: any, type?: any): void;
 }
 
 /**
@@ -3256,7 +3198,7 @@ export class ReactionManager {
    * @param guildId - The ID of the guild the message is in.
    * @param client - The client instance
    */
-  constructor(reactions: any, messageId: any, channelId: any, guildId: any, client: any);
+  constructor(reactions: any, messageId: any, channelId: any, guildId?: any, client?: any);
 
   /**
    * `return this.client.guilds._add(this.guildId) ?? null`
@@ -3305,7 +3247,7 @@ export class ReactionUserManager {
    * @param emoji - The emoji used
    * @param client - The client that instantiated the event
    */
-  constructor(reaction: any, channelId: any, messageId: any, emoji: any, client: any);
+  constructor(reaction: any, channelId: any, messageId: any, emoji: any, client?: any);
 
   /**
    * It adds a user to the cache
@@ -3438,7 +3380,7 @@ export class RolePromptManager {
    * @param guildId - The ID of the guild you want to get the settings for.
    * @param client - The client that the command is being run on.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It adds a role prompt to the cache
@@ -3706,7 +3648,7 @@ export class ThreadManager {
    * @param guildId - The ID of the guild the channel is in.
    * @param client - The client that the command is being run on.
    */
-  constructor(channelId: any, guildId: any, client: any);
+  constructor(channelId: any, guildId?: any, client?: any);
 
   /**
    * It returns the cache, but only the cache items that have a parentId that matches the channelId
@@ -3728,7 +3670,7 @@ export class ThreadMemberManager {
    * @param threadId - The ID of the thread you want to get.
    * @param client - The client that the thread was created with.
    */
-  constructor(guildId: any, threadId: any, client: any);
+  constructor(guildId: any, threadId: any, client?: any);
 
   /**
    * It adds a member to the cache
@@ -3882,7 +3824,7 @@ export class WelcomeScreenManager {
    * @param guildId - The ID of the guild you want to get the member count of.
    * @param client - The client that the command is being run from.
    */
-  constructor(guildId: any, client: any);
+  constructor(guildId: any, client?: any);
 
   /**
    * It fetches the welcome screen of a guild
@@ -3931,7 +3873,7 @@ export class APIGuild {
    * @param [data] - The data that was sent from the API.
    * @param client - The client that created the guild.
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 }
 
 /**
@@ -4338,7 +4280,7 @@ export class Activity {
    * @param [data] - The data that was sent from the Discord API.
    * @param client - DiscordClient
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * It takes the enum value and returns the string value.
@@ -4356,7 +4298,7 @@ export class ApplicationCommand {
    * Class representing an application command.
    * @class
    */
-  constructor(data: any, guildId: any, client: any);
+  constructor(data: any, guildId?: any, client?: any);
 
   /**
    * Get the guild object if it exists, otherwise return null.
@@ -4400,7 +4342,7 @@ export class ApplicationCommandInteraction {
    * @param guildId - The guild ID
    * @param client - Discord.Client
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 }
 
 /**
@@ -4428,7 +4370,7 @@ export class ApplicationCommandPermission {
    * @param guildId - The guild id
    * @param client - RaidenClient
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It fetches the permissions of the command
@@ -4482,7 +4424,7 @@ export class AutocompleteInteraction {
    * @param guildId - The ID of the guild the role is in
    * @param client - The client that the command is being run from
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * If the data.options array has a focused property, then return the value of that property.
@@ -4521,7 +4463,7 @@ export class BaseGuildChannel {
    * @param guildId - The ID of the guild the channel is in.
    * @param client - The client that the channel belongs to
    */
-  constructor(data: any, guildId: any, client: any);
+  constructor(data: any, guildId?: any, client?: any);
 
   /**
    * `Fetches the private threads in this channel.`
@@ -4544,7 +4486,7 @@ export class ButtonInteraction {
    * @param guildId - The ID of the guild the role is in.
    * @param client - The client that the command is being run from
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 }
 
 /**
@@ -4560,7 +4502,7 @@ export class CategoryChannel {
    * @param guildId - The ID of the guild the role is in.
    * @param client - The client that instantiated the object.
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It returns a collection of channels that are children of the current channel
@@ -4588,7 +4530,7 @@ export class Channel {
    * @param guildId - The ID of the guild the channel is in
    * @param client - DiscordClient
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It fetches the channel
@@ -4840,7 +4782,7 @@ export class ClientApplication {
    * @param [data]
    * @param client - DiscordClient
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * It fetches the application information from the Discord API and returns it.
@@ -4898,7 +4840,7 @@ export class ClientUser {
    * @param [data] - The data that was returned from the API.
    * @param client - The client that instantiated the object. Every Discordie object that
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * It sets the avatar of the bot
@@ -4957,7 +4899,7 @@ export class CommandInteraction {
    * @param guildId - The ID of the guild the role is in
    * @param client - The client that instantiated the object.
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 }
 
 /**
@@ -4981,7 +4923,7 @@ export class CommandInteractionOptionResolver {
    * @param channelId - The channel ID of the channel the message is in.
    * @param client - The client that the message was sent from
    */
-  constructor(data?: any, guildId: any, channelId: any, client: any);
+  constructor(data?: any, guildId?: any, channelId?: any, client?: any);
 
   /**
    * If the first element of the array is an object with a type of 2, then return the result of calling
@@ -5137,7 +5079,7 @@ export class ContextMenuInteraction {
    * @param guildId - The ID of the guild the case is in
    * @param client - The client that the event was emitted from
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 }
 
 /**
@@ -5153,7 +5095,7 @@ export class ContextMessageInteraction {
    * @param guildId - The ID of the guild the role is in.
    * @param client - The client that instantiated the object.
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 }
 
 /**
@@ -5169,7 +5111,7 @@ export class ContextUserInteraction {
    * @param guildId - The ID of the guild the role is in.
    * @param client - The client that instantiated the object.
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 }
 
 /**
@@ -5183,7 +5125,7 @@ export class DirectoryChannel {
    * @param [data] - The data that was sent from the API.
    * @param client - The client that created the instance of the class.
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 }
 
 /**
@@ -5199,7 +5141,7 @@ export class DMChannel {
    * @param [guildId=null] - The ID of the guild the message is in.
    * @param client - The client instance
    */
-  constructor(data?: any, guildId?: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 }
 
 /**
@@ -5215,7 +5157,7 @@ export class Emoji {
    * @param guildId - The ID of the guild this emoji is in.
    * @param client - The client that instantiated the Emoji
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * `fetch` fetches the emoji from the guild
@@ -5266,7 +5208,7 @@ export class FetchedThreads extends Base {
    * @class
    * @extends Base
    */
-  constructor(data: Object, guildId: string, client: Client);
+  constructor(data: Object, guildId?: string, client?: Client);
 }
 
 /**
@@ -5306,7 +5248,7 @@ export class ForumChannel extends Channel {
  * The Guild structure class
  * @class
  */
-export class Guild extends BaseGuild {
+export class Guild {
   /**
    * The Guild structure class
    * @class
@@ -5403,7 +5345,7 @@ export class Guild extends BaseGuild {
    * @param {string} [reason] - The reason for setting the owner.
    * @returns {Promise<Guild>} The updated guild.
    */
-  setOwner(owner: GuildMemberResolvable, reason?: string): Promise<Guild>;
+  setOwner(owner: any, reason?: string): Promise<Guild>;
 
   /**
    * Set the splash image for the guild.
@@ -5411,7 +5353,7 @@ export class Guild extends BaseGuild {
    * @param {string} [reason] - The reason for setting the splash.
    * @returns {Promise<Guild>} The updated guild.
    */
-  setSplash(splash: BufferResolvable | Base64Resolvable | null, reason?: string): Promise<Guild>;
+  setSplash(splash: any, reason?: string): Promise<Guild>;
 
   /**
    * Set the discovery splash image for the guild.
@@ -5419,7 +5361,7 @@ export class Guild extends BaseGuild {
    * @param {string} [reason] - The reason for setting the discovery splash.
    * @returns {Promise<Guild>} The updated guild.
    */
-  setDiscoverySplash(discoverySplash: BufferResolvable | Base64Resolvable | null, reason?: string): Promise<Guild>;
+  setDiscoverySplash(discoverySplash: any, reason?: string): Promise<Guild>;
 
   /**
    * Set the banner image for the guild.
@@ -5427,7 +5369,7 @@ export class Guild extends BaseGuild {
    * @param {string} [reason] - The reason for setting the banner.
    * @returns {Promise<Guild>} The updated guild.
    */
-  setBanner(banner: BufferResolvable | Base64Resolvable | null, reason?: string): Promise<Guild>;
+  setBanner(banner: any, reason?: string): Promise<Guild>;
 
   /**
    * Set the system channel for the guild.
@@ -5435,7 +5377,7 @@ export class Guild extends BaseGuild {
    * @param {string} [reason] - The reason for setting the system channel.
    * @returns {Promise<Guild>} The updated guild.
    */
-  setSystemChannel(systemChannel: GuildChannelResolvable, reason?: string): Promise<Guild>;
+  setSystemChannel(systemChannel: any, reason?: string): Promise<Guild>;
 
   /**
    * Set the preferred locale for the guild.
@@ -5459,7 +5401,7 @@ export class Guild extends BaseGuild {
    * @param {string} [reason] - The reason for setting the features.
    * @returns {Promise<Guild>} The updated guild.
    */
-  setFeatures(features: GuildFeature[], reason?: string): Promise<Guild>;
+  setFeatures(features: any[], reason?: string): Promise<Guild>;
 
   /**
    * Sets the premium progress bar of the guild.
@@ -5520,7 +5462,7 @@ export class Guild extends BaseGuild {
    * @param {BaseFetchOptions} [options] The options to fetch the owner with.
    * @returns {Promise<GuildMember>} A promise that resolves with the GuildMember instance of the guild owner.
    */
-  fetchOwner(options?: BaseFetchOptions): Promise<GuildMember>;
+  fetchOwner(options?: any): Promise<GuildMember>;
 
   /**
    * Returns the voice channel where users are moved after being AFK for too long.
@@ -5600,12 +5542,7 @@ export class Guild extends BaseGuild {
    * @param {number} [options.limit=50] - The maximum number of audit logs to fetch.
    * @returns {Promise<GuildAuditLog>} A promise that resolves with the fetched audit logs.
    */
-  fetchAuditLogs(options?: {
-    user?: UserResolvable;
-    actionType?: string;
-    before?: Snowflake | GuildAuditLogEntry;
-    limit?: number;
-  }): Promise<GuildAuditLog>;
+  fetchAuditLogs(options?: {user?: any; actionType?: string; before?: any | GuildAuditLogEntry; limit?: number}): Promise<GuildAuditLog>;
 
   /**
    * Fetches the bot's own member object for the guild.
@@ -5620,7 +5557,7 @@ export class Guild extends BaseGuild {
    * @async
    * @returns {Promise<RaidenCol<string, Webhook>>} A promise that resolves with the fetched webhooks for the guild.
    */
-  fetchWebhooks(): Promise<RaidenCol<string, Webhook>>;
+  fetchWebhooks(): any;
 
   /**
    * Fetches the guild feed for the guild.
@@ -5642,19 +5579,19 @@ export class Guild extends BaseGuild {
    * Gets all the voice-based channels in the guild.
    * @returns {Collection<Snowflake, GuildChannel>} A collection of all the voice-based channels in the guild.
    */
-  getVoiceBasedChannels(): Collection<Snowflake, GuildChannel>;
+  getVoiceBasedChannels(): any;
 
   /**
    * Gets all the text-based channels in the guild.
    * @returns {Collection<Snowflake, GuildChannel>} A collection of all the text-based channels in the guild.
    */
-  getTextBasedChannels(): Collection<Snowflake, GuildChannel>;
+  getTextBasedChannels(): any;
 
   /**
    * Gets all the categories in the guild.
    * @returns {Collection<Snowflake, GuildChannel>} A collection of all the categories in the guild.
    */
-  getCategories(): Collection<Snowflake, GuildChannel>;
+  getCategories(): any;
 }
 
 /**
@@ -5670,7 +5607,7 @@ export class GuildAuditLog extends Base {
    * @class
    * @extends Base
    **/
-  constructor(data?: Object, guildId: string, client: Client);
+  constructor(data?: Object, guildId?: string, client?: Client);
 
   /**
    * Returns the guild object associated with this audit log.
@@ -5695,7 +5632,7 @@ export class GuildAuditLogChanges extends Base {
    * @class
    * @extends Base
    **/
-  constructor(data?: Object, guildId: string, client: Client);
+  constructor(data?: Object, guildId?: string, client?: Client);
 }
 
 /**
@@ -5709,7 +5646,7 @@ export class GuildAuditLogEntry extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: Object, guildId: string, client: Client);
+  constructor(data?: Object, guildId?: string, client?: Client);
 }
 
 /**
@@ -5721,7 +5658,7 @@ export class GuildAutoMod extends Base {
    * Represents an auto-mod configuration for a guild.
    * @extends Base
    */
-  constructor(data: Object, guildId: Snowflake, client: Client);
+  constructor(data: Object, guildId: any, client: Client);
 
   /**
    * The guild associated with this GuildAutoMod.
@@ -5812,7 +5749,7 @@ export class GuildAutoMod extends Base {
  * @param {string} reason - The reason for enabling or disabling the feature.
  * @returns {Promise} A promise that resolves with the result of the edit operation.
  */
-export function setEnabled(enabled: boolean, reason: string): Promise;
+export function setEnabled(enabled: boolean, reason: string): any;
 
 /**
  * Sets the roles that are exempt from the feature.
@@ -5822,7 +5759,7 @@ export function setEnabled(enabled: boolean, reason: string): Promise;
  * @param {string} reason - The reason for setting the exempt roles.
  * @returns {Promise} A promise that resolves with the result of the edit operation.
  */
-export function setExemptRoles(exemptRoles: string[], reason: string): Promise;
+export function setExemptRoles(exemptRoles: string[], reason: string): any;
 
 /**
  * Sets the channels that are exempt from the feature.
@@ -5832,7 +5769,7 @@ export function setExemptRoles(exemptRoles: string[], reason: string): Promise;
  * @param {string} reason - The reason for setting the exempt channels.
  * @returns {Promise} A promise that resolves with the result of the edit operation.
  */
-export function setExemptChannels(exemptChannels: string[], reason: string): Promise;
+export function setExemptChannels(exemptChannels: string[], reason: string): any;
 
 /**
  * Represents an action taken by the guild automod system.
@@ -5859,7 +5796,7 @@ export class GuildAutoModActions extends Base {
    * @property {?string} channelId - The ID of the channel the action was taken in.
    * @property {?number} durationSeconds - The duration of the action, in seconds.
    */
-  metadata: Imetadata;
+  metadata: any;
 }
 
 /**
@@ -5873,7 +5810,7 @@ export class GuildBan extends Base {
    * @class
    * @extends Base
    */
-  constructor(data: Object, guildId: string, client: Client);
+  constructor(data: Object, guildId?: string, client?: Client);
 
   /**
    * Whether or not the ban is partial.
@@ -5931,7 +5868,7 @@ export class GuildDiscovery extends Base {
    * @class
    * @extends Base
    */
-  constructor(data: Object, guildId: Snowflake, client: Client);
+  constructor(data: Object, guildId: any, client: Client);
 
   /**
    * Whether or not this guild discovery object is partial.
@@ -5949,7 +5886,7 @@ export class GuildDiscovery extends Base {
    * The ID of the guild.
    * @type {Snowflake}
    */
-  guildId: Snowflake;
+  guildId: any;
 
   /**
    * The category IDs of the guild discovery.
@@ -6003,7 +5940,7 @@ export class GuildDiscovery extends Base {
    * The primary category ID of the guild discovery.
    * @type {?GuildPrimaryCategory}
    */
-  primaryCategoryId: GuildPrimaryCategory;
+  primaryCategoryId: any;
 
   /**
    * The reasons to join the guild.
@@ -6028,14 +5965,14 @@ export class GuildDiscovery extends Base {
    * @async
    * @returns {Promise<DiscoveryMetadata>} A promise that resolves with the discovery metadata object.
    */
-  fetch(): Promise<DiscoveryMetadata>;
+  fetch(): any;
 
   /**
    * Fetches the discovery metadata for the guild.
    * @async
    * @returns {Promise<DiscoveryMetadata>} A promise that resolves with the discovery metadata object.
    */
-  edit(): Promise<DiscoveryMetadata>;
+  edit(): any;
 
   /**
    * Sets whether the emoji discoverability is enabled for the guild.
@@ -6043,7 +5980,7 @@ export class GuildDiscovery extends Base {
    * @param {boolean} emojiDiscoverabilityEnabled - A boolean indicating whether the emoji discoverability is enabled.
    * @returns {Promise<DiscoveryMetadata>} A promise that resolves with the updated discovery metadata object.
    */
-  setEmojiDiscoverabilityEnabled(emojiDiscoverabilityEnabled: boolean): Promise<DiscoveryMetadata>;
+  setEmojiDiscoverabilityEnabled(emojiDiscoverabilityEnabled: boolean): any;
 
   /**
    * Sets whether the emoji discoverability is enabled for the guild.
@@ -6051,7 +5988,7 @@ export class GuildDiscovery extends Base {
    * @param {boolean} emojiDiscoverabilityEnabled - A boolean indicating whether the emoji discoverability is enabled.
    * @returns {Promise<DiscoveryMetadata>} A promise that resolves with the updated discovery metadata object.
    */
-  setPublished(emojiDiscoverabilityEnabled: boolean): Promise<DiscoveryMetadata>;
+  setPublished(emojiDiscoverabilityEnabled: boolean): any;
 
   /**
    * Sets the description of the guild for the discovery page.
@@ -6059,7 +5996,7 @@ export class GuildDiscovery extends Base {
    * @param {string} about - The description of the guild.
    * @returns {Promise<DiscoveryMetadata>} A promise that resolves with the updated discovery metadata object.
    */
-  setAbout(about: string): Promise<DiscoveryMetadata>;
+  setAbout(about: string): any;
 
   /**
    * Sets the "Reasons to Join" section for the associated guild in the discovery settings.
@@ -6067,7 +6004,7 @@ export class GuildDiscovery extends Base {
    * @param {string} reasonsToJoin - The new "Reasons to Join" section content.
    * @returns {Promise<Discovery>} The updated discovery object.
    */
-  setReasonsToJoin(reasonsToJoin: string): Promise<Discovery>;
+  setReasonsToJoin(reasonsToJoin: string): any;
 
   /**
    * Sets the keywords associated with the associated guild in the discovery settings.
@@ -6075,7 +6012,7 @@ export class GuildDiscovery extends Base {
    * @param {Array<string>} keywords - The new keywords.
    * @returns {Promise<Discovery>} The updated discovery object.
    */
-  setKeywords(keywords: string[]): Promise<Discovery>;
+  setKeywords(keywords: string[]): any;
 
   /**
    * Sets the keywords associated with the associated guild in the discovery settings.
@@ -6083,7 +6020,7 @@ export class GuildDiscovery extends Base {
    * @param {Array<string>} keywords - The new keywords.
    * @returns {Promise<Discovery>} The updated discovery object.
    */
-  setPrimaryCategoryId(keywords: string[]): Promise<Discovery>;
+  setPrimaryCategoryId(keywords: string[]): any;
 }
 
 /**
@@ -6097,7 +6034,7 @@ export class GuildIntegration extends Base {
    * @class
    * @extends Base
    */
-  constructor(data: Object, guildId: Snowflake, client: Client);
+  constructor(data: Object, guildId: any, client: Client);
 
   /**
    * The `Guild` object corresponding to this `GuildIntegration`.
@@ -6118,7 +6055,7 @@ export class GuildMember extends Base {
    * @class
    * @extends Base
    */
-  constructor(data: Object, guildId: string, client: Client);
+  constructor(data: Object, guildId?: string, client?: Client);
 
   /**
    * Checks if the member's communication is currently disabled.
@@ -6173,7 +6110,7 @@ export class GuildMember extends Base {
    * @param {string} reason - The reason for setting the nickname (optional).
    * @returns {Promise} A promise that resolves with the updated member object.
    */
-  setNickname(nickname: string, reason: string): Promise;
+  setNickname(nickname: string, reason: string): any;
 
   /**
    * Sets whether the member is muted.
@@ -6182,7 +6119,7 @@ export class GuildMember extends Base {
    * @param {string} reason - The reason for setting the mute (optional).
    * @returns {Promise} A promise that resolves with the updated member object.
    */
-  setMute(mute: boolean, reason: string): Promise;
+  setMute(mute: boolean, reason: string): any;
 
   /**
    * Sets whether the member is deafened.
@@ -6191,7 +6128,7 @@ export class GuildMember extends Base {
    * @param {string} reason - The reason for setting the deaf (optional).
    * @returns {Promise} A promise that resolves with the updated member object.
    */
-  setDeaf(deaf: boolean, reason: string): Promise;
+  setDeaf(deaf: boolean, reason: string): any;
 
   /**
    * Moves the member to a different voice channel.
@@ -6200,7 +6137,7 @@ export class GuildMember extends Base {
    * @param {string} reason - The reason for moving the member (optional).
    * @returns {Promise} A promise that resolves with the updated member object.
    */
-  setChannel(channel: ChannelResolvable, reason: string): Promise;
+  setChannel(channel: any, reason: string): any;
 
   /**
    * Moves the member to a different voice channel.
@@ -6209,7 +6146,7 @@ export class GuildMember extends Base {
    * @param {string} reason - The reason for moving the member (optional).
    * @returns {Promise} A promise that resolves with the updated member object.
    */
-  setCommunicationDisabled(channel: ChannelResolvable, reason: string): Promise;
+  setCommunicationDisabled(channel: any, reason: string): any;
 
   /**
    * The guild that the member belongs to.
@@ -6243,7 +6180,7 @@ export class GuildMember extends Base {
    * @returns {PermissionOverwrites} The resolved permissions for the member in the channel.
    * @throws {RangeError} Thrown if the channel is not cached.
    */
-  permissionsIn(channel: ChannelResolvable): PermissionOverwrites;
+  permissionsIn(channel: any): any;
 
   /**
    * Gets the voice state for the member.
@@ -6268,7 +6205,7 @@ export class GuildMember extends Base {
    * @param {PermissionResolvable} perm - The permission to check for.
    * @returns {boolean} Whether the member has the permission.
    */
-  permissionHas(perm: PermissionResolvable): boolean;
+  permissionHas(perm: any): boolean;
 
   /**
    * The user object for the member.
@@ -6288,7 +6225,7 @@ export class GuildMemberVerification extends Base {
    * @class
    * @extends Base
    */
-  constructor(data: Object, guildId: string, client: Client);
+  constructor(data: Object, guildId?: string, client?: Client);
 
   /**
    * The guild the verification is for.
@@ -6302,14 +6239,14 @@ export class GuildMemberVerification extends Base {
    * @param {BaseFetchOptions} [options] - Additional options for the fetch.
    * @returns {Promise<GuildMemberVerification>}
    */
-  fetch(options?: BaseFetchOptions): Promise<GuildMemberVerification>;
+  fetch(options?: any): Promise<GuildMemberVerification>;
 
   /**
    * Edits this verification's settings.
    * @param {GuildMemberVerificationEditOptions} [options] - The options to edit the verification.
    * @returns {Promise<GuildMemberVerification>}
    */
-  edit(options?: GuildMemberVerificationEditOptions): Promise<GuildMemberVerification>;
+  edit(options?: any): Promise<GuildMemberVerification>;
 
   /**
    * Sets whether this verification is enabled.
@@ -6350,7 +6287,7 @@ export class GuildMemberVerification extends Base {
    * @param {Array} fields.choices - The choices for the field.
    * @returns {Object} The transformed form fields.
    */
-  static transformoptions(fields: {type: string; label: string; required: boolean; values: Array; choices: Array}): Object;
+  static transformoptions(fields: {type: string; label: string; required: boolean; values: any; choices: any}): Object;
 }
 
 /**
@@ -6415,7 +6352,7 @@ export class GuildScheduledEvent extends Base {
    * @class
    * @extends Base
    */
-  constructor(data: any, guildId: any, client: any);
+  constructor(data: any, guildId?: any, client?: any);
 
   /**
    * It fetches the event from the guild's event cache
@@ -6554,7 +6491,7 @@ export class GuildScheduledEventUser extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, eventId: any, client: any);
+  constructor(data?: any, guildId?: any, eventId?: any, client?: any);
 
   /**
    * It returns the guild object of the guild ID that is stored in the database
@@ -6580,7 +6517,7 @@ export class GuildTemplate extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * It fetches the guild template from the database
@@ -6647,7 +6584,7 @@ export class GuildVanity extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It returns the guild object of the guild ID that is stored in the database
@@ -6667,7 +6604,7 @@ export class GuildWidget extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It fetches the settings of the widget
@@ -6693,7 +6630,7 @@ export class GuildWidgetSettings extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It edits the widget of the guild
@@ -6744,7 +6681,7 @@ export class Interaction extends Base {
    * @class
    * @extends Base
    */
-  constructor(data: any, guildId: any, client: any);
+  constructor(data: any, guildId?: any, client?: any);
 
   /**
    * If the commandType is Chat_Input or 1, return true, otherwise return false.
@@ -6887,7 +6824,7 @@ export class InteractionWebhook extends WebhookClient {
    * @class
    * @extends WebhookClient
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 }
 
 /**
@@ -6901,7 +6838,7 @@ export class Invite extends Base {
    * @class
    * @extends Base
    */
-  constructor(data: any, guild: any, client: any);
+  constructor(data: any, guild: any, client?: any);
 
   /**
    * It fetches the invite from the Discord API
@@ -6929,7 +6866,7 @@ export class Message extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, channelId: any, client: any);
+  constructor(data?: any, guildId?: any, channelId?: any, client?: any);
 
   /**
    * It returns the channel object if it exists, otherwise it returns null
@@ -7074,7 +7011,7 @@ export class MessageComponentInteraction extends Interaction {
    * @class
    * @extends Interaction
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It takes an object as an argument, creates a new MessagePayload object with the options and a 6,
@@ -7103,7 +7040,7 @@ export class MessageMentions extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It returns the guild object of the guild ID that is stored in the database
@@ -7123,7 +7060,7 @@ export class MessageReaction extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, channelId: any, messageId: any, client: any);
+  constructor(data?: any, guildId?: any, channelId?: any, messageId?: any, client?: any);
 
   /**
    * It fetches the message, gets the reaction, and returns the reaction
@@ -7175,7 +7112,7 @@ export class MessageReference extends Base {
     * @class
     * @extends Base
     */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * It returns an object with the message ID, channel ID, guild ID, and fail if not exists
@@ -7195,7 +7132,7 @@ export class ModalInteraction extends MessageComponentInteraction {
    * @class
    * @extends MessageComponentInteraction
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It takes a customId and returns the value of the first component in the modal with that customId
@@ -7235,7 +7172,7 @@ export class NewsChannel extends BaseGuildChannel {
    * @class
    * @extends BaseGuildChannel
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * This function is used to follow a channel
@@ -7264,7 +7201,7 @@ export class PartialSticker extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * It fetches the sticker
@@ -7312,7 +7249,7 @@ export class Presence extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 }
 
 /**
@@ -7326,7 +7263,7 @@ export class Role extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It fetches the role from the guild
@@ -7467,7 +7404,7 @@ export class RolePrompts extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It returns the guild object of the guild ID that is stored in the database
@@ -7501,7 +7438,7 @@ export class SelectMenuInteraction extends MessageComponentInteraction {
     * @class
     * @extends MessageComponentInteraction
     */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 }
 
 /**
@@ -7515,7 +7452,7 @@ export class StageChannel extends VoiceBasedChannels {
    * @class
    * @extends VoiceBasedChannels
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * If the guild exists, return the stage instance that has the same channel ID as the current
@@ -7543,7 +7480,7 @@ export class StageInstance extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It fetches the stage instance from the guild's stage instances.
@@ -7615,7 +7552,7 @@ export class Sticker extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It fetches the sticker from the server
@@ -7702,7 +7639,7 @@ export class StickerPack extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * It fetches the sticker pack from Discord's API and returns it
@@ -7729,7 +7666,7 @@ export class Team extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * "If the team has an icon, return the icon URL, otherwise return null."
@@ -7752,7 +7689,7 @@ export class TeamMember extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 }
 
 /**
@@ -7768,7 +7705,7 @@ export class TextChannel extends BaseGuildChannel {
     * @class
     * @extends BaseGuildChannel
     */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 }
 
 /**
@@ -7782,7 +7719,7 @@ export class ThreadChannel extends TextBasedChannels {
    * @class
    * @extends TextBasedChannels
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It returns a promise that resolves to the current object
@@ -7865,7 +7802,7 @@ export class ThreadMember extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, threadId: any, client: any);
+  constructor(data?: any, guildId?: any, threadId?: any, client?: any);
 
   /**
    * It removes a user from a thread
@@ -7903,7 +7840,7 @@ export class TriggeredAutoModRule extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It returns the guild object of the guild ID that is stored in the database
@@ -8021,7 +7958,7 @@ export class User extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * It fetches the user from the Discord API
@@ -8095,7 +8032,7 @@ export class VerificationFormFields extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 }
 
 /**
@@ -8115,7 +8052,7 @@ export class VoiceChannel {
    * @param guildId - The ID of the guild the channel is in.
    * @param client - The client that instantiated the channel.
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It returns a new MessageManager object, which is a class that manages messages
@@ -8189,7 +8126,7 @@ export class VoiceRegion extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 }
 
 /**
@@ -8203,7 +8140,7 @@ export class VoiceState extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It edits the member's settings
@@ -8280,7 +8217,7 @@ export class Webhook extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It fetches a webhook from the Discord API
@@ -8352,7 +8289,7 @@ export class WebhookClient extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, client: any);
+  constructor(data?: any, client?: any);
 
   /**
    * It fetches the webhook from the API and returns a new Webhook instance
@@ -8382,7 +8319,7 @@ export class WebhookClient extends Base {
    * @param thread - The thread ID of the message to edit.
    * @returns The message that was edited.
    */
-  edit(message: any, options?: any, thread: any): any;
+  edit(message: any, options?: any, thread?: any): any;
 
   /**
    * It fetches a message from a webhook
@@ -8404,7 +8341,7 @@ export class WelcomeScreen extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It edits the welcome screen
@@ -8456,7 +8393,7 @@ export class WelcomeScreenChannel extends Base {
    * @class
    * @extends Base
    */
-  constructor(data?: any, guildId: any, client: any);
+  constructor(data?: any, guildId?: any, client?: any);
 
   /**
    * It returns the channel object of the channel ID that is stored in the message object
@@ -8475,7 +8412,7 @@ export class WelcomeScreenChannel extends Base {
  * Represents a set of flags that can be used to represent various activity options.
  * @extends Bitfield
  */
-export class ActivityFlags extends Bitfield {
+export class ActivityFlags {
   /**
    * Represents a set of flags that can be used to represent various activity options.
    * @extends Bitfield
@@ -8488,17 +8425,7 @@ export class ActivityFlags extends Bitfield {
    * @readonly
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    Instance,
-    Join,
-    Spectate,
-    Join_Request,
-    Sync,
-    Play,
-    Party_Privacy_Friends,
-    Party_Privacy_Voice_Channel,
-    Embedded,
-  };
+  static Flags: bigint;
 
   /**
    * The default flag value.
@@ -8517,7 +8444,7 @@ export class ActivityFlags extends Bitfield {
  * A bitfield for application flags.
  * @extends {Bitfield}
  */
-export class ApplicationFlags extends Bitfield {
+export class ApplicationFlags {
   /**
    * A bitfield for application flags.
    * @extends {Bitfield}
@@ -8530,17 +8457,7 @@ export class ApplicationFlags extends Bitfield {
    * @readonly
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    Gateway_Presence,
-    Gateway_Presence_Limited,
-    Gateway_Guild_Members,
-    Gateway_Guild_Members_Limited,
-    Verification_Pending_Guild_Limit,
-    Embedded,
-    Gateway_Message_Content,
-    Gateway_Message_Content_Limited,
-    Application_Command_Badge,
-  };
+  static Flags: bigint;
 
   /**
    * Default application flag bitfield.
@@ -8560,13 +8477,13 @@ export class ApplicationFlags extends Bitfield {
 bitfield has a certain bit
  * @module Bitfield
  */
-module Bitfield {}
+export module Bitfield {}
 
 /**
  * Class representing bitfields of Channel flags.
  * @extends Bitfield
  */
-export class ChannelFlags extends Bitfield {
+export class ChannelFlags {
   /**
    * Class representing bitfields of Channel flags.
    * @extends Bitfield
@@ -8585,10 +8502,7 @@ export class ChannelFlags extends Bitfield {
    * @readonly
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    Pinned,
-    Require_Tag,
-  };
+  static Flags: bigint;
 
   /**
    * Bitwise OR operation on all flags to get a bitfield with all flags.
@@ -8609,19 +8523,19 @@ export var ActivityType: any;
  * It resolves a file to a buffer
  * @module DataManager
  */
-module DataManager {}
+export module DataManager {}
 
 /**
  * It transforms an emoji into a string that can be used in a message
  * @module EmojiResolver
  */
-module EmojiResolver {}
+export module EmojiResolver {}
 
 /**
  * A bitfield that represents flags for a guild member.
  * @extends {Bitfield}
  */
-export class GuildMemberFlags extends Bitfield {
+export class GuildMemberFlags {
   /**
    * A bitfield that represents flags for a guild member.
    * @extends {Bitfield}
@@ -8634,12 +8548,7 @@ export class GuildMemberFlags extends Bitfield {
    * @readonly
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    Did_Rejoin,
-    Completed_Onboarding,
-    Bypasses_Verification,
-    Started_Onboarding,
-  };
+  static Flags: bigint;
 
   /**
    * The default value for a guild member's flags.
@@ -8671,27 +8580,7 @@ export class Intents {
    * @readonly
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    Guilds,
-    Guild_Members,
-    Guild_Moderation,
-    Guild_Emojis_And_Stickers,
-    Guild_Integrations,
-    Guild_Webhooks,
-    Guild_Invites,
-    Guild_Voice_States,
-    Guild_Presences,
-    Guild_Messages,
-    Guild_Message_Reactions,
-    Guild_Message_Typing,
-    Direct_Messages,
-    Direct_Message_Reactions,
-    Direct_Message_Typing,
-    Message_Content,
-    Guild_Scheduled_Events,
-    Auto_Moderation_Configuration,
-    Auto_Moderation_Execution,
-  };
+  static Flags: bigint;
 
   /**
    * The default value for the Intents bitfield.
@@ -8712,13 +8601,13 @@ export class Intents {
  * IIt takes an object with properties that are used to create an invite
  * @module InvitePayload
  */
-module InvitePayload {}
+export module InvitePayload {}
 
 /**
  * Represents a bitfield for Discord message flags.
  * @extends Bitfield
  */
-export class MessageFlags extends Bitfield {
+export class MessageFlags {
   /**
    * Represents a bitfield for Discord message flags.
    * @extends Bitfield
@@ -8731,18 +8620,7 @@ export class MessageFlags extends Bitfield {
    * @readonly
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    Crossposted,
-    Is_Crosspost,
-    Suppress_Embeds,
-    Source_Message_Deleted,
-    Urgent,
-    Has_Thread,
-    Ephemeral,
-    Loading,
-    Failed_To_Mention_Some_Roles_In_Thread,
-    Suppress_Notifications,
-  };
+  static Flags: bigint;
 
   /**
    * The default bitfield value for a new instance.
@@ -8765,13 +8643,13 @@ export class MessageFlags extends Bitfield {
  * It takes a payload object and returns a payload object
  * @module MessagePayload
  */
-module MessagePayload {}
+export module MessagePayload {}
 
 /**
  * Class representing a Discord permission bitfield.
  * @extends Bitfield
  */
-export class Permissions extends Bitfield {
+export class Permissions {
   /**
    * Class representing a Discord permission bitfield.
    * @extends Bitfield
@@ -8784,49 +8662,7 @@ export class Permissions extends Bitfield {
    * @readonly
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    Create_Instant_Invite,
-    Kick_Members,
-    Ban_Members,
-    Administrator,
-    Manage_Channels,
-    Manage_Guild,
-    Add_Reactions,
-    View_Audit_Log,
-    Priority_Speakers,
-    Stream,
-    View_Channel,
-    Send_Messages,
-    Send_TTS_Messages,
-    Manage_Messages,
-    Embed_Links,
-    Attach_Files,
-    Read_Message_History,
-    Mention_Everyone,
-    Use_External_Emojis,
-    View_Guild_Analitics,
-    Connect,
-    Speak,
-    Mute_Members,
-    Deafen_Members,
-    Move_Members,
-    Use_Vad,
-    Change_Nickname,
-    Manage_Nicknames,
-    Manage_Roles,
-    Manage_Webhooks,
-    Manage_Emojis_And_Stickers,
-    Use_Applications_Commands,
-    Request_To_Speak,
-    Manage_Events,
-    Manage_Threads,
-    Create_Public_Threads,
-    Create_Private_Threads,
-    Use_External_Stickers,
-    Send_Messages_In_Threads,
-    Use_Embedded_Activities,
-    Moderate_Members,
-  };
+  static Flags: bigint;
 
   /**
    * The default Permissions bitfield value
@@ -8847,7 +8683,7 @@ export class Permissions extends Bitfield {
  * Represents the possible flags for a Role
  * @extends {Bitfield}
  */
-export class RoleFlags extends Bitfield {
+export class RoleFlags {
   /**
    * Represents the possible flags for a Role
    * @extends {Bitfield}
@@ -8858,9 +8694,7 @@ export class RoleFlags extends Bitfield {
    * The flags for a role
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    In_Prompt,
-  };
+  static Flags: bigint;
 
   /**
    * The default bit(s) for a role
@@ -8890,19 +8724,19 @@ export interface RoleFlagsResolvable {
 process ID, increment, and binary
  * @module Snowflake
  */
-module Snowflake {}
+export module Snowflake {}
 
 /**
  * It's a class that creates a payload for the VK API.
  * @module StickerPayload
  */
-module StickerPayload {}
+export module StickerPayload {}
 
 /**
  * A bitfield that represents the system channel flags.
  * @extends {Bitfield}
  */
-export class SystemChannelFlags extends Bitfield {
+export class SystemChannelFlags {
   /**
    * A bitfield that represents the system channel flags.
    * @extends {Bitfield}
@@ -8921,14 +8755,7 @@ export class SystemChannelFlags extends Bitfield {
    * @readonly
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    Suppress_Join_Notifications,
-    Suppress_Premium_Subscriptions,
-    Suppress_Guild_Reminder_Notifications,
-    Suppress_Join_Notification_Replies,
-    Suppress_Role_Subscription_Purchase_Notifications,
-    Suppress_Role_Subscription_Purchase_Notification_Replies,
-  };
+  static Flags: bigint;
 
   /**
    * All available flags for a system channel.
@@ -8941,7 +8768,7 @@ export class SystemChannelFlags extends Bitfield {
  * A bitfield of flags for a thread member.
  * @extends {Bitfield}
  */
-export class ThreadMemberFlags extends Bitfield {
+export class ThreadMemberFlags {
   /**
    * A bitfield of flags for a thread member.
    * @extends {Bitfield}
@@ -8954,12 +8781,7 @@ export class ThreadMemberFlags extends Bitfield {
    * @readonly
    * @enum {bigint}
    */
-  static Flags: bigint = {
-    Has_Interacted,
-    All_Messages,
-    Only_Mentions,
-    No_Messages,
-  };
+  static Flags: bigint;
 
   /**
    * Default bit value for a thread member.
@@ -8990,7 +8812,7 @@ the keys being the values of the keys in the payload object, or undefined if the
 in the payload object
  * @module UserPayload
  */
-module UserPayload {}
+export module UserPayload {}
 
 /**
  * It's a class that contains static methods that are used to generate Discord timestamps, resolve
@@ -8998,7 +8820,7 @@ colors, get buffers, generate data URIs, generate files, convert base64 to buffe
 strings.
  * @module Util
  */
-module Util {}
+export module Util {}
 
 export interface metadata {
   channelId: string;

@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * A bitfield for application flags.
  * @extends {Bitfield}
  */
-class ApplicationFlags extends Bitfield {
+class ApplicationFlags {
   /**
    * Creates a new ApplicationFlags instance.
    * @param {...number} bit - Bit(s) to set in the bitfield

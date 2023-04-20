@@ -3,7 +3,7 @@ const Bitfield = require("./Bitfield");
 /**
  * Represents the intents that the bot wishes to subscribe to.
  */
-class Intents extends Bitfield {
+class Intents {
   /**
    * Creates a new Intents bitfield.
    * @param {...number} bit - Bit(s) to set in the bitfield.
