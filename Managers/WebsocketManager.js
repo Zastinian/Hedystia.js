@@ -177,14 +177,6 @@ class WebsocketManager extends EventEmitter {
     clearInterval(this.heartbeatInterval);
   }
 
-  async ping() {
-    if (!this.lastHeartbeatReceivedAt) {
-      throw new Error("No ping received yet.");
-    }
-    const latency = this.lastHeartbeatReceivedAt - this.lastHeartbeatSentAt;
-    return latency;
-  }
-
   static transformPayload(payload) {
     if (!payload.op) return null;
     return {

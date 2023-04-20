@@ -2,6 +2,7 @@ const Base = require("../Base/base");
 const {InteractionType} = require("../Util/Constants");
 const MessagePayload = require("../Util/MessagePayload");
 const Permissions = require("../Util/Permissions");
+const Snowflake = require("../Util/Snowflake");
 /**
  * It's a class that handles interactions with the Discord API.
  * @class
@@ -30,6 +31,10 @@ class Interaction extends Base {
     this.version = data.version ?? null;
     this.guildId = guildId ?? null;
     this.member = this.guild?.members._add(data.member ?? data.user) ?? null;
+    this.createdAt = data.id ? new Date(Snowflake.deconstruct(this.id).timestamp) : null;
+    this.createdTimestamp = this.createdAt?.getTime() ?? null;
+    this.editedAt = data.edited_timestamp ? new Date(data.edited_timestamp) : null;
+    this.editedTimestamp = this.editedAt?.getTime() ?? null;
     this.appPermissions = new Permissions(data.app_permissions ? BigInt(data.app_permissions) : 0n).freeze();
   }
 
