@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * Represents a set of flags that can be used to represent various activity options.
  * @extends Bitfield
  */
-class ActivityFlags {
+class ActivityFlags extends Bitfield {
   /**
    * Creates a new ActivityFlags instance.
    * @param {...number} bit - The bits to set for this ActivityFlags instance.

@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * A bitfield that represents flags for a guild member.
  * @extends {Bitfield}
  */
-class GuildMemberFlags {
+class GuildMemberFlags extends Bitfield {
   /**
    * @param {...string} bit - The bits to set
    */

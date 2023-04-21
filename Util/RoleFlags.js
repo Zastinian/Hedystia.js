@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * Represents the possible flags for a Role
  * @extends {Bitfield}
  */
-class RoleFlags {
+class RoleFlags extends Bitfield {
   /**
    * @param {...bigint} bit - Bit positions to enable
    */

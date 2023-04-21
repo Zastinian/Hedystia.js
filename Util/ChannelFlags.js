@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * Class representing bitfields of Channel flags.
  * @extends Bitfield
  */
-class ChannelFlags {
+class ChannelFlags extends Bitfield {
   /**
    * Creates a new instance of the ChannelFlags class.
    * @param {...number} bit - Bit numbers to include in the Bitfield.

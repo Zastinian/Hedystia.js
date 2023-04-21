@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * Class representing a Discord permission bitfield.
  * @extends Bitfield
  */
-class Permissions {
+class Permissions extends Bitfield {
   /**
    * Create a new Permissions bitfield
    * @param {...bigint} bit - Bit positions to enable

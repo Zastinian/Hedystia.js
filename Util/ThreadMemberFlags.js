@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * A bitfield of flags for a thread member.
  * @extends {Bitfield}
  */
-class ThreadMemberFlags {
+class ThreadMemberFlags extends Bitfield {
   /**
    * @param {...bigint} bit - Bit(s) to set in the bitfield.
    */

@@ -4,7 +4,7 @@ const Bitfield = require("./Bitfield");
  * Represents a bitfield for Discord message flags.
  * @extends Bitfield
  */
-class MessageFlags {
+class MessageFlags extends Bitfield {
   /**
    * @param {...number} bit Positions to enable in the bitfield.
    */
