@@ -1,16 +1,18 @@
 {
   "name": "hedystia.js",
-  "version": "1.9.6",
+  "version": "1.9.7",
   "description": "JavaScript library for interacting with the Discord API",
   "main": "index.js",
   "types": "index.d.ts",
   "author": "contact@hedystia.com",
   "license": "ISC",
   "dependencies": {
-    "ws": "^8.13.0"
+    "form-data": "4.0.0",
+    "ws": "8.13.0",
+    "node-fetch": "3.3.1"
   },
   "engines": {
-    "node": ">=18.7.0"
+    "node": ">=16.9.0"
   },
   "repository": "https://github.com/Zastinian/Hedystia.js.git",
   "keywords": [

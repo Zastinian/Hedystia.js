@@ -1,3 +1,4 @@
+const fetch = (...args) => import("node-fetch").then(({default: fetch}) => fetch(...args));
 const DiscordAPIError = require("../Errors/DiscordAPIError");
 const FormData = require("form-data");
 const https = require("node:https");
