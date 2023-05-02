@@ -1,5 +1,6 @@
 const MessageActionRow = require("../Builders/MessageActionRow");
 const MessageAttachment = require("../Builders/MessageAttachment");
+const form = new (require("form-data"))();
 const fs = require("fs");
 const path = require("path");
 const MessageReference = require("../Structures/MessageReference");
@@ -27,25 +28,22 @@ class MessagePayload {
     }
     if (payload.files?.length >= 1) {
       const files = await Promise.all(payload.files?.map((o) => this.resolveFiles(o)));
-      const formData = {};
-
       for (let [index, value] of files.entries()) {
-        const reader = new FileReader();
-        reader.readAsDataURL(value.buffer);
-        reader.onload = () => {
-          formData[`files[${index}]`] = reader.result.split(",")[1];
-        };
-
         (data.attachments ?? data.data?.attachments)?.push({
           id: index,
           filename: value.filename,
           description: value.description,
         });
+
+        form.append(`files[${index}]`, value.buffer, {
+          filename: value.filename,
+        });
       }
 
-      formData.payload_json = JSON.stringify(data);
-
-      return formData;
+      form.append(`payload_json`, JSON.stringify(data), {
+        contentType: "application/json",
+      });
+      return form;
     }
 
     return data;
@@ -72,10 +70,11 @@ class MessagePayload {
 
     if (/^(http(s)?)/g.test(url)) {
       const result = await fetch(url);
+      const arrayBuffer = await result.arrayBuffer();
       file = {
         filename: `${file.spoiler ? `SPOILER_` : ""}${file.filename ?? result.url.slice(result.url.lastIndexOf("/") + 1)}`,
         description: file.description,
-        buffer: await result.buffer(),
+        buffer: Buffer.from(arrayBuffer),
       };
     }
 
