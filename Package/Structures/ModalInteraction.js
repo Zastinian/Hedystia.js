@@ -20,16 +20,17 @@ class ModalInteraction extends MessageComponentInteraction {
   }
 
   /**
-   * It takes a customId and returns the value of the first component in the modal with that customId
-   * @param customId - The custom id of the modal
-   * @param [required=false] - boolean - If the modal is required or not.
-   * @returns The value of the text input.
+   * Returns the value of a text input component with the specified custom ID, if it exists.
+   * @param {string} customId - The custom ID of the text input component to retrieve the value from.
+   * @param {boolean} [required=false] - Whether the text input component is required or not.
+   * @returns {string|null} The value of the text input component, or null if it does not exist and is not required.
+   * @throws {RangeError} If the text input component is required and cannot be found, or if the component found is not of type "Input_Text".
    */
   getTextInput(customId, required = false) {
-    const modal = this.data.components?.find((o) => o.components.find((o) => o.custom_id === customId));
+    const modal = this.fields?.find((o) => o.components.find((o) => o.customId === customId));
     if (modal) {
-      if (modal.components[0].type !== 4)
-        throw new RangeError(`Selected Modal type is not Text_Input. Received=${ComponentType[modal.components[0].type]}`);
+      if (modal.components[0].type !== "Input_Text")
+        throw new RangeError(`Selected Modal type is not Text_Input. Received=${modal.components[0].type}`);
       return modal.components[0].value ?? null;
     }
 
