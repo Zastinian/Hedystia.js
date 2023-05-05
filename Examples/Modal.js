@@ -41,8 +41,8 @@ client.on("interactionCreate", async (interaction) => {
       await interaction.modalSubmit(modal);
     }
   } else if (interaction.isModal()) {
-    const favoriteColorInput = interaction.fields[0].components[0].value;
-    const hobbiesInput = interaction.fields[1].components[0].value;
+    const favoriteColorInput = interaction.getTextInput("favoriteColorInput");
+    const hobbiesInput = interaction.getTextInput("hobbiesInput");
     const channel = client.channels.cache.get("<CHANNEL_ID>");
     channel.send({
       content: `What's your favorite color?: ${favoriteColorInput}\nWhat's some of your favorite hobbies?: ${hobbiesInput}`,
