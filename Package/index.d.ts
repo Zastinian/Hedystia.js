@@ -1,3 +1,72 @@
+/**
+ * A class representing a REST client.
+ * @class
+ * @param {Object} client - The client object.
+ */
+export class REST {
+  /**
+   * A class representing a REST client.
+   * @class
+   * @param {Object} client - The client object.
+   */
+  constructor(client: Object);
+
+  /**
+   * Set the token for the REST client.
+   * @param {string} token - The token to set.
+   * @returns {REST} The REST client instance.
+   */
+  setToken(token: string): REST;
+
+  /**
+   * Make a request to the server with the PATCH method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
+  _make(url: string, options: Object): Promise<Object>;
+
+  /**
+   * Make a request to the server with the GET method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
+  get(url: string, options: Object): Promise<Object>;
+
+  /**
+   * Make a request to the server with the POST method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
+  post(url: string, options: Object): Promise<Object>;
+
+  /**
+   * Make a request to the server with the DELETE method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
+  delete(url: string, options: Object): Promise<Object>;
+
+  /**
+   * Make a request to the server with the PUT method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
+  put(url: string, options: Object): Promise<Object>;
+
+  /**
+   * Make a request to the server with the PATCH method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
+  patch(url: string, options: Object): Promise<Object>;
+}
+
 import {EventEmitter} from "events";
 
 /**

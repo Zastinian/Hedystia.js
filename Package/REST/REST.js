@@ -3,21 +3,43 @@ const FormData = require("form-data");
 const https = require("node:https");
 const got = (...args) => import("got").then(({default: got}) => got(...args));
 /**
- * It's a class that makes requests to the Discord API
- * @module REST
+ * A class representing a REST client.
+ * @class
+ * @param {Object} client - The client object.
  */
 class REST {
+  /**
+   * Create a new REST client.
+   * @constructor
+   * @param {Object} client - The client object.
+   */
   constructor(client) {
+    /**
+     * The client object.
+     * @type {Object}
+     * @private
+     */
     Object.defineProperty(this, "client", {
       value: client,
     });
   }
 
+  /**
+   * Set the token for the REST client.
+   * @param {string} token - The token to set.
+   * @returns {REST} The REST client instance.
+   */
   setToken(token) {
     this.token = token;
     return this;
   }
 
+  /**
+   * Make a request to the server with the PATCH method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
   async _make(url, options = {}) {
     const agent = new https.Agent({keepAlive: true});
     const controller = new AbortController();
@@ -78,6 +100,12 @@ class REST {
     return result;
   }
 
+  /**
+   * Make a request to the server with the GET method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
   async get(url, options = {}) {
     return this._make(url, {
       method: "GET",
@@ -85,6 +113,12 @@ class REST {
     });
   }
 
+  /**
+   * Make a request to the server with the POST method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
   async post(url, options = {}) {
     return this._make(url, {
       method: "POST",
@@ -92,6 +126,12 @@ class REST {
     });
   }
 
+  /**
+   * Make a request to the server with the DELETE method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
   async delete(url, options = {}) {
     return this._make(url, {
       method: "DELETE",
@@ -100,6 +140,12 @@ class REST {
     });
   }
 
+  /**
+   * Make a request to the server with the PUT method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
   async put(url, options = {}) {
     return this._make(url, {
       method: "PUT",
@@ -107,6 +153,12 @@ class REST {
     });
   }
 
+  /**
+   * Make a request to the server with the PATCH method
+   * @param {string} url - The URL to make the request to
+   * @param {Object} options - Additional options for the request
+   * @returns {Promise<Object>} - The response from the server
+   */
   async patch(url, options = {}) {
     return this._make(url, {
       method: "PATCH",
