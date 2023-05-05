@@ -1,7 +1,7 @@
-const fetch = (...args) => import("node-fetch").then(({default: fetch}) => fetch(...args));
 const DiscordAPIError = require("../Errors/DiscordAPIError");
 const FormData = require("form-data");
 const https = require("node:https");
+const got = (...args) => import("got").then(({default: got}) => got(...args));
 /**
  * It's a class that makes requests to the Discord API
  * @module REST
@@ -51,23 +51,29 @@ class REST {
 
     let responseHeader = {
       method: options.method,
-      agent,
-      body,
       headers,
+      body,
+      agent: {
+        http: agent,
+        https: agent,
+      },
       signal: controller.signal,
     };
-    const response = await fetch(url, responseHeader).finally(() => clearTimeout(timeout));
-    const result = response.status !== 204 ? await response.json() : null;
-    if (![201, 200, 204].includes(response.status))
+
+    const response = await got(url, responseHeader);
+    const result = response.statusCode !== 204 ? JSON.parse(response.body) : null;
+
+    if (![201, 200, 204].includes(response.statusCode)) {
       throw new DiscordAPIError({
         code: result.code ?? 0,
-        httpError: response.status,
+        httpError: response.statusCode,
         method: options.method,
         message: result.message,
         path: url,
         rawError: result,
         requestData: options.body,
       });
+    }
 
     return result;
   }
