@@ -60,7 +60,7 @@ class REST {
       signal: controller.signal,
     };
 
-    const response = await got(url, responseHeader);
+    const response = await got(url, responseHeader).finally(() => clearTimeout(timeout));
     const result = response.statusCode !== 204 ? JSON.parse(response.body) : null;
 
     if (![201, 200, 204].includes(response.statusCode)) {

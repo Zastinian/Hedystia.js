@@ -1,6 +1,6 @@
 {
   "name": "hedystia.js",
-  "version": "1.9.8",
+  "version": "1.9.10",
   "description": "JavaScript library for interacting with the Discord API",
   "main": "index.js",
   "types": "index.d.ts",
