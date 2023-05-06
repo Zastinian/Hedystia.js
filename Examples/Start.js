@@ -10,6 +10,23 @@ const client = new Client({
         name: "Hedystia",
         type: "Playing",
       },
+      {
+        name: "Hedystia",
+        type: "Streaming",
+        url: "https://www.twitch.tv/zastinian",
+      },
+      {
+        name: "Hedystia",
+        type: "Listening",
+      },
+      {
+        name: "Hedystia",
+        type: "Watching",
+      },
+      {
+        name: "Hedystia",
+        type: "Competing",
+      },
     ],
   },
 });
