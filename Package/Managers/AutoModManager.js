@@ -168,8 +168,11 @@ class AutoModManager extends Base {
   static transformMetadata(metadata = {}) {
     return {
       keyword_filter: metadata.keywordFilter ?? metadata.keyword_filter ?? undefined,
-      allow_list: metadata.allowList ?? metadata.allow_list ?? undefined,
+      regex_patterns: metadata.regexPatterns ?? metadata.regex_patterns ?? undefined,
       presets: metadata.presets?.map((o) => (typeof o === "string" ? GuildAutoModPresetTypes[o] : o)),
+      allow_list: metadata.allowList ?? metadata.allow_list ?? undefined,
+      mention_total_limit: metadata.mentionTotalLimit ?? metadata.mention_total_limit ?? undefined,
+      mention_raid_protection_enabled: metadata.mentionRaidProtectionEnabled ?? metadata.mention_raid_protection_enabled ?? undefined,
     };
   }
 }

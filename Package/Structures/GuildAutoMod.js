@@ -24,10 +24,13 @@ class GuildAutoMod extends Base {
     this.triggerMetadata = data.trigger_metadata
       ? {
           keywordFilter: data.trigger_metadata.keyword_filter,
+          regexPatterns: data.trigger_metadata.regex_patterns,
           presets: data.trigger_metadata.presets?.map((o) => {
             return typeof o === "number" ? GuildAutoModPresetTypes[o] : o;
           }),
           allowList: data.trigger_metadata.allow_list,
+          mentionTotalLimit: data.trigger_metadata.mention_total_limit,
+          mentionRaidProtectionEnabled: data.trigger_metadata.mention_raid_protection_enabled,
         }
       : null;
     this.createdAt = data.id ? Snowflake.deconstruct(data.id).createdAt : null;
