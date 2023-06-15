@@ -1,4 +1,4 @@
-# No Longer Maintained
+# Login Bot No Longer Maintained
 
 ## Installation
 
