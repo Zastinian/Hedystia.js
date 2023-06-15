@@ -195,6 +195,7 @@ class GuildManager extends Base {
       preferred_locale: payload.preferredLocale ?? "en-US",
       description: payload.description ?? undefined,
       premium_progress_bar_enabled: payload.premiumProgressBar ?? undefined,
+      safety_alerts_channel_id: payload.safetyAlertsChannelId ?? undefined,
       features: payload.features ?? undefined,
       owner_id: typeof payload.owner === "string" ? payload.owner : payload.owner?.user?.id ?? payload.owner?.id ?? undefined,
     };

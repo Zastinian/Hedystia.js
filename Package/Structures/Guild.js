@@ -101,6 +101,7 @@ class Guild extends Base {
     this.approximatePresenceCount = data.approximate_presence_count ?? null;
     this.nsfwLevel = (typeof data.nsfw_level === "number" ? NsfwLevel[data.nsfw_level] : data.nsfw_level) ?? "Default";
     this.premiumProgressBar = data.premium_progress_bar_enabled ?? null;
+    this.safetyAlertsChannelId = data.safety_alerts_channel_id ?? null;
     this.channels = new GuildChannelManager(this.id, this.client);
     this.roles = new GuildRoleManager(this.id, this.client);
     this.members = new GuildMemberManager(this.id, this.client);
