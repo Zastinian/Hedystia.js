@@ -19,6 +19,7 @@ class User extends Base {
     this.id = data.id ?? null;
     this.username = data.username ?? null;
     this.discriminator = data.discriminator ?? null;
+    this.global_name = data.global_name ?? null;
     this.tag = data.username + "#" + data.discriminator ?? null;
     this.avatar = data.avatar ?? null;
     this.avatarDecoration = data.avatar_decoration ?? null;
