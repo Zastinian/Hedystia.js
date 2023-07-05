@@ -18,9 +18,7 @@ class User extends Base {
     this.bio = data.bio ?? null;
     this.id = data.id ?? null;
     this.username = data.username ?? null;
-    this.discriminator = data.discriminator ?? null;
     this.global_name = data.global_name ?? null;
-    this.tag = data.username + "#" + data.discriminator ?? null;
     this.avatar = data.avatar ?? null;
     this.avatarDecoration = data.avatar_decoration ?? null;
     this.createdAt = data.id ? Snowflake.deconstruct(data.id).createdAt : null;
@@ -69,7 +67,7 @@ class User extends Base {
    * @returns The default avatar URL for the user.
    */
   defaultAvatarURL() {
-    return this.client.cdn.DefaultAvatarURL(this.discriminator) ?? null;
+    return this.client.cdn.DefaultAvatarURL() ?? null;
   }
 
   /**

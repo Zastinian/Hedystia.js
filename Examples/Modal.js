@@ -17,7 +17,7 @@ const client = new Client({
 client.once("ready", async () => {
   let slash = [new Slash().setName("modal").setDescription("Modal Command").setDmPermission(true)];
   client.application.commands.set(slash);
-  console.log("Bot on: " + client.user.tag);
+  console.log("Bot on: " + client.user.username);
 });
 
 client.on("interactionCreate", async (interaction) => {

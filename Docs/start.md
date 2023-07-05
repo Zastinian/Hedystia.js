@@ -39,7 +39,7 @@ const client = new Client({
 });
 
 client.once("ready", () => {
-  console.log("Bot on: " + client.user.tag);
+  console.log("Bot on: " + client.user.username);
 });
 
 client.on("messageCreate", (msg) => {

@@ -15,5 +15,5 @@ const client = new Client({
 });
 
 client.once("ready", async () => {
-  console.log("Bot on: " + client.user.tag);
+  console.log("Bot on: " + client.user.username);
 });

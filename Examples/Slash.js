@@ -24,7 +24,7 @@ client.once("ready", async () => {
       .setOptions([new SlashOption().setName("user_option").setDescription("user").setRequired(true).setType(OptionType.User)]),
   ];
   client.application.commands.set(slash);
-  console.log("Bot on: " + client.user.tag);
+  console.log("Bot on: " + client.user.username);
 });
 
 client.on("interactionCreate", (interaction) => {
@@ -61,12 +61,12 @@ client.on("interactionCreate", (interaction) => {
       .setColor(0x0099ff)
       .setTitle("User Info")
       .setURL("https://docs.hedystia.com/docs/client/start")
-      .addFields({name: "Username", value: user.username, inline: true}, {name: "Discriminator", value: user.discriminator, inline: true})
+      .addFields({name: "Username", value: user.username, inline: true})
       .setThumbnail({
         url: user.displayAvatarURL(),
       });
     return interaction.reply({
-      content: `**${user.tag}** Info`,
+      content: `**${user.username}** Info`,
       embeds: [userEmbed],
     });
   }
