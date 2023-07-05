@@ -448,7 +448,7 @@ module.exports.ApplicationCommandType = {
 module.exports.CDN = {
   root: `https://cdn.discordapp.com`,
   DefaultAvatarURL: () => {
-    return `https://cdn.discordapp.com/embed/avatars/0.png`;
+    return `${this.CDN.root}/embed/avatars/0.png`;
   },
   UserAvatar: (avatar, dynamic, size, format = "png", userId) => {
     if (dynamic) format = avatar.startsWith("a_") ? "gif" : format;
