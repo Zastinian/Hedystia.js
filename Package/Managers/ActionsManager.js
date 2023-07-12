@@ -60,6 +60,7 @@ const Heartbeat = require("../Handlers/Heartbeat");
 const HeartbeatAck = require("../Handlers/HeartbeatAck");
 const Hello = require("../Handlers/Hello");
 const {Opcodes} = require("../Util/Constants");
+const Resume = require("../Handlers/Resume");
 /* It's a class that handles all the events that the client receives from the Discord API.
  */
 class ActionsManager {
@@ -90,8 +91,6 @@ class ActionsManager {
         "debug",
         `[Heartbeat Acknowledged]: Successfully recognized heartbeat. Sending the next heartbeat in ${this.client.heartbeatInterval}ms`
       );
-    this.client.ws.emit(message.t, message.d);
-    if (message.s) this.client.seq = message.s;
     switch (message.op) {
       case Opcodes.Invalid_Session:
         return new InvalidSession(message, this.client);
@@ -102,6 +101,8 @@ class ActionsManager {
       case Opcodes.Reconnect:
         this.client.ws.reconnect = true;
         return this.client.ws.handleReconnect();
+      case Opcodes.Resume:
+        return new Resume(this.client);
       case Opcodes.Hello:
         return new Hello(message, this.client);
     }

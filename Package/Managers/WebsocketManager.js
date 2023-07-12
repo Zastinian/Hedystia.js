@@ -183,15 +183,23 @@ class WebsocketManager extends WebSocket {
   async handleError(error) {
     switch (error) {
       case 4000:
-        throw new WebsocketError({
-          message: "Unknown error",
-          code: 4000,
-        });
+        this.handleReconnect();
+        console.debug(
+          new WebsocketError({
+            message: "Unknown error",
+            code: 4000,
+          })
+        );
+        break;
       case 4001:
-        throw new WebsocketError({
-          message: "Opcode unknown",
-          code: 4001,
-        });
+        this.handleReconnect();
+        console.debug(
+          new WebsocketError({
+            message: "Opcode unknown",
+            code: 4001,
+          })
+        );
+        break;
       case 4002:
         throw new WebsocketError({
           message: "Decoding error",

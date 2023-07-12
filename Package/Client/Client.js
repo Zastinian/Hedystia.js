@@ -44,6 +44,8 @@ class Client extends EventEmitter {
     this.intents = new Intents(options.intents ?? Intents.Flags.Guilds);
     this.token = options.user ? `${options.token}` : `Bot ${options.token}`;
     this.presence = Client.transformPresence(options.presence);
+    this.restRequestTimeout = options.restRequestTimeout ?? 15_000;
+    this.restReadyTimeout = options.restReadyTimeout ?? 2000;
     this.maxShards = options.maxShards ?? 1;
     this.shardId = options.shardId ?? 0;
 
