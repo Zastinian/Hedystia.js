@@ -1,5 +1,3 @@
-# Login Bot No Longer Maintained
-
 ## Installation
 
 ```
