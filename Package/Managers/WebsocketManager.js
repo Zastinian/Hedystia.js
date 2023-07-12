@@ -82,8 +82,7 @@ class WebsocketManager extends WebSocket {
    */
   handleClose(err) {
     this.status = "CLOSED";
-    console.log(err);
-    return this.handleError(err);
+    return this.handleError(err) ?? null;
   }
 
   /**

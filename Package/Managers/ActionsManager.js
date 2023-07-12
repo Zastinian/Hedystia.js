@@ -93,18 +93,24 @@ class ActionsManager {
       );
     switch (message.op) {
       case Opcodes.Invalid_Session:
-        return new InvalidSession(message, this.client);
+        new InvalidSession(message, this.client);
+        break;
       case Opcodes.Heartbeat:
-        return new Heartbeat(this.client);
+        new Heartbeat(this.client);
+        break;
       case Opcodes.Heartbeat_Ack:
-        return new HeartbeatAck(this.client);
+        new HeartbeatAck(this.client);
+        break;
       case Opcodes.Reconnect:
         this.client.ws.reconnect = true;
-        return this.client.ws.handleReconnect();
+        this.client.ws.handleReconnect();
+        break;
       case Opcodes.Resume:
-        return new Resume(this.client);
+        new Resume(this.client);
+        break;
       case Opcodes.Hello:
-        return new Hello(message, this.client);
+        new Hello(message, this.client);
+        break;
     }
     this.client.seq = message.s;
     switch (message.t) {
