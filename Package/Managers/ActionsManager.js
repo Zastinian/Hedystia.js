@@ -91,6 +91,7 @@ class ActionsManager {
         "debug",
         `[Heartbeat Acknowledged]: Successfully recognized heartbeat. Sending the next heartbeat in ${this.client.heartbeatInterval}ms`
       );
+    if (data.s) this.client.seq = data.s;
     switch (message.op) {
       case Opcodes.Invalid_Session:
         new InvalidSession(message, this.client);
@@ -112,7 +113,6 @@ class ActionsManager {
         new Hello(message, this.client);
         break;
     }
-    this.client.seq = message.s;
     switch (message.t) {
       case "READY":
         return new Ready(message, this.client);
