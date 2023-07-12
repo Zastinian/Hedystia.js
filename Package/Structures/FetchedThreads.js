@@ -1,6 +1,5 @@
 const {RaidenCol} = require("../Util/@Collections/RaidenCol");
 const Base = require("../Base/base");
-
 /**
  * A class representing a collection of fetched threads from a guild.
  * @class

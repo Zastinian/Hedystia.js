@@ -148,6 +148,13 @@ export class Client extends EventEmitter {
   generateInvite(options?: any): any;
 
   /**
+   * The debug function emits a debug event with a given message.
+   * @param message - The `message` parameter is the debug message that you want to emit.
+   * @returns The "debug" event is being emitted with the provided message as the argument.
+   */
+  debug(message: any): any;
+
+  /**
    * It fetches a sticker from the API and returns a new Sticker object
    * @param sticker - The sticker object or ID
    * @returns A new Sticker object.

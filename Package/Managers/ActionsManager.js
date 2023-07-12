@@ -53,6 +53,10 @@ const ThreadUpdate = require("../Actions/THREAD_UPDATE");
 const UserUpdate = require("../Actions/USER_UPDATE");
 const VoiceStateUpdate = require("../Actions/VOICE_STATE_UPDATE");
 const WebhooksUpdate = require("../Actions/WEBHOOKS_UPDATE");
+const InvalidSession = require("../Handlers/InvalidSession");
+const Heartbeat = require("../Handlers/Heartbeat");
+const HeartbeatAck = require("../Handlers/HeartbeatAck");
+const Hello = require("../Handlers/Hello");
 const {Opcodes} = require("../Util/Constants");
 /* It's a class that handles all the events that the client receives from the Discord API.
  */
@@ -66,15 +70,17 @@ class ActionsManager {
     Object.defineProperty(this, "client", {
       value: client,
     });
-
     this._patch(message);
   }
 
   /**
-   * It takes a message from the websocket and returns a class that represents the message.
-   *
-   * @param message - The message that was received from the websocket.
-   * @returns The event is being returned.
+   * The function `_patch` handles different types of messages and returns corresponding objects based
+   * on the message type.
+   * @param message - The `message` parameter is an object that contains information about the received
+   * message. It typically includes properties such as `op` (operation code), `t` (event type), `d`
+   * (data payload), and `s` (sequence number).
+   * @returns an instance of a class based on the value of `message.op` or `message.t`. The specific
+   * class that is returned depends on the value of `message.op` or `message.t`.
    */
   _patch(message) {
     if (message.op === Opcodes.Heartbeat_Ack)
@@ -82,6 +88,21 @@ class ActionsManager {
         "debug",
         `[Heartbeat Acknowledged]: Successfully recognized heartbeat. Sending the next heartbeat in ${this.client.heartbeatInterval}ms`
       );
+    this.client.ws.emit(message.t, message.d);
+    if (message.s) this.client.seq = message.s;
+    switch (message.op) {
+      case Opcodes.Invalid_Session:
+        return new InvalidSession(message, this.client);
+      case Opcodes.Heartbeat:
+        return new Heartbeat(this.client);
+      case Opcodes.Heartbeat_Ack:
+        return new HeartbeatAck(this.client);
+      case Opcodes.Reconnect:
+        this.client.ws.reconnect = true;
+        return this.client.ws.handleReconnect();
+      case Opcodes.Hello:
+        return new Hello(message, this.client);
+    }
     this.client.seq = message.s;
     switch (message.t) {
       case "READY":

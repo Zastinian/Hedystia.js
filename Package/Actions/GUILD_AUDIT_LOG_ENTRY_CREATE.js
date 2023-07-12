@@ -1,3 +1,4 @@
+const AuditLogEntry = require("../Structures/AuditLogEntry");
 const BaseAction = require("./BaseAction");
 class GuildAuditLogEntryCreate extends BaseAction {
   constructor(data = {}, client) {
@@ -7,9 +8,8 @@ class GuildAuditLogEntryCreate extends BaseAction {
 
   _patch(data) {
     const packet = data.d;
-    const guild = this.client.guilds.cache.get(packet.guild_id);
-    if (!guild) return;
-    return this.client.emit("guildAuditLogEntryCreate", packet);
+    const entry = new AuditLogEntry(packet, this.client);
+    return this.client.emit("guildAuditLogEntryCreate", entry);
   }
 }
 

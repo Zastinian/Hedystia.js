@@ -68,9 +68,9 @@ class Client extends EventEmitter {
     this.emojis = new EmojiManager(this);
     this.ws = new WebsocketManager(this);
 
-    setTimeout(() => {
-      this.ws.connect();
-    }, 1000);
+    this.application = null;
+    this.heartbeatInterval = null;
+    this.readyAt = null;
   }
 
   /**
@@ -186,6 +186,15 @@ class Client extends EventEmitter {
     }
 
     if ([...url.values()]?.length > 0) return `${this.oauth2}/authorize?${url}`;
+  }
+
+  /**
+   * The debug function emits a debug event with a given message.
+   * @param message - The `message` parameter is the debug message that you want to emit.
+   * @returns The "debug" event is being emitted with the provided message as the argument.
+   */
+  debug(message) {
+    return this.emit("debug", message);
   }
 
   /**

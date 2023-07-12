@@ -66,8 +66,8 @@ class User extends Base {
    * It returns the default avatar URL of the user
    * @returns The default avatar URL for the user.
    */
-  defaultAvatarURL() {
-    return this.client.cdn.DefaultAvatarURL() ?? null;
+  defaultAvatarURL(format) {
+    return this.client.cdn.DefaultAvatarURL(this.id, format) ?? null;
   }
 
   /**
