@@ -18,7 +18,7 @@ class User extends Base {
     this.bio = data.bio ?? null;
     this.id = data.id ?? null;
     this.username = data.username ?? null;
-    this.global_name = data.global_name ?? null;
+    this.globalName = data.global_name ?? null;
     this.avatar = data.avatar ?? null;
     this.avatarDecoration = data.avatar_decoration ?? null;
     this.createdAt = data.id ? Snowflake.deconstruct(data.id).createdAt : null;

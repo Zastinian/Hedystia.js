@@ -1,5 +1,4 @@
 const ClientUser = require("../Structures/ClientUser");
-const {Opcodes} = require("../Util/Constants");
 const BaseAction = require("./BaseAction");
 const {setTimeout} = require("timers/promises");
 const ClientApplication = require("../Structures/ClientApplication");
@@ -12,29 +11,14 @@ class Ready extends BaseAction {
   async _patch(data) {
     const packet = data.d;
     this.client.user = new ClientUser(packet.user, this.client, this.ws);
+    this.client.application = new ClientApplication(packet.application, this.client);
+    await setTimeout(this.client.restReadyTimeout);
     this.client.readyAt = new Date();
-    this.client.readyTimestamp = Date.now();
-    this.client.application = new ClientApplication({}, this.client);
+    this.client.readyTimestamp = this.client.readyAt?.getTime() ?? null;
     this.client.sessionId = packet.session_id;
-    await setTimeout(750);
-    this._handleHeartbeat();
+    this.client.resumeGatewayURL = `${packet.resume_gateway_url}?v=${this.client.version}&encoding=${this.client.encoding}`;
+    this.client.ws.status = "READY";
     return this.client.emit("ready");
-  }
-
-  _handleHeartbeat() {
-    if (this.client.readyAt) {
-      let randomTime = Math.floor(Math.random() * (1000 * 34 - 1000 * 25) + 1000 * 25);
-      let interval = setInterval(() => {
-        this.client.ws.send({
-          op: Opcodes.Heartbeat,
-          d: null,
-        });
-        this._handleHeartbeat();
-        clearInterval(interval);
-      }, randomTime);
-
-      this.client.heartbeatInterval = randomTime;
-    }
   }
 }
 

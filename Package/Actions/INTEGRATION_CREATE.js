@@ -9,7 +9,9 @@ class IntegrationCreate extends BaseAction {
   _patch(data) {
     const packet = data.d;
     const guild = this.client.guilds._add(packet.guild_id);
-    return this.client.emit("integrationCreate", guild.integrations._add(packet));
+    if (guild) {
+      return this.client.emit("integrationCreate", guild.integrations._add(packet));
+    }
   }
 }
 

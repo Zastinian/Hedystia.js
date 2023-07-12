@@ -9,8 +9,10 @@ class IntegrationUpdate extends BaseAction {
   async _patch(data) {
     const packet = data.d;
     const guild = this.client.guilds._add(packet.guild_id);
-    const oldIntegration = guild.integrations._add(packet);
-    return this.client.emit("integrationUpdate", oldIntegration, guild.integrations._add(packet, packet.guild_id, {cache: true, force: true}));
+    if (guild) {
+      const oldIntegration = guild.integrations._add(packet);
+      return this.client.emit("integrationUpdate", oldIntegration, guild.integrations._add(packet, packet.guild_id, {cache: true, force: true}));
+    }
   }
 }
 

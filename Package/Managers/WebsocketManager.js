@@ -82,8 +82,7 @@ class WebsocketManager extends WebSocket {
    */
   handleClose(err) {
     this.status = "CLOSED";
-    console.log(err);
-    return this.handleError(err);
+    return this.handleError(err) ?? null;
   }
 
   /**
@@ -135,7 +134,7 @@ class WebsocketManager extends WebSocket {
       this.client.debug(`[Websocket]: Tried to reconnect but there's no resume gateway url found. Re-identifying`);
       return this.connect();
     }
-    if (this.status !== WebsocketStatus.Closed && this.reconnect) {
+    if (this.status !== "CLOSED" && this.reconnect) {
       this.client.debug(`[Websocket]: Received a request for a Reconnect. Reconnecting`);
       this.client.debug(`[Websocket]: Making a close timeout of 5s for a clean reconnect`);
     }
@@ -143,7 +142,7 @@ class WebsocketManager extends WebSocket {
       this.client.debug(`[Heartbeat]: Clearing the heartbeat interval`);
       clearInterval(this.interval);
     }
-    this.status = WebsocketStatus.Reconnecting;
+    this.status = "RECONNECTING";
     this.removeAllListeners();
     setTimeout(() => {
       this.client.debug(`[Websocket]: Closing the previous WebSocket connection then making a new one`);

@@ -5,6 +5,7 @@ const AutoModerationRuleDelete = require("../Actions/AUTO_MODERATION_RULE_DELETE
 const AutoModerationRuleUpdate = require("../Actions/AUTO_MODERATION_RULE_UPDATE");
 const ChannelCreate = require("../Actions/CHANNEL_CREATE");
 const ChannelDelete = require("../Actions/CHANNEL_DELETE");
+const ChannelPinsUpdate = require("../Actions/CHANNEL_PINS_UPDATE");
 const ChannelUpdate = require("../Actions/CHANNEL_UPDATE");
 const GuildAuditLogEntryCreate = require("../Actions/GUILD_AUDIT_LOG_ENTRY_CREATE");
 const GuildBanAdd = require("../Actions/GUILD_BAN_ADD");
@@ -24,6 +25,7 @@ const GuildScheduledEventUserAdd = require("../Actions/GUILD_SCHEDULED_EVENT_USE
 const GuildScheduledEventUserRemove = require("../Actions/GUILD_SCHEDULED_EVENT_USER_REMOVE");
 const GuildUpdate = require("../Actions/GUILD_UPDATE");
 const IntegrationCreate = require("../Actions/INTEGRATION_CREATE");
+const IntegrationDelete = require("../Actions/INTEGRATION_DELETE");
 const IntegrationUpdate = require("../Actions/INTEGRATION_UPDATE");
 const InteractionCreate = require("../Actions/INTERACTION_CREATE");
 const InviteCreate = require("../Actions/INVITE_CREATE");
@@ -58,6 +60,7 @@ const Heartbeat = require("../Handlers/Heartbeat");
 const HeartbeatAck = require("../Handlers/HeartbeatAck");
 const Hello = require("../Handlers/Hello");
 const {Opcodes} = require("../Util/Constants");
+const Resume = require("../Handlers/Resume");
 /* It's a class that handles all the events that the client receives from the Discord API.
  */
 class ActionsManager {
@@ -88,22 +91,28 @@ class ActionsManager {
         "debug",
         `[Heartbeat Acknowledged]: Successfully recognized heartbeat. Sending the next heartbeat in ${this.client.heartbeatInterval}ms`
       );
-    this.client.ws.emit(message.t, message.d);
-    if (message.s) this.client.seq = message.s;
+    if (data.s) this.client.seq = data.s;
     switch (message.op) {
       case Opcodes.Invalid_Session:
-        return new InvalidSession(message, this.client);
+        new InvalidSession(message, this.client);
+        break;
       case Opcodes.Heartbeat:
-        return new Heartbeat(this.client);
+        new Heartbeat(this.client);
+        break;
       case Opcodes.Heartbeat_Ack:
-        return new HeartbeatAck(this.client);
+        new HeartbeatAck(this.client);
+        break;
       case Opcodes.Reconnect:
         this.client.ws.reconnect = true;
-        return this.client.ws.handleReconnect();
+        this.client.ws.handleReconnect();
+        break;
+      case Opcodes.Resume:
+        new Resume(this.client);
+        break;
       case Opcodes.Hello:
-        return new Hello(message, this.client);
+        new Hello(message, this.client);
+        break;
     }
-    this.client.seq = message.s;
     switch (message.t) {
       case "READY":
         return new Ready(message, this.client);
@@ -123,6 +132,8 @@ class ActionsManager {
         return new GuildDelete(message, this.client);
       case "CHANNEL_CREATE":
         return new ChannelCreate(message, this.client);
+      case "CHANNEL_PINS_UPDATE":
+        return new ChannelPinsUpdate(message, this.client);
       case "CHANNEL_UPDATE":
         return new ChannelUpdate(message, this.client);
       case "CHANNEL_DELETE":
@@ -135,6 +146,8 @@ class ActionsManager {
         return new UserUpdate(message, this.client);
       case "INTEGRATION_CREATE":
         return new IntegrationCreate(message, this.client);
+      case "INTEGRATION_DELETE":
+        return new IntegrationDelete(message, this.client);
       case "INTEGRATION_UPDATE":
         return new IntegrationUpdate(message, this.client);
       case "GUILD_INTEGRATION_UPDATE":
