@@ -5,6 +5,7 @@ const AutoModerationRuleDelete = require("../Actions/AUTO_MODERATION_RULE_DELETE
 const AutoModerationRuleUpdate = require("../Actions/AUTO_MODERATION_RULE_UPDATE");
 const ChannelCreate = require("../Actions/CHANNEL_CREATE");
 const ChannelDelete = require("../Actions/CHANNEL_DELETE");
+const ChannelPinsUpdate = require("../Actions/CHANNEL_PINS_UPDATE");
 const ChannelUpdate = require("../Actions/CHANNEL_UPDATE");
 const GuildAuditLogEntryCreate = require("../Actions/GUILD_AUDIT_LOG_ENTRY_CREATE");
 const GuildBanAdd = require("../Actions/GUILD_BAN_ADD");
@@ -24,6 +25,7 @@ const GuildScheduledEventUserAdd = require("../Actions/GUILD_SCHEDULED_EVENT_USE
 const GuildScheduledEventUserRemove = require("../Actions/GUILD_SCHEDULED_EVENT_USER_REMOVE");
 const GuildUpdate = require("../Actions/GUILD_UPDATE");
 const IntegrationCreate = require("../Actions/INTEGRATION_CREATE");
+const IntegrationDelete = require("../Actions/INTEGRATION_DELETE");
 const IntegrationUpdate = require("../Actions/INTEGRATION_UPDATE");
 const InteractionCreate = require("../Actions/INTERACTION_CREATE");
 const InviteCreate = require("../Actions/INVITE_CREATE");
@@ -123,6 +125,8 @@ class ActionsManager {
         return new GuildDelete(message, this.client);
       case "CHANNEL_CREATE":
         return new ChannelCreate(message, this.client);
+      case "CHANNEL_PINS_UPDATE":
+        return new ChannelPinsUpdate(message, this.client);
       case "CHANNEL_UPDATE":
         return new ChannelUpdate(message, this.client);
       case "CHANNEL_DELETE":
@@ -135,6 +139,8 @@ class ActionsManager {
         return new UserUpdate(message, this.client);
       case "INTEGRATION_CREATE":
         return new IntegrationCreate(message, this.client);
+      case "INTEGRATION_DELETE":
+        return new IntegrationDelete(message, this.client);
       case "INTEGRATION_UPDATE":
         return new IntegrationUpdate(message, this.client);
       case "GUILD_INTEGRATION_UPDATE":
