@@ -77,20 +77,15 @@ class ActionsManager {
   }
 
   /**
-   * The function `_patch` handles different types of messages and returns corresponding objects based
+   * The function `_patch` handles different types of messages and creates corresponding objects based
    * on the message type.
    * @param message - The `message` parameter is an object that contains information about the received
-   * message. It typically includes properties such as `op` (operation code), `t` (event type), `d`
-   * (data payload), and `s` (sequence number).
-   * @returns an instance of a class based on the value of `message.op` or `message.t`. The specific
-   * class that is returned depends on the value of `message.op` or `message.t`.
+   * message or event. It typically includes properties such as `op` (opcode), `t` (event type), and
+   * `s` (sequence number).
+   * @returns an instance of a class based on the value of the `message.t` property. The specific class
+   * instance being returned depends on the value of `message.t`.
    */
   _patch(message) {
-    if (message.op === Opcodes.Heartbeat_Ack)
-      this.client.emit(
-        "debug",
-        `[Heartbeat Acknowledged]: Successfully recognized heartbeat. Sending the next heartbeat in ${this.client.heartbeatInterval}ms`
-      );
     if (data.s) this.client.seq = data.s;
     switch (message.op) {
       case Opcodes.Invalid_Session:
