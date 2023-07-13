@@ -1,7 +1,7 @@
 const BaseAction = require("./BaseAction");
 
 class ChannelPinsUpdate extends BaseAction {
-  constructor(client, data) {
+  constructor(data, client) {
     super(client);
     this._patch(data);
   }
