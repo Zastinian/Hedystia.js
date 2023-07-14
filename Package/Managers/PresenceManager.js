@@ -1,22 +1,29 @@
 const Presence = require("../Structures/Presence");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages presences */
+/**
+ * Represents a presence manager that handles the caching and retrieval of presence data.
+ * @class
+ * @extends Base
+ * @param {Client} client - The client instance.
+ */
 class PresenceManager extends Base {
   /**
-   * A constructor function.
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It adds a presence to the cache
-   * @param presences - The presence(s) to add. Can be a string, a presence object, or an array of
-   * either.
-   * @param [options] - cache = true, force = false
-   * @returns A presence object
+   * Adds a presence to the cache and returns the presence object.
+   * @param {string | Presence} presences - The presence object or the ID of the presence.
+   * @param {object} [options] - Additional options for adding the presence.
+   * @param {boolean} [options.cache=true] - Whether to cache the presence object.
+   * @param {boolean} [options.force=false] - Whether to force the retrieval of the presence from the cache.
+   * @returns {Presence | null} The presence object that was added to the cache, or null if presences is falsy.
    */
   _add(presences, options = {cache: true, force: false}) {
     if (!presences) return null;
@@ -44,8 +51,8 @@ class PresenceManager extends Base {
   }
 
   /**
-   * `cache` is a getter that returns the `Collection` class
-   * @returns The Collection class
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;

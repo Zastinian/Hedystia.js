@@ -1,11 +1,15 @@
 const ApplicationCommandManager = require("./ApplicationCommandManager");
-/* It's a class that extends the ApplicationCommandManager class, and it's used to manage commands for
-a specific guild */
+/**
+ * Represents a manager for guild-specific application commands.
+ * @class
+ * @extends ApplicationCommandManager
+ */
 class GuildApplicationCommandManager extends ApplicationCommandManager {
   /**
-   * This function is a constructor for the class
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);

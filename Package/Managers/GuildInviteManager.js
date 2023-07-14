@@ -1,13 +1,19 @@
 const Invite = require("../Structures/Invite");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages guild invites */
+/**
+ * Represents a manager for handling guild invites.
+ * @class
+ * @extends Base
+ * @param {Guild} guild - The guild associated with the invite manager.
+ * @param {Client} client - The client instance.
+ */
 class GuildInviteManager extends Base {
   /**
-   * It's a constructor function that takes in a guild and a client, and sets the guild to the guild that
-   * was passed in
-   * @param guild - The guild object that the event is being emitted for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Guild} guild - The guild object associated with the instance.
+   * @param {Client} client - The client object associated with the instance.
    */
   constructor(guild, client) {
     super(client);
@@ -16,11 +22,13 @@ class GuildInviteManager extends Base {
   }
 
   /**
-   * It adds an invite to the cache
-   * @param invites - The invite code or invite object.
-   * @param [guild] - The guild the invite is for.
-   * @param [options] - cache = true, force = false
-   * @returns The invite object
+   * Adds an invite to the guild's invite cache.
+   * @param {string | Invite} invites - The invite code or Invite object to add.
+   * @param {Guild} [guild=this.guild] - The guild to add the invite to.
+   * @param {Object} [options={cache: true, force: false}] - Additional options for adding the invite.
+   * @param {boolean} [options.cache=true] - Whether to cache the invite.
+   * @param {boolean} [options.force=false] - Whether to force the retrieval of the invite from the cache.
+   * @returns {Invite | null} The added invite or null if no invite is provided.
    */
   _add(invites, guild = this.guild, options = {cache: true, force: false}) {
     if (!invites) return null;
@@ -49,9 +57,11 @@ class GuildInviteManager extends Base {
   }
 
   /**
-   * It fetches all the invites for the guild and returns a new cache of the invites
-   * @param [options] - Object
-   * @returns A new instance of the cache constructor.
+   * Fetches guild invites from the API and returns a new cache constructor with the fetched data.
+   * @param {Object} [options] - Optional parameters for the fetch request.
+   * @param {boolean} [options.cache] - Whether to use cached data or not.
+   * @param {boolean} [options.force] - Whether to force a fresh fetch or not.
+   * @returns {Promise<CacheConstructor>} A promise that resolves to a new cache constructor with the fetched data.
    */
   async fetch(options = {}) {
     const {cache, force} = options;
@@ -60,10 +70,11 @@ class GuildInviteManager extends Base {
   }
 
   /**
-   * It deletes an invite
-   * @param invite - The invite code or invite object to delete.
-   * @param reason - The reason for deleting the invite.
-   * @returns The invite object
+   * Deletes an invitation with the specified code and reason.
+   * @param {string | object} invite - The invitation code or object to delete.
+   * @param {string} reason - The reason for deleting the invitation.
+   * @returns {Promise} A promise that resolves with the deleted invitation.
+   * @throws {RangeError} If no invitation code is specified.
    */
   async delete(invite, reason) {
     if (!invite) throw new RangeError(`Please specify an invitation code to delete.`);
@@ -74,8 +85,8 @@ class GuildInviteManager extends Base {
   }
 
   /**
-   * `cache` is a getter that returns the `Collection` class
-   * @returns The Collection class
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;

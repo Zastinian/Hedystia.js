@@ -7,7 +7,7 @@ const Util = require("../Util/Util");
 class MessageEmbed {
   /**
    * Constructs a new MessageEmbed object.
-   * @param {Object} [data={}] - The data for the message embed.
+   * @param {Object} [data] - The data for the message embed.
    * @param {string} [data.title] - The title of the message embed.
    * @param {string} [data.type="rich"] - The type of the message embed.
    * @param {string} [data.description] - The description of the message embed.

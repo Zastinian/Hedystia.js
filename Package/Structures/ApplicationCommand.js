@@ -6,15 +6,20 @@ const SlashOption = require("./Interface/SlashOption");
 const Permissions = require("../Util/Permissions");
 
 /**
- * Class representing an application command.
+ * Represents an application command.
  * @class
+ * @extends Base
+ * @param {Object} [data] - The data object containing the command information.
+ * @param {string} guildId - The ID of the guild the command belongs to.
+ * @param {Client} client - The client instance.
  */
 class ApplicationCommand extends Base {
   /**
    * Create an application command object.
-   * @param data - The data object for the command.
-   * @param guildId - The ID of the guild the command belongs to.
-   * @param client - The client object for the command.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties of the command.
+   * @param {string} guildId - The ID of the guild the command belongs to.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -44,9 +49,9 @@ class ApplicationCommand extends Base {
   }
 
   /**
-   * Fetch the command from the guild or the client.
-   * @param [options] - The options to pass to the command.
-   * @returns The command object.
+   * Fetches the commands for a guild or the global application.
+   * @param {Object} [options] - Optional parameters for the fetch operation.
+   * @returns {Promise} - A promise that resolves with the fetched commands.
    */
   async fetch(options = {}) {
     if (options.guild || this.guildId) return await this.guild?.commands.fetch(this, options);
@@ -54,9 +59,11 @@ class ApplicationCommand extends Base {
   }
 
   /**
-   * Edit the command.
-   * @param [options] - The options to edit the command with.
-   * @returns The return value of the edit method of the commands property of the guild or application object.
+   * Edits the command with the specified options.
+   * If the command is associated with a guild, it will edit the guild command.
+   * Otherwise, it will edit the global command.
+   * @param {Object} options - The options to edit the command with.
+   * @returns {Promise} A promise that resolves when the command is successfully edited.
    */
   async edit(options = {}) {
     if (options.guild || this.guildId) return await this.guild?.commands.edit(this, options);
@@ -64,8 +71,8 @@ class ApplicationCommand extends Base {
   }
 
   /**
-   * Delete the command from the commands collection.
-   * @returns The return value of the delete method.
+   * Deletes the command from the guild or the global application.
+   * @returns {Promise<void>} - A promise that resolves when the command is successfully deleted.
    */
   async delete() {
     if (this.guildId) return await this.guild?.commands.delete(this);

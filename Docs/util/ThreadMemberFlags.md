@@ -9,33 +9,42 @@ A bitfield of flags for a thread member.
 * [ThreadMemberFlags](#ThreadMemberFlags) ⇐ <code>Bitfield</code>
     * [new ThreadMemberFlags(...bit)](#new_ThreadMemberFlags_new)
     * [.Default](#ThreadMemberFlags.Default) : <code>bigint</code>
-    * [.All](#ThreadMemberFlags.All) : <code>bigint</code>
+    * [.All](#ThreadMemberFlags.All) ⇒
     * [.Flags](#ThreadMemberFlags.Flags) : <code>enum</code>
 
 <a name="new_ThreadMemberFlags_new"></a>
 
 ### new ThreadMemberFlags(...bit)
+Constructs a new instance of the class.
+
 
 | Param | Type | Description |
 | --- | --- | --- |
-| ...bit | <code>bigint</code> | Bit(s) to set in the bitfield. |
+| ...bit | <code>bigint</code> | The arguments to pass to the superclass constructor. |
 
 <a name="ThreadMemberFlags.Default"></a>
 
 ### ThreadMemberFlags.Default : <code>bigint</code>
-Default bit value for a thread member.
+Sets the default value for the ThreadMemberFlags property.
 
 **Kind**: static property of [<code>ThreadMemberFlags</code>](#ThreadMemberFlags)  
+**Read only**: true  
 <a name="ThreadMemberFlags.All"></a>
 
-### ThreadMemberFlags.All : <code>bigint</code>
-Bitfield representing all available thread member flags.
+### ThreadMemberFlags.All ⇒
+Calculates the bitwise OR of all the values in the ThreadMemberFlags.Flags objectand assigns the result to the ThreadMemberFlags.All property.
 
 **Kind**: static property of [<code>ThreadMemberFlags</code>](#ThreadMemberFlags)  
+**Returns**: The calculated value of ThreadMemberFlags.All.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| All | <code>bigint</code> | All bit value. |
+
 <a name="ThreadMemberFlags.Flags"></a>
 
 ### ThreadMemberFlags.Flags : <code>enum</code>
-Thread member flags.
+An object that represents the flags for a thread member.
 
 **Kind**: static enum of [<code>ThreadMemberFlags</code>](#ThreadMemberFlags)  
 **Read only**: true  
@@ -43,8 +52,8 @@ Thread member flags.
 
 | Name | Type | Default |
 | --- | --- | --- |
-| Has_Interacted | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| All_Messages | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Only_Mentions | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| No_Messages | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
+| Has_Interacted | <code>bigint</code> | <code></code> | 
+| All_Messages | <code>bigint</code> | <code></code> | 
+| Only_Mentions | <code>bigint</code> | <code></code> | 
+| No_Messages | <code>bigint</code> | <code></code> | 
 

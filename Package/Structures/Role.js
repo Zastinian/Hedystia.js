@@ -3,16 +3,20 @@ const RoleFlags = require("../Util/RoleFlags");
 const Snowflake = require("../Util/Snowflake");
 const Base = require("../Base/base");
 /**
- * It's a class that represents a role in a guild
+ * Represents a role in a guild.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data for the role.
+ * @param {string} guildId - The ID of the guild that the role belongs to.
+ * @param {Client} client - The client instance.
  */
 class Role extends Base {
   /**
-   * It's a constructor for a class called Role.
-   * @param [data] - The data that was received from the API.
-   * @param guildId - The ID of the guild the role is in
-   * @param client - Discord.Client
+   * Constructs a new Role object.
+   * @constructor
+   * @param {Object} [data] - The data object containing role information.
+   * @param {string} guildId - The ID of the guild that the role belongs to.
+   * @param {Client} client - The Discord client instance.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -41,115 +45,115 @@ class Role extends Base {
   }
 
   /**
-   * It fetches the role from the guild
-   * @param [options] - Fetch options.
-   * @returns The role object.
+   * Fetches the roles for the guild.
+   * @param {Object} [options] - Optional parameters for the fetch operation.
+   * @returns {Promise} A promise that resolves with the fetched roles.
    */
   async fetch(options = {}) {
     return await this.guild?.roles.fetch(this, options);
   }
 
   /**
-   * It edits the role
-   * @param [options] - Object
-   * @returns The return value is the edited role.
+   * Edits the role with the specified options.
+   * @param {Object} options - The options to edit the role with.
+   * @returns {Promise} A promise that resolves when the role has been edited.
    */
   async edit(options = {}) {
     return await this.guild?.roles.edit(this, options);
   }
 
   /**
-   * It deletes the role
-   * @param reason - The reason for the deletion.
-   * @returns The role object.
+   * Deletes the role from the guild.
+   * @param {string} reason - The reason for deleting the role.
+   * @returns {Promise<void>} - A promise that resolves when the role is deleted.
    */
   async delete(reason) {
     return await this.guild?.roles.delete(this, reason);
   }
 
   /**
-   * It clones the role
-   * @returns The cloned role.
+   * Clones the current role.
+   * @returns {Promise<Role>} A promise that resolves to the cloned role.
    */
   async clone() {
     return await this.guild?.roles.clone(this);
   }
 
   /**
-   * It edits the name of the channel
-   * @param name - The new name of the channel.
-   * @param reason - The reason for the edit.
-   * @returns The name of the channel.
+   * Sets the name of an object and provides a reason for the change.
+   * @param {string} name - The new name to set.
+   * @param {string} reason - The reason for changing the name.
+   * @returns {Promise} A promise that resolves when the name is successfully set.
    */
   async setName(name, reason) {
     return await this.edit({name, reason});
   }
 
   /**
-   * It edits the permissions of a role
-   * @param permissions - The permissions to set on the role.
-   * @param reason - The reason for the update.
-   * @returns The permissions object.
+   * Sets the permissions for an entity with the given reason.
+   * @param {Object} permissions - The permissions to set for the entity.
+   * @param {string} reason - The reason for setting the permissions.
+   * @returns {Promise} - A promise that resolves when the permissions are set.
    */
   async setPermissions(permissions, reason) {
     return await this.edit({permissions, reason});
   }
 
   /**
-   * It sets the color of the embed
-   * @param color - The color of the embed.
-   * @param reason - The reason for the role color change.
-   * @returns The color and reason.
+   * Sets the color of an object and provides a reason for the change.
+   * @param {string} color - The new color to set.
+   * @param {string} reason - The reason for the color change.
+   * @returns {Promise} - A promise that resolves when the color is successfully set.
    */
   async setColor(color, reason) {
     return await this.edit({color, reason});
   }
 
   /**
-   * It sets the role's hoist property to the value of the hoist parameter
-   * @param hoist - Boolean - Whether or not to hoist the role in the user list.
-   * @param reason - The reason for the role update.
-   * @returns The role object.
+   * Sets the hoist value and reason for a specific item.
+   * @param {boolean} hoist - The hoist value to set.
+   * @param {string} reason - The reason for setting the hoist value.
+   * @returns {Promise} - A promise that resolves when the hoist value is set.
    */
   async setHoist(hoist, reason) {
     return await this.edit({hoist, reason});
   }
 
   /**
-   * It sets the icon of the guild
-   * @param icon - The icon of the guild.
-   * @param reason - The reason for the change (maximum 256 characters)
-   * @returns The return value of the edit function.
+   * Sets the icon of an object and provides a reason for the change.
+   * @param {any} icon - The new icon to set.
+   * @param {string} reason - The reason for changing the icon.
+   * @returns {Promise} A promise that resolves when the icon is successfully set.
    */
   async setIcon(icon, reason) {
     return await this.edit({icon, reason});
   }
 
   /**
-   * This function edits the emoji with the unicode emoji and reason.
-   * @param unicodeEmoji - The unicode emoji to set.
-   * @param reason - The reason for the edit.
-   * @returns The return value of the edit method.
+   * Sets the unicode emoji for an entity.
+   * @param {string} unicodeEmoji - The unicode emoji to set.
+   * @param {string} reason - The reason for setting the unicode emoji.
+   * @returns {Promise} A promise that resolves when the unicode emoji is set.
    */
   async setUnicodeEmoji(unicodeEmoji, reason) {
     return await this.edit({unicodeEmoji, reason});
   }
 
   /**
-   * It sets the role to be mentionable or not.
-   * @param mentionable - Boolean - Whether the role should be mentionable or not
-   * @param reason - The reason for the role update.
-   * @returns The role object.
+   * Sets the mentionable status of an entity.
+   * @param {boolean} mentionable - Whether the entity should be mentionable or not.
+   * @param {string} reason - The reason for setting the mentionable status.
+   * @returns {Promise<void>} - A promise that resolves when the mentionable status is set.
    */
   async setMentionable(mentionable, reason) {
     return await this.edit({mentionable, reason});
   }
 
   /**
-   * It sets the position of a role
-   * @param position - The position you want to set the role to.
-   * @param reason - The reason for the change.
-   * @returns The role object.
+   * Sets the position of the role within the guild's role hierarchy.
+   * @param {number} position - The new position of the role.
+   * @param {string} reason - The reason for modifying the role's position.
+   * @returns {Promise<Role>} - A promise that resolves to the modified Role object.
    */
   async setPosition(position, reason) {
     await this.guild?.roles.modifyPosition({
@@ -165,9 +169,10 @@ class Role extends Base {
   }
 
   /**
-   * It returns the permissions of a user in a channel
-   * @param channel - The channel to get the permissions for.
-   * @returns The permissions of the user in the channel.
+   * Retrieves the permissions of the bot in the specified channel.
+   * @param {string | Channel} channel - The channel to check permissions in.
+   * @returns {Permissions} - The permissions of the bot in the channel.
+   * @throws {RangeError} - If the channel is not cached.
    */
   permissionsIn(channel) {
     channel = this.client.channels.cache.get(typeof channel === "string" ? channel : channel?.id);
@@ -176,9 +181,10 @@ class Role extends Base {
   }
 
   /**
-   * It returns the permissions that the role is denied in the channel
-   * @param channel - The channel to check the permissions in.
-   * @returns The permissions that are denied to the role.
+   * Retrieves the denied permissions for the specified channel.
+   * @param {string | Channel} channel - The channel or channel ID to retrieve the permissions from.
+   * @returns {PermissionFlags | null} - The denied permissions for the channel, or null if no permissions are found.
+   * @throws {RangeError} - If the channel is not cached.
    */
   deniedPermissionsIn(channel) {
     channel = this.client.channels.cache.get(typeof channel === "string" ? channel : channel?.id);
@@ -189,20 +195,20 @@ class Role extends Base {
   }
 
   /**
-   * If the guild is not in the cache, add it to the cache. If it is in the cache, return it. If it is
-   * not in the cache and cannot be added to the cache, return null.
-   * @returns The guild object.
+   * Retrieves the guild associated with this guildId.
+   * @returns The guild object if found, otherwise null.
    */
   get guild() {
     return this.client.guilds._add(this.guildId) ?? null;
   }
 
   /**
-   * "If the role has an icon, return the role's icon URL, otherwise return null."
-   *
-   * The function takes an optional parameter, options, which is an object
-   * @param [options] - Object
-   * @returns The URL of the role's icon.
+   * Returns the URL of the icon for this role.
+   * @param {Object} options - An optional object containing additional options for the icon URL.
+   * @param {boolean} [options.dynamic] - Whether the icon should be dynamically generated.
+   * @param {number} [options.size] - The desired size of the icon.
+   * @param {string} [options.format] - The desired format of the icon.
+   * @returns {string | null} The URL of the icon, or null if no icon is available.
    */
   iconURL(options = {}) {
     if (!this.icon) return null;
@@ -210,8 +216,8 @@ class Role extends Base {
   }
 
   /**
-   * It returns an array of all the members that have the role
-   * @returns A collection of members that have the role.
+   * Retrieves the members of the guild who have the specified role.
+   * @returns {Collection<Snowflake, GuildMember>} A collection of guild members who have the role.
    */
   get members() {
     const filter = this.guild?.members.cache.filter((member) => member.roles.cache.has(this.id));

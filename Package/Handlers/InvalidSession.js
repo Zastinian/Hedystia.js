@@ -3,16 +3,15 @@ const {WebsocketReadyState} = require("../Util/Constants");
 /**
  * The `InvalidSession` class is a subclass of `Base` that handles invalid session errors in a
 WebSocket connection.
- * @class
- * @extends Base
  */
 class InvalidSession extends Base {
   /**
    * This is a constructor function that initializes an object with optional data and a client
    * parameter.
-   * @param [data] - The `data` parameter is an object that contains the initial data for the
+   * @constructor
+   * @param {Object} data - The `data` parameter is an object that contains the initial data for the
    * constructor. It is optional and defaults to an empty object if not provided.
-   * @param client - The `client` parameter is an object that represents the client or connection to a
+   * @param {Client} client - The `client` parameter is an object that represents the client or connection to a
    * server. It is typically used to make API requests or perform other operations related to the
    * server.
    */

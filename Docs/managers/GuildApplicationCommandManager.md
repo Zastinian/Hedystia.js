@@ -1,15 +1,18 @@
 <a name="GuildApplicationCommandManager"></a>
 
-## GuildApplicationCommandManager
+## GuildApplicationCommandManager ⇐ <code>ApplicationCommandManager</code>
+Represents a manager for guild-specific application commands.
+
 **Kind**: global class  
+**Extends**: <code>ApplicationCommandManager</code>  
 <a name="new_GuildApplicationCommandManager_new"></a>
 
 ### new GuildApplicationCommandManager(guildId, client)
-This function is a constructor for the class
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run on. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 

@@ -1,119 +1,122 @@
 <a name="VoiceChannel"></a>
 
-## VoiceChannel
-**Kind**: global class  
+## VoiceChannel ⇐ <code>VoiceBasedChannels</code>
+Represents a voice channel in a guild.
 
-* [VoiceChannel](#VoiceChannel)
+**Kind**: global class  
+**Extends**: <code>VoiceBasedChannels</code>  
+
+* [VoiceChannel](#VoiceChannel) ⇐ <code>VoiceBasedChannels</code>
     * [new VoiceChannel([data], guildId, client)](#new_VoiceChannel_new)
-    * [.messages](#VoiceChannel+messages) ⇒
-    * [.send([options])](#VoiceChannel+send) ⇒
-    * [.bulkDelete(messages, reason)](#VoiceChannel+bulkDelete) ⇒
-    * [.setNsfw(nsfw, reason)](#VoiceChannel+setNsfw) ⇒
-    * [.setRateLimitPerUser(ratelimit, reason)](#VoiceChannel+setRateLimitPerUser) ⇒
-    * [.setUserLimit(userLimit, reason)](#VoiceChannel+setUserLimit) ⇒
-    * [.setVideoQualityMode(videoQualityMode, reason)](#VoiceChannel+setVideoQualityMode) ⇒
-    * [.triggerTyping()](#VoiceChannel+triggerTyping) ⇒
+    * [.messages](#VoiceChannel+messages) ⇒ <code>MessageManager</code>
+    * [.send(options)](#VoiceChannel+send) ⇒ <code>Promise</code>
+    * [.bulkDelete(messages, reason)](#VoiceChannel+bulkDelete) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.setNsfw(nsfw, reason)](#VoiceChannel+setNsfw) ⇒ <code>Promise</code>
+    * [.setRateLimitPerUser(ratelimit, reason)](#VoiceChannel+setRateLimitPerUser) ⇒ <code>Promise</code>
+    * [.setUserLimit(userLimit, reason)](#VoiceChannel+setUserLimit) ⇒ <code>Promise</code>
+    * [.setVideoQualityMode(videoQualityMode, reason)](#VoiceChannel+setVideoQualityMode) ⇒ <code>Promise</code>
+    * [.triggerTyping()](#VoiceChannel+triggerTyping) ⇒ <code>Promise.&lt;void&gt;</code>
 
 <a name="new_VoiceChannel_new"></a>
 
 ### new VoiceChannel([data], guildId, client)
-The above function is a constructor function that takes in data, guildId, and client as parametersand sets the rateLimitPerUser, lastMessageId, and nsfw properties to the data.rate_limit_per_user,data.last_message_id, and data.nsfw properties respectively.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was passed to the constructor. |
-| guildId | The ID of the guild the channel is in. |
-| client | The client that instantiated the channel. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing the properties for the instance. |
+| guildId | <code>string</code> | The ID of the guild associated with the instance. |
+| client | <code>Client</code> | The client object associated with the instance. |
 
 <a name="VoiceChannel+messages"></a>
 
-### voiceChannel.messages ⇒
-It returns a new MessageManager object, which is a class that manages messages
+### voiceChannel.messages ⇒ <code>MessageManager</code>
+Get the message manager for this channel.
 
 **Kind**: instance property of [<code>VoiceChannel</code>](#VoiceChannel)  
-**Returns**: A new instance of the MessageManager class.  
+**Returns**: <code>MessageManager</code> - The message manager object for this channel.  
 <a name="VoiceChannel+send"></a>
 
-### voiceChannel.send([options]) ⇒
-It sends a message to the channel
+### voiceChannel.send(options) ⇒ <code>Promise</code>
+Sends a message using the specified options.
 
 **Kind**: instance method of [<code>VoiceChannel</code>](#VoiceChannel)  
-**Returns**: The return value is the result of the send() method.  
+**Returns**: <code>Promise</code> - A promise that resolves when the message is sent.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>object</code> | The options for sending the message. |
 
 <a name="VoiceChannel+bulkDelete"></a>
 
-### voiceChannel.bulkDelete(messages, reason) ⇒
-It deletes messages in bulk
+### voiceChannel.bulkDelete(messages, reason) ⇒ <code>Promise.&lt;void&gt;</code>
+Bulk deletes the specified messages with the given reason.
 
 **Kind**: instance method of [<code>VoiceChannel</code>](#VoiceChannel)  
-**Returns**: The return value of the function.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - A promise that resolves when the messages are deleted.  
 
-| Param | Description |
-| --- | --- |
-| messages | The messages to delete. |
-| reason | The reason for the bulk delete. |
+| Param | Type | Description |
+| --- | --- | --- |
+| messages | <code>Array.&lt;Message&gt;</code> | The messages to be deleted. |
+| reason | <code>string</code> | The reason for deleting the messages. |
 
 <a name="VoiceChannel+setNsfw"></a>
 
-### voiceChannel.setNsfw(nsfw, reason) ⇒
-It edits the channel's nsfw property
+### voiceChannel.setNsfw(nsfw, reason) ⇒ <code>Promise</code>
+Sets the NSFW (Not Safe for Work) flag for the current item.
 
 **Kind**: instance method of [<code>VoiceChannel</code>](#VoiceChannel)  
-**Returns**: The edited channel.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the NSFW flag is set.  
 
-| Param | Description |
-| --- | --- |
-| nsfw | Boolean - Whether the channel is nsfw or not. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| nsfw | <code>boolean</code> | The NSFW flag value to set. |
+| reason | <code>string</code> | The reason for setting the NSFW flag. |
 
 <a name="VoiceChannel+setRateLimitPerUser"></a>
 
-### voiceChannel.setRateLimitPerUser(ratelimit, reason) ⇒
-It edits the ratelimit of a command
+### voiceChannel.setRateLimitPerUser(ratelimit, reason) ⇒ <code>Promise</code>
+Sets the rate limit per user for a specific action.
 
 **Kind**: instance method of [<code>VoiceChannel</code>](#VoiceChannel)  
-**Returns**: The return value of the edit function.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the rate limit is successfully set.  
 
-| Param | Description |
-| --- | --- |
-| ratelimit | The ratelimit to set. |
-| reason | The reason for the ratelimit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| ratelimit | <code>number</code> | The new rate limit value to set. |
+| reason | <code>string</code> | The reason for setting the rate limit. |
 
 <a name="VoiceChannel+setUserLimit"></a>
 
-### voiceChannel.setUserLimit(userLimit, reason) ⇒
-It sets the user limit of a channel
+### voiceChannel.setUserLimit(userLimit, reason) ⇒ <code>Promise</code>
+Sets the user limit for the current channel and provides a reason for the change.
 
 **Kind**: instance method of [<code>VoiceChannel</code>](#VoiceChannel)  
-**Returns**: The userLimit and reason are being returned.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the user limit is successfully set.  
 
-| Param | Description |
-| --- | --- |
-| userLimit | The new user limit of the channel. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| userLimit | <code>number</code> | The new user limit for the channel. |
+| reason | <code>string</code> | The reason for changing the user limit. |
 
 <a name="VoiceChannel+setVideoQualityMode"></a>
 
-### voiceChannel.setVideoQualityMode(videoQualityMode, reason) ⇒
-This function sets the video quality mode to the given value, and returns a promise that resolvesto the new value of the video quality mode.
+### voiceChannel.setVideoQualityMode(videoQualityMode, reason) ⇒ <code>Promise</code>
+Sets the video quality mode with the given parameters.
 
 **Kind**: instance method of [<code>VoiceChannel</code>](#VoiceChannel)  
-**Returns**: The return value of the edit function.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the video quality mode is set.  
 
-| Param | Description |
-| --- | --- |
-| videoQualityMode | The video quality mode to set. |
-| reason | The reason for the change. |
+| Param | Type | Description |
+| --- | --- | --- |
+| videoQualityMode | <code>string</code> | The video quality mode to set. |
+| reason | <code>string</code> | The reason for setting the video quality mode. |
 
 <a name="VoiceChannel+triggerTyping"></a>
 
-### voiceChannel.triggerTyping() ⇒
-It triggers typing in the channel
+### voiceChannel.triggerTyping() ⇒ <code>Promise.&lt;void&gt;</code>
+Triggers a typing indicator in the channel where this method is called.
 
 **Kind**: instance method of [<code>VoiceChannel</code>](#VoiceChannel)  
-**Returns**: The return value of the function.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the typing indicator is triggered.  

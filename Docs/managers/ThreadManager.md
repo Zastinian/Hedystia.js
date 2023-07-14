@@ -1,28 +1,31 @@
 <a name="ThreadManager"></a>
 
-## ThreadManager
-**Kind**: global class  
+## ThreadManager ⇐ <code>BaseThreadManager</code>
+A class representing a thread manager for a specific channel in a guild.Extends the BaseThreadManager class.
 
-* [ThreadManager](#ThreadManager)
+**Kind**: global class  
+**Extends**: <code>BaseThreadManager</code>  
+
+* [ThreadManager](#ThreadManager) ⇐ <code>BaseThreadManager</code>
     * [new ThreadManager(channelId, guildId, client)](#new_ThreadManager_new)
-    * [.cache](#ThreadManager+cache) ⇒
+    * [.cache](#ThreadManager+cache) ⇒ <code>Array</code>
 
 <a name="new_ThreadManager_new"></a>
 
 ### new ThreadManager(channelId, guildId, client)
-`This function is a constructor for the class.`
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| channelId | The channel ID of the channel you want to send the message to. |
-| guildId | The ID of the guild the channel is in. |
-| client | The client that the command is being run on. |
+| Param | Type | Description |
+| --- | --- | --- |
+| channelId | <code>string</code> | The ID of the channel. |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 
 <a name="ThreadManager+cache"></a>
 
-### threadManager.cache ⇒
-It returns the cache, but only the cache items that have a parentId that matches the channelId
+### threadManager.cache ⇒ <code>Array</code>
+Retrieves the cache items that have a parentId matching the channelId of the current instance.
 
 **Kind**: instance property of [<code>ThreadManager</code>](#ThreadManager)  
-**Returns**: The cache property is being returned.  
+**Returns**: <code>Array</code> - An array of cache items that have a matching parentId.  

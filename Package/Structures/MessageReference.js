@@ -1,19 +1,19 @@
 const Base = require("../Base/base");
 /**
- * It's a class that takes in a data object and a client, and then sets the properties of the class to
-the values of the data object.
+ * Represents a reference to a message.
  * @class
  * @extends Base
  */
 class MessageReference extends Base {
   /**
-   * It's a constructor function that takes in two parameters, data and client, and sets the value of
-   * this.messageId to data.message_id if it exists, otherwise it sets it to data.messageId if it exists,
-   * otherwise it sets it to null.
-   *
-   * It does the same thing for the other three variables.
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - The client that is sending the request
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {Client} client - The client object associated with the instance.
+   * @property {string|null} messageId - The ID of the message.
+   * @property {string|null} channelId - The ID of the channel.
+   * @property {string|null} guildId - The ID of the guild.
+   * @property {boolean|null} failIfNotExists - Indicates whether to fail if the entity does not exist.
    */
   constructor(data = {}, client) {
     super(client);
@@ -24,8 +24,8 @@ class MessageReference extends Base {
   }
 
   /**
-   * It returns an object with the message ID, channel ID, guild ID, and fail if not exists
-   * @returns The message ID, channel ID, guild ID, and fail if not exists.
+   * Converts the current object to a JSON representation.
+   * @returns {Object} - The JSON representation of the object.
    */
   toJSON() {
     return {

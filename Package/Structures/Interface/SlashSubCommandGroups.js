@@ -1,12 +1,19 @@
 const {RaidenCol} = require("../../Util/@Collections/RaidenCol");
 const Base = require("../../Base/base");
 const SlashSubCommand = require("./SlashSubCommand");
-/* It's a collection of SlashSubCommand objects */
+/**
+ * Represents a sub-command group for a slash command.
+ * @class
+ * @extends Base
+ * @param {Object} [data] - The data for the sub-command group.
+ * @param {Client} client - The client object.
+ */
 class SlashSubCommandGroups extends Base {
   /**
-   * It creates a new SlashSubCommandGroup object, which is a collection of SlashSubCommand objects
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - The client that the command is being registered to.
+   * Constructs a new instance of the Sub_Command_Group class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the group.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(client);

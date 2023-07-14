@@ -1,16 +1,17 @@
 <a name="CommandInteraction"></a>
 
-## CommandInteraction
+## CommandInteraction ⇐ <code>ApplicationCommandInteraction</code>
 **Kind**: global class  
+**Extends**: <code>ApplicationCommandInteraction</code>  
 <a name="new_CommandInteraction_new"></a>
 
 ### new CommandInteraction([data], guildId, client)
-It's a constructor for the class.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| guildId | The ID of the guild the role is in |
-| client | The client that instantiated the object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the command interaction. |
+| guildId | <code>string</code> | The ID of the guild where the interaction occurred. |
+| client | <code>Client</code> | The client that received the interaction. |
 

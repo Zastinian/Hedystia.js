@@ -1,21 +1,24 @@
 const Interaction = require("./Interaction");
-/* It's a class that allows you to create an autocomplete interaction */
+/**
+ * Represents an interaction with an autocomplete component.
+ * @class
+ * @extends Interaction
+ */
 class AutocompleteInteraction extends Interaction {
   /**
-   * It's a constructor for the class.
-   * @param [data] - The data that is passed to the constructor.
-   * @param guildId - The ID of the guild the role is in
-   * @param client - The client that the command is being run from
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object to initialize the instance with.
+   * @param {string} guildId - The ID of the guild associated with the instance.
+   * @param {Client} client - The client instance associated with the instance.
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
   }
 
   /**
-   * If the data.options array has a focused property, then return the value of that property.
-   *
-   * If it doesn't, then return null.
-   * @returns The value of the focused option.
+   * Retrieves the focused option from the data object.
+   * @returns The value of the focused option, or null if no option is focused or if the value is not available.
    */
   getFocused() {
     const options = this.data.options?.find((o) => o.focused);
@@ -25,9 +28,9 @@ class AutocompleteInteraction extends Interaction {
   }
 
   /**
-   * It sends a response to the interaction.
-   * @param choices - An array of objects with the following properties:
-   * @returns The response from the API.
+   * Sends a response to an autocomplete interaction with the provided choices.
+   * @param {Array} choices - An array of choices for the autocomplete interaction.
+   * @returns {Promise} A promise that resolves when the response is sent.
    */
   async respond(choices) {
     const parse = choices?.map((o) => AutocompleteInteraction.transformChoices(o));
@@ -42,10 +45,10 @@ class AutocompleteInteraction extends Interaction {
   }
 
   /**
-   * It takes an object with a name and value property and returns an object with a name and value
-   * property
-   * @param [choices]
-   * @returns The transformed choices object.
+   * Transforms the given choices object into a new object with the name and value properties.
+   * @param {Object} choices - The choices object to transform.
+   * @returns {Object} - The transformed choices object with name and value properties.
+   * @throws {RangeError} - If the length of the name property is less than 1 or greater than 100.
    */
   static transformChoices(choices = {}) {
     if (choices.name?.length < 1 || choices.name?.length > 100)

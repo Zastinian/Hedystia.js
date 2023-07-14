@@ -6,7 +6,7 @@ const {ComponentType} = require("../Util/Constants");
  */
 class StringSelect {
   /**
-   * @param {Object} [data={}] - The data for the select menu.
+   * @param {Object} [data] - The data for the select menu.
    */
   constructor(data = {}) {
     this.type = "String_Select";
@@ -20,7 +20,7 @@ class StringSelect {
 
   /**
    * Transforms an option object for a string select component into a simpler format.
-   * @param {Object} [options={}] - The option object to transform.
+   * @param {Object} [options] - The option object to transform.
    * @returns {Object} - The transformed option object.
    * @throws {RangeError} - If the option object is missing the label or value properties, or if the default property is not a boolean.
    */
@@ -132,7 +132,7 @@ class StringSelect {
       return this;
     }
 
-    throw new RangeError(`Por favor, añada opciones`);
+    throw new RangeError(`Please add options`);
   }
 
   /**

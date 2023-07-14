@@ -2,15 +2,17 @@ const {ComponentType} = require("../Util/Constants");
 const MessagePayload = require("../Util/MessagePayload");
 const Interaction = require("./Interaction");
 /**
- * It's a class that represents a message interaction
+ * Represents a message component interaction.
  * @class
  * @extends Interaction
  */
 class MessageComponentInteraction extends Interaction {
   /**
-   * @param [data] - The data that is passed to the constructor.
-   * @param guildId - The ID of the guild the message is in
-   * @param client - Discord.Client
+   * Constructs a new instance of the Component class.
+   * @constructor
+   * @param {Object} [data] - The data object containing component information.
+   * @param {string} guildId - The ID of the guild the component belongs to.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
@@ -22,10 +24,9 @@ class MessageComponentInteraction extends Interaction {
   }
 
   /**
-   * It takes an object as an argument, creates a new MessagePayload object with the options and a 6,
-   * then posts to the API with the body of the MessagePayload object.
-   * @param [options] - Object
-   * @returns The response from the API.
+   * Defers the update of an interaction callback and sends a response to the interaction.
+   * @param {Object} options - Additional options for the deferred update.
+   * @returns {Promise} A promise that resolves when the update is deferred and the response is sent.
    */
   async deferUpdate(options = {}) {
     const body = await MessagePayload.create(options, 6);
@@ -35,9 +36,10 @@ class MessageComponentInteraction extends Interaction {
   }
 
   /**
-   * It updates the message with the given options and returns the reply if fetchReply is true
-   * @param [options] - Object
-   * @returns The return value is the result of the await expression.
+   * Updates the interaction with the specified options.
+   * @param {Object} [options] - The options to update the interaction.
+   * @returns {Promise<null|Message>} - A promise that resolves to null or a Message object.
+   * @throws {Error} - If there is an error while updating the interaction.
    */
   async update(options = {}) {
     const body = await MessagePayload.create(options, 7);

@@ -1,10 +1,19 @@
 const Channel = require("./Channel");
-/* `DirectoryChannel` is a class that represents a directory channel */
+/**
+ * Represents a directory channel.
+ * @class
+ * @extends Channel
+ * @param {Object} [data] - The data for the directory channel.
+ * @param {Client} client - The client instance.
+ * @property {boolean} partial - Whether the channel is partial or not.
+ * @property {string|null} name - The name of the directory channel.
+ */
 class DirectoryChannel extends Channel {
   /**
-   * `constructor` is a function that is called when a new instance of the class is created
-   * @param [data] - The data that was sent from the API.
-   * @param client - The client that created the instance of the class.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object to initialize the instance with.
+   * @param {Client} client - The client object associated with the instance.
    */
   constructor(data = {}, client) {
     super(data, null, client);

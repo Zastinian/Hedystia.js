@@ -35,7 +35,7 @@ Creates a new instance of the SlashOption class.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The data for the option. |
+| [data] | <code>Object</code> |  | The data for the option. |
 | [data.type] | <code>string</code> \| <code>number</code> | <code>&quot;\&quot;String\&quot;&quot;</code> | The type of the option. |
 | [data.name] | <code>string</code> |  | The name of the option. |
 | [data.name_localizations] | <code>Object</code> |  | The localized names of the option. |
@@ -118,9 +118,9 @@ Sets the localized names of the option.
 **Kind**: instance method of [<code>SlashOption</code>](#SlashOption)  
 **Returns**: [<code>SlashOption</code>](#SlashOption) - The updated instance of the SlashOption class.  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [localizations] | <code>Object</code> | <code>{}</code> | The localized names of the option. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [localizations] | <code>Object</code> | The localized names of the option. |
 
 <a name="SlashOption+setChoices"></a>
 

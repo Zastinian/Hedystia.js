@@ -1,36 +1,39 @@
 <a name="CategoryChannel"></a>
 
-## CategoryChannel
-**Kind**: global class  
+## CategoryChannel ⇐ <code>Channel</code>
+Represents a category channel in a guild.
 
-* [CategoryChannel](#CategoryChannel)
+**Kind**: global class  
+**Extends**: <code>Channel</code>  
+
+* [CategoryChannel](#CategoryChannel) ⇐ <code>Channel</code>
     * [new CategoryChannel([data], guildId, client)](#new_CategoryChannel_new)
-    * [.childrens](#CategoryChannel+childrens) ⇒
+    * [.childrens](#CategoryChannel+childrens) ⇒ <code>Collection.&lt;Snowflake, GuildChannel&gt;</code>
     * [.highest](#CategoryChannel+highest) ⇒
 
 <a name="new_CategoryChannel_new"></a>
 
 ### new CategoryChannel([data], guildId, client)
-It's a constructor for the class.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| guildId | The ID of the guild the role is in. |
-| client | The client that instantiated the object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object to initialize the instance with. |
+| guildId | <code>string</code> | The ID of the guild associated with the instance. |
+| client | <code>Client</code> | The client instance associated with the instance. |
 
 <a name="CategoryChannel+childrens"></a>
 
-### categoryChannel.childrens ⇒
-It returns a collection of channels that are children of the current channel
+### categoryChannel.childrens ⇒ <code>Collection.&lt;Snowflake, GuildChannel&gt;</code>
+Retrieves the child channels of the current channel.
 
 **Kind**: instance property of [<code>CategoryChannel</code>](#CategoryChannel)  
-**Returns**: A collection of channels that are children of this channel.  
+**Returns**: <code>Collection.&lt;Snowflake, GuildChannel&gt;</code> - A collection of child channels.  
 <a name="CategoryChannel+highest"></a>
 
 ### categoryChannel.highest ⇒
-It sorts the childrens array by position, and then returns the first element of the sorted array
+Get the highest child element based on their position property.
 
 **Kind**: instance property of [<code>CategoryChannel</code>](#CategoryChannel)  
-**Returns**: The first channel in the array.  
+**Returns**: The highest child element.  

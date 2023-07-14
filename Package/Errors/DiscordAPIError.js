@@ -1,13 +1,20 @@
 /**
- * It's a class that extends the Error class and has a constructor that takes an object as an argument
- * @module DiscordAPIError
+ * Represents an error that occurs when making a request to the Discord API.
  */
 class DiscordAPIError extends Error {
   /**
-   * This is a constructor function that creates an error object with various properties based on the
-   * input data.
-   * @param [data] - An object containing information about the error, including the error message,
-   * error code, HTTP method used, HTTP error status, request path, raw error data, and request data.
+   * Constructs a new DiscordAPIError object.
+   * @constructor
+   * @param {Object} [data] - The data object containing error information.
+   * @param {string} data.message - The error message.
+   * @param {string} data.code - The error code.
+   * @param {string} data.method - The HTTP method used for the request.
+   * @param {number} data.httpError - The HTTP error code.
+   * @param {string} data.path - The path of the request.
+   * @param {Object} data.rawError - The raw error object.
+   * @param {string[]} data.rawError.errors - The array of error messages.
+   * @param {string} data.rawError.error - The error message.
+   * @param {string} data.requestData  The request data
    */
   constructor(data = {}) {
     super(data.message);

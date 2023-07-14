@@ -1,85 +1,82 @@
 <a name="VoiceBasedChannels"></a>
 
-## VoiceBasedChannels
+## VoiceBasedChannels ⇐ <code>Channel</code>
+Represents a voice-based channel in a guild.
 
-**Kind**: global class
+**Kind**: global class  
+**Extends**: <code>Channel</code>  
 
-- [VoiceBasedChannels](#VoiceBasedChannels)
-  - [new VoiceBasedChannels([data], guildId, client)](#new_VoiceBasedChannels_new)
-  - [.members](#VoiceBasedChannels+members) ⇒
-  - [.join([options])](#VoiceBasedChannels+join) ⇒
-  - [.disconnect()](#VoiceBasedChannels+disconnect) ⇒
-  - [.setRtcRegion(rtcRegion, reason)](#VoiceBasedChannels+setRtcRegion) ⇒
-  - [.setBitrate(bitrate, reason)](#VoiceBasedChannels+setBitrate) ⇒
+* [VoiceBasedChannels](#VoiceBasedChannels) ⇐ <code>Channel</code>
+    * [new VoiceBasedChannels([data], guildId, client)](#new_VoiceBasedChannels_new)
+    * [.members](#VoiceBasedChannels+members) ⇒ <code>Collection.&lt;Snowflake, GuildMember&gt;</code> \| <code>null</code>
+    * [.join([options])](#VoiceBasedChannels+join) ⇒ <code>VoiceConnection</code>
+    * [.disconnect()](#VoiceBasedChannels+disconnect) ⇒ <code>this</code>
+    * [.setRtcRegion(rtcRegion, reason)](#VoiceBasedChannels+setRtcRegion) ⇒ <code>Promise</code>
+    * [.setBitrate(bitrate, reason)](#VoiceBasedChannels+setBitrate) ⇒ <code>Promise</code>
 
 <a name="new_VoiceBasedChannels_new"></a>
 
 ### new VoiceBasedChannels([data], guildId, client)
+Constructs a new instance of a class, extending the base class.
 
-It's a constructor function that takes in a data object, a guildId, and a client, and then sets the
-userLimit, bitrate, rtcRegion, and videoQualityMode properties of the object to the values of the
-corresponding properties of the data object, or null if the data object doesn't have those
-properties.
 
-| Param   | Description                                  |
-| ------- | -------------------------------------------- |
-| [data]  | The data that was sent from the Discord API. |
-| guildId | The ID of the guild the voice channel is in. |
-| client  | Discord.Client                               |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object to initialize the instance with. |
+| guildId | <code>string</code> | The ID of the guild associated with the instance. |
+| client | <code>Object</code> | The client object associated with the instance. |
 
 <a name="VoiceBasedChannels+members"></a>
 
-### voiceBasedChannels.members ⇒
-
-It returns an array of members in the voice channel
+### voiceBasedChannels.members ⇒ <code>Collection.&lt;Snowflake, GuildMember&gt;</code> \| <code>null</code>
+Retrieves the members in the voice channel associated with the current guild.
 
 **Kind**: instance property of [<code>VoiceBasedChannels</code>](#VoiceBasedChannels)  
-**Returns**: The members in the voice channel.  
+**Returns**: <code>Collection.&lt;Snowflake, GuildMember&gt;</code> \| <code>null</code> - - A collection of guild members in the voice channel, or null if no members are found.  
 <a name="VoiceBasedChannels+join"></a>
 
-### voiceBasedChannels.join([options]) ⇒
-
-It sends a packet to the Discord API to join the voice channel
+### voiceBasedChannels.join([options]) ⇒ <code>VoiceConnection</code>
+Joins the voice channel associated with this VoiceConnection.
 
 **Kind**: instance method of [<code>VoiceBasedChannels</code>](#VoiceBasedChannels)  
-**Returns**: The VoiceChannel object.
+**Returns**: <code>VoiceConnection</code> - - The VoiceConnection instance.  
 
-| Param     | Description |
-| --------- | ----------- |
-| [options] | Object      |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | Optional parameters for joining the voice channel. |
+| [options.selfMute] | <code>boolean</code> | <code>false</code> | Whether to mute the user's own audio. |
+| [options.selfDeaf] | <code>boolean</code> | <code>false</code> | Whether to deafen the user's own audio. |
 
 <a name="VoiceBasedChannels+disconnect"></a>
 
-### voiceBasedChannels.disconnect() ⇒
-
-It sends a packet to the Discord API to disconnect the bot from the voice channel
+### voiceBasedChannels.disconnect() ⇒ <code>this</code>
+Disconnects the voice connection by sending a voice state update to the server with a null channel ID.
 
 **Kind**: instance method of [<code>VoiceBasedChannels</code>](#VoiceBasedChannels)  
-**Returns**: The VoiceConnection object.  
+**Returns**: <code>this</code> - - Returns the current instance of the class.  
 <a name="VoiceBasedChannels+setRtcRegion"></a>
 
-### voiceBasedChannels.setRtcRegion(rtcRegion, reason) ⇒
-
-This function sets the rtcRegion of the guild.
+### voiceBasedChannels.setRtcRegion(rtcRegion, reason) ⇒ <code>Promise</code>
+Sets the RTC (Real-Time Communication) region for the object.
 
 **Kind**: instance method of [<code>VoiceBasedChannels</code>](#VoiceBasedChannels)  
-**Returns**: The return value of the edit function.
+**Returns**: <code>Promise</code> - - A promise that resolves when the RTC region is successfully set.  
 
-| Param     | Description                            |
-| --------- | -------------------------------------- |
-| rtcRegion | The region to set the voice server to. |
-| reason    | The reason for the change.             |
+| Param | Type | Description |
+| --- | --- | --- |
+| rtcRegion | <code>string</code> | The RTC region to set. |
+| reason | <code>string</code> | The reason for setting the RTC region. |
 
 <a name="VoiceBasedChannels+setBitrate"></a>
 
-### voiceBasedChannels.setBitrate(bitrate, reason) ⇒
-
-It sets the bitrate of the voice channel
+### voiceBasedChannels.setBitrate(bitrate, reason) ⇒ <code>Promise</code>
+Sets the bitrate of the current object.
 
 **Kind**: instance method of [<code>VoiceBasedChannels</code>](#VoiceBasedChannels)  
-**Returns**: The bitrate of the voice channel.
+**Returns**: <code>Promise</code> - - A promise that resolves when the bitrate is successfully set.  
 
-| Param   | Description                               |
-| ------- | ----------------------------------------- |
-| bitrate | The bitrate of the voice channel in bits. |
-| reason  | The reason for the change.                |
+| Param | Type | Description |
+| --- | --- | --- |
+| bitrate | <code>number</code> | The new bitrate value to set. |
+| reason | <code>string</code> | The reason for setting the bitrate. |
+

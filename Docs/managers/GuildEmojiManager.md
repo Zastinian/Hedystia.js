@@ -1,41 +1,46 @@
 <a name="GuildEmojiManager"></a>
 
-## GuildEmojiManager
-**Kind**: global class  
+## GuildEmojiManager ⇐ <code>EmojiManager</code>
+Represents a manager for guild emojis.
 
-* [GuildEmojiManager](#GuildEmojiManager)
+**Kind**: global class  
+**Extends**: <code>EmojiManager</code>  
+
+* [GuildEmojiManager](#GuildEmojiManager) ⇐ <code>EmojiManager</code>
     * [new GuildEmojiManager(guildId, client)](#new_GuildEmojiManager_new)
-    * [.cache](#GuildEmojiManager+cache) ⇒
-    * [._add(emojis, [options])](#GuildEmojiManager+_add) ⇒
+    * [.cache](#GuildEmojiManager+cache) ⇒ <code>Array</code>
+    * [._add(emojis, [options])](#GuildEmojiManager+_add) ⇒ <code>Promise</code>
 
 <a name="new_GuildEmojiManager_new"></a>
 
 ### new GuildEmojiManager(guildId, client)
-This function is a constructor for the class
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run on. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 
 <a name="GuildEmojiManager+cache"></a>
 
-### guildEmojiManager.cache ⇒
-It returns the cache, but only the cache that has the same guildId as the current guild
+### guildEmojiManager.cache ⇒ <code>Array</code>
+Retrieves the cache for the current guild.
 
 **Kind**: instance property of [<code>GuildEmojiManager</code>](#GuildEmojiManager)  
-**Returns**: The cache is being filtered by the guildId.  
+**Returns**: <code>Array</code> - An array of objects from the cache that belong to the current guild.  
 <a name="GuildEmojiManager+_add"></a>
 
-### guildEmojiManager.\_add(emojis, [options]) ⇒
-`_add` is a function that adds emojis to a guild
+### guildEmojiManager.\_add(emojis, [options]) ⇒ <code>Promise</code>
+Adds emojis to the guild's emoji collection.
 
 **Kind**: instance method of [<code>GuildEmojiManager</code>](#GuildEmojiManager)  
-**Returns**: The return value of the super._add method.  
+**Returns**: <code>Promise</code> - A promise that resolves when the emojis are added.  
 
-| Param | Description |
-| --- | --- |
-| emojis | The emojis to add. This can be a single emoji, or an array of emojis. |
-| [options] | cache = true, force = false |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| emojis | <code>Array</code> |  | The emojis to add. |
+| [options] | <code>Object</code> |  | Additional options for adding emojis. |
+| [options.cache] | <code>boolean</code> | <code>true</code> | Whether to cache the added emojis. |
+| [options.force] | <code>boolean</code> | <code>false</code> | Whether to force the addition of emojis. |
 

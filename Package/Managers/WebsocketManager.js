@@ -3,17 +3,16 @@ const {Opcodes, WebsocketReadyState} = require("../Util/Constants");
 const ActionsManager = require("./ActionsManager");
 const WebSocket = require("ws");
 /**
- * The `WebsocketManager` class is a subclass of the `WebSocket` class that handles the setup and
-management of a WebSocket connection for a client.
+ * Represents a WebSocket manager that extends the WebSocket class.
  * @class
- * @extends Base
+ * @extends WebSocket
+ * @param {Client} client - The client object.
  */
 class WebsocketManager extends WebSocket {
   /**
-   * The constructor function initializes a WebSocket connection and sets up event handlers.
-   * @param client - The "client" parameter is an object that represents the client or user of the
-   * websocket connection. It is passed to the constructor function to establish the websocket
-   * connection and perform various operations on it.
+   * Constructs a new instance of the WebSocketClient class.
+   * @constructor
+   * @param {WebSocket} client - The WebSocket client to use.
    */
   constructor(client) {
     super(client.websocketURL);
@@ -24,9 +23,14 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * This function connects to a WebSocket server and sends an identification message with the
-   * necessary information.
-   * @returns The function does not explicitly return anything.
+   * Establishes a connection to the WebSocket server.
+   * If the connection is not open, it will retry after a timeout.
+   * Retrieves the URL, shards, and session start limit from the bot gateway API.
+   * If the URL or session start limit is not available, or the remaining session start limit is less than 1,
+   * it logs an error message and exits the process.
+   * Sends an Identify opcode to the server with the client's token, intents, presence, and properties.
+   * Logs the WebSocket information.
+   * @returns None
    */
   async connect() {
     if (this.readyState !== WebsocketReadyState.Open) {
@@ -57,12 +61,12 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * The function handles the connection by checking if the websocket is closed, setting up event
-   * listeners for incoming messages and closing the connection.
-   * @returns In the `handleConnect()` function, if the `readyState` of the websocket is `CLOSED`, then
-   * the function returns and does not execute the rest of the code. If the `readyState` is not
-   * `CLOSED`, then the function sets up event listeners for the "message" and "close" events and calls
-   * the `ActionsManager` constructor with the parsed data from the "
+   * Handles the connection of the websocket.
+   * If the websocket is closed, it logs a debug message and returns.
+   * Otherwise, it listens for incoming messages and creates a new instance of ActionsManager
+   * to handle the received data.
+   * It also listens for the "close" event and calls the handleClose method.
+   * @returns None
    */
   handleConnect() {
     if (this.readyState === this.CLOSED) {
@@ -74,11 +78,9 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * The function handleClose sets the status to "CLOSED", logs an error message, and then calls the
-   * handleError function.
-   * @param err - The `err` parameter is an error object that represents any error that occurred during
-   * the closing process.
-   * @returns The handleError function is being returned.
+   * Handles the closing of the resource and returns the result of the error handling.
+   * @param {Error} err - The error object to handle.
+   * @returns {null} - Returns null if the error handling is successful.
    */
   handleClose(err) {
     this.status = "CLOSED";
@@ -86,8 +88,9 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * The function handles the "open" event of a WebSocket connection and logs a message indicating
-   * whether the connection is a reconnection or a new connection.
+   * Handles the "open" event of the WebSocket connection.
+   * If the connection is successfully opened, it logs a debug message and calls the handleConnect() function.
+   * @returns {void}
    */
   handleOpen() {
     this.on("open", () => {
@@ -100,10 +103,10 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * The function `handleResume()` attempts to resume a connection with a session ID in a WebSocket
-   * client.
-   * @returns the result of the `connect()` function if there is no session ID found. Otherwise, it
-   * does not explicitly return anything.
+   * Handles the resumption of a WebSocket connection.
+   * If no session ID is found, it will re-identify and establish a new connection.
+   * If a session ID is found, it will attempt to resume the connection using the session ID.
+   * @returns {void}
    */
   handleResume() {
     if (!this.client.sessionId) {
@@ -124,10 +127,18 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * The `handleReconnect` function is responsible for reconnecting to a WebSocket connection in case
-   * of disconnection.
-   * @returns In the `handleReconnect()` function, if there is no resume gateway URL found, the
-   * function will return the result of calling the `connect()` function.
+   * Handles the reconnection process for the WebSocket connection.
+   * If there is no resume gateway URL, it will re-identify and connect again.
+   * If the status is not "CLOSED" and reconnect is enabled, it will initiate a reconnect.
+   * It will clear the heartbeat interval if it exists.
+   * Sets the status to "RECONNECTING".
+   * Removes all event listeners.
+   * Sets a timeout to close the previous WebSocket connection and create a new one.
+   * If the previous connection is not closed, it will be forcefully closed.
+   * If the WebSocket is already closed, it will log a message.
+   * Creates a new WebSocket connection to the resume gateway URL.
+   * Sets the close sequence and marks the WebSocket as reconnected.
+   * @returns {void}
    */
   handleReconnect() {
     if (!this.client.resumeGatewayURL) {
@@ -159,11 +170,9 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * The destroy function sets the status to "CLOSING" and then calls the close function with the given
-   * closeCode and "destroy" as arguments.
-   * @param closeCode - The closeCode parameter is the code indicating the reason for closing the
-   * connection. It could be a numeric value or a string representing the reason.
-   * @returns The close function is being returned.
+   * Destroys the current instance of the object.
+   * @param {closeCode} closeCode - The code to use when closing the instance.
+   * @returns {Promise} - A promise that resolves when the instance is successfully destroyed.
    */
   destroy(closeCode) {
     this.status = "CLOSING";
@@ -171,13 +180,10 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * The function `handleError` handles different error codes and throws corresponding `WebsocketError`
-   * objects, or emits a debug event and initiates a reconnection if the error code is unknown.
-   * @param error - The `error` parameter is an error code that is passed to the `handleError`
-   * function. It is used to determine the type of error that occurred and handle it accordingly.
-   * @returns In the `handleError` function, when the `error` parameter is equal to 4003, a
-   * `WebsocketError` object is created with the message "Not authenticated" and the code 4003.
-   * However, instead of throwing the error, it is returned.
+   * Handles errors that occur during websocket communication.
+   * @param {number} error - The error code.
+   * @returns {void}
+   * @throws {WebsocketError} - Throws a WebsocketError with the corresponding error message and code.
    */
   async handleError(error) {
     switch (error) {
@@ -259,11 +265,9 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * The function sends a transformed payload as a JSON string over a WebSocket connection.
-   * @param payload - The payload parameter is the data that you want to send over the websocket
-   * connection. It can be any type of data, such as a string, object, or array.
-   * @returns The return value of the function is the result of calling
-   * `super.send(JSON.stringify(payload))`.
+   * Sends a payload over the websocket connection.
+   * @param {any} payload - The payload to send.
+   * @returns {Promise<void>} - A promise that resolves when the payload has been sent.
    */
   send(payload) {
     payload = WebsocketManager.transformPayload(payload);
@@ -272,14 +276,9 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
-   * The function `transformPayload` transforms a payload object by converting the `op` property from a
-   * string to its corresponding value in the `Opcodes` object.
-   * @param payload - The `payload` parameter is an object that contains information to be transformed.
-   * It is expected to have two properties:
-   * @returns an object with two properties: "op" and "d". The value of "op" is determined based on the
-   * type of the "op" property in the input payload. If it is a string, it is converted to the
-   * corresponding value from the Opcodes object. If it is not a string, it is used as is. The value of
-   * "d" is simply
+   * Transforms a payload object by converting the "op" property to its corresponding opcode value.
+   * @param {object} payload - The payload object to transform.
+   * @returns {object | null} - The transformed payload object, or null if the "op" property is missing.
    */
   static transformPayload(payload) {
     if (!payload.op) return null;

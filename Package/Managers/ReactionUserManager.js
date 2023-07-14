@@ -2,15 +2,20 @@ const User = require("../Structures/User");
 const EmojiResolver = require("../Util/EmojiResolver");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages the users that reacted to a message */
+/**
+ * A class representing a manager for reaction users.
+ * @class
+ * @extends Base
+ */
 class ReactionUserManager extends Base {
   /**
-   * It's a constructor for the Reaction class
-   * @param reaction - The reaction object
-   * @param channelId - The channel ID of the message that was reacted to.
-   * @param messageId - The ID of the message that was reacted to
-   * @param emoji - The emoji used
-   * @param client - The client that instantiated the event
+   * Constructs a ReactionCollector instance.
+   * @constructor
+   * @param {Reaction} reaction - The reaction object.
+   * @param {string} channelId - The ID of the channel where the reaction occurred.
+   * @param {string} messageId - The ID of the message where the reaction occurred.
+   * @param {Emoji} emoji - The emoji that was reacted with.
+   * @param {Client} client - The client instance.
    */
   constructor(reaction, channelId, messageId, emoji, client) {
     super(client);
@@ -21,10 +26,12 @@ class ReactionUserManager extends Base {
   }
 
   /**
-   * It adds a user to the cache
-   * @param users - The user(s) to add to the cache.
-   * @param [options] - An object with the following properties:
-   * @returns A new user object
+   * Adds a user to the collection of users.
+   * @param {User | string} users - The user object or user ID to add.
+   * @param {Object} [options] - Additional options for adding the user.
+   * @param {boolean} [options.cache=true] - Whether to cache the user object.
+   * @param {boolean} [options.force=false] - Whether to force fetching the user even if it is already cached.
+   * @returns {User | null} The added user object or null if no user is provided.
    */
   _add(users, options = {cache: true, force: false}) {
     if (!users) return null;
@@ -52,9 +59,11 @@ class ReactionUserManager extends Base {
   }
 
   /**
-   * It fetches the users that reacted to a message with a specific emoji
-   * @param options - An object containing the following properties:
-   * @returns A new instance of the cache constructor.
+   * Fetches reaction users for a specific message and emoji.
+   * @param {Object} options - The options for the fetch request.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched data.
+   * @param {boolean} [options.force=false] - Whether to force the fetch request even if the data is already cached.
+   * @returns {Promise<Map<string, ReactionUser>>} - A promise that resolves to a map of reaction users, where the keys are user IDs and the values are ReactionUser objects.
    */
   async fetch(options) {
     const {cache = true, force = false} = options ?? {};
@@ -68,9 +77,10 @@ class ReactionUserManager extends Base {
   }
 
   /**
-   * It removes a reaction from a message
-   * @param [user] - The user to remove the reaction from.
-   * @returns The reaction
+   * Removes a reaction from a message.
+   * @param {string | User} [user=this.client.user.id] - The user ID or User object of the user whose reaction should be removed.
+   * @throws {RangeError} If no user is found.
+   * @returns {Promise<Reaction>} The removed reaction.
    */
   async remove(user = this.client.user.id) {
     if (!user) throw new RangeError(`No user found!`);
@@ -86,18 +96,17 @@ class ReactionUserManager extends Base {
   }
 
   /**
-   * `return Collection`
-   * @returns The Collection class
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It takes an object with optional `after` and `limit` properties, and returns an object with `after`
-   * and `limit` properties, where `after` is a string and `limit` is a number
-   * @param [o] - The options object that is passed to the function.
-   * @returns The transformed options object.
+   * Transforms the options object by extracting the "after" and "limit" properties.
+   * @param {Object} o - The options object.
+   * @returns {Object} - The transformed options object.
    */
   static transformOptions(o = {}) {
     return {

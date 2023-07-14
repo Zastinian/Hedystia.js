@@ -1,15 +1,16 @@
 const Base = require("../Base/base");
 /**
- * It's a class that represents a welcome screen channel
+ * Represents a welcome screen channel.
  * @class
  * @extends Base
  */
 class WelcomeScreenChannel extends Base {
   /**
-   * This function is a constructor for the class ReactionRole.
-   * @param [data] - The data that was sent from the API.
-   * @param guildId - The ID of the guild the reaction role is in.
-   * @param client - The client that the event was emitted from
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {string} guildId - The ID of the guild associated with the instance.
+   * @param {Client} client - The client object used to interact with the Discord API.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -21,15 +22,15 @@ class WelcomeScreenChannel extends Base {
   }
 
   /**
-   * It returns the channel object of the channel ID that is stored in the message object
-   * @returns The channel object.
+   * Retrieves the channel object associated with this instance.
+   * @returns {Channel | null} The channel object, or null if it does not exist.
    */
   get channel() {
     return this.client.channels._add(this.channelId) ?? null;
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
+   * Get the guild object associated with this guildId.
    * @returns The guild object.
    */
   get guild() {

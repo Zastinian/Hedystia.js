@@ -20,6 +20,20 @@ yarn add hedystia.js
 
 - [Examples](/Examples)
 
+## To contribute to the project, please follow the steps below:
+
+- Fork the repository.
+
+- Create a new branch.
+
+- Install dependencies.
+
+- Make your changes: Make the necessary changes to the codebase in your branch using your preferred editor or IDE.
+
+- Commit and push: Once you have made your changes, commit them and push the branch to your forked repository.
+
+- Create a pull request.
+
 ## Example of 2
 
 ### Prefix

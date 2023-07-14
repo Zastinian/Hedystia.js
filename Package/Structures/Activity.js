@@ -1,13 +1,23 @@
 const ActivityFlags = require("../Util/ActivityFlags");
 const {ActivityType} = require("../Util/Constants");
 const Base = require("../Base/base");
-/* It's a class that represents a user's activity */
+/**
+ * It's a class that represents a user's activity
+ * @class
+ * @extends Base
+ * @param {Object} [data] - The data for the activity.
+ * @param {Client} client - The client that instantiated this activity.
+ */
 class Activity extends Base {
   /**
-   * It takes in a data object and a client object, and then it sets the properties of the Activity
-   * object to the values of the data object
-   * @param [data] - The data that was sent from the Discord API.
-   * @param client - DiscordClient
+   *  The constructor function initializes an object with properties based on the provided data, and
+   * assigns default values if the data is missing or invalid.
+   * @constructor
+   * @param {Object} [data] - The `data` parameter is an object that contains various properties related to an
+   * activity. It is optional and defaults to an empty object if not provided.
+   * @param {Client} client - The `client` parameter is an object that represents the Discord client or bot that
+   * is using this constructor. It is used to interact with the Discord API and perform actions on
+   * behalf of the bot.
    */
   constructor(data = {}, client) {
     super(client);
@@ -64,8 +74,8 @@ class Activity extends Base {
   }
 
   /**
-   * It takes the enum value and returns the string value.
-   * @returns The object literal is being returned.
+   * Converts the current object to a JSON representation.
+   * @returns {Object} - The JSON representation of the object.
    */
   toJSON() {
     return {

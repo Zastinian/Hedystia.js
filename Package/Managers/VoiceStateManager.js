@@ -1,22 +1,29 @@
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
 const VoiceState = require("../Structures/VoiceState");
-/* It's a class that manages voice states */
+/**
+ * Represents a Voice State Manager that handles voice state related operations.
+ * @class
+ * @extends Base
+ */
 class VoiceStateManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It adds a new voice state to the cache.
-   * @param voiceStates - The voice state object to add to the cache.
-   * @param [guildId] - The guild ID to use for the voice state.
-   * @param [options] - An object with the following properties:
-   * @returns A new VoiceState object
+   * Adds a voice state to the cache and returns the voice state object.
+   * @param {string | VoiceState} voiceStates - The voice state object or user ID.
+   * @param {string} [guildId=this.guildId] - The ID of the guild the voice state belongs to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for the operation.
+   * @param {boolean} [options.cache=true] - Whether to cache the voice state.
+   * @param {boolean} [options.force=false] - Whether to force update the voice state even if it is already cached.
+   * @returns {VoiceState | null} The voice state object.
    */
   _add(voiceStates, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!voiceStates) return null;
@@ -45,8 +52,8 @@ class VoiceStateManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection class
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;

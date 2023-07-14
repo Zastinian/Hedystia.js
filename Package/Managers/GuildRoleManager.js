@@ -1,10 +1,15 @@
 const RoleManager = require("./RoleManager");
-/* `GuildRoleManager` is a `RoleManager` that only contains roles from a specific guild */
+/**
+ * A class representing a manager for guild roles.
+ * @class
+ * @extends RoleManager
+ */
 class GuildRoleManager extends RoleManager {
   /**
-   * `constructor` is a function that runs when a new instance of the class is created
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -13,8 +18,8 @@ class GuildRoleManager extends RoleManager {
   }
 
   /**
-   * It sorts the roles in the cache by their position, and then returns the first one
-   * @returns The highest role in the guild.
+   * Get the highest role from the cache based on position.
+   * @returns The highest role object.
    */
   get highest() {
     const sortedRoles = this.cache.sort((a, b) => b.position - a.position);
@@ -22,17 +27,16 @@ class GuildRoleManager extends RoleManager {
   }
 
   /**
-   * It returns the cached data for the guild
-   * @returns The cache is being returned.
+   * Get the cached data for everyone in the guild.
+   * @returns The cached data for everyone in the guild.
    */
   get everyone() {
     return this.cache.get(this.guildId);
   }
 
   /**
-   * It returns the cache, but only the cache that has the same guild ID as the current guild
-   * @returns The cache of the super class, but filtered to only include objects that have a guild_id or
-   * guildId property that matches the guildId of the current class.
+   * Retrieves the cache for the current guild.
+   * @returns {Array} - The filtered cache objects for the current guild.
    */
   get cache() {
     return super.cache.filter((o) => (o.guild_id ?? o.guildId) === this.guildId);

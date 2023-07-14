@@ -1,15 +1,27 @@
 <a name="SlashSubCommand"></a>
 
-## SlashSubCommand
+## SlashSubCommand ⇐ <code>Base</code>
+Represents a sub-command for a slash command.
+
 **Kind**: global class  
+**Extends**: <code>Base</code>  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | The type of the sub-command. |
+| name | <code>string</code> \| <code>undefined</code> | The name of the sub-command. |
+| description | <code>string</code> \| <code>undefined</code> | The description of the sub-command. |
+| options | <code>RaidenCol</code> | The options for the sub-command. |
+
 <a name="new_SlashSubCommand_new"></a>
 
 ### new SlashSubCommand([data], client)
-It creates a new SlashCommand object, and if the data object is not empty, it sets the name,description, and options properties to the values in the data object
+Constructs a new Sub_Command object.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| client | The client object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the sub-command. |
+| client | <code>Client</code> | The client object. |
 

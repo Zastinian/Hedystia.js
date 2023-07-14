@@ -8,7 +8,7 @@ class MessageButton {
   /**
    * Creates a new message button instance.
    * @constructor
-   * @param {Object} [data={}] - The data to initialize the message button with.
+   * @param {Object} [data] - The data to initialize the message button with.
    */
   constructor(data = {}) {
     this.type = "Button";

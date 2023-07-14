@@ -1,14 +1,24 @@
 const {ApplicationCommandTypes} = require("../../Util/Constants");
 const Base = require("../../Base/base");
 const SlashOption = require("./SlashOption");
-/* It's a class that represents a slash command */
+/**
+ * Represents a Slash command.
+ * @class
+ * @extends Base
+ * @param {Object} [data] - The data object containing information about the Slash command.
+ * @param {Client} client - The client object.
+ * @property {string} type - The type of the Slash command.
+ * @property {string} name - The name of the Slash command.
+ * @property {string} description - The description of the Slash command.
+ * @property {Array<SlashOption>} options - The options of the Slash command.
+ * @property {boolean} defaultMemberPermissions - The default member permissions of the Slash command.
+ */
 class Slash extends Base {
   /**
-   * It takes in a data object and a client object, and then it sets the type, name, description,
-   * options, and defaultPermission properties of the class to the values of the data object's type,
-   * name, description, options, and defaultPermission properties, respectively
-   * @param [data] - The data object that is returned from the API.
-   * @param client - The client instance.
+   * Constructs a new instance of the ApplicationCommand class
+   * @constructor.
+   * @param {Object} [data] - The data object containing the command information.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(client);

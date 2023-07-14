@@ -1,9 +1,19 @@
 /**
- * It takes a snowflake and returns an object with the snowflake's creation date, timestamp, worker ID,
-process ID, increment, and binary
- * @module Snowflake
+ * Represents a Snowflake, a unique identifier used in distributed systems.
+ * @class
  */
 class Snowflake {
+  /**
+   * Deconstructs a Discord snowflake into its individual components.
+   * @param {string} snowflake - The snowflake to deconstruct.
+   * @returns {Object} An object containing the deconstructed components of the snowflake:
+   * - createdAt: The date and time when the snowflake was created.
+   * - timestamp: The timestamp of the snowflake.
+   * - workerId: The ID of the worker that generated the snowflake.
+   * - processId: The ID of the process that generated the snowflake.
+   * - increment: The increment portion of the snowflake.
+   * - binary: The binary representation of the snowflake.
+   */
   static deconstruct(snowflake) {
     const bigIntSnowflake = BigInt(snowflake);
     return {
@@ -16,6 +26,12 @@ class Snowflake {
     };
   }
 
+  /**
+   * Generates a unique ID based on the given timestamp.
+   * @param {number | Date} [timestamp=Date.now()] - The timestamp to generate the ID from.
+   * @returns {string} - The generated unique ID.
+   * @throws {TypeError} - If the timestamp is not a number or a valid Date object.
+   */
   static generate(timestamp = Date.now()) {
     if (timestamp instanceof Date) timestamp = timestamp.getTime();
     if (typeof timestamp !== "number" || isNaN(timestamp)) {

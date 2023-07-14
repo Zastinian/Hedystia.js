@@ -4,12 +4,17 @@ const Intents = require("../Util/Intents");
 const Util = require("../Util/Util");
 const Base = require("../Base/base");
 const Collections = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages the members of a guild */
+/**
+ * Represents a manager for guild members.
+ * @class
+ * @extends Base
+ */
 class GuildMemberManager extends Base {
   /**
-   * This function is a constructor for the class
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -18,13 +23,13 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It creates a new GuildMember object if the member isn't cached, or returns the cached member if it
-   * is
-   * @param members - The member(s) to add to the cache. Can be a string, a user object, or a guild
-   * member object.
-   * @param [guildId] - The ID of the guild the member is in.
-   * @param [options] - cache = true, force = false
-   * @returns A new GuildMember object
+   * Adds a member to the guild.
+   * @param {string | GuildMember} members - The member to add. Can be either a string representing the member's ID or a GuildMember object.
+   * @param {string} [guildId=this.guildId] - The ID of the guild to add the member to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the member.
+   * @param {boolean} [options.cache=true] - Whether to cache the member object.
+   * @param {boolean} [options.force=false] - Whether to force adding the member even if it already exists in the cache.
+   * @returns {GuildMember | null} The added member object
    */
   _add(members, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!members) return null;
@@ -53,10 +58,14 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It fetches the members of a guild
-   * @param member - The member to fetch. Can be a user ID, a user object, or a guild member object.
-   * @param options
-   * @returns A promise that resolves to a new cache.constructor
+   * Fetches guild members from the server.
+   * @param {string | object} member - The member to fetch. Can be a member ID or a member object.
+   * @param {object} options - Additional options for the fetch.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched members.
+   * @param {boolean} [options.force=false] - Whether to force fetch the members even if they are already cached.
+   * @param {string} [options.query=""] - A query string to filter the members.
+   * @param {number} [options.limit=1000] - The maximum number of members to fetch.
+   * @param {boolean} [options.presences] - Whether to include
    */
   async fetch(member, options) {
     if (typeof (member?.user?.id ?? member?.id) !== "undefined" || typeof member === "string") return this._fetchId(member, options);
@@ -86,9 +95,10 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It gets a list of members from the API and returns a cache of the members
-   * @param [options] - Object
-   * @returns A new cache constructor
+   * Retrieves a list of members from the guild.
+   * @param {Object} [options] - The options for listing members.
+   * @param {number} [options.limit=50] - The maximum number of members to retrieve.
+   * @returns {Promise<Cache>} - A promise that resolves to a Cache object containing the retrieved members.
    */
   async list(options = {limit: 50}) {
     const members = await this.client.api.get(`${this.client.root}/guilds/${this.guildId}/members`, {
@@ -106,9 +116,12 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It searches for members in a guild
-   * @param [options] - Object
-   * @returns A new cache constructor
+   * Searches for members in a guild based on the provided query.
+   * @param {Object} options - The search options.
+   * @param {string} options.query - The query to search for.
+   * @param {number} [options.limit=50] - The maximum number of results to return.
+   * @returns {Promise<Cache>} A Promise that resolves to a Cache object containing the search results.
+   * @throws {RangeError} If the query is not provided.
    */
   async search(options = {limit: 50}) {
     if (!options.query) throw new RangeError(`Query is required!`);
@@ -127,11 +140,11 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It kicks a member from the guild
-   * @param member - The member to kick. Can be a GuildMember object, a User object, or a user ID
-   * string.
-   * @param reason - The reason for the kick.
-   * @returns The deleted member
+   * Kicks a member from the guild.
+   * @param {string | GuildMember} member - The member to kick. Can be either a string representing the member's ID or a GuildMember object.
+   * @param {string} reason - The reason for kicking the member. Optional.
+   * @returns {Promise<GuildMember>} - The deleted member object.
+   * @throws {RangeError} - If a valid GuildMember is not specified.
    */
   async kick(member, reason) {
     const memberId = typeof member === "string" ? member : member?.user?.id ?? member?.id;
@@ -145,10 +158,10 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It bans a member from a guild
-   * @param member - The member to ban.
-   * @param [options] - Object
-   * @returns The member that was banned.
+   * Bans a member from the guild.
+   * @param {GuildMember} member - The member to ban.
+   * @param {Object} [options] - Additional options for the ban.
+   * @returns {Promise<GuildMember>} - The banned member.
    */
   async ban(member, options = {}) {
     member = this._add(member);
@@ -157,10 +170,11 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * Unban a user from the guild.
-   * @param user - The user to unban.
-   * @param reason - The reason for the unban.
-   * @returns The user that was unbanned.
+   * Unbans a user from the guild.
+   * @param {User} user - The user to unban.
+   * @param {string} reason - The reason for unbanning the user.
+   * @returns {User} - The unbanned user.
+   * @throws {Error} - If the user or guild is not found.
    */
   async unban(user, reason) {
     user = this.client.users._add(user);
@@ -169,10 +183,11 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It edits a guild member
-   * @param member - The member to edit.
-   * @param [options] - The options to pass to the API.
-   * @returns A new member object
+   * Edits a guild member with the specified options.
+   * @param {string | GuildMember} member - The member to edit. Can be either a member ID or a GuildMember object.
+   * @param {Object} [options] - The options for editing the member.
+   * @param {string} [options.reason] - The reason for the edit.
+   * @returns {Promise<GuildMember>} A promise that resolves with the edited GuildMember object.
    */
   async edit(member, options = {}) {
     const {reason} = options;
@@ -187,10 +202,12 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It fetches a member from the API and returns the member object
-   * @param member - The member to fetch. Can be a string, a member object, or a user object.
-   * @param options - An object with the following properties:
-   * @returns The member object
+   * Fetches the ID of a member from the guild.
+   * @param {string | Object} member - The member object or the ID of the member.
+   * @param {Object} [options] - Additional options for the fetch.
+   * @param {boolean} [options.force] - Whether to force the fetch even if the member is already cached.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched member.
+   * @returns {Promise<Object>} - A promise that resolves to the fetched member object.
    */
   async _fetchId(member, options) {
     const memberId = typeof member === "string" ? member : member?.user?.id ?? member?.id;
@@ -203,17 +220,17 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It returns the value of the variable Collections.
-   * @returns The cache object
+   * Returns the cache object.
+   * @returns The cache object.
    */
   get cache() {
     return Collections;
   }
 
   /**
-   * If the date is null, return null. If the date is not null, return the date as an ISO string
-   * @param date - The date to be transformed.
-   * @returns The date is being returned in ISO format.
+   * Transforms a given date into an ISO string format.
+   * @param {Date | string | null} date - The date to transform.
+   * @returns {string | null} - The transformed date in ISO string format, or null if the input is null.
    */
   static transformTimeout(date) {
     if (date === null) return null;
@@ -223,11 +240,10 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * It transforms the options object into a format that the API can understand
-   * @param [options] - The options object.
-   * @param [edit=false] - Whether or not the user is editing the member.
-   * @returns an object with the keys limit, after, and the values of the options.limit, options.after,
-   * and options.after?.user?.id, options.after?.id.
+   * Transforms the given options object based on the provided parameters.
+   * @param {Object} options - The options object to transform.
+   * @param {boolean} [edit=false] - Indicates whether the transformation is for editing purposes.
+   * @returns {Object} - The transformed options object.
    */
   static async transformOptions(options = {}, edit = false) {
     if (edit) {
@@ -249,9 +265,9 @@ class GuildMemberManager extends Base {
   }
 
   /**
-   * If the payload is an array, map each element to its id, otherwise return the id of the payload
-   * @param [payload] - The payload that is being sent to the API.
-   * @returns The user id
+   * Transforms the given payload into a new format.
+   * @param {any} payload - The payload to transform.
+   * @returns {string | string[] | undefined} - The transformed payload.
    */
   static transformPayload(payload = {}) {
     if (Array.isArray(payload)) return payload.map((o) => (typeof o === "string" ? o : o.user?.id ?? o.id));

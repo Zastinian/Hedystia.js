@@ -3,7 +3,6 @@ const Permissions = require("../Util/Permissions");
 const Base = require("../Base/base");
 const GuildMemberFlags = require("../Util/GuildMemberFlags");
 const Bitfield = require("../Util/Bitfield");
-
 /**
  * Represents a member of a guild.
  * @class
@@ -11,6 +10,7 @@ const Bitfield = require("../Util/Bitfield");
  */
 class GuildMember extends Base {
   /**
+   * @constructor
    * @param {Object} data - The data for the member.
    * @param {string} guildId - The ID of the guild the member belongs to.
    * @param {Client} client - The client that instantiated this member.

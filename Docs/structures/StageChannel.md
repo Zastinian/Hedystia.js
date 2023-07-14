@@ -1,44 +1,44 @@
 <a name="StageChannel"></a>
 
 ## StageChannel ⇐ <code>VoiceBasedChannels</code>
-It's a class that extends the VoiceBasedChannels class, and adds a few extra methods to it.
+Represents a stage channel, which is a type of voice-based channel.
 
 **Kind**: global class  
 **Extends**: <code>VoiceBasedChannels</code>  
 
 * [StageChannel](#StageChannel) ⇐ <code>VoiceBasedChannels</code>
     * [new StageChannel([data], guildId, client)](#new_StageChannel_new)
-    * [.stageInstance](#StageChannel+stageInstance) ⇒
-    * [.createStageInstance([options])](#StageChannel+createStageInstance) ⇒
+    * [.stageInstance](#StageChannel+stageInstance) ⇒ <code>StageInstance</code> \| <code>null</code>
+    * [.createStageInstance(options)](#StageChannel+createStageInstance) ⇒ <code>Promise.&lt;StageInstance&gt;</code>
 
 <a name="new_StageChannel_new"></a>
 
 ### new StageChannel([data], guildId, client)
-It's a constructor function that takes in three parameters, data, guildId, and client.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that the role is being created with. |
-| guildId | The ID of the guild the role is in. |
-| client | The client that instantiated the object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object to initialize the instance with. |
+| guildId | <code>string</code> | The ID of the guild associated with the instance. |
+| client | <code>Client</code> | The client instance associated with the instance. |
 
 <a name="StageChannel+stageInstance"></a>
 
-### stageChannel.stageInstance ⇒
-If the guild exists, return the stage instance that has the same channel ID as the currentchannel, otherwise return null
+### stageChannel.stageInstance ⇒ <code>StageInstance</code> \| <code>null</code>
+Retrieves the stage instance associated with the channel.
 
 **Kind**: instance property of [<code>StageChannel</code>](#StageChannel)  
-**Returns**: The stageInstance is being returned.  
+**Returns**: <code>StageInstance</code> \| <code>null</code> - The stage instance object if found, otherwise null.  
 <a name="StageChannel+createStageInstance"></a>
 
-### stageChannel.createStageInstance([options]) ⇒
-It creates a new stage instance in the guild, and sets the channel to the current channel
+### stageChannel.createStageInstance(options) ⇒ <code>Promise.&lt;StageInstance&gt;</code>
+Creates a stage instance in the specified channel.
 
 **Kind**: instance method of [<code>StageChannel</code>](#StageChannel)  
-**Returns**: The stage instance that was created.  
+**Returns**: <code>Promise.&lt;StageInstance&gt;</code> - A promise that resolves to the created stage instance.  
 
-| Param | Description |
-| --- | --- |
-| [options] | The options to pass to the stage instance. |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options for creating the stage instance. |
 

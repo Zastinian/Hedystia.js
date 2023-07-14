@@ -1,68 +1,72 @@
 <a name="WelcomeScreenManager"></a>
 
-## WelcomeScreenManager
-**Kind**: global class  
+## WelcomeScreenManager ⇐ <code>Base</code>
+Represents a manager for the welcome screen of a guild.
 
-* [WelcomeScreenManager](#WelcomeScreenManager)
+**Kind**: global class  
+**Extends**: <code>Base</code>  
+
+* [WelcomeScreenManager](#WelcomeScreenManager) ⇐ <code>Base</code>
     * [new WelcomeScreenManager(guildId, client)](#new_WelcomeScreenManager_new)
     * _instance_
-        * [.fetch()](#WelcomeScreenManager+fetch) ⇒
-        * [.edit([options])](#WelcomeScreenManager+edit) ⇒
+        * [.fetch()](#WelcomeScreenManager+fetch) ⇒ <code>Promise.&lt;WelcomeScreen&gt;</code>
+        * [.edit([options])](#WelcomeScreenManager+edit) ⇒ <code>Promise.&lt;WelcomeScreen&gt;</code>
     * _static_
-        * [.transformChannels([channels])](#WelcomeScreenManager.transformChannels) ⇒
-        * [.transformOptions([o])](#WelcomeScreenManager.transformOptions) ⇒
+        * [.transformChannels(channels)](#WelcomeScreenManager.transformChannels) ⇒ <code>Object</code>
+        * [.transformOptions(o)](#WelcomeScreenManager.transformOptions) ⇒ <code>Object</code>
 
 <a name="new_WelcomeScreenManager_new"></a>
 
 ### new WelcomeScreenManager(guildId, client)
-This function is a constructor for the class Guild. It takes in a guildId and a client, and setsthe guildId to the guildId passed in, and sets the client to the client passed in.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the member count of. |
-| client | The client that the command is being run from. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="WelcomeScreenManager+fetch"></a>
 
-### welcomeScreenManager.fetch() ⇒
-It fetches the welcome screen of a guild
+### welcomeScreenManager.fetch() ⇒ <code>Promise.&lt;WelcomeScreen&gt;</code>
+Fetches the welcome screen for the guild.
 
 **Kind**: instance method of [<code>WelcomeScreenManager</code>](#WelcomeScreenManager)  
-**Returns**: A new instance of the WelcomeScreen class.  
+**Returns**: <code>Promise.&lt;WelcomeScreen&gt;</code> - A promise that resolves to a WelcomeScreen object representing the fetched welcome screen.  
 <a name="WelcomeScreenManager+edit"></a>
 
-### welcomeScreenManager.edit([options]) ⇒
-It edits the welcome screen of a guild.
+### welcomeScreenManager.edit([options]) ⇒ <code>Promise.&lt;WelcomeScreen&gt;</code>
+Edits the welcome screen settings for the guild.
 
 **Kind**: instance method of [<code>WelcomeScreenManager</code>](#WelcomeScreenManager)  
-**Returns**: A new WelcomeScreen object.  
+**Returns**: <code>Promise.&lt;WelcomeScreen&gt;</code> - A promise that resolves with the updated WelcomeScreen object.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | The options for editing the welcome screen. |
+| [options.reason] | <code>string</code> | The reason for the edit. |
 
 <a name="WelcomeScreenManager.transformChannels"></a>
 
-### WelcomeScreenManager.transformChannels([channels]) ⇒
-It takes an object with a property called `id` that can be either a string or an object with aproperty called `id` that is a string
+### WelcomeScreenManager.transformChannels(channels) ⇒ <code>Object</code>
+Transforms the given channels object into a new format.
 
 **Kind**: static method of [<code>WelcomeScreenManager</code>](#WelcomeScreenManager)  
-**Returns**: An object with the following properties:- channel_id- description- emoji_id- emoji_name  
+**Returns**: <code>Object</code> - - The transformed channels object.  
 
-| Param | Description |
-| --- | --- |
-| [channels] | The channel object that you want to transform. |
+| Param | Type | Description |
+| --- | --- | --- |
+| channels | <code>Object</code> | The channels object to transform. |
 
 <a name="WelcomeScreenManager.transformOptions"></a>
 
-### WelcomeScreenManager.transformOptions([o]) ⇒
-It takes an object with a property called "channels" which is an array of objects, and returns anobject with a property called "welcome_channels" which is an array of objects.
+### WelcomeScreenManager.transformOptions(o) ⇒ <code>Object</code>
+Transforms the options object into a new object with specific properties.
 
 **Kind**: static method of [<code>WelcomeScreenManager</code>](#WelcomeScreenManager)  
-**Returns**: an object with the properties enabled, welcome_channels, and description.  
+**Returns**: <code>Object</code> - - The transformed object with specific properties.  
 
-| Param | Description |
-| --- | --- |
-| [o] | The object that is passed in. |
+| Param | Type | Description |
+| --- | --- | --- |
+| o | <code>Object</code> | The options object to transform. |
 

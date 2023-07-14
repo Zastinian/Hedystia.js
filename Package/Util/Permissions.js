@@ -2,11 +2,13 @@ const Bitfield = require("./Bitfield");
 
 /**
  * Class representing a Discord permission bitfield.
+ * @class
  * @extends Bitfield
  */
 class Permissions extends Bitfield {
   /**
    * Create a new Permissions bitfield
+   * @constructor
    * @param {...bigint} bit - Bit positions to enable
    */
   constructor(...bit) {
@@ -16,7 +18,7 @@ class Permissions extends Bitfield {
 
 /**
  * Object containing bit flags for Permissions
- * @type {Object<string, bigint>}
+ * @type {bigint}
  * @readonly
  * @enum {bigint}
  */
@@ -66,15 +68,15 @@ Permissions.Flags = {
 
 /**
  * The default Permissions bitfield value
- * @type {bigint}
  * @readonly
+ * @type {bigint}
  */
 Permissions.Default = 0n;
 
 /**
  * Bitfield representing all permissions
- * @type {bigint}
- * @readonly
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of Intents.All.
  */
 Permissions.All = Object.values(Permissions.Flags).reduce((a, b) => a | b, Permissions.Default);
 

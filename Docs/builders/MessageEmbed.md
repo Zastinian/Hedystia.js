@@ -32,7 +32,7 @@ Constructs a new MessageEmbed object.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The data for the message embed. |
+| [data] | <code>Object</code> |  | The data for the message embed. |
 | [data.title] | <code>string</code> |  | The title of the message embed. |
 | [data.type] | <code>string</code> | <code>&quot;\&quot;rich\&quot;&quot;</code> | The type of the message embed. |
 | [data.description] | <code>string</code> |  | The description of the message embed. |

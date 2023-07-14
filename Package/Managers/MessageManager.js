@@ -3,13 +3,21 @@ const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
 const Message = require("../Structures/Message");
 const MessagePayload = require("../Util/MessagePayload");
 const EmojiResolver = require("../Util/EmojiResolver");
-/* It's a class that manages messages in a channel */
+/**
+ * Represents a message manager for a specific guild and channel.
+ * @class
+ * @extends Base
+ * @param {string} guildId - The ID of the guild.
+ * @param {string} channelId - The ID of the channel.
+ * @param {Client} client - The client instance.
+ */
 class MessageManager extends Base {
   /**
-   * The constructor function is a function that is called when an object is created from a class.
-   * @param guildId - The ID of the guild you want to send the message to.
-   * @param channelId - The channel ID of the channel you want to send the message to.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {string} channelId - The ID of the channel.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, channelId, client) {
     super(client);
@@ -18,13 +26,13 @@ class MessageManager extends Base {
   }
 
   /**
-   * _add(messages, guildId = this.guildId, channelId = this.channelId, options = {cache: true, force:
-   * false})
-   * @param messages - The message object
-   * @param [guildId] - The guild ID of the message
-   * @param [channelId] - The channel ID of the channel the message is in.
-   * @param [options] - cache = true, force = false
-   * @returns The message object
+   * Adds a message to the cache and returns the message object.
+   * @param {string | Message} messages - The message or message ID to add to the cache.
+   * @param {string} [guildId=this.guildId] - The ID of the guild the message belongs to.
+   * @param {string} [channelId=this.channelId] - The ID of the channel the message belongs to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the message.
+   * @param {boolean} [options.cache=true] - Whether to cache the message.
+   * @param {boolean} [options.force=false] - Whether to force adding the message to the cache even if it
    */
   _add(messages, guildId = this.guildId, channelId = this.channelId, options = {cache: true, force: false}) {
     if (!messages) return null;
@@ -54,10 +62,10 @@ class MessageManager extends Base {
   }
 
   /**
-   * It sends a message to a channel
-   * @param [channel] - The channel to send the message to.
-   * @param [options] - The options for the message.
-   * @returns A message object.
+   * Sends a message to a specified channel.
+   * @param {string | Channel} [channel=this.channelId] - The channel to send the message to. Can be either a channel ID or a Channel object.
+   * @param {object} [options] - Additional options for the message.
+   * @returns {Promise<Message>} A promise that resolves with the sent message.
    */
   async send(channel = this.channelId, options = {}) {
     const body = await MessagePayload.create(options);
@@ -67,11 +75,12 @@ class MessageManager extends Base {
   }
 
   /**
-   * It deletes messages in bulk
-   * @param [channel] - The channel to delete the messages from.
-   * @param [message] - The message to be deleted.
-   * @param reason - The reason for the bulk delete.
-   * @returns An array of messages.
+   * Bulk deletes messages in a channel.
+   * @param {string | Channel} [channel=this.channelId] - The channel ID or Channel object where the messages should be deleted.
+   * @param {Array<Message> | Map<string, Message> | number} [message=[]] - The messages to be deleted. Can be an array of Message objects, a Map of Message objects, or a number representing the number of messages to fetch and delete.
+   * @param {string} [reason] - The reason for deleting the messages.
+   * @returns {Promise<Array<[string, Message]>>} - A promise that resolves to an array of deleted message IDs and their corresponding Message objects.
+   * @throws {RangeError}
    */
   async bulkDelete(channel = this.channelId, message = [], reason) {
     const channelId = typeof channel === "string" ? channel : channel.id;
@@ -94,10 +103,10 @@ class MessageManager extends Base {
   }
 
   /**
-   * It deletes a message from a channel.
-   * @param message - The message to delete.
-   * @param reason - The reason for the deletion.
-   * @returns The deleted message.
+   * Deletes a message from the channel.
+   * @param {string | Message} message - The message to delete. Can be either the message ID or the message object itself.
+   * @param {string} reason - The reason for deleting the message.
+   * @returns {Promise<Message>} - A promise that resolves to the deleted message object.
    */
   async delete(message, reason) {
     const messageId = typeof message === "string" ? message : message.id;
@@ -107,10 +116,10 @@ class MessageManager extends Base {
   }
 
   /**
-   * It edits a message.
-   * @param message - The message to edit.
-   * @param options
-   * @returns A message object.
+   * Edits a message with the given options.
+   * @param {string | Message} message - The message or message ID to edit.
+   * @param {Object} options - The options to update the message with.
+   * @returns {Promise<Message>} A promise that resolves with the edited message.
    */
   async edit(message, options) {
     const messageId = typeof message === "string" ? message : message.id;
@@ -120,10 +129,12 @@ class MessageManager extends Base {
   }
 
   /**
-   * It fetches messages from a channel
-   * @param message - The message to fetch. Can be a message object, a message ID, or a string.
-   * @param options
-   * @returns An array of objects.
+   * Fetches a message or a list of messages from the server.
+   * @param {string | object} message - The ID of the message to fetch or an object containing options for fetching messages.
+   * @param {object} [options] - Additional options for fetching messages.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched messages.
+   * @param {boolean} [options.force=false] - Whether to force fetch the messages even if they are already cached.
+   * @returns {Promise<Message | Map<string, Message>>} - A single message object if a message ID is provided, or a map of message IDs to message objects if options are provided.
    */
   async fetch(message, options) {
     if (typeof message?.id !== "undefined" || typeof message === "string") return this._fetchId(message, options?.cache, options?.force);
@@ -135,11 +146,11 @@ class MessageManager extends Base {
   }
 
   /**
-   * It fetches a message from the API and adds it to the cache
-   * @param message - The message object or message ID
-   * @param [cache=true] - Whether or not to cache the message.
-   * @param [force=false] - true
-   * @returns The message object.
+   * Fetches a message by its ID from the channel.
+   * @param {string | object} message - The ID of the message or the message object itself.
+   * @param {boolean} [cache=true] - Whether to cache the fetched message.
+   * @param {boolean} [force=false] - Whether to force fetch the message even if it is already cached.
+   * @returns {Promise<object>} - A promise that resolves to the fetched message object.
    */
   async _fetchId(message, cache = true, force = false) {
     const messageId = typeof message === "string" ? message : message.id;
@@ -152,10 +163,10 @@ class MessageManager extends Base {
   }
 
   /**
-   * It takes a message and a channel and crossposts the message to the channel
-   * @param channel - The channel to crosspost the message to.
-   * @param message - The message to crosspost.
-   * @returns The message object.
+   * Crossposts a message to a specified channel.
+   * @param {string | Channel} channel - The channel to crosspost the message to.
+   * @param {string | Message} message - The message to crosspost.
+   * @returns {Promise<Message>} - A promise that resolves to the crossposted message.
    */
   async crosspost(channel, message) {
     const messageId = typeof message === "string" ? message : message?.id;
@@ -165,10 +176,10 @@ class MessageManager extends Base {
   }
 
   /**
-   * It takes a message and an emoji and adds the emoji to the message.
-   * @param message - The message to react to.
-   * @param emoji - The emoji to react with.
-   * @returns The message object.
+   * Reacts to a message with the specified emoji.
+   * @param {string | Message} message - The message to react to. Can be either a message ID or a Message object.
+   * @param {string} emoji - The emoji to react with.
+   * @returns {Promise<void>} - A promise that resolves when the reaction is successfully added.
    */
   async react(message, emoji) {
     const messageId = typeof message === "string" ? message : message?.id;
@@ -178,8 +189,8 @@ class MessageManager extends Base {
   }
 
   /**
-   * It gets the pins from the channel and returns a cache of the pins
-   * @returns A new cache object.
+   * Retrieves the pinned messages in the current channel.
+   * @returns {Promise<Cache>} A Promise that resolves to a Cache object containing the pinned messages.
    */
   async pins() {
     const channelPins = await this.client.api.get(`${this.client.root}/channels/${this.channelId}/pins`);
@@ -187,10 +198,10 @@ class MessageManager extends Base {
   }
 
   /**
-   * It deletes a message from the pinned messages list.
-   * @param message - The message to unpin.
-   * @param reason - The reason for the unpin.
-   * @returns The message that was unpinned.
+   * Unpins a message from the channel.
+   * @param {string | Message} message - The message or message ID to unpin.
+   * @param {string} reason - The reason for unpinning the message.
+   * @returns {Promise<void>} - A promise that resolves when the message is successfully unpinned.
    */
   async unpin(message, reason) {
     const messageId = typeof message === "string" ? message : message?.id;
@@ -199,10 +210,10 @@ class MessageManager extends Base {
   }
 
   /**
-   * This function pins a message to a channel.
-   * @param message - The message to pin.
-   * @param reason - The reason for pinning the message.
-   * @returns The message that was pinned.
+   * Pins a message in the channel.
+   * @param {string | Message} message - The message or message ID to pin.
+   * @param {string} reason - The reason for pinning the message.
+   * @returns {Promise<void>} - A promise that resolves when the message is pinned.
    */
   async pin(message, reason) {
     const messageId = typeof message === "string" ? message : message?.id;
@@ -211,27 +222,25 @@ class MessageManager extends Base {
   }
 
   /**
-   * It returns the guild object if it exists, otherwise it returns null.
-   * @returns The guild object.
+   * Retrieves the guild associated with this guildId.
+   * @returns The guild object if found, otherwise null.
    */
   get guild() {
     return this.client.guilds._add(this.guildId) ?? null;
   }
 
   /**
-   * It returns a collection of all the elements in the document that have the same tag name as the one
-   * passed to the function.
-   * @returns The Collection class.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It takes an object with optional properties, and returns an object with the same optional
-   * properties, but with the values transformed to a different type
-   * @param [o] - The options object
-   * @returns an object with the properties limit, around, before, and after.
+   * Transforms the given options object into a new object with specific properties.
+   * @param {Object} o - The options object to transform.
+   * @returns {Object | null} - The transformed object or null if the input is null.
    */
   static transformOptions(o = {}) {
     if (o === null) return null;

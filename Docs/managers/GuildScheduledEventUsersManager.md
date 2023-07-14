@@ -1,63 +1,66 @@
 <a name="GuildScheduledEventUsersManager"></a>
 
-## GuildScheduledEventUsersManager
-**Kind**: global class  
+## GuildScheduledEventUsersManager ⇐ <code>Base</code>
+Represents a manager for handling guild scheduled event users.
 
-* [GuildScheduledEventUsersManager](#GuildScheduledEventUsersManager)
+**Kind**: global class  
+**Extends**: <code>Base</code>  
+
+* [GuildScheduledEventUsersManager](#GuildScheduledEventUsersManager) ⇐ <code>Base</code>
     * [new GuildScheduledEventUsersManager(event, guildId, client)](#new_GuildScheduledEventUsersManager_new)
     * _instance_
-        * [.resolve(scheduledEventUser, event)](#GuildScheduledEventUsersManager+resolve) ⇒
-        * [.fetch([event], [options])](#GuildScheduledEventUsersManager+fetch) ⇒
+        * [.resolve(scheduledEventUser, event)](#GuildScheduledEventUsersManager+resolve) ⇒ <code>GuildScheduledEventUser</code> \| <code>null</code>
+        * [.fetch([event], [options])](#GuildScheduledEventUsersManager+fetch) ⇒ <code>Promise.&lt;RaidenCol&gt;</code>
     * _static_
-        * [.transformQuery([query])](#GuildScheduledEventUsersManager.transformQuery) ⇒
+        * [.transformQuery(query)](#GuildScheduledEventUsersManager.transformQuery) ⇒ <code>Object</code>
 
 <a name="new_GuildScheduledEventUsersManager_new"></a>
 
 ### new GuildScheduledEventUsersManager(event, guildId, client)
-It's a constructor for the class
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| event | The event that was triggered. |
-| guildId | The ID of the guild the event is being emitted in. |
-| client | The client object |
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>Event</code> | The event object. |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 
 <a name="GuildScheduledEventUsersManager+resolve"></a>
 
-### guildScheduledEventUsersManager.resolve(scheduledEventUser, event) ⇒
-If the scheduledEventUser is a string, it's a user ID, so we return a partialGuildScheduledEventUser object with the user ID and member ID. If it's an object, we return a fullGuildScheduledEventUser object
+### guildScheduledEventUsersManager.resolve(scheduledEventUser, event) ⇒ <code>GuildScheduledEventUser</code> \| <code>null</code>
+Resolves a scheduled event user and returns a GuildScheduledEventUser object.
 
 **Kind**: instance method of [<code>GuildScheduledEventUsersManager</code>](#GuildScheduledEventUsersManager)  
-**Returns**: A new GuildScheduledEventUser  
+**Returns**: <code>GuildScheduledEventUser</code> \| <code>null</code> - - The resolved GuildScheduledEventUser object or null if scheduledEventUser is falsy.  
 
-| Param | Description |
-| --- | --- |
-| scheduledEventUser | The scheduled event user object. |
-| event | The event to get the scheduled event user from. |
+| Param | Type | Description |
+| --- | --- | --- |
+| scheduledEventUser | <code>string</code> \| <code>null</code> | The scheduled event user to resolve. |
+| event | <code>object</code> | The event object. |
 
 <a name="GuildScheduledEventUsersManager+fetch"></a>
 
-### guildScheduledEventUsersManager.fetch([event], [options]) ⇒
-It fetches the users of a scheduled event
+### guildScheduledEventUsersManager.fetch([event], [options]) ⇒ <code>Promise.&lt;RaidenCol&gt;</code>
+Fetches the users associated with a scheduled event in a guild.
 
 **Kind**: instance method of [<code>GuildScheduledEventUsersManager</code>](#GuildScheduledEventUsersManager)  
-**Returns**: A RaidenCol of GuildScheduledEventUser objects  
+**Returns**: <code>Promise.&lt;RaidenCol&gt;</code> - - A promise that resolves to a RaidenCol object containing the fetched users.  
 
-| Param | Description |
-| --- | --- |
-| [event] | The event to fetch the users for. Can be a string or a GuildScheduledEvent object. |
-| [options] | An object with the following properties: |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [event] | <code>Event</code> \| <code>string</code> | <code>this.event</code> | The event object or event ID. |
+| [options] | <code>object</code> |  | Additional options for the fetch request. |
 
 <a name="GuildScheduledEventUsersManager.transformQuery"></a>
 
-### GuildScheduledEventUsersManager.transformQuery([query]) ⇒
-It takes a query object and returns a new query object with the same properties, but with some ofthem transformed
+### GuildScheduledEventUsersManager.transformQuery(query) ⇒ <code>Object</code>
+Transforms a query object into a formatted query object with default values andproper type checking.
 
 **Kind**: static method of [<code>GuildScheduledEventUsersManager</code>](#GuildScheduledEventUsersManager)  
-**Returns**: An object with the following properties:  limit: The value of the query.limit property, or 100 if query.limit is undefined.  with_member: The value of the query.withMember property, or undefined if query.withMember isundefined.  before: The value of the query.before property, or undefined if query.before is undefined.  after  
+**Returns**: <code>Object</code> - - The transformed query object.  
 
-| Param | Description |
-| --- | --- |
-| [query] | The query object that was passed to the route. |
+| Param | Type | Description |
+| --- | --- | --- |
+| query | <code>Object</code> | The query object to transform. |
 

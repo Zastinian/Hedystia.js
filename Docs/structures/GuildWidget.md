@@ -1,39 +1,39 @@
 <a name="GuildWidget"></a>
 
 ## GuildWidget ⇐ <code>Base</code>
-It's a class that represents a guild widget
+Represents a guild widget.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
 
 * [GuildWidget](#GuildWidget) ⇐ <code>Base</code>
     * [new GuildWidget([data], guildId, client)](#new_GuildWidget_new)
-    * [.guild](#GuildWidget+guild) ⇒
-    * [.fetchSettings()](#GuildWidget+fetchSettings) ⇒
+    * [.guild](#GuildWidget+guild) ⇒ <code>Guild</code> \| <code>null</code>
+    * [.fetchSettings()](#GuildWidget+fetchSettings) ⇒ <code>Promise</code>
 
 <a name="new_GuildWidget_new"></a>
 
 ### new GuildWidget([data], guildId, client)
-It takes in a data object, a guild id, and a client, and then it sets the id, name, instantInvite,channels, members, and presenceCount properties of the class to the values of the data object, theguild id, and the client
+Constructs a new instance of the Guild class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| guildId | The ID of the guild |
-| client | The client |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing guild widget information. |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="GuildWidget+guild"></a>
 
-### guildWidget.guild ⇒
-It adds the guild to the cache if it's not already there, and then returns the guild
+### guildWidget.guild ⇒ <code>Guild</code> \| <code>null</code>
+Retrieves the guild associated with this object.
 
 **Kind**: instance property of [<code>GuildWidget</code>](#GuildWidget)  
-**Returns**: The guild object.  
+**Returns**: <code>Guild</code> \| <code>null</code> - The guild object if found, otherwise null.  
 <a name="GuildWidget+fetchSettings"></a>
 
-### guildWidget.fetchSettings() ⇒
-It fetches the settings of the widget
+### guildWidget.fetchSettings() ⇒ <code>Promise</code>
+Fetches the settings for the guild's widgets.
 
 **Kind**: instance method of [<code>GuildWidget</code>](#GuildWidget)  
-**Returns**: The settings of the widget.  
+**Returns**: <code>Promise</code> - A promise that resolves to the fetched settings.  

@@ -1,20 +1,19 @@
 <a name="TextChannel"></a>
 
 ## TextChannel ⇐ <code>BaseGuildChannel</code>
-
-It's a class that extends another class, and it has a constructor that takes in a data object, a
-guildId, and a client
+Represents a text channel in a guild.
 
 **Kind**: global class  
 **Extends**: <code>BaseGuildChannel</code>  
 <a name="new_TextChannel_new"></a>
 
 ### new TextChannel([data], guildId, client)
+Constructs a new instance of the class.
 
-It's a constructor function that takes in three parameters, data, guildId, and client.
 
-| Param   | Description                                       |
-| ------- | ------------------------------------------------- |
-| [data]  | The data that the class will be constructed with. |
-| guildId | The ID of the guild the role is in.               |
-| client  | The client that instantiated the object.          |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the text channel. |
+| guildId | <code>string</code> | The ID of the guild that the text channel belongs to. |
+| client | <code>Client</code> | The client instance. |
+

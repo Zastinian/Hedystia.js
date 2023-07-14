@@ -2,15 +2,18 @@ const Snowflake = require("../Util/Snowflake");
 const UserFlags = require("../Util/UserFlags");
 const Base = require("../Base/base");
 /**
- * It's a class that represents a user
+ * Represents a user in the application.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data object containing user information.
+ * @param {Client} client - The client object.
  */
 class User extends Base {
   /**
-   * It's a constructor for a class that extends another class.
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - DiscordClient
+   * Constructs a new User object.
+   * @constructor
+   * @param {Object} [data] - The data object containing user information.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(client);
@@ -37,44 +40,47 @@ class User extends Base {
   }
 
   /**
-   * It fetches the user from the Discord API
-   * @param options - An object with the following properties:
-   * @returns The user object.
+   * Fetches user data using the provided options.
+   * @param {Object} options - The options for fetching user data.
+   * @returns {Promise} A promise that resolves with the fetched user data.
    */
   async fetch(options) {
     return await this.client.users.fetch(this, options);
   }
 
   /**
-   * It creates a DM channel with the user
-   * @returns The user object.
+   * Creates a direct message (DM) channel with the user associated with this instance of the client.
+   * @returns {Promise<DMChannel>} A promise that resolves to the created DM channel.
    */
   async createDM() {
     return await this.client.users.createDM(this);
   }
 
   /**
-   * It sends a message to a user
-   * @param [options] - Object
-   * @returns The user object.
+   * Sends a message to the user using the client's user send method.
+   * @param {object} options - Optional parameters for sending the message.
+   * @returns {Promise} A promise that resolves when the message is sent.
    */
   async send(options = {}) {
     return await this.client.users.send(this, options);
   }
 
   /**
-   * It returns the default avatar URL of the user
-   * @returns The default avatar URL for the user.
+   * Returns the URL of the default avatar for the user in the specified format.
+   * @param {string} format - The format of the avatar image (e.g. "png", "jpg", "gif").
+   * @returns {string | null} The URL of the default avatar image, or null if it is not available.
    */
   defaultAvatarURL(format) {
     return this.client.cdn.DefaultAvatarURL(this.id, format) ?? null;
   }
 
   /**
-   * "If the user doesn't have an avatar, return the default avatar URL, otherwise return the user's
-   * avatar URL."
-   * @param [options] - dynamic, size, format
-   * @returns The avatar URL of the user.
+   * Returns the URL of the avatar for the user.
+   * @param {Object} options - The options for generating the avatar URL.
+   * @param {boolean} [options.dynamic] - Whether to generate a dynamic avatar URL.
+   * @param {number} [options.size] - The size of the avatar.
+   * @param {string} [options.format] - The format of the avatar image.
+   * @returns {string} The URL of the user's avatar.
    */
   displayAvatarURL(options = {}) {
     if (!this.avatar) return this.defaultAvatarURL();
@@ -82,11 +88,12 @@ class User extends Base {
   }
 
   /**
-   * "If the user has a banner, return the banner URL, otherwise return null."
-   *
-   * The function is called like this:
-   * @param [options] - The options for the banner.
-   * @returns The user's banner URL.
+   * Generates the URL for the user's banner image.
+   * @param {Object} options - Optional parameters for customizing the URL.
+   * @param {boolean} [options.dynamic] - Whether to include dynamic content in the URL.
+   * @param {string} [options.size] - The desired size of the banner image.
+   * @param {string} [options.format] - The desired format of the banner image.
+   * @returns {string | null} The URL of the user's banner image, or null if no banner is set.
    */
   bannerURL(options = {}) {
     if (!this.banner) return null;
@@ -94,12 +101,11 @@ class User extends Base {
   }
 
   /**
-   * "If the user has an avatar decoration, return the URL of the avatar decoration, otherwise return
-   * null."
-   *
-   * The function is called avatarDecorationURL because it returns the URL of the avatar decoration
-   * @param [options]
-   * @returns The avatar decoration URL.
+   * Returns the URL of the avatar decoration for the user.
+   * @param {Object} options - Optional parameters for the URL generation.
+   * @param {number} options.size - The desired size of the avatar decoration.
+   * @param {string} options.format - The desired format of the avatar decoration.
+   * @returns {string | null} The URL of the avatar decoration, or null if no decoration is set.
    */
   avatarDecorationURL(options = {}) {
     if (!this.avatarDecoration) return null;
@@ -107,9 +113,8 @@ class User extends Base {
   }
 
   /**
-   * If the accentColor property is not null, return a string that starts with a hash symbol and is
-   * followed by the accentColor property converted to a string in base 16.
-   * @returns The accent color in hexadecimal format.
+   * Returns the hexadecimal representation of the accent color.
+   * @returns {string | null} - The hexadecimal representation of the accent color, or null if the accent color is not set.
    */
   hexAccentColor() {
     if (!this.accentColor) return null;

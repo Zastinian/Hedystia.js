@@ -1,7 +1,7 @@
 <a name="VoiceState"></a>
 
 ## VoiceState ⇐ <code>Base</code>
-It's a class that represents a user's voice state in a guild
+Represents the state of a voice connection for a user in a guild.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
@@ -9,120 +9,120 @@ It's a class that represents a user's voice state in a guild
 * [VoiceState](#VoiceState) ⇐ <code>Base</code>
     * [new VoiceState([data], guildId, client)](#new_VoiceState_new)
     * [.guild](#VoiceState+guild) ⇒
-    * [.channel](#VoiceState+channel) ⇒
-    * [.user](#VoiceState+user) ⇒
-    * [.edit(options)](#VoiceState+edit) ⇒
-    * [.setChannel(channel, reason)](#VoiceState+setChannel) ⇒
-    * [.setDeaf(deaf, reason)](#VoiceState+setDeaf) ⇒
-    * [.setMute(mute, reason)](#VoiceState+setMute) ⇒
-    * [.setSuppress(suppress)](#VoiceState+setSuppress) ⇒
-    * [.setRequestToSpeak(requestToSpeak)](#VoiceState+setRequestToSpeak) ⇒
+    * [.channel](#VoiceState+channel) ⇒ <code>Channel</code> \| <code>null</code>
+    * [.user](#VoiceState+user) ⇒ <code>User</code> \| <code>null</code>
+    * [.edit(options)](#VoiceState+edit) ⇒ <code>Promise</code>
+    * [.setChannel(channel, reason)](#VoiceState+setChannel) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.setDeaf(deaf, reason)](#VoiceState+setDeaf) ⇒ <code>Promise</code>
+    * [.setMute(mute, reason)](#VoiceState+setMute) ⇒ <code>Promise</code>
+    * [.setSuppress(suppress)](#VoiceState+setSuppress) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.setRequestToSpeak(requestToSpeak)](#VoiceState+setRequestToSpeak) ⇒ <code>Promise.&lt;void&gt;</code>
 
 <a name="new_VoiceState_new"></a>
 
 ### new VoiceState([data], guildId, client)
-It's a constructor for a class that is used to store voice state data.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was received from the Discord API. |
-| guildId | The ID of the guild the voice state is in. |
-| client | Discord.Client |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the voice state. |
+| guildId | <code>string</code> | The ID of the guild the voice state belongs to. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="VoiceState+guild"></a>
 
 ### voiceState.guild ⇒
-It returns the guild object of the guild ID that is stored in the database
+Retrieves the guild associated with this guildId.
 
 **Kind**: instance property of [<code>VoiceState</code>](#VoiceState)  
-**Returns**: The guild object.  
+**Returns**: The guild object if found, otherwise null.  
 <a name="VoiceState+channel"></a>
 
-### voiceState.channel ⇒
-It returns the channel object of the channel ID that is stored in the message object
+### voiceState.channel ⇒ <code>Channel</code> \| <code>null</code>
+Retrieves the channel object associated with this instance.
 
 **Kind**: instance property of [<code>VoiceState</code>](#VoiceState)  
-**Returns**: The channel object.  
+**Returns**: <code>Channel</code> \| <code>null</code> - The channel object, or null if it does not exist.  
 <a name="VoiceState+user"></a>
 
-### voiceState.user ⇒
-It returns the user object of the user who sent the message
+### voiceState.user ⇒ <code>User</code> \| <code>null</code>
+Retrieves the user associated with this instance.
 
 **Kind**: instance property of [<code>VoiceState</code>](#VoiceState)  
-**Returns**: The user object.  
+**Returns**: <code>User</code> \| <code>null</code> - The user object if found, otherwise null.  
 <a name="VoiceState+edit"></a>
 
-### voiceState.edit(options) ⇒
-It edits the member's settings
+### voiceState.edit(options) ⇒ <code>Promise</code>
+Edits the user's guild member profile with the given options.
 
 **Kind**: instance method of [<code>VoiceState</code>](#VoiceState)  
-**Returns**: The return value is a Promise that resolves to the edited member.  
+**Returns**: <code>Promise</code> - A promise that resolves when the edit is complete.  
 
-| Param | Description |
-| --- | --- |
-| options | An object containing the options to edit the member with. |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options to edit the guild member profile. |
 
 <a name="VoiceState+setChannel"></a>
 
-### voiceState.setChannel(channel, reason) ⇒
-It sets the channel of the invite
+### voiceState.setChannel(channel, reason) ⇒ <code>Promise.&lt;void&gt;</code>
+Sets the channel for the current object and updates it with the given reason.
 
 **Kind**: instance method of [<code>VoiceState</code>](#VoiceState)  
-**Returns**: The channel that the message was sent in.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the channel is successfully set.  
 
-| Param | Description |
-| --- | --- |
-| channel | The channel to move the member to, can be a voice channel or a category channel. |
-| reason | The reason for the update. |
+| Param | Type | Description |
+| --- | --- | --- |
+| channel | <code>Channel</code> | The channel to set. |
+| reason | <code>string</code> | The reason for setting the channel. |
 
 <a name="VoiceState+setDeaf"></a>
 
-### voiceState.setDeaf(deaf, reason) ⇒
-It sets the deaf property of the member to deaf, and the reason property of the member to reason
+### voiceState.setDeaf(deaf, reason) ⇒ <code>Promise</code>
+Sets the deaf status of the user.
 
 **Kind**: instance method of [<code>VoiceState</code>](#VoiceState)  
-**Returns**: The deaf status of the member.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the deaf status is set.  
 
-| Param | Description |
-| --- | --- |
-| deaf | Boolean - Whether or not the member should be deafened |
-| reason | The reason for the change. |
+| Param | Type | Description |
+| --- | --- | --- |
+| deaf | <code>boolean</code> | Whether the user should be deafened or not. |
+| reason | <code>string</code> | The reason for setting the deaf status. |
 
 <a name="VoiceState+setMute"></a>
 
-### voiceState.setMute(mute, reason) ⇒
-It sets the mute status of a user
+### voiceState.setMute(mute, reason) ⇒ <code>Promise</code>
+Sets the mute status and reason for an object.
 
 **Kind**: instance method of [<code>VoiceState</code>](#VoiceState)  
-**Returns**: The mute status and the reason for the mute.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the mute status and reason are set.  
 
-| Param | Description |
-| --- | --- |
-| mute | Boolean - Whether or not the member should be muted. |
-| reason | The reason for the mute. |
+| Param | Type | Description |
+| --- | --- | --- |
+| mute | <code>boolean</code> | The mute status to set. |
+| reason | <code>string</code> | The reason for muting. |
 
 <a name="VoiceState+setSuppress"></a>
 
-### voiceState.setSuppress(suppress) ⇒
-It sets the user's voice state to suppress
+### voiceState.setSuppress(suppress) ⇒ <code>Promise.&lt;void&gt;</code>
+Sets the suppress property of the voice state for the user in the guild.
 
 **Kind**: instance method of [<code>VoiceState</code>](#VoiceState)  
-**Returns**: The voice state of the user.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the suppress property is set.  
 
-| Param | Description |
-| --- | --- |
-| suppress | Boolean |
+| Param | Type | Description |
+| --- | --- | --- |
+| suppress | <code>boolean</code> | The value to set for the suppress property. |
 
 <a name="VoiceState+setRequestToSpeak"></a>
 
-### voiceState.setRequestToSpeak(requestToSpeak) ⇒
-It sets the request to speak status of a user in a voice channel
+### voiceState.setRequestToSpeak(requestToSpeak) ⇒ <code>Promise.&lt;void&gt;</code>
+Sets the "request to speak" status for the user in the guild's voice channel.
 
 **Kind**: instance method of [<code>VoiceState</code>](#VoiceState)  
-**Returns**: The return value is a Promise that resolves to the updated VoiceState.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the request to speak status is set.  
 
-| Param | Description |
-| --- | --- |
-| requestToSpeak | boolean |
+| Param | Type | Description |
+| --- | --- | --- |
+| requestToSpeak | <code>boolean</code> | The value indicating whether the user wants to request to speak. |
 

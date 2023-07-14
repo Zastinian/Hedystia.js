@@ -2,11 +2,14 @@ const Bitfield = require("./Bitfield");
 
 /**
  * Represents the intents that the bot wishes to subscribe to.
+ * @class
+ * @extends Bitfield
  */
 class Intents extends Bitfield {
   /**
-   * Creates a new Intents bitfield.
-   * @param {...number} bit - Bit(s) to set in the bitfield.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {...bigint} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);
@@ -14,8 +17,8 @@ class Intents extends Bitfield {
 }
 
 /**
- * The available flags for the Intents bitfield.
- * @type {Object<string, bigint>}
+ * Represents the flags for different intents in Discord.
+ * @type {bigint}
  * @readonly
  * @enum {bigint}
  */
@@ -42,16 +45,17 @@ Intents.Flags = {
 };
 
 /**
- * The default value for the Intents bitfield.
+ * Sets the default value for the Intents enum to 0.
  * @readonly
  * @type {bigint}
  */
 Intents.Default = 0n;
 
 /**
- * The value that represents all flags in the Intents bitfield.
- * @readonly
- * @type {bigint}
+ * Combines all the values of the Intents.Flags object using a bitwise OR operation
+ * and assigns the result to the Intents.All property.
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of Intents.All.
  */
 Intents.All = Object.values(Intents.Flags).reduce((a, b) => a | b, Intents.Default);
 

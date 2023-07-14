@@ -1,53 +1,59 @@
 <a name="GuildChannelManager"></a>
 
-## GuildChannelManager
-**Kind**: global class  
+## GuildChannelManager ⇐ <code>ChannelManager</code>
+Represents a manager for guild channels.
 
-* [GuildChannelManager](#GuildChannelManager)
+**Kind**: global class  
+**Extends**: <code>ChannelManager</code>  
+
+* [GuildChannelManager](#GuildChannelManager) ⇐ <code>ChannelManager</code>
     * [new GuildChannelManager(guildId, client)](#new_GuildChannelManager_new)
-    * [.cache](#GuildChannelManager+cache) ⇒
-    * [.create([options])](#GuildChannelManager+create) ⇒
-    * [.modifyPosition([options])](#GuildChannelManager+modifyPosition) ⇒
+    * [.cache](#GuildChannelManager+cache) ⇒ <code>Array</code>
+    * [.create([options])](#GuildChannelManager+create) ⇒ <code>Promise.&lt;Channel&gt;</code>
+    * [.modifyPosition([options])](#GuildChannelManager+modifyPosition) ⇒ <code>Promise</code>
 
 <a name="new_GuildChannelManager_new"></a>
 
 ### new GuildChannelManager(guildId, client)
-It's a constructor function that takes in a guildId and a client, and then sets the guildId to theguildId that was passed in, and then sets the client to the client that was passed in.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run from. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 
 <a name="GuildChannelManager+cache"></a>
 
-### guildChannelManager.cache ⇒
-It filters the cache to only include objects that have a guild_id or guildId property that matchesthe guildId of the current instance
+### guildChannelManager.cache ⇒ <code>Array</code>
+Retrieves the cache for the current guild.
 
 **Kind**: instance property of [<code>GuildChannelManager</code>](#GuildChannelManager)  
-**Returns**: The cache is being filtered to only return the objects that have the same guildId as theguildId of the current guild.  
+**Returns**: <code>Array</code> - - The filtered cache objects for the current guild.  
 <a name="GuildChannelManager+create"></a>
 
-### guildChannelManager.create([options]) ⇒
-It creates a new channel in the guild.
+### guildChannelManager.create([options]) ⇒ <code>Promise.&lt;Channel&gt;</code>
+Creates a new channel in the guild.
 
 **Kind**: instance method of [<code>GuildChannelManager</code>](#GuildChannelManager)  
-**Returns**: The channel object.  
+**Returns**: <code>Promise.&lt;Channel&gt;</code> - A promise that resolves with the created channel.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | The options for creating the channel. |
+| [options.reason] | <code>string</code> | The reason for creating the channel. |
 
 <a name="GuildChannelManager+modifyPosition"></a>
 
-### guildChannelManager.modifyPosition([options]) ⇒
-It takes an array of objects, transforms them, and then sends them to the API
+### guildChannelManager.modifyPosition([options]) ⇒ <code>Promise</code>
+Modifies the position of channels in a guild.
 
 **Kind**: instance method of [<code>GuildChannelManager</code>](#GuildChannelManager)  
-**Returns**: A new cache object.  
+**Returns**: <code>Promise</code> - A promise that resolves when the position is modified.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | The options for modifying the position. |
+| [options.reason] | <code>string</code> | The reason for modifying the position. |
+| [options.data] | <code>Array</code> | The data containing the channels to modify. |
 

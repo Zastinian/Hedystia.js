@@ -2,11 +2,14 @@ const Bitfield = require("./Bitfield");
 
 /**
  * Represents the possible flags for a Role
+ * @class
  * @extends {Bitfield}
  */
 class RoleFlags extends Bitfield {
   /**
-   * @param {...bigint} bit - Bit positions to enable
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {...bigint} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);
@@ -14,13 +17,9 @@ class RoleFlags extends Bitfield {
 }
 
 /**
- * @typedef {Object} RoleFlagsResolvable
- * @property {string} [name] The name of the flag
- * @property {bigint|number} [bit] The bit of the flag
- */
-
-/**
- * The flags for a role
+ * Represents the available role flags.
+ * @type {bigint}
+ * @readonly
  * @enum {bigint}
  */
 RoleFlags.Flags = {
@@ -28,14 +27,17 @@ RoleFlags.Flags = {
 };
 
 /**
- * The default bit(s) for a role
+ * Sets the RoleFlags.Default value to 0n.
+ * @readonly
  * @type {bigint}
  */
 RoleFlags.Default = 0n;
 
 /**
- * The total bit(s) of all the flags combined
- * @type {bigint}
+ * Calculates the bitwise OR of all the values in the RoleFlags.Flags object and assigns
+ * the result to the RoleFlags.All property.
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of RoleFlags.All.
  */
 RoleFlags.All = Object.values(RoleFlags.Flags).reduce((a, b) => a | b, RoleFlags.Default);
 

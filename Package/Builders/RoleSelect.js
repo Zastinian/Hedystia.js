@@ -7,7 +7,7 @@ const {ComponentType} = require("../Util/Constants");
 class RoleSelect {
   /**
    * Create a role select component.
-   * @param {Object} [data={}] - The data to set in the component.
+   * @param {Object} [data] - The data to set in the component.
    * @param {string} [data.custom_id] - The custom ID of the component.
    * @param {string} [data.customId] - The custom ID of the component.
    * @param {Object[]} [data.options] - The options of the component.

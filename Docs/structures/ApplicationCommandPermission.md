@@ -1,86 +1,67 @@
 <a name="ApplicationCommandPermission"></a>
 
-## ApplicationCommandPermission
+## ApplicationCommandPermission ⇐ <code>Base</code>
+Represents an application command permission.
 
-**Kind**: global class
+**Kind**: global class  
+**Extends**: <code>Base</code>  
 
-- [ApplicationCommandPermission](#ApplicationCommandPermission)
-  - [new ApplicationCommandPermission([data], guildId, client)](#new_ApplicationCommandPermission_new)
-  - _instance_
-    - [.command](#ApplicationCommandPermission+command) ⇒
-    - [.guild](#ApplicationCommandPermission+guild) ⇒
-    - [.fetch([options])](#ApplicationCommandPermission+fetch) ⇒
-  - _static_
-    - [.transformPermissions([permissions])](#ApplicationCommandPermission.transformPermissions) ⇒
+* [ApplicationCommandPermission](#ApplicationCommandPermission) ⇐ <code>Base</code>
+    * [new ApplicationCommandPermission([data], guildId, client)](#new_ApplicationCommandPermission_new)
+    * _instance_
+        * [.command](#ApplicationCommandPermission+command) ⇒
+        * [.guild](#ApplicationCommandPermission+guild) ⇒
+        * [.fetch([options])](#ApplicationCommandPermission+fetch) ⇒ <code>Promise</code>
+    * _static_
+        * [.transformPermissions(permissions)](#ApplicationCommandPermission.transformPermissions) ⇒ <code>Object</code>
 
 <a name="new_ApplicationCommandPermission_new"></a>
 
 ### new ApplicationCommandPermission([data], guildId, client)
+Constructs a new instance of the CommandPermissions class.
 
-It's a constructor function that takes in a data object, a guildId, and a client, and then sets the
-commandId to the id of the data object, or undefined if it doesn't exist, and sets the applicationId
-to the application_id of the data object, or null if it doesn't exist. It then sets the guildId to
-the guildId, and then sets the permissions to a new RaidenCol object, which is a collection class,
-and then maps the permissions of the data object to a new array, and then sets the id of the object
-to the id of the data object, and then sets the permissions of the object to the
-ApplicationCommandPermission.transformPermissions function, which takes in the object.
 
-| Param   | Description                                |
-| ------- | ------------------------------------------ |
-| [data]  | The data that is passed to the constructor |
-| guildId | The guild id                               |
-| client  | RaidenClient                               |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing the command permission information. |
+| guildId | <code>string</code> | The ID of the guild the command permission belongs to. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="ApplicationCommandPermission+command"></a>
 
 ### applicationCommandPermission.command ⇒
-
-If the command is in the client's cache, return it. If it's not, check if it's in the guild's cache.
-If it's not, return null.
+Retrieves the command associated with this instance.
 
 **Kind**: instance property of [<code>ApplicationCommandPermission</code>](#ApplicationCommandPermission)  
-**Returns**: The command object.  
+**Returns**: The command object if found, otherwise null.  
 <a name="ApplicationCommandPermission+guild"></a>
 
 ### applicationCommandPermission.guild ⇒
-
-It returns the guild object if it exists, otherwise it returns null.
+Retrieves the guild associated with this guildId.
 
 **Kind**: instance property of [<code>ApplicationCommandPermission</code>](#ApplicationCommandPermission)  
-**Returns**: The guild object.  
+**Returns**: The guild object if found, otherwise null.  
 <a name="ApplicationCommandPermission+fetch"></a>
 
-### applicationCommandPermission.fetch([options]) ⇒
-
-It fetches the permissions of the command
+### applicationCommandPermission.fetch([options]) ⇒ <code>Promise</code>
+Fetches the permissions for the guild commands.
 
 **Kind**: instance method of [<code>ApplicationCommandPermission</code>](#ApplicationCommandPermission)  
-**Returns**: The return value is the result of the await expression.
+**Returns**: <code>Promise</code> - - A promise that resolves to the fetched permissions.  
 
-| Param     | Description |
-| --------- | ----------- |
-| [options] | Object      |
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | Optional parameters for the fetch request. |
 
 <a name="ApplicationCommandPermission.transformPermissions"></a>
 
-### ApplicationCommandPermission.transformPermissions([permissions]) ⇒
-
-It takes an object with a property called `type` that can be a number or a string, and if it's a
-number, it converts it to a string using a lookup table.
-
-The lookup table is defined in the `ApplicationCommandPermissionType` enum.
-
-The function returns an object with the same properties as the input object, but with the `type`
-property converted to a string if it was a number.
-
-The function is called like this:
+### ApplicationCommandPermission.transformPermissions(permissions) ⇒ <code>Object</code>
+Transforms a permissions object into a formatted object with specific properties.
 
 **Kind**: static method of [<code>ApplicationCommandPermission</code>](#ApplicationCommandPermission)  
-**Returns**: The return value is an object with the following properties:
-id: The id of the permission.
-type: The type of the permission.
-permission: The permission.
+**Returns**: <code>Object</code> - - The transformed permissions object.  
 
-| Param         |
-| ------------- |
-| [permissions] |
+| Param | Type | Description |
+| --- | --- | --- |
+| permissions | <code>Object</code> | The permissions object to transform. |
+

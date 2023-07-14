@@ -3,22 +3,29 @@ const {GuildScheduledEventPrivacyLevel, GuildScheduledEventEntityType, GuildSche
 const Util = require("../Util/Util");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages scheduled events for a guild */
+/**
+ * Represents a Scheduled Event Manager that handles creating, editing, and deleting scheduled events for a guild.
+ * @class
+ * @extends Base
+ */
 class ScheduledEventManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It adds a scheduled event to the cache.
-   * @param events - The event to add. Can be a string or a GuildScheduledEvent object.
-   * @param [guildId] - The ID of the guild the event is in.
-   * @param [options] - cache = true, force = false
-   * @returns A new instance of the GuildScheduledEvent class.
+   * Adds an event to the guild's scheduled events.
+   * @param {string | GuildScheduledEvent} events - The event or event ID to add.
+   * @param {string} [guildId=this.guildId] - The ID of the guild to add the event to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the event.
+   * @param {boolean} [options.cache=true] - Whether to cache the event.
+   * @param {boolean} [options.force=false] - Whether to force adding the event even if it already exists in the cache.
+   * @returns {GuildScheduledEvent | null} - The added event or null if the events parameter is falsy
    */
   _add(events, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!events) return null;
@@ -47,9 +54,10 @@ class ScheduledEventManager extends Base {
   }
 
   /**
-   * It creates a scheduled event
-   * @param [options] - An object containing the following parameters:
-   * @returns A new ScheduledEvent instance.
+   * Creates a scheduled event with the given options.
+   * @param {Object} [options] - The options for the scheduled event.
+   * @param {string} [options.reason] - The reason for creating the event.
+   * @returns {Promise} A promise that resolves with the created event.
    */
   async create(options = {}) {
     const {reason} = options;
@@ -62,10 +70,11 @@ class ScheduledEventManager extends Base {
   }
 
   /**
-   * It edits a scheduled event
-   * @param event - The event to edit. This can be a ScheduledEvent object, or the ID of the event.
-   * @param [options] - The options to pass to the event.
-   * @returns The event object
+   * Edits a scheduled event with the given options.
+   * @param {string | Object} event - The ID of the event or the event object itself.
+   * @param {Object} [options] - The options to update the event with.
+   * @param {string} [options.reason] - The reason for editing the event.
+   * @returns {Promise<Object>} A promise that resolves with the updated event object.
    */
   async edit(event, options = {}) {
     const {reason} = options;
@@ -76,9 +85,9 @@ class ScheduledEventManager extends Base {
   }
 
   /**
-   * It deletes an event from the database
-   * @param event - The event to delete. Can be an event object or an event ID.
-   * @returns The deleted event
+   * Deletes an event from the scheduled events of a guild.
+   * @param {string | Object} event - The event to be deleted. Can be either the event ID as a string or the event object itself.
+   * @returns {Promise<Object>} - The deleted event object.
    */
   async delete(event) {
     const eventId = typeof event === "string" ? event : event?.id;
@@ -88,10 +97,12 @@ class ScheduledEventManager extends Base {
   }
 
   /**
-   * It fetches scheduled events from the API and returns a collection of them
-   * @param events - The event ID, or an object containing the following parameters:
-   * @param options - The options object.
-   * @returns A new cache constructor with the events mapped to the id and the _add function.
+   * Fetches scheduled events from the server based on the provided options.
+   * @param {any} events - The events to fetch. Can be an ID, an array of IDs, or an object with query options.
+   * @param {object} options - The options for fetching the events.
+   * @param {boolean} options.cache - Whether to cache the fetched events. Default is true.
+   * @param {boolean} options.force - Whether to force fetch the events even if they are already cached. Default is false.
+   * @returns {Promise} A promise that resolves with the fetched events.
    */
   async fetch(events, options) {
     if (typeof events?.id !== "undefined" || typeof events === "string") return this._fetchId(events, options?.cache, options?.force);
@@ -103,11 +114,11 @@ class ScheduledEventManager extends Base {
   }
 
   /**
-   * It fetches an event by ID, and returns it
-   * @param events - The event to fetch. Can be an event ID or an event object.
-   * @param [cache=true] - Whether or not to cache the event.
-   * @param [force=false] - If true, it will force the cache to be updated.
-   * @returns The event object
+   * Fetches the ID of an event from the server.
+   * @param {string | Event} events - The ID of the event or the event object itself.
+   * @param {boolean} [cache=true] - Whether to cache the fetched event.
+   * @param {boolean} [force=false] - Whether to force fetch the event even if it is already cached.
+   * @returns {Promise<Event>} - The fetched event.
    */
   async _fetchId(events, cache = true, force = false) {
     const eventId = typeof events === "string" ? events : events?.id;
@@ -118,19 +129,18 @@ class ScheduledEventManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection class
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It takes an object with the properties of the class, and returns an object with the properties of
-   * the API
-   * @param [o] - The options object.
-   * @param [create=false] - Whether or not this is a create request.
-   * @returns The return value is a promise that resolves to a GuildScheduledEvent object.
+   * Transforms the options object into the desired format based on the provided parameters.
+   * @param {Object} o - The options object to transform.
+   * @param {boolean} [create=false] - Indicates whether to transform the options for creating a new object.
+   * @returns {Promise<Object>} - The transformed options object.
    */
   static async transformOptions(o = {}, create = false) {
     if (create) {

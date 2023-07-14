@@ -8,36 +8,47 @@ A bitfield that represents flags for a guild member.
 
 * [GuildMemberFlags](#GuildMemberFlags) ⇐ <code>Bitfield</code>
     * [new GuildMemberFlags(...bit)](#new_GuildMemberFlags_new)
-    * [.Default](#GuildMemberFlags.Default) : <code>bigint</code>
-    * [.All](#GuildMemberFlags.All) : <code>bigint</code>
+    * [.Default](#GuildMemberFlags.Default)
+    * [.All](#GuildMemberFlags.All) ⇒
     * [.Flags](#GuildMemberFlags.Flags) : <code>enum</code>
 
 <a name="new_GuildMemberFlags_new"></a>
 
 ### new GuildMemberFlags(...bit)
+Constructs a new instance of the class.
+
 
 | Param | Type | Description |
 | --- | --- | --- |
-| ...bit | <code>string</code> | The bits to set |
+| ...bit | <code>bigint</code> | The arguments to pass to the superclass constructor. |
 
 <a name="GuildMemberFlags.Default"></a>
 
-### GuildMemberFlags.Default : <code>bigint</code>
-The default value for a guild member's flags.
+### GuildMemberFlags.Default
+Sets the default value for the GuildMemberFlags to 0n.
 
 **Kind**: static property of [<code>GuildMemberFlags</code>](#GuildMemberFlags)  
-**Read only**: true  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Default | <code>bigint</code> | The default bit value to set. |
+
 <a name="GuildMemberFlags.All"></a>
 
-### GuildMemberFlags.All : <code>bigint</code>
-The value of all guild member flags combined.
+### GuildMemberFlags.All ⇒
+Calculates the bitwise OR of all the values in the GuildMemberFlags.Flags objectand assigns the result to the GuildMemberFlags.All property.
 
 **Kind**: static property of [<code>GuildMemberFlags</code>](#GuildMemberFlags)  
-**Read only**: true  
+**Returns**: The calculated value of GuildMemberFlags.All.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| All | <code>bigint</code> | All bit value. |
+
 <a name="GuildMemberFlags.Flags"></a>
 
 ### GuildMemberFlags.Flags : <code>enum</code>
-The flags for a guild member.
+Represents the flags associated with a guild member.
 
 **Kind**: static enum of [<code>GuildMemberFlags</code>](#GuildMemberFlags)  
 **Read only**: true  
@@ -45,8 +56,8 @@ The flags for a guild member.
 
 | Name | Type | Default |
 | --- | --- | --- |
-| Did_Rejoin | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Completed_Onboarding | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Bypasses_Verification | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Started_Onboarding | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
+| Did_Rejoin | <code>bigint</code> | <code></code> | 
+| Completed_Onboarding | <code>bigint</code> | <code></code> | 
+| Bypasses_Verification | <code>bigint</code> | <code></code> | 
+| Started_Onboarding | <code>bigint</code> | <code></code> | 
 

@@ -2,23 +2,29 @@ const Emoji = require("../Structures/Emoji");
 const Util = require("../Util/Util");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages emojis */
+/**
+ * Represents a manager for handling emojis in a guild.
+ * @class
+ * @extends Base
+ */
 class EmojiManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It takes an emoji object, and returns an emoji object
-   * @param emojis - The emoji(s) to add to the cache. Can be an emoji object, an emoji ID, or an emoji
-   * name.
-   * @param [guildId] - The ID of the guild the emoji is in.
-   * @param [options] - cache = true, force = false
-   * @returns A new Emoji object
+   * Adds an emoji to the cache and returns the emoji object.
+   * @param {string | EmojiResolvable} emojis - The emoji or emoji ID to add to the cache.
+   * @param {string} [guildId=this.guildId] - The ID of the guild where the emoji belongs.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the emoji.
+   * @param {boolean} [options.cache=true] - Whether to cache the emoji object.
+   * @param {boolean} [options.force=false] - Whether to force re-fetching the emoji from the API.
+   * @returns {Emoji | null} The added emoji object, or null if no emoji is provided.
    */
   _add(emojis, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!emojis) return null;
@@ -52,9 +58,10 @@ class EmojiManager extends Base {
   }
 
   /**
-   * It creates a new emoji
-   * @param [options] - Object
-   * @returns A new emoji object
+   * Creates a new emoji in the guild.
+   * @param {Object} [options] - The options for creating the emoji.
+   * @param {string} [options.reason] - The reason for creating the emoji.
+   * @returns {Promise<Emoji>} A promise that resolves with the created emoji.
    */
   async create(options = {}) {
     const {reason} = options;
@@ -67,10 +74,11 @@ class EmojiManager extends Base {
   }
 
   /**
-   * It edits an emoji
-   * @param emoji - The emoji to edit. Can be an emoji object, or an emoji ID.
-   * @param [options] - Object
-   * @returns The emoji object
+   * Edits an emoji in the guild.
+   * @param {string | Emoji} emoji - The emoji to edit. Can be either the emoji ID or the Emoji object.
+   * @param {Object} [options] - Additional options for editing the emoji.
+   * @param {string} [options.reason] - The reason for editing the emoji.
+   * @returns {Promise<Emoji>} A promise that resolves with the edited emoji.
    */
   async edit(emoji, options = {}) {
     const {reason} = options;
@@ -84,10 +92,11 @@ class EmojiManager extends Base {
   }
 
   /**
-   * It deletes an emoji from the guild
-   * @param emoji - The emoji to delete. Can be a string or an Emoji object.
-   * @param reason - The reason for the deletion.
-   * @returns The deleted emoji
+   * Deletes an emoji from the guild.
+   * @param {string | Emoji} emoji - The emoji to delete. Can be either the emoji ID or the Emoji object.
+   * @param {string} reason - The reason for deleting the emoji.
+   * @returns {Promise<Emoji>} - The deleted emoji.
+   * @throws {Error} - If the deletion fails.
    */
   async delete(emoji, reason) {
     const emojiId = typeof emoji === "string" ? emoji : emoji?.id;
@@ -97,10 +106,12 @@ class EmojiManager extends Base {
   }
 
   /**
-   * It fetches all the emojis in the guild
-   * @param emoji - The emoji to fetch. Can be an emoji object, an emoji ID, or an emoji name.
-   * @param options - An object containing the following properties:
-   * @returns A new cache constructor
+   * Fetches an emoji from the guild's emoji list.
+   * @param {string | object} emoji - The emoji to fetch. Can be either an emoji ID or a string representation of the emoji.
+   * @param {object} [options] - Additional options for the fetch operation.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched emoji.
+   * @param {boolean} [options.force=false] - Whether to force the fetch operation even if the emoji is already cached.
+   * @returns {Promise<EmojiCache>} A promise that resolves to the fetched emoji.
    */
   async fetch(emoji, options) {
     if (typeof emoji?.id !== "undefined" || typeof emoji === "string") return this._fetchId(emoji, options?.cache, options?.force);
@@ -111,11 +122,11 @@ class EmojiManager extends Base {
   }
 
   /**
-   * It fetches an emoji from the API and adds it to the cache
-   * @param emoji - The emoji to fetch. Can be a string or an Emoji object.
-   * @param [cache=true] - Whether or not to cache the emoji.
-   * @param [force=false] - If true, it will force the cache to be updated.
-   * @returns The emoji object
+   * Fetches the ID of an emoji from the guild.
+   * @param {string | Emoji} emoji - The emoji or the ID of the emoji to fetch.
+   * @param {boolean} [cache=true] - Whether to cache the fetched emoji.
+   * @param {boolean} [force=false] - Whether to force fetch the emoji even if it is already cached.
+   * @returns {Promise<Emoji>} - A promise that resolves to the fetched emoji.
    */
   async _fetchId(emoji, cache = true, force = false) {
     const emojiId = typeof emoji === "string" ? emoji : emoji?.id;
@@ -125,19 +136,18 @@ class EmojiManager extends Base {
   }
 
   /**
-   * It transforms the roles object into a string.
-   * @param [roles] - The roles that the user has.
-   * @returns The roles object is being returned.
+   * Transforms the given roles object into a string or returns the id property of the roles object.
+   * @param {Object} roles - The roles object to transform.
+   * @returns {string | undefined} - The transformed roles as a string or the id property of the roles object.
    */
   static transformRoles(roles = {}) {
     return typeof roles === "string" ? roles : roles?.id ?? undefined;
   }
 
   /**
-   * It takes an object with a name, image, and roles property, and returns an object with the same
-   * properties, but with the image property being a data URI
-   * @param o - The options object.
-   * @returns A new object with the name, image, and roles properties.
+   * Transforms the given options object into a new object with modified properties.
+   * @param {Object} o - The options object to transform.
+   * @returns {Promise<Object>} - A promise that resolves to the transformed options object.
    */
   static async transformOptions(o) {
     return {
@@ -148,8 +158,8 @@ class EmojiManager extends Base {
   }
 
   /**
-   * `return Collection`
-   * @returns The Collection class
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;

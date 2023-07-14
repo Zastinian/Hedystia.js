@@ -1,7 +1,7 @@
 <a name="Role"></a>
 
 ## Role ⇐ <code>Base</code>
-It's a class that represents a role in a guild
+Represents a role in a guild.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
@@ -9,229 +9,240 @@ It's a class that represents a role in a guild
 * [Role](#Role) ⇐ <code>Base</code>
     * [new Role([data], guildId, client)](#new_Role_new)
     * [.guild](#Role+guild) ⇒
-    * [.members](#Role+members) ⇒
-    * [.fetch([options])](#Role+fetch) ⇒
-    * [.edit([options])](#Role+edit) ⇒
-    * [.delete(reason)](#Role+delete) ⇒
-    * [.clone()](#Role+clone) ⇒
-    * [.setName(name, reason)](#Role+setName) ⇒
-    * [.setPermissions(permissions, reason)](#Role+setPermissions) ⇒
-    * [.setColor(color, reason)](#Role+setColor) ⇒
-    * [.setHoist(hoist, reason)](#Role+setHoist) ⇒
-    * [.setIcon(icon, reason)](#Role+setIcon) ⇒
-    * [.setUnicodeEmoji(unicodeEmoji, reason)](#Role+setUnicodeEmoji) ⇒
-    * [.setMentionable(mentionable, reason)](#Role+setMentionable) ⇒
-    * [.setPosition(position, reason)](#Role+setPosition) ⇒
-    * [.permissionsIn(channel)](#Role+permissionsIn) ⇒
-    * [.deniedPermissionsIn(channel)](#Role+deniedPermissionsIn) ⇒
-    * [.iconURL([options])](#Role+iconURL) ⇒
+    * [.members](#Role+members) ⇒ <code>Collection.&lt;Snowflake, GuildMember&gt;</code>
+    * [.fetch([options])](#Role+fetch) ⇒ <code>Promise</code>
+    * [.edit(options)](#Role+edit) ⇒ <code>Promise</code>
+    * [.delete(reason)](#Role+delete) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.clone()](#Role+clone) ⇒ [<code>Promise.&lt;Role&gt;</code>](#Role)
+    * [.setName(name, reason)](#Role+setName) ⇒ <code>Promise</code>
+    * [.setPermissions(permissions, reason)](#Role+setPermissions) ⇒ <code>Promise</code>
+    * [.setColor(color, reason)](#Role+setColor) ⇒ <code>Promise</code>
+    * [.setHoist(hoist, reason)](#Role+setHoist) ⇒ <code>Promise</code>
+    * [.setIcon(icon, reason)](#Role+setIcon) ⇒ <code>Promise</code>
+    * [.setUnicodeEmoji(unicodeEmoji, reason)](#Role+setUnicodeEmoji) ⇒ <code>Promise</code>
+    * [.setMentionable(mentionable, reason)](#Role+setMentionable) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.setPosition(position, reason)](#Role+setPosition) ⇒ [<code>Promise.&lt;Role&gt;</code>](#Role)
+    * [.permissionsIn(channel)](#Role+permissionsIn) ⇒ <code>Permissions</code>
+    * [.deniedPermissionsIn(channel)](#Role+deniedPermissionsIn) ⇒ <code>PermissionFlags</code> \| <code>null</code>
+    * [.iconURL(options)](#Role+iconURL) ⇒ <code>string</code> \| <code>null</code>
 
 <a name="new_Role_new"></a>
 
 ### new Role([data], guildId, client)
-It's a constructor for a class called Role.
+Constructs a new Role object.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was received from the API. |
-| guildId | The ID of the guild the role is in |
-| client | Discord.Client |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the role. |
+| guildId | <code>string</code> | The ID of the guild that the role belongs to. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="Role+guild"></a>
 
 ### role.guild ⇒
-If the guild is not in the cache, add it to the cache. If it is in the cache, return it. If it isnot in the cache and cannot be added to the cache, return null.
+Retrieves the guild associated with this guildId.
 
 **Kind**: instance property of [<code>Role</code>](#Role)  
-**Returns**: The guild object.  
+**Returns**: The guild object if found, otherwise null.  
 <a name="Role+members"></a>
 
-### role.members ⇒
-It returns an array of all the members that have the role
+### role.members ⇒ <code>Collection.&lt;Snowflake, GuildMember&gt;</code>
+Retrieves the members of the guild who have the specified role.
 
 **Kind**: instance property of [<code>Role</code>](#Role)  
-**Returns**: A collection of members that have the role.  
+**Returns**: <code>Collection.&lt;Snowflake, GuildMember&gt;</code> - A collection of guild members who have the role.  
 <a name="Role+fetch"></a>
 
-### role.fetch([options]) ⇒
-It fetches the role from the guild
+### role.fetch([options]) ⇒ <code>Promise</code>
+Fetches the roles for the guild.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The role object.  
+**Returns**: <code>Promise</code> - A promise that resolves with the fetched roles.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Fetch options. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | Optional parameters for the fetch operation. |
 
 <a name="Role+edit"></a>
 
-### role.edit([options]) ⇒
-It edits the role
+### role.edit(options) ⇒ <code>Promise</code>
+Edits the role with the specified options.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The return value is the edited role.  
+**Returns**: <code>Promise</code> - A promise that resolves when the role has been edited.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options to edit the role with. |
 
 <a name="Role+delete"></a>
 
-### role.delete(reason) ⇒
-It deletes the role
+### role.delete(reason) ⇒ <code>Promise.&lt;void&gt;</code>
+Deletes the role from the guild.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The role object.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the role is deleted.  
 
-| Param | Description |
-| --- | --- |
-| reason | The reason for the deletion. |
+| Param | Type | Description |
+| --- | --- | --- |
+| reason | <code>string</code> | The reason for deleting the role. |
 
 <a name="Role+clone"></a>
 
-### role.clone() ⇒
-It clones the role
+### role.clone() ⇒ [<code>Promise.&lt;Role&gt;</code>](#Role)
+Clones the current role.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The cloned role.  
+**Returns**: [<code>Promise.&lt;Role&gt;</code>](#Role) - A promise that resolves to the cloned role.  
 <a name="Role+setName"></a>
 
-### role.setName(name, reason) ⇒
-It edits the name of the channel
+### role.setName(name, reason) ⇒ <code>Promise</code>
+Sets the name of an object and provides a reason for the change.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The name of the channel.  
+**Returns**: <code>Promise</code> - A promise that resolves when the name is successfully set.  
 
-| Param | Description |
-| --- | --- |
-| name | The new name of the channel. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The new name to set. |
+| reason | <code>string</code> | The reason for changing the name. |
 
 <a name="Role+setPermissions"></a>
 
-### role.setPermissions(permissions, reason) ⇒
-It edits the permissions of a role
+### role.setPermissions(permissions, reason) ⇒ <code>Promise</code>
+Sets the permissions for an entity with the given reason.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The permissions object.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the permissions are set.  
 
-| Param | Description |
-| --- | --- |
-| permissions | The permissions to set on the role. |
-| reason | The reason for the update. |
+| Param | Type | Description |
+| --- | --- | --- |
+| permissions | <code>Object</code> | The permissions to set for the entity. |
+| reason | <code>string</code> | The reason for setting the permissions. |
 
 <a name="Role+setColor"></a>
 
-### role.setColor(color, reason) ⇒
-It sets the color of the embed
+### role.setColor(color, reason) ⇒ <code>Promise</code>
+Sets the color of an object and provides a reason for the change.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The color and reason.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the color is successfully set.  
 
-| Param | Description |
-| --- | --- |
-| color | The color of the embed. |
-| reason | The reason for the role color change. |
+| Param | Type | Description |
+| --- | --- | --- |
+| color | <code>string</code> | The new color to set. |
+| reason | <code>string</code> | The reason for the color change. |
 
 <a name="Role+setHoist"></a>
 
-### role.setHoist(hoist, reason) ⇒
-It sets the role's hoist property to the value of the hoist parameter
+### role.setHoist(hoist, reason) ⇒ <code>Promise</code>
+Sets the hoist value and reason for a specific item.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The role object.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the hoist value is set.  
 
-| Param | Description |
-| --- | --- |
-| hoist | Boolean - Whether or not to hoist the role in the user list. |
-| reason | The reason for the role update. |
+| Param | Type | Description |
+| --- | --- | --- |
+| hoist | <code>boolean</code> | The hoist value to set. |
+| reason | <code>string</code> | The reason for setting the hoist value. |
 
 <a name="Role+setIcon"></a>
 
-### role.setIcon(icon, reason) ⇒
-It sets the icon of the guild
+### role.setIcon(icon, reason) ⇒ <code>Promise</code>
+Sets the icon of an object and provides a reason for the change.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The return value of the edit function.  
+**Returns**: <code>Promise</code> - A promise that resolves when the icon is successfully set.  
 
-| Param | Description |
-| --- | --- |
-| icon | The icon of the guild. |
-| reason | The reason for the change (maximum 256 characters) |
+| Param | Type | Description |
+| --- | --- | --- |
+| icon | <code>any</code> | The new icon to set. |
+| reason | <code>string</code> | The reason for changing the icon. |
 
 <a name="Role+setUnicodeEmoji"></a>
 
-### role.setUnicodeEmoji(unicodeEmoji, reason) ⇒
-This function edits the emoji with the unicode emoji and reason.
+### role.setUnicodeEmoji(unicodeEmoji, reason) ⇒ <code>Promise</code>
+Sets the unicode emoji for an entity.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The return value of the edit method.  
+**Returns**: <code>Promise</code> - A promise that resolves when the unicode emoji is set.  
 
-| Param | Description |
-| --- | --- |
-| unicodeEmoji | The unicode emoji to set. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| unicodeEmoji | <code>string</code> | The unicode emoji to set. |
+| reason | <code>string</code> | The reason for setting the unicode emoji. |
 
 <a name="Role+setMentionable"></a>
 
-### role.setMentionable(mentionable, reason) ⇒
-It sets the role to be mentionable or not.
+### role.setMentionable(mentionable, reason) ⇒ <code>Promise.&lt;void&gt;</code>
+Sets the mentionable status of an entity.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The role object.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the mentionable status is set.  
 
-| Param | Description |
-| --- | --- |
-| mentionable | Boolean - Whether the role should be mentionable or not |
-| reason | The reason for the role update. |
+| Param | Type | Description |
+| --- | --- | --- |
+| mentionable | <code>boolean</code> | Whether the entity should be mentionable or not. |
+| reason | <code>string</code> | The reason for setting the mentionable status. |
 
 <a name="Role+setPosition"></a>
 
-### role.setPosition(position, reason) ⇒
-It sets the position of a role
+### role.setPosition(position, reason) ⇒ [<code>Promise.&lt;Role&gt;</code>](#Role)
+Sets the position of the role within the guild's role hierarchy.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The role object.  
+**Returns**: [<code>Promise.&lt;Role&gt;</code>](#Role) - - A promise that resolves to the modified Role object.  
 
-| Param | Description |
-| --- | --- |
-| position | The position you want to set the role to. |
-| reason | The reason for the change. |
+| Param | Type | Description |
+| --- | --- | --- |
+| position | <code>number</code> | The new position of the role. |
+| reason | <code>string</code> | The reason for modifying the role's position. |
 
 <a name="Role+permissionsIn"></a>
 
-### role.permissionsIn(channel) ⇒
-It returns the permissions of a user in a channel
+### role.permissionsIn(channel) ⇒ <code>Permissions</code>
+Retrieves the permissions of the bot in the specified channel.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The permissions of the user in the channel.  
+**Returns**: <code>Permissions</code> - - The permissions of the bot in the channel.  
+**Throws**:
 
-| Param | Description |
-| --- | --- |
-| channel | The channel to get the permissions for. |
+- <code>RangeError</code> - If the channel is not cached.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| channel | <code>string</code> \| <code>Channel</code> | The channel to check permissions in. |
 
 <a name="Role+deniedPermissionsIn"></a>
 
-### role.deniedPermissionsIn(channel) ⇒
-It returns the permissions that the role is denied in the channel
+### role.deniedPermissionsIn(channel) ⇒ <code>PermissionFlags</code> \| <code>null</code>
+Retrieves the denied permissions for the specified channel.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The permissions that are denied to the role.  
+**Returns**: <code>PermissionFlags</code> \| <code>null</code> - - The denied permissions for the channel, or null if no permissions are found.  
+**Throws**:
 
-| Param | Description |
-| --- | --- |
-| channel | The channel to check the permissions in. |
+- <code>RangeError</code> - If the channel is not cached.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| channel | <code>string</code> \| <code>Channel</code> | The channel or channel ID to retrieve the permissions from. |
 
 <a name="Role+iconURL"></a>
 
-### role.iconURL([options]) ⇒
-"If the role has an icon, return the role's icon URL, otherwise return null."The function takes an optional parameter, options, which is an object
+### role.iconURL(options) ⇒ <code>string</code> \| <code>null</code>
+Returns the URL of the icon for this role.
 
 **Kind**: instance method of [<code>Role</code>](#Role)  
-**Returns**: The URL of the role's icon.  
+**Returns**: <code>string</code> \| <code>null</code> - The URL of the icon, or null if no icon is available.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | An optional object containing additional options for the icon URL. |
+| [options.dynamic] | <code>boolean</code> | Whether the icon should be dynamically generated. |
+| [options.size] | <code>number</code> | The desired size of the icon. |
+| [options.format] | <code>string</code> | The desired format of the icon. |
 

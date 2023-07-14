@@ -5,12 +5,11 @@ Channel class.
  */
 class TextBasedChannels extends Channel {
   /**
-   * It's a constructor function that takes in a data object, a guildId, and a client, and then sets the
-   * rateLimitPerUser, lastPinnedAt, lastPinnedTimestamp, lastMessageId, and nsfw properties of the
-   * object to the values of the corresponding keys in the data object, or null if the key doesn't exist.
-   * @param [data] - The data that was passed to the constructor.
-   * @param guildId - The ID of the guild the channel is in.
-   * @param client - The client that instantiated the channel.
+   * Constructs a new instance of the Channel class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the channel information.
+   * @param {string} guildId - The ID of the guild that the channel belongs to.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
@@ -22,55 +21,55 @@ class TextBasedChannels extends Channel {
   }
 
   /**
-   * It returns a new MessageManager object, which is a class that manages messages
-   * @returns A new instance of the MessageManager class.
+   * Get the message manager for this channel.
+   * @returns {MessageManager} The message manager object for this channel.
    */
   get messages() {
     return new MessageManager(this.guildId, this.id, this.client);
   }
 
   /**
-   * It sends a message to the channel
-   * @param options - An object containing the message to send.
-   * @returns The return value of the send() method.
+   * Sends a message using the specified options.
+   * @param {object} options - The options for sending the message.
+   * @returns {Promise} A promise that resolves when the message is sent.
    */
   async send(options) {
     return await this.messages.send(this.id, options);
   }
 
   /**
-   * It deletes messages in bulk
-   * @param messages - The messages to delete.
-   * @param reason - The reason for the bulk delete.
-   * @returns The return value of the function.
+   * Bulk deletes the specified messages from the channel.
+   * @param {Array<Message>} messages - The messages to delete.
+   * @param {string} reason - The reason for deleting the messages.
+   * @returns {Promise<void>} A promise that resolves when the messages are deleted.
    */
   async bulkDelete(messages, reason) {
     return await this.messages.bulkDelete(this.id, messages, reason);
   }
 
   /**
-   * It edits the channel's nsfw property
-   * @param nsfw - Boolean - Whether the channel is nsfw or not.
-   * @param reason - The reason for the edit.
-   * @returns The return value of the edit method.
+   * Sets the NSFW (Not Safe for Work) flag for the current item.
+   * @param {boolean} nsfw - The NSFW flag value to set.
+   * @param {string} reason - The reason for setting the NSFW flag.
+   * @returns {Promise} - A promise that resolves when the NSFW flag is successfully set.
    */
   async setNsfw(nsfw, reason) {
     return await this.edit({nsfw, reason});
   }
 
   /**
-   * It edits the ratelimit of the command
-   * @param ratelimit - The ratelimit to set.
-   * @param reason - The reason for the ratelimit.
-   * @returns The return value of the edit function.
+   * Sets the rate limit per user for a specific action.
+   * @param {number} ratelimit - The new rate limit value to set.
+   * @param {string} reason - The reason for setting the rate limit.
+   * @returns {Promise} - A promise that resolves when the rate limit is successfully set.
    */
   async setRateLimitPerUser(ratelimit, reason) {
     return await this.edit({ratelimit, reason});
   }
 
   /**
-   * It triggers typing in the channel
-   * @returns The return value of the function.
+   * Triggers a typing indicator in the channel where this method is called.
+   * @returns {Promise<void>} - A promise that resolves when the typing indicator is triggered.
    */
   async triggerTyping() {
     return await this.client.channels.triggerTyping(this);

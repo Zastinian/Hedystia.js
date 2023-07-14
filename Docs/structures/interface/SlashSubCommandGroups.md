@@ -1,15 +1,18 @@
 <a name="SlashSubCommandGroups"></a>
 
-## SlashSubCommandGroups
+## SlashSubCommandGroups ⇐ <code>Base</code>
+Represents a sub-command group for a slash command.
+
 **Kind**: global class  
+**Extends**: <code>Base</code>  
 <a name="new_SlashSubCommandGroups_new"></a>
 
 ### new SlashSubCommandGroups([data], client)
-It creates a new SlashSubCommandGroup object, which is a collection of SlashSubCommand objects
+Constructs a new instance of the Sub_Command_Group class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| client | The client that the command is being registered to. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the sub-command group. |
+| client | <code>Client</code> | The client object. |
 

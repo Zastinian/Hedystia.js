@@ -4,16 +4,15 @@ const {Opcodes} = require("../Util/Constants");
  * The `Hello` class is a subclass of `Base` that handles the initialization of an object with optional
 data and a client parameter, sets up a heartbeat interval, and handles reconnection or resumption of
 a WebSocket connection.
- * @class
- * @extends Base
  */
 class Hello extends Base {
   /**
    * This is a constructor function that initializes an object with optional data and a client
    * parameter.
-   * @param [data] - The `data` parameter is an object that contains the initial data for the
+   * @constructor
+   * @param {Object} data - The `data` parameter is an object that contains the initial data for the
    * constructor. It is optional and defaults to an empty object if not provided.
-   * @param client - The `client` parameter is an object that represents the client or connection to a
+   * @param {Client} client - The `client` parameter is an object that represents the client or connection to a
    * server. It is typically used to make API requests or perform other operations related to the
    * server.
    */

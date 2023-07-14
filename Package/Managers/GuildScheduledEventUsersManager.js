@@ -1,13 +1,18 @@
 const GuildScheduledEventUser = require("../Structures/GuildScheduledEventUser");
 const {RaidenCol} = require("../Util/@Collections/RaidenCol");
 const Base = require("../Base/base");
-/* It's a manager for the scheduled event users of a guild */
+/**
+ * Represents a manager for handling guild scheduled event users.
+ * @class
+ * @extends Base
+ */
 class GuildScheduledEventUsersManager extends Base {
   /**
-   * It's a constructor for the class
-   * @param event - The event that was triggered.
-   * @param guildId - The ID of the guild the event is being emitted in.
-   * @param client - The client object
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Event} event - The event object.
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(event, guildId, client) {
     super(client);
@@ -17,12 +22,10 @@ class GuildScheduledEventUsersManager extends Base {
   }
 
   /**
-   * If the scheduledEventUser is a string, it's a user ID, so we return a partial
-   * GuildScheduledEventUser object with the user ID and member ID. If it's an object, we return a full
-   * GuildScheduledEventUser object
-   * @param scheduledEventUser - The scheduled event user object.
-   * @param event - The event to get the scheduled event user from.
-   * @returns A new GuildScheduledEventUser
+   * Resolves a scheduled event user and returns a GuildScheduledEventUser object.
+   * @param {string | null} scheduledEventUser - The scheduled event user to resolve.
+   * @param {object} event - The event object.
+   * @returns {GuildScheduledEventUser | null} - The resolved GuildScheduledEventUser object or null if scheduledEventUser is falsy.
    */
   resolve(scheduledEventUser, event) {
     if (!scheduledEventUser) return null;
@@ -42,10 +45,10 @@ class GuildScheduledEventUsersManager extends Base {
   }
 
   /**
-   * It fetches the users of a scheduled event
-   * @param [event] - The event to fetch the users for. Can be a string or a GuildScheduledEvent object.
-   * @param [options] - An object with the following properties:
-   * @returns A RaidenCol of GuildScheduledEventUser objects
+   * Fetches the users associated with a scheduled event in a guild.
+   * @param {Event | string} [event=this.event] - The event object or event ID.
+   * @param {object} [options] - Additional options for the fetch request.
+   * @returns {Promise<RaidenCol>} - A promise that resolves to a RaidenCol object containing the fetched users.
    */
   async fetch(event = this.event, options = {}) {
     const query = GuildScheduledEventUsersManager.transformQuery(options);
@@ -55,15 +58,10 @@ class GuildScheduledEventUsersManager extends Base {
   }
 
   /**
-   * It takes a query object and returns a new query object with the same properties, but with some of
-   * them transformed
-   * @param [query] - The query object that was passed to the route.
-   * @returns An object with the following properties:
-   *   limit: The value of the query.limit property, or 100 if query.limit is undefined.
-   *   with_member: The value of the query.withMember property, or undefined if query.withMember is
-   * undefined.
-   *   before: The value of the query.before property, or undefined if query.before is undefined.
-   *   after
+   * Transforms a query object into a formatted query object with default values and
+   * proper type checking.
+   * @param {Object} query - The query object to transform.
+   * @returns {Object} - The transformed query object.
    */
   static transformQuery(query = {}) {
     return {

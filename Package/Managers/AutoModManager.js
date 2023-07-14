@@ -2,22 +2,29 @@ const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
 const GuildAutoMod = require("../Structures/GuildAutoMod");
 const {GuildAutoModEventTypes, GuildAutoModTriggerTypes, GuildAutoModPresetTypes, GuildAutoModActionTypes} = require("../Util/Constants");
-/* It's a manager for the guild's automod rules */
+/**
+ * Represents an AutoMod manager that handles the creation, editing, and deletion of auto-moderation rules for a guild.
+ * @class
+ * @extends Base
+ */
 class AutoModManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It adds a rule to the cache
-   * @param rules - The rule object or ID of the rule to add.
-   * @param [guildId] - The ID of the guild to fetch the rule from.
-   * @param [options] - cache = true, force = false
-   * @returns The rule object
+   * Adds a rule to the guild's auto moderation system.
+   * @param {string | Rule} rules - The rule to add. Can be either a rule ID or a Rule object.
+   * @param {string} [guildId=this.guildId] - The ID of the guild to add the rule to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the rule.
+   * @param {boolean} [options.cache=true] - Whether to cache the added rule.
+   * @param {boolean} [options.force=false] - Whether to force adding the rule even if it already exists in the cache.
+   * @returns {Rule | null} The added rule, or null if
    */
   _add(rules, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!rules) return null;
@@ -46,10 +53,12 @@ class AutoModManager extends Base {
   }
 
   /**
-   * It fetches all the rules from the API and returns them in a cache
-   * @param rule - The rule ID or object.
-   * @param options - An object containing the following properties:
-   * @returns An array of objects.
+   * Fetches auto-moderation rules from the server based on the provided rule and options.
+   * @param {string | object} rule - The rule ID or an object containing the rule details.
+   * @param {object} [options] - Additional options for the fetch request.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched rules.
+   * @param {boolean} [options.force=false] - Whether to force the fetch request even if the rules are already cached.
+   * @returns {Promise<object>} - A promise that resolves to the fetched auto-moderation rules.
    */
   async fetch(rule, options) {
     if (typeof rule?.id !== "undefined" || typeof rule === "string") return this._fetchId(rule, options?.cache, options?.force);
@@ -60,11 +69,11 @@ class AutoModManager extends Base {
   }
 
   /**
-   * It fetches a rule from the API and adds it to the cache
-   * @param rule - The rule to fetch. Can be a string or a rule object.
-   * @param [cache=true] - Whether or not to cache the rule.
-   * @param [force=false] - If true, it will force the cache to be updated.
-   * @returns The rule object
+   * Fetches the ID of a rule from the auto-moderation rules in a guild.
+   * @param {string | { id: string }} rule - The rule ID or an object containing the rule ID.
+   * @param {boolean} [cache=true] - Whether to cache the fetched rule.
+   * @param {boolean} [force=false] - Whether to force fetching the rule even if it is already cached.
+   * @returns {Promise<any>} - A promise that resolves to the fetched rule.
    */
   async _fetchId(rule, cache = true, force = false) {
     const ruleId = typeof rule === "string" ? rule : rule.id;
@@ -74,9 +83,10 @@ class AutoModManager extends Base {
   }
 
   /**
-   * It creates a new rule
-   * @param [options] - The options for the rule.
-   * @returns A new rule object
+   * Creates a new auto-moderation rule for the guild.
+   * @param {Object} [options] - The options for creating the rule.
+   * @param {string} [options.reason] - The reason for creating the rule.
+   * @returns {Promise} A promise that resolves with the created rule.
    */
   async create(options = {}) {
     const {reason} = options;
@@ -86,10 +96,11 @@ class AutoModManager extends Base {
   }
 
   /**
-   * It edits an existing rule
-   * @param rule - The rule to edit. Can be a rule object or a rule ID.
-   * @param [options] - Object
-   * @returns The rule that was edited.
+   * Edits an auto-moderation rule in the guild.
+   * @param {string | Rule} rule - The ID or the rule object to edit.
+   * @param {Object} [options] - Additional options for the edit operation.
+   * @param {string} [options.reason] - The reason for the edit.
+   * @returns {Promise<Rule>} A promise that resolves with the edited rule.
    */
   async edit(rule, options = {}) {
     const {reason} = options;
@@ -100,10 +111,10 @@ class AutoModManager extends Base {
   }
 
   /**
-   * It deletes a rule from the server
-   * @param rule - The rule to delete. Can be a rule ID or a rule object.
-   * @param reason - The reason for the deletion.
-   * @returns The deleted rule.
+   * Deletes an auto-moderation rule from the guild.
+   * @param {string | Rule} rule - The ID or the rule object to delete.
+   * @param {string} reason - The reason for deleting the rule.
+   * @returns {Promise<Rule>} - The deleted rule object.
    */
   async delete(rule, reason) {
     const ruleId = typeof rule === "string" ? rule : rule.id;
@@ -113,18 +124,17 @@ class AutoModManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection class.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It takes a payload object and returns a new object with the same properties, but with the values
-   * transformed to match the API's expected format
-   * @param [payload] - The payload to transform.
-   * @returns The payload is being returned.
+   * Transforms the payload object into a new format.
+   * @param {Object} payload - The payload object to transform.
+   * @returns {Object} - The transformed payload object.
    */
   static transformPayload(payload = {}) {
     return {
@@ -140,10 +150,9 @@ class AutoModManager extends Base {
   }
 
   /**
-   * It takes an object with a `type` property and an optional `metadata` property, and returns an
-   * object with a `type` property and an optional `metadata` property
-   * @param [actions] - The actions to transform.
-   * @returns An object with a type and metadata property.
+   * Transforms the actions object into a new format.
+   * @param {Object} actions - The actions object to transform.
+   * @returns {Object} - The transformed actions object.
    */
   static transformActions(actions = {}) {
     return {
@@ -159,11 +168,9 @@ class AutoModManager extends Base {
   }
 
   /**
-   * It takes in a metadata object, and returns a new object with the same properties, but with the
-   * properties renamed to match the new naming scheme
-   * @param [metadata] - The metadata object that is passed to the constructor of the plugin.
-   * @returns The return value is the metadata object with the values of the metadata object being
-   * assigned to the keys of the new object.
+   * Transforms the given metadata object into a new format.
+   * @param {Object} metadata - The metadata object to transform.
+   * @returns {Object} - The transformed metadata object.
    */
   static transformMetadata(metadata = {}) {
     return {

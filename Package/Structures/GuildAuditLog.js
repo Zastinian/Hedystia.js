@@ -5,19 +5,17 @@ const GuildAutoMod = require("./GuildAutoMod");
 const Webhook = require("./Webhook");
 /**
  * Represents an audit log for a guild.
- *
  * @class
  * @extends Base
  **/
 class GuildAuditLog extends Base {
   /**
-   * Constructs a new `GuildAuditLog` object.
-   *
+   * Constructs a new instance of the Guild class.
    * @constructor
-   * @param {Object} [data={}] - The audit log data.
+   * @param {Object} [data] - The data object containing guild information.
    * @param {string} guildId - The ID of the guild.
-   * @param {Client} client - The client object.
-   **/
+   * @param {Client} client - The client instance.
+   */
   constructor(data = {}, guildId, client) {
     super(client);
     this.guildId = guildId;

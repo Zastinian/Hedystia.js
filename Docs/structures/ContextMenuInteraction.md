@@ -1,16 +1,26 @@
 <a name="ContextMenuInteraction"></a>
 
-## ContextMenuInteraction
+## ContextMenuInteraction ⇐ <code>ApplicationCommandInteraction</code>
+Represents a context menu interaction, extending the base ApplicationCommandInteraction class.
+
 **Kind**: global class  
+**Extends**: <code>ApplicationCommandInteraction</code>  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| targetId | <code>string</code> \| <code>null</code> | The ID of the target of the interaction, if available. |
+| resolved | <code>Object</code> \| <code>null</code> | The resolved data of the interaction, if available. |
+
 <a name="new_ContextMenuInteraction_new"></a>
 
 ### new ContextMenuInteraction([data], guildId, client)
-It's a constructor function that takes in data, guildId, and client as parameters. It then calls thesuper function, which is a function that is inherited from the parent class. It then sets thetargetId and resolved properties to the data that is passed in.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was sent from the API. |
-| guildId | The ID of the guild the case is in |
-| client | The client that the event was emitted from |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing information about the interaction. |
+| guildId | <code>string</code> | The ID of the guild where the interaction occurred. |
+| client | <code>Client</code> | The client instance associated with the interaction. |
 

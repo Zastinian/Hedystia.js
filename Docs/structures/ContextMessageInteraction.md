@@ -1,16 +1,19 @@
 <a name="ContextMessageInteraction"></a>
 
-## ContextMessageInteraction
+## ContextMessageInteraction ⇐ <code>ContextMenuInteraction</code>
+Represents a context menu interaction for a message in a specific context.
+
 **Kind**: global class  
+**Extends**: <code>ContextMenuInteraction</code>  
 <a name="new_ContextMessageInteraction_new"></a>
 
 ### new ContextMessageInteraction([data], guildId, client)
-It's a constructor for the class.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| guildId | The ID of the guild the role is in. |
-| client | The client that instantiated the object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object to initialize the instance with. |
+| guildId | <code>string</code> | The ID of the guild associated with the instance. |
+| client | <code>Client</code> | The client instance associated with the instance. |
 

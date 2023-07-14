@@ -4,22 +4,29 @@ const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
 const FetchedThreads = require("../Structures/FetchedThreads");
 const Util = require("../Util/Util");
-/* It's a class that manages threads */
+/**
+ * Represents a base thread manager that handles operations related to thread channels.
+ * @class
+ * @extends Base
+ */
 class BaseThreadManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It adds a thread to the cache
-   * @param threads - The thread object or thread ID.
-   * @param [guildId] - The guild ID of the guild the thread is in.
-   * @param [options] - cache = true, force = true
-   * @returns A thread object
+   * Adds a thread to the guild's thread cache.
+   * @param {string | ThreadChannelResolvable} threads - The thread or thread ID to add.
+   * @param {Snowflake} [guildId=this.guildId] - The ID of the guild where the thread belongs.
+   * @param {Object} [options] - Additional options for adding the thread.
+   * @param {boolean} [options.cache=true] - Whether to cache the thread.
+   * @param {boolean} [options.force=true] - Whether to force adding the thread even if it already exists in the cache.
+   * @returns {ThreadChannel | null} The added thread or null if no thread is provided.
    */
   _add(threads, guildId = this.guildId, options = {cache: true, force: true}) {
     if (!threads) return null;
@@ -48,10 +55,14 @@ class BaseThreadManager extends Base {
   }
 
   /**
-   * It creates a thread
-   * @param message - The message to create the thread from.
-   * @param options - An object containing the following parameters:
-   * @returns A new thread is being returned.
+   * Creates a new thread in the current channel with the given message and options.
+   * @param {string | object} message - The message content or message object to start the thread with.
+   * @param {object} options - The options for creating the thread.
+   * @param {string} [options.reason] - The reason for creating the thread.
+   * @param {string} [options.name] - The name of the thread.
+   * @param {string | number} [options.type] - The type of the thread. Can be a string or number.
+   * @param {boolean} [options.invitable] - Whether the thread is invitable.
+   * @param {number} [options.autoArchiveDuration] - The auto archive
    */
   async create(message, options) {
     if (typeof message === "object" && !options) options = message;
@@ -73,18 +84,18 @@ class BaseThreadManager extends Base {
   }
 
   /**
-   * It fetches a thread
-   * @param thread - The thread ID.
-   * @param [options] - An object containing additional options.
-   * @returns A channel object.
+   * Fetches a thread from the client's channels.
+   * @param {string} thread - The ID of the thread to fetch.
+   * @param {Object} [options] - Additional options for the fetch request.
+   * @returns {Promise} A promise that resolves to the fetched thread.
    */
   async fetch(thread, options = {}) {
     return await this.client.channels.fetch(thread, options);
   }
 
   /**
-   * It fetches all the active threads in a guild
-   * @returns An array of threads
+   * Fetches the active threads for the current guild.
+   * @returns {Promise<FetchedThreads>} - A promise that resolves to a FetchedThreads object containing the active threads.
    */
   async fetchActive() {
     const threads = await this.client.api.get(`${this.client.root}/guilds/${this.guildId}/threads/active`);
@@ -92,9 +103,12 @@ class BaseThreadManager extends Base {
   }
 
   /**
-   * This function fetches archived threads from a channel
-   * @param [options] - Object
-   * @returns A new FetchedThreads object
+   * Fetches archived threads based on the provided options.
+   * @param {Object} [options] - The options for fetching archived threads.
+   * @param {Date} [options.before] - The date before which the threads should be fetched.
+   * @param {number} [options.limit=25] - The maximum number of threads to fetch.
+   * @param {boolean} [options.public=false] - Whether to fetch public or private archived threads.
+   * @returns {Promise<FetchedThreads>} - A promise that resolves to a FetchedThreads object containing the fetched threads.
    */
   async fetchArchivedThread(options = {}) {
     const query = {
@@ -109,9 +123,14 @@ class BaseThreadManager extends Base {
   }
 
   /**
-   * This function fetches forum threads from the specified channel
-   * @param [query] - An object containing the following parameters:
-   * @returns An array of threads
+   * Fetches forum threads based on the provided query parameters.
+   * @param {Object} [query] - The query parameters for fetching forum threads.
+   * @param {boolean} [query.archived] - Whether to include archived threads.
+   * @param {string} [query.sortBy="last_message_time"] - The field to sort the threads by.
+   * @param {string} [query.sortOrder="desc"] - The order in which to sort the threads.
+   * @param {number} [query.limit=25] - The maximum number of threads to fetch.
+   * @param {number} [query.offset=50] - The offset from which to start fetching threads.
+   * @returns {Promise<Object>}
    */
   async fetchForumThreads(query = {}) {
     query = {
@@ -126,8 +145,8 @@ class BaseThreadManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection class.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;

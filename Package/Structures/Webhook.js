@@ -3,17 +3,20 @@ const Snowflake = require("../Util/Snowflake");
 const Base = require("../Base/base");
 const Util = require("../Util/Util");
 /**
- * It's a class that represents a webhook
+ * Represents a webhook.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data for the webhook.
+ * @param {string} guildId - The ID of the guild the webhook belongs to.
+ * @param {Client} client - The client that instantiated this webhook.
  */
 class Webhook extends Base {
   /**
-   * This function is used to create a new webhook object, and it takes in a data object, a guildId,
-   * and a client object.
-   * @param [data] - The data that was passed in.
-   * @param guildId - The ID of the guild the webhook is in
-   * @param client - Discord.Client
+   * Constructs a new instance of the Webhook class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the webhook information.
+   * @param {string} guildId - The ID of the guild the webhook belongs to.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -34,9 +37,9 @@ class Webhook extends Base {
   }
 
   /**
-   * It fetches a webhook from the Discord API
-   * @param token - The token of the webhook.
-   * @returns A new instance of the Webhook class.
+   * Fetches a webhook using the provided token.
+   * @param {string} token - The token used to authenticate the webhook.
+   * @returns {Promise<Webhook>} A promise that resolves to the fetched webhook.
    */
   async fetch(token) {
     const webhook = await this.client.api.get(`${this.client.root}/webhooks/${this.id}${token ? `/${token}` : ""}`);
@@ -44,9 +47,14 @@ class Webhook extends Base {
   }
 
   /**
-   * It edits a webhook
-   * @param [options]
-   * @returns A new instance of the Webhook class.
+   * Edits the webhook with the specified options.
+   * @param {Object} options - The options for editing the webhook.
+   * @param {string} [options.reason] - The reason for the edit.
+   * @param {string} [options.name] - The new name for the webhook.
+   * @param {string | File} [options.avatar] - The new avatar for the webhook.
+   * @param {string | Channel} [options.channel] - The new channel for the webhook.
+   * @param {string} [options.token] - The token of the webhook.
+   * @returns {Webhook} - The edited webhook.
    */
   async edit(options = {}) {
     const {reason} = options;
@@ -61,39 +69,41 @@ class Webhook extends Base {
   }
 
   /**
-   * It edits the name of the channel
-   * @param name - The new name of the channel.
-   * @param reason - The reason for the edit.
-   * @returns The name of the channel.
+   * Sets the name and reason for an object.
+   * @param {string} name - The new name to set.
+   * @param {string} reason - The reason for setting the new name.
+   * @returns {Promise} - A promise that resolves when the name and reason are successfully set.
    */
   async setName(name, reason) {
     return await this.edit({name, reason});
   }
 
   /**
-   * It sets the avatar of the bot
-   * @param avatar - The new avatar of the bot.
-   * @param reason - The reason for the change (0-1024 characters)
-   * @returns The avatar of the user.
+   * Sets the avatar for the user.
+   * @param {string} avatar - The URL or file path of the new avatar image.
+   * @param {string} reason - The reason for setting the new avatar.
+   * @returns {Promise} - A promise that resolves when the avatar is successfully set.
    */
   async setAvatar(avatar, reason) {
     return await this.edit({avatar, reason});
   }
 
   /**
-   * It sets the channel of the invite
-   * @param channel - The channel to move the member to, can be a voice channel or a category channel.
-   * @param reason - The reason for the update.
-   * @returns The channel that the message was sent in.
+   * Sets the channel for the current object and updates it with the given reason.
+   * @param {Channel} channel - The channel to set.
+   * @param {string} reason - The reason for setting the channel.
+   * @returns {Promise<void>} - A promise that resolves when the channel is successfully set.
    */
   async setChannel(channel, reason) {
     return await this.edit({channel, reason});
   }
 
   /**
-   * It deletes a webhook
-   * @param [options] - Object
-   * @returns The webhook object.
+   * Deletes the webhook.
+   * @param {Object} [options] - Optional parameters for the deletion.
+   * @param {string} [options.token] - The token associated with the webhook.
+   * @param {string} [options.reason] - The reason for the deletion.
+   * @returns {Promise} A promise that resolves to the deleted webhook.
    */
   async delete(options = {}) {
     const {token, reason} = options;
@@ -104,17 +114,20 @@ class Webhook extends Base {
   }
 
   /**
-   * It returns the default avatar URL.
-   * @returns The default avatar URL.
+   * Returns the default URL for an avatar image.
+   * @returns {string} The URL of the default avatar image.
    */
   defaultAvatarURL() {
     return `https://discord.com/assets/1f0bfc0865d324c2587920a7d80c609b.png`;
   }
 
   /**
-   * If the avatar is not set, return the default avatar URL, otherwise return the avatar URL.
-   * @param [options] - Object
-   * @returns The avatar URL of the webhook.
+   * Returns the URL of the avatar for the user or webhook.
+   * @param {Object} options - The options for generating the avatar URL.
+   * @param {boolean} [options.dynamic] - Whether to generate a dynamic avatar URL.
+   * @param {number} [options.size] - The size of the avatar in pixels.
+   * @param {string} [options.format] - The format of the avatar image.
+   * @returns {string} The URL of the avatar.
    */
   displayAvatarURL(options = {}) {
     if (!this.avatar) return this.defaultAvatarURL();

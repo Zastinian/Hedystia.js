@@ -21,9 +21,9 @@ A class representing a message button.
 Creates a new message button instance.
 
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The data to initialize the message button with. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data to initialize the message button with. |
 
 <a name="MessageButton+setLabel"></a>
 

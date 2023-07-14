@@ -1,97 +1,97 @@
 <a name="ClientUser"></a>
 
-## ClientUser
-**Kind**: global class  
+## ClientUser ⇐ <code>User</code>
+Represents a client user, extending the base User class.
 
-* [ClientUser](#ClientUser)
+**Kind**: global class  
+**Extends**: <code>User</code>  
+
+* [ClientUser](#ClientUser) ⇐ <code>User</code>
     * [new ClientUser([data], client)](#new_ClientUser_new)
-    * [.setAvatar(avatar)](#ClientUser+setAvatar) ⇒
-    * [.setUsername(username)](#ClientUser+setUsername) ⇒
-    * [.setAvatarDecorations(avatarDecorations)](#ClientUser+setAvatarDecorations) ⇒
-    * [.setPresence(presence)](#ClientUser+setPresence) ⇒
-    * [.setStatus(status)](#ClientUser+setStatus) ⇒
-    * [.setActivities(activities)](#ClientUser+setActivities) ⇒
+    * [.setAvatar(avatar)](#ClientUser+setAvatar) ⇒ <code>Promise</code>
+    * [.setUsername(username)](#ClientUser+setUsername) ⇒ <code>Promise</code>
+    * [.setAvatarDecorations(avatarDecorations)](#ClientUser+setAvatarDecorations) ⇒ <code>Promise</code>
+    * [.setPresence(presence)](#ClientUser+setPresence) ⇒ <code>void</code>
+    * [.setStatus(status)](#ClientUser+setStatus) ⇒ <code>void</code>
+    * [.setActivities(activities)](#ClientUser+setActivities) ⇒ <code>void</code>
 
 <a name="new_ClientUser_new"></a>
 
 ### new ClientUser([data], client)
-It's a constructor function that takes in two parameters, data and client, and sets the dataparameter to an empty object if it's not passed in, and sets the client parameter to undefined ifit's not passed in.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was returned from the API. |
-| client | The client that instantiated the object. Every Discordie object that |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The initial data for the instance. |
+| client | <code>Client</code> | The client object. |
 
 <a name="ClientUser+setAvatar"></a>
 
-### clientUser.setAvatar(avatar) ⇒
-It sets the avatar of the bot
+### clientUser.setAvatar(avatar) ⇒ <code>Promise</code>
+Sets the avatar for the user.
 
 **Kind**: instance method of [<code>ClientUser</code>](#ClientUser)  
-**Returns**: The user object.  
+**Returns**: <code>Promise</code> - A promise that resolves when the avatar is successfully set.  
 
-| Param | Description |
-| --- | --- |
-| avatar | The avatar to set. |
+| Param | Type | Description |
+| --- | --- | --- |
+| avatar | <code>string</code> | The URL or file path of the new avatar image. |
 
 <a name="ClientUser+setUsername"></a>
 
-### clientUser.setUsername(username) ⇒
-It sets the username of the bot
+### clientUser.setUsername(username) ⇒ <code>Promise</code>
+Asynchronously sets the username for the current user.
 
 **Kind**: instance method of [<code>ClientUser</code>](#ClientUser)  
-**Returns**: The return value is a promise that resolves to the updated user object.  
+**Returns**: <code>Promise</code> - A promise that resolves when the username is successfully set.  
 
-| Param | Description |
-| --- | --- |
-| username | The new username for the user. |
+| Param | Type | Description |
+| --- | --- | --- |
+| username | <code>string</code> | The new username to set. |
 
 <a name="ClientUser+setAvatarDecorations"></a>
 
-### clientUser.setAvatarDecorations(avatarDecorations) ⇒
-It sets the avatar decorations of the user
+### clientUser.setAvatarDecorations(avatarDecorations) ⇒ <code>Promise</code>
+Sets the avatar decorations for the user.
 
 **Kind**: instance method of [<code>ClientUser</code>](#ClientUser)  
-**Returns**: The user object.  
+**Returns**: <code>Promise</code> - A promise that resolves when the avatar decorations are set.  
 
-| Param | Description |
-| --- | --- |
-| avatarDecorations | A string of the avatar decorations. |
+| Param | Type | Description |
+| --- | --- | --- |
+| avatarDecorations | <code>Object</code> | The avatar decorations to set. |
 
 <a name="ClientUser+setPresence"></a>
 
-### clientUser.setPresence(presence) ⇒
-It sets the presence of the bot
+### clientUser.setPresence(presence) ⇒ <code>void</code>
+Sets the presence of the client.
 
 **Kind**: instance method of [<code>ClientUser</code>](#ClientUser)  
-**Returns**: The presence of the user.  
 
-| Param | Description |
-| --- | --- |
-| presence | Presence |
+| Param | Type | Description |
+| --- | --- | --- |
+| presence | <code>Presence</code> | The presence object containing the desired presence information. |
 
 <a name="ClientUser+setStatus"></a>
 
-### clientUser.setStatus(status) ⇒
-It sets the status of the bot
+### clientUser.setStatus(status) ⇒ <code>void</code>
+Sets the status of the user.
 
 **Kind**: instance method of [<code>ClientUser</code>](#ClientUser)  
-**Returns**: The return value of the setPresence method.  
 
-| Param | Description |
-| --- | --- |
-| status | The status of the user. Can be one of: |
+| Param | Type | Description |
+| --- | --- | --- |
+| status | <code>string</code> | The status to set. |
 
 <a name="ClientUser+setActivities"></a>
 
-### clientUser.setActivities(activities) ⇒
-It sets the activities of the client
+### clientUser.setActivities(activities) ⇒ <code>void</code>
+Sets the activities for the presence of the user.
 
 **Kind**: instance method of [<code>ClientUser</code>](#ClientUser)  
-**Returns**: The return value is the promise that is returned by the setPresence method.  
 
-| Param | Description |
-| --- | --- |
-| activities | An array of objects containing information about what the user is currently doing. |
+| Param | Type | Description |
+| --- | --- | --- |
+| activities | <code>Array</code> | An array of activity objects. |
 

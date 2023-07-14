@@ -38,17 +38,23 @@ const RolePromptManager = require("../Managers/RolePromptManager");
 const GuildAutoModManager = require("../Managers/GuildAutoModManager");
 const GuildDiscoveryManager = require("../Managers/GuildDiscoveryManager");
 /**
- * The Guild structure class
+ * Represents a guild in Discord.
  * @class
+ * @extends Base
  */
 class Guild extends Base {
   /**
-   * Creates a new Guild object.
-   * @class
-   * @classdesc Represents a Discord guild.
-   * @extends {BaseGuild}
-   * @param {Object} data - The data for the guild.
-   * @param {Client} client - The client that instantiated the guild.
+   * Constructs a new Guild object.
+   * @constructor
+   * @param {Object} [data] - The data object containing guild information.
+   * @param {Client} client - The client object associated with the guild.
+   * @property {boolean} partial - Whether the guild is partial or not.
+   * @property {string | null} id - The ID of the guild.
+   * @property {string | null} name - The name of the guild.
+   * @property {string | null} icon - The icon of the guild.
+   * @property {string | null} iconHash - The hash of the guild's icon.
+   * @property {string | null} splash - The splash image of the guild.
+   * @property {string | null}
    */
   constructor(data = {}, client) {
     super(client);
@@ -321,7 +327,7 @@ class Guild extends Base {
 
   /**
    * Returns the URL of the guild's icon.
-   * @param {Object} [options={}] - Additional options for the URL.
+   * @param {Object} [options] - Additional options for the URL.
    * @param {boolean} [options.dynamic=false] - Whether to return a dynamic icon.
    * @param {number} [options.size] - The size of the icon to return.
    * @param {string} [options.format] - The format of the icon to return.
@@ -334,7 +340,7 @@ class Guild extends Base {
 
   /**
    * Returns the URL of the guild's banner.
-   * @param {Object} [options={}] - Additional options for the URL.
+   * @param {Object} [options] - Additional options for the URL.
    * @param {boolean} [options.dynamic=false] - Whether to return a dynamic banner.
    * @param {number} [options.size] - The size of the banner to return.
    * @param {string} [options.format] - The format of the banner to return.
@@ -347,7 +353,7 @@ class Guild extends Base {
 
   /**
    * Returns the URL of the guild's splash.
-   * @param {Object} [options={}] - Additional options for the URL.
+   * @param {Object} [options] - Additional options for the URL.
    * @param {boolean} [options.dynamic=false] - Whether to return a dynamic splash.
    * @param {number} [options.size] - The size of the splash to return.
    * @param {string} [options.format] - The format of the splash to return.
@@ -360,7 +366,7 @@ class Guild extends Base {
 
   /**
    * Returns the URL of the guild's discovery splash.
-   * @param {Object} [options={}] - Additional options for the URL.
+   * @param {Object} [options] - Additional options for the URL.
    * @param {boolean} [options.dynamic=false] - Whether to return a dynamic discovery splash.
    * @param {number} [options.size] - The size of the discovery splash to return.
    * @param {string} [options.format] - The format of the discovery splash to return.
@@ -482,7 +488,7 @@ class Guild extends Base {
   /**
    * Fetches the audit logs for the guild.
    * @async
-   * @param {Object} [options={}] - The options for fetching audit logs.
+   * @param {Object} [options] - The options for fetching audit logs.
    * @param {UserResolvable} [options.user] - The user to filter the audit log by.
    * @param {string} [options.actionType] - The type of action to filter the audit log by.
    * @param {Snowflake|GuildAuditLogEntry} [options.before] - The entry to get audit logs before.

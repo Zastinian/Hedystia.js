@@ -1,16 +1,21 @@
 const Base = require("../Base/base");
 /**
- * It's a class that represents a user that is going to an event
+ * Represents a user associated with a scheduled event in a guild.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data object containing information about the user.
+ * @param {string} guildId - The ID of the guild the user belongs to.
+ * @param {string} eventId - The ID of the scheduled event the user is associated with.
+ * @param {Client} client - The client instance.
  */
 class GuildScheduledEventUser extends Base {
   /**
-   * This function is used to create a new instance of the class GuildScheduledEventMember.
-   * @param [data] - The data that was received from the API.
-   * @param guildId - The ID of the guild the event is in
-   * @param eventId - The ID of the event
-   * @param client - Discord.Client
+   * Constructs a new instance of the Event class.
+   * @constructor
+   * @param {Object} [data] - The data object containing information about the event.
+   * @param {string} guildId - The ID of the guild associated with the event.
+   * @param {string} eventId - The ID of the scheduled event.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, eventId, client) {
     super(client);
@@ -22,16 +27,16 @@ class GuildScheduledEventUser extends Base {
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
-   * @returns The guild object.
+   * Retrieves the guild associated with this guildId.
+   * @returns The guild object if found, otherwise null.
    */
   get guild() {
     return this.client.guilds._add(this.guildId) ?? null;
   }
 
   /**
-   * "If the guild exists, add the guildScheduledEventId to the events array, otherwise return null."
-   * @returns The guildScheduledEventId is being returned.
+   * Retrieves the scheduled event associated with the guild.
+   * @returns {ScheduledEvent | null} The scheduled event object if found, otherwise null.
    */
   get guildScheduledEvent() {
     return this.guild?.events._add(this.guildScheduledEventId) ?? null;

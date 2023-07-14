@@ -1,74 +1,85 @@
 <a name="GuildDiscoveryManager"></a>
 
-## GuildDiscoveryManager
-**Kind**: global class  
+## GuildDiscoveryManager ⇐ <code>Base</code>
+Represents a manager for guild discovery settings.
 
-* [GuildDiscoveryManager](#GuildDiscoveryManager)
+**Kind**: global class  
+**Extends**: <code>Base</code>  
+
+* [GuildDiscoveryManager](#GuildDiscoveryManager) ⇐ <code>Base</code>
     * [new GuildDiscoveryManager(guildId, client)](#new_GuildDiscoveryManager_new)
     * _instance_
-        * [._add(discovery)](#GuildDiscoveryManager+_add) ⇒
-        * [.fetch([guild])](#GuildDiscoveryManager+fetch) ⇒
-        * [.edit([guild], [options])](#GuildDiscoveryManager+edit) ⇒
+        * [._add(discovery)](#GuildDiscoveryManager+_add) ⇒ <code>GuildDiscovery</code> \| <code>null</code>
+        * [.fetch([guild])](#GuildDiscoveryManager+fetch) ⇒ <code>Promise.&lt;DiscoveryMetadata&gt;</code>
+        * [.edit(guild, options)](#GuildDiscoveryManager+edit) ⇒ <code>Promise</code>
     * _static_
-        * [.transformPayload([payload])](#GuildDiscoveryManager.transformPayload) ⇒
+        * [.transformPayload(payload)](#GuildDiscoveryManager.transformPayload) ⇒ <code>Object</code>
 
 <a name="new_GuildDiscoveryManager_new"></a>
 
 ### new GuildDiscoveryManager(guildId, client)
-This function is a constructor for the class
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run on. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 
 <a name="GuildDiscoveryManager+_add"></a>
 
-### guildDiscoveryManager.\_add(discovery) ⇒
-`_add` is a function that takes a `discovery` parameter and returns a new `GuildDiscovery` object.
+### guildDiscoveryManager.\_add(discovery) ⇒ <code>GuildDiscovery</code> \| <code>null</code>
+Adds a GuildDiscovery object to the guild's discovery settings.
 
 **Kind**: instance method of [<code>GuildDiscoveryManager</code>](#GuildDiscoveryManager)  
-**Returns**: A new GuildDiscovery object  
+**Returns**: <code>GuildDiscovery</code> \| <code>null</code> - - The added GuildDiscovery object or null if discovery is falsy.  
 
-| Param | Description |
-| --- | --- |
-| discovery | The discovery object or ID |
+| Param | Type | Description |
+| --- | --- | --- |
+| discovery | <code>string</code> \| <code>GuildDiscovery</code> | The discovery object or the guild ID. |
 
 <a name="GuildDiscoveryManager+fetch"></a>
 
-### guildDiscoveryManager.fetch([guild]) ⇒
-`fetch` fetches the discovery metadata for a guild
+### guildDiscoveryManager.fetch([guild]) ⇒ <code>Promise.&lt;DiscoveryMetadata&gt;</code>
+Fetches the discovery metadata for a guild.
 
 **Kind**: instance method of [<code>GuildDiscoveryManager</code>](#GuildDiscoveryManager)  
-**Returns**: The discovery metadata for the guild.  
+**Returns**: <code>Promise.&lt;DiscoveryMetadata&gt;</code> - - A promise that resolves to the discovery metadata.  
+**Throws**:
 
-| Param | Description |
-| --- | --- |
-| [guild] | The guild to fetch the discovery metadata for. |
+- <code>RangeError</code> - If the guild ID is not provided.
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [guild] | <code>string</code> \| <code>Guild</code> | <code>&quot;this.guildId&quot;</code> | The guild ID or Guild object to fetch the metadata for. |
 
 <a name="GuildDiscoveryManager+edit"></a>
 
-### guildDiscoveryManager.edit([guild], [options]) ⇒
-`edit` edits the discovery metadata of a guild
+### guildDiscoveryManager.edit(guild, options) ⇒ <code>Promise</code>
+Edits the discovery metadata for a guild.
 
 **Kind**: instance method of [<code>GuildDiscoveryManager</code>](#GuildDiscoveryManager)  
-**Returns**: The discovery object  
+**Returns**: <code>Promise</code> - A promise that resolves with the updated discovery metadata.  
+**Throws**:
 
-| Param | Description |
-| --- | --- |
-| [guild] | The guild ID or guild object to edit the discovery metadata for. |
-| [options] | Object |
+- <code>RangeError</code> If the guild is not provided.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| guild | <code>string</code> \| <code>Guild</code> | The guild ID or guild object to edit the discovery metadata for. |
+| options | <code>Object</code> | The options to update the discovery metadata. |
 
 <a name="GuildDiscoveryManager.transformPayload"></a>
 
-### GuildDiscoveryManager.transformPayload([payload]) ⇒
-It takes a payload object and returns a new object with the same keys, but with the valuestransformed to match the API's expectations
+### GuildDiscoveryManager.transformPayload(payload) ⇒ <code>Object</code>
+Transforms the given payload object into a new object with specific properties.
 
 **Kind**: static method of [<code>GuildDiscoveryManager</code>](#GuildDiscoveryManager)  
-**Returns**: The transformed payload.  
+**Returns**: <code>Object</code> - - The transformed object.  
 
-| Param | Description |
-| --- | --- |
-| [payload] | The payload that is sent to the API. |
+| Param | Type | Description |
+| --- | --- | --- |
+| payload | <code>Object</code> | The payload object to transform. |
 

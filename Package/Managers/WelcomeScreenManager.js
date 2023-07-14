@@ -1,12 +1,18 @@
 const WelcomeScreen = require("../Structures/WelcomeScreen");
 const Base = require("../Base/base");
-/* It's a class that manages a guild's welcome screen */
+/**
+ * Represents a manager for the welcome screen of a guild.
+ * @class
+ * @extends Base
+ * @param {string} guildId - The ID of the guild.
+ * @param {Client} client - The client instance.
+ */
 class WelcomeScreenManager extends Base {
   /**
-   * This function is a constructor for the class Guild. It takes in a guildId and a client, and sets
-   * the guildId to the guildId passed in, and sets the client to the client passed in.
-   * @param guildId - The ID of the guild you want to get the member count of.
-   * @param client - The client that the command is being run from.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -15,8 +21,8 @@ class WelcomeScreenManager extends Base {
   }
 
   /**
-   * It fetches the welcome screen of a guild
-   * @returns A new instance of the WelcomeScreen class.
+   * Fetches the welcome screen for the guild.
+   * @returns {Promise<WelcomeScreen>} A promise that resolves to a WelcomeScreen object representing the fetched welcome screen.
    */
   async fetch() {
     const welcomeScreen = await this.client.api.get(`${this.client.root}/guilds/${this.guildId}/welcome-screen`);
@@ -24,9 +30,10 @@ class WelcomeScreenManager extends Base {
   }
 
   /**
-   * It edits the welcome screen of a guild.
-   * @param [options] - Object
-   * @returns A new WelcomeScreen object.
+   * Edits the welcome screen settings for the guild.
+   * @param {Object} [options] - The options for editing the welcome screen.
+   * @param {string} [options.reason] - The reason for the edit.
+   * @returns {Promise<WelcomeScreen>} A promise that resolves with the updated WelcomeScreen object.
    */
   async edit(options = {}) {
     const {reason} = options;
@@ -36,14 +43,9 @@ class WelcomeScreenManager extends Base {
   }
 
   /**
-   * It takes an object with a property called `id` that can be either a string or an object with a
-   * property called `id` that is a string
-   * @param [channels] - The channel object that you want to transform.
-   * @returns An object with the following properties:
-   * - channel_id
-   * - description
-   * - emoji_id
-   * - emoji_name
+   * Transforms the given channels object into a new format.
+   * @param {Object} channels - The channels object to transform.
+   * @returns {Object} - The transformed channels object.
    */
   static transformChannels(channels = {}) {
     return {
@@ -55,10 +57,9 @@ class WelcomeScreenManager extends Base {
   }
 
   /**
-   * It takes an object with a property called "channels" which is an array of objects, and returns an
-   * object with a property called "welcome_channels" which is an array of objects.
-   * @param [o] - The object that is passed in.
-   * @returns an object with the properties enabled, welcome_channels, and description.
+   * Transforms the options object into a new object with specific properties.
+   * @param {Object} o - The options object to transform.
+   * @returns {Object} - The transformed object with specific properties.
    */
   static transformOptions(o = {}) {
     return {

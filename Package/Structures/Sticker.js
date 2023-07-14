@@ -2,17 +2,20 @@ const {StickerType, StickerFormatType} = require("../Util/Constants");
 const Snowflake = require("../Util/Snowflake");
 const Base = require("../Base/base");
 /**
- * It's a class that represents a sticker in a guild
+ * Represents a Sticker object, extending the Base class.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data object containing the sticker information.
+ * @param {string} guildId - The ID of the guild the sticker belongs to.
+ * @param {Client} client - The client instance.
  */
 class Sticker extends Base {
   /**
-   * This function is used to create a new instance of the Sticker class, which is used to represent a
-   * sticker in a guild.
-   * @param [data] - The data that was received from the API.
-   * @param guildId - The ID of the guild the sticker is in
-   * @param client - Discord.Client
+   * Constructs a Sticker object.
+   * @constructor
+   * @param {Object} [data] - The data object containing the sticker information.
+   * @param {string} guildId - The ID of the guild the sticker belongs to.
+   * @param {Client} client - The Discord client instance.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -34,73 +37,73 @@ class Sticker extends Base {
   }
 
   /**
-   * It fetches the sticker from the server
-   * @param options - An object containing the following properties:
-   * @returns The sticker object.
+   * Fetches stickers from the guild using the provided options.
+   * @param {Object} options - The options for fetching the stickers.
+   * @returns {Promise} - A promise that resolves to the fetched stickers.
    */
   async fetch(options) {
     return await this.guild?.stickers.fetch(this, options);
   }
 
   /**
-   * It edits the sticker
-   * @param options - Object
-   * @returns The sticker object.
+   * Edits the sticker with the given options.
+   * @param {Object} options - The options to edit the sticker.
+   * @returns {Promise} A promise that resolves when the sticker is successfully edited.
    */
   async edit(options) {
     return await this.guild?.stickers.edit(this, options);
   }
 
   /**
-   * It deletes the sticker
-   * @param reason - The reason for the deletion.
-   * @returns The return value of the delete method in the StickerManager class.
+   * Deletes the sticker from the guild.
+   * @param {string} reason - The reason for deleting the sticker.
+   * @returns {Promise<void>} - A promise that resolves when the sticker is deleted.
    */
   async delete(reason) {
     return await this.guild?.stickers.delete(this, reason);
   }
 
   /**
-   * It edits the name of the channel
-   * @param name - The new name of the role.
-   * @param reason - The reason for the edit.
-   * @returns The name of the channel.
+   * Sets the name and reason for an object.
+   * @param {string} name - The new name to set.
+   * @param {string} reason - The reason for setting the new name.
+   * @returns {Promise} - A promise that resolves when the name and reason are successfully set.
    */
   async setName(name, reason) {
     return await this.edit({name, reason});
   }
 
   /**
-   * It edits the description of the channel
-   * @param description - The new description of the channel.
-   * @param reason - The reason for the edit.
-   * @returns The description of the channel.
+   * Sets the description of an object and updates it with the provided reason.
+   * @param {string} description - The new description to set.
+   * @param {string} reason - The reason for updating the description.
+   * @returns {Promise} - A promise that resolves when the description is successfully updated.
    */
   async setDescription(description, reason) {
     return await this.edit({description, reason});
   }
 
   /**
-   * It edits the tags of a message
-   * @param tags - The new tags of the user.
-   * @param reason - The reason for the edit.
-   * @returns The return value of the edit method.
+   * Sets the tags of an object and provides a reason for the change.
+   * @param {Array} tags - The new tags to set.
+   * @param {string} reason - The reason for the change.
+   * @returns {Promise} - A promise that resolves when the tags are successfully set.
    */
   async setTags(tags, reason) {
     return await this.edit({tags, reason});
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
-   * @returns The guild object.
+   * Retrieves the guild associated with this guildId.
+   * @returns The guild object if found, otherwise null.
    */
   get guild() {
     return this.client.guilds._add(this.guildId) ?? null;
   }
 
   /**
-   * It fetches the Nitro Pack from the Discord API and returns it
-   * @returns The pack object.
+   * Fetches the Nitro Pack with the specified packId from the client.
+   * @returns {Promise<NitroPack | null>} A promise that resolves to the Nitro Pack object if found, or null if not found.
    */
   async fetchPack() {
     const pack = await this.client.fetchNitroPacks();
@@ -108,20 +111,20 @@ class Sticker extends Base {
   }
 
   /**
-   * It returns the URL of the sticker image
-   * @param [options] - Object
-   * @returns The URL of the sticker image.
+   * Generates the URL for the sticker image with the specified options.
+   * @param {Object} options - The options for generating the URL.
+   * @param {string} [options.size] - The desired size of the image.
+   * @param {string} [options.format] - The desired format of the image.
+   * @returns {string} The URL of the sticker image.
    */
   imageURL(options = {}) {
     return this.client.cdn.StickerImage(this.id, options.size, options.format);
   }
 
   /**
-   * If the object passed in is not an instance of the Sticker class, return false. Otherwise, return
-   * true if the name, description, or tags of the object passed in are equal to the name, description,
-   * or tags of the object calling the function.
-   * @param sticker - The sticker to compare to.
-   * @returns a boolean value.
+   * Checks if the given object is equal to this sticker.
+   * @param {Sticker} sticker - The object to compare with this sticker.
+   * @returns {boolean} - True if the objects are equal, false otherwise.
    */
   equals(sticker) {
     if (!(sticker instanceof Sticker)) return false;

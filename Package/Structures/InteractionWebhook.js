@@ -1,15 +1,17 @@
 const WebhookClient = require("./WebhookClient");
 /**
- * It's a class that extends the WebhookClient class, and it's used to handle interactions
+ * Represents an interaction webhook.
  * @class
  * @extends WebhookClient
+ * @param {Object} [data] - The data for the interaction webhook.
+ * @param {Client} [client] - The client associated with the interaction webhook.
  */
 class InteractionWebhook extends WebhookClient {
   /**
-   * The constructor function is a special method for creating and initializing an object created
-   * within a class.
-   * @param [data] - The data that was returned from the API.
-   * @param client - The client that instantiated the object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The initial data for the instance.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(data, client);

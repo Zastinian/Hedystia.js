@@ -1,50 +1,53 @@
 const {Opcodes, WebsocketReadyState} = require("../Util/Constants");
 const Activity = require("./Activity");
 const User = require("./User");
-/* It's a class that extends the User class and adds some methods to it */
+/**
+ * Represents a client user, extending the base User class.
+ * @class
+ * @extends User
+ */
 class ClientUser extends User {
   /**
-   * It's a constructor function that takes in two parameters, data and client, and sets the data
-   * parameter to an empty object if it's not passed in, and sets the client parameter to undefined if
-   * it's not passed in.
-   * @param [data] - The data that was returned from the API.
-   * @param client - The client that instantiated the object. Every Discordie object that
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The initial data for the instance.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(data, client);
   }
 
   /**
-   * It sets the avatar of the bot
-   * @param avatar - The avatar to set.
-   * @returns The user object.
+   * Sets the avatar for the user.
+   * @param {string} avatar - The URL or file path of the new avatar image.
+   * @returns {Promise} A promise that resolves when the avatar is successfully set.
    */
   async setAvatar(avatar) {
     return await this.client.users.edit({avatar});
   }
 
   /**
-   * It sets the username of the bot
-   * @param username - The new username for the user.
-   * @returns The return value is a promise that resolves to the updated user object.
+   * Asynchronously sets the username for the current user.
+   * @param {string} username - The new username to set.
+   * @returns {Promise} A promise that resolves when the username is successfully set.
    */
   async setUsername(username) {
     return await this.client.users.edit({username});
   }
 
   /**
-   * It sets the avatar decorations of the user
-   * @param avatarDecorations - A string of the avatar decorations.
-   * @returns The user object.
+   * Sets the avatar decorations for the user.
+   * @param {Object} avatarDecorations - The avatar decorations to set.
+   * @returns {Promise} A promise that resolves when the avatar decorations are set.
    */
   async setAvatarDecorations(avatarDecorations) {
     return await this.client.users.edit({avatarDecorations});
   }
 
   /**
-   * It sets the presence of the bot
-   * @param presence - Presence
-   * @returns The presence of the user.
+   * Sets the presence of the client.
+   * @param {Presence} presence - The presence object containing the desired presence information.
+   * @returns {void}
    */
   setPresence(presence) {
     if (WebsocketReadyState.Connecting === this.client.ws.readyState)
@@ -61,19 +64,18 @@ class ClientUser extends User {
   }
 
   /**
-   * It sets the status of the bot
-   * @param status - The status of the user. Can be one of:
-   * @returns The return value of the setPresence method.
+   * Sets the status of the user.
+   * @param {string} status - The status to set.
+   * @returns {void}
    */
   setStatus(status) {
     return this.setPresence({status});
   }
 
   /**
-   * It sets the activities of the client
-   * @param activities - An array of objects containing information about what the user is currently
-   * doing.
-   * @returns The return value is the promise that is returned by the setPresence method.
+   * Sets the activities for the presence of the user.
+   * @param {Array} activities - An array of activity objects.
+   * @returns {void}
    */
   setActivities(activities) {
     return this.setPresence({activities});

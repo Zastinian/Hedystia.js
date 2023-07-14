@@ -1,14 +1,16 @@
 const Base = require("../Base/base");
 /**
- * It's a class that represents a guild vanity
+ * Represents a Guild Vanity URL.
  * @class
  * @extends Base
  */
 class GuildVanity extends Base {
   /**
-   * @param [data] - The data that is passed to the constructor.
-   * @param guildId - The ID of the guild the invite is for.
-   * @param client - The client instance
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the initial values for the instance.
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -19,7 +21,7 @@ class GuildVanity extends Base {
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
+   * Get the guild object associated with this guildId.
    * @returns The guild object.
    */
   get guild() {

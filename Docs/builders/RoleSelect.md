@@ -25,15 +25,18 @@ Represents a Discord role select component that allows users to select one or mo
 Create a role select component.
 
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The data to set in the component. |
-| [data.custom_id] | <code>string</code> |  | The custom ID of the component. |
-| [data.options] | <code>Array.&lt;Object&gt;</code> |  | The options of the component. |
-| [data.placeholder] | <code>string</code> |  | The placeholder text of the component. |
-| [data.min_values] | <code>number</code> |  | The minimum number of values that can be selected. |
-| [data.max_values] | <code>number</code> |  | The maximum number of values that can be selected. |
-| [data.disabled] | <code>boolean</code> |  | Whether the component is disabled or not. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data to set in the component. |
+| [data.custom_id] | <code>string</code> | The custom ID of the component. |
+| [data.customId] | <code>string</code> | The custom ID of the component. |
+| [data.options] | <code>Array.&lt;Object&gt;</code> | The options of the component. |
+| [data.placeholder] | <code>string</code> | The placeholder text of the component. |
+| [data.min_values] | <code>number</code> | The minimum number of values that can be selected. |
+| [data.max_values] | <code>number</code> | The maximum number of values that can be selected. |
+| [data.minValues] | <code>number</code> | The minimum number of values that can be selected. |
+| [data.maxValues] | <code>number</code> | The maximum number of values that can be selected. |
+| [data.disabled] | <code>boolean</code> | Whether the component is disabled or not. |
 
 <a name="RoleSelect+setCustomId"></a>
 

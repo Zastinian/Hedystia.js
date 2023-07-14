@@ -1,15 +1,23 @@
 const Base = require("../Base/base");
 const Activity = require("./Activity");
 /**
- * It's a class that represents a user's presence
+ * Represents the presence of a user.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data object containing presence information.
+ * @param {Client} client - The client instance.
+ * @property {boolean} partial - Whether the presence is partial or not.
+ * @property {User} user - The user associated with the presence.
+ * @property {string|null} status - The status of the user.
+ * @property {Activity[]} activities - The activities of the user.
+ * @property {Object|null} clientStatus - The client status of the user.
  */
 class Presence extends Base {
   /**
-   * This function is a constructor for the class Presence.
-   * @param [data] - The data that was received from the API.
-   * @param client - DiscordClient
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {Client} client - The client object associated with the instance.
    */
   constructor(data = {}, client) {
     super(client);

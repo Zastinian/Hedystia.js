@@ -61,13 +61,16 @@ const HeartbeatAck = require("../Handlers/HeartbeatAck");
 const Hello = require("../Handlers/Hello");
 const {Opcodes} = require("../Util/Constants");
 const Resume = require("../Handlers/Resume");
-/* It's a class that handles all the events that the client receives from the Discord API.
+/**
+ * It's a class that handles all the events that the client receives from the Discord API.
+ * @class
  */
 class ActionsManager {
   /**
    * It defines a property called client, and sets it to the client variable
-   * @param message - The message object that was sent.
-   * @param client - The client that instantiated the message.
+   * @constructor
+   * @param {Object} message - The message object that was sent.
+   * @param {Client} client - The client that instantiated the message.
    */
   constructor(message, client) {
     Object.defineProperty(this, "client", {
@@ -77,20 +80,11 @@ class ActionsManager {
   }
 
   /**
-   * The function `_patch` handles different types of messages and returns corresponding objects based
-   * on the message type.
-   * @param message - The `message` parameter is an object that contains information about the received
-   * message. It typically includes properties such as `op` (operation code), `t` (event type), `d`
-   * (data payload), and `s` (sequence number).
-   * @returns an instance of a class based on the value of `message.op` or `message.t`. The specific
-   * class that is returned depends on the value of `message.op` or `message.t`.
+   * Parses and handles different types of Discord gateway messages.
+   * @param {Object} message - The message object received from the gateway.
+   * @returns {Object} - An instance of the corresponding message class.
    */
   _patch(message) {
-    if (message.op === Opcodes.Heartbeat_Ack)
-      this.client.emit(
-        "debug",
-        `[Heartbeat Acknowledged]: Successfully recognized heartbeat. Sending the next heartbeat in ${this.client.heartbeatInterval}ms`
-      );
     if (data.s) this.client.seq = data.s;
     switch (message.op) {
       case Opcodes.Invalid_Session:

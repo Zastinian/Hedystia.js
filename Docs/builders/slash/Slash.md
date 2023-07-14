@@ -26,7 +26,7 @@ A class representing a Discord Slash Command.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The data for the Slash Command. |
+| [data] | <code>Object</code> |  | The data for the Slash Command. |
 | [data.type] | <code>number</code> \| <code>string</code> | <code>&quot;Chat_Input&quot;</code> | The type of the command. |
 | [data.name] | <code>string</code> |  | The name of the command. |
 | [data.name_localizations] | <code>Object</code> |  | The localizations of the command name. |
@@ -80,9 +80,9 @@ Sets the localizations of the name of the Slash Command.
 **Kind**: instance method of [<code>Slash</code>](#Slash)  
 **Returns**: [<code>Slash</code>](#Slash) - The Slash instance.  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [localizations] | <code>Object</code> | <code>{}</code> | The localizations of the command name. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [localizations] | <code>Object</code> | The localizations of the command name. |
 
 <a name="Slash+setDescription"></a>
 

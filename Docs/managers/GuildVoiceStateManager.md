@@ -1,41 +1,47 @@
 <a name="GuildVoiceStateManager"></a>
 
-## GuildVoiceStateManager
-**Kind**: global class  
+## GuildVoiceStateManager ⇐ <code>VoiceStateManager</code>
+Represents a voice state manager for a specific guild.
 
-* [GuildVoiceStateManager](#GuildVoiceStateManager)
+**Kind**: global class  
+**Extends**: <code>VoiceStateManager</code>  
+
+* [GuildVoiceStateManager](#GuildVoiceStateManager) ⇐ <code>VoiceStateManager</code>
     * [new GuildVoiceStateManager(guildId, client)](#new_GuildVoiceStateManager_new)
-    * [.cache](#GuildVoiceStateManager+cache) ⇒
-    * [.edit(user, [options])](#GuildVoiceStateManager+edit) ⇒
+    * [.cache](#GuildVoiceStateManager+cache) ⇒ <code>Array</code>
+    * [.edit(user, [options])](#GuildVoiceStateManager+edit) ⇒ <code>Promise.&lt;void&gt;</code>
 
 <a name="new_GuildVoiceStateManager_new"></a>
 
 ### new GuildVoiceStateManager(guildId, client)
-It creates a new instance of the class.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run on. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="GuildVoiceStateManager+cache"></a>
 
-### guildVoiceStateManager.cache ⇒
-`return super.cache.filter((o) => o.guildId === this.guildId);`The `super` keyword is used to access and call functions on an object's parent
+### guildVoiceStateManager.cache ⇒ <code>Array</code>
+Retrieves the cache for the current guild.
 
 **Kind**: instance property of [<code>GuildVoiceStateManager</code>](#GuildVoiceStateManager)  
-**Returns**: The cache property is being returned.  
+**Returns**: <code>Array</code> - An array of objects from the cache that belong to the current guild.  
 <a name="GuildVoiceStateManager+edit"></a>
 
-### guildVoiceStateManager.edit(user, [options]) ⇒
-It edits the voice state of a user in a guild
+### guildVoiceStateManager.edit(user, [options]) ⇒ <code>Promise.&lt;void&gt;</code>
+Edits the voice state of a user in a guild.
 
 **Kind**: instance method of [<code>GuildVoiceStateManager</code>](#GuildVoiceStateManager)  
-**Returns**: undefined  
+**Returns**: <code>Promise.&lt;void&gt;</code> - A promise that resolves when the voice state is successfully edited.  
 
-| Param | Description |
-| --- | --- |
-| user | The user to edit the voice state of. |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| user | <code>string</code> \| <code>User</code> | The user or user ID to edit the voice state for. |
+| [options] | <code>Object</code> | The options for editing the voice state. |
+| [options.channel] | <code>string</code> \| <code>Channel</code> | The channel or channel ID to move the user to. |
+| [options.suppress] | <code>boolean</code> | Whether to suppress the user's audio. |
+| [options.requestToSpeak] | <code>Date</code> | The timestamp for the user's request to speak. |
 

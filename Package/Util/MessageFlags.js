@@ -2,11 +2,14 @@ const Bitfield = require("./Bitfield");
 
 /**
  * Represents a bitfield for Discord message flags.
+ * @class
  * @extends Bitfield
  */
 class MessageFlags extends Bitfield {
   /**
-   * @param {...number} bit Positions to enable in the bitfield.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {...bigint} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);
@@ -14,8 +17,8 @@ class MessageFlags extends Bitfield {
 }
 
 /**
- * An object mapping flag names to their corresponding bit positions.
- * @type {Object<string, bigint>}
+ * Represents the different flags that can be applied to a message.
+ * @type {bigint}
  * @readonly
  * @enum {bigint}
  */
@@ -33,18 +36,17 @@ MessageFlags.Flags = {
 };
 
 /**
- * The default bitfield value for a new instance.
- * @type {BigInt}
+ * Sets the default value for the MessageFlags to 0n.
  * @readonly
- * @static
+ * @type {bigint}
  */
 MessageFlags.Default = 0n;
 
 /**
- * The bitfield value with all bits set to 1.
- * @type {BigInt}
- * @readonly
- * @static
+ * Combines all the values of the MessageFlags.Flags object using a bitwise OR operation
+ * and assigns the result to the MessageFlags.All property.
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of Intents.All.
  */
 MessageFlags.All = Object.values(MessageFlags.Flags).reduce((a, b) => a | b, MessageFlags.Default);
 

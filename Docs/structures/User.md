@@ -1,111 +1,124 @@
 <a name="User"></a>
 
 ## User ⇐ <code>Base</code>
-It's a class that represents a user
+Represents a user in the application.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
 
 * [User](#User) ⇐ <code>Base</code>
     * [new User([data], client)](#new_User_new)
-    * [.fetch(options)](#User+fetch) ⇒
-    * [.createDM()](#User+createDM) ⇒
-    * [.send([options])](#User+send) ⇒
-    * [.defaultAvatarURL()](#User+defaultAvatarURL) ⇒
-    * [.displayAvatarURL([options])](#User+displayAvatarURL) ⇒
-    * [.bannerURL([options])](#User+bannerURL) ⇒
-    * [.avatarDecorationURL([options])](#User+avatarDecorationURL) ⇒
-    * [.hexAccentColor()](#User+hexAccentColor) ⇒
+    * [.fetch(options)](#User+fetch) ⇒ <code>Promise</code>
+    * [.createDM()](#User+createDM) ⇒ <code>Promise.&lt;DMChannel&gt;</code>
+    * [.send(options)](#User+send) ⇒ <code>Promise</code>
+    * [.defaultAvatarURL(format)](#User+defaultAvatarURL) ⇒ <code>string</code> \| <code>null</code>
+    * [.displayAvatarURL(options)](#User+displayAvatarURL) ⇒ <code>string</code>
+    * [.bannerURL(options)](#User+bannerURL) ⇒ <code>string</code> \| <code>null</code>
+    * [.avatarDecorationURL(options)](#User+avatarDecorationURL) ⇒ <code>string</code> \| <code>null</code>
+    * [.hexAccentColor()](#User+hexAccentColor) ⇒ <code>string</code> \| <code>null</code>
 
 <a name="new_User_new"></a>
 
 ### new User([data], client)
-It's a constructor for a class that extends another class.
+Constructs a new User object.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| client | DiscordClient |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing user information. |
+| client | <code>Client</code> | The client object. |
 
 <a name="User+fetch"></a>
 
-### user.fetch(options) ⇒
-It fetches the user from the Discord API
+### user.fetch(options) ⇒ <code>Promise</code>
+Fetches user data using the provided options.
 
 **Kind**: instance method of [<code>User</code>](#User)  
-**Returns**: The user object.  
+**Returns**: <code>Promise</code> - A promise that resolves with the fetched user data.  
 
-| Param | Description |
-| --- | --- |
-| options | An object with the following properties: |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options for fetching user data. |
 
 <a name="User+createDM"></a>
 
-### user.createDM() ⇒
-It creates a DM channel with the user
+### user.createDM() ⇒ <code>Promise.&lt;DMChannel&gt;</code>
+Creates a direct message (DM) channel with the user associated with this instance of the client.
 
 **Kind**: instance method of [<code>User</code>](#User)  
-**Returns**: The user object.  
+**Returns**: <code>Promise.&lt;DMChannel&gt;</code> - A promise that resolves to the created DM channel.  
 <a name="User+send"></a>
 
-### user.send([options]) ⇒
-It sends a message to a user
+### user.send(options) ⇒ <code>Promise</code>
+Sends a message to the user using the client's user send method.
 
 **Kind**: instance method of [<code>User</code>](#User)  
-**Returns**: The user object.  
+**Returns**: <code>Promise</code> - A promise that resolves when the message is sent.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>object</code> | Optional parameters for sending the message. |
 
 <a name="User+defaultAvatarURL"></a>
 
-### user.defaultAvatarURL() ⇒
-It returns the default avatar URL of the user
+### user.defaultAvatarURL(format) ⇒ <code>string</code> \| <code>null</code>
+Returns the URL of the default avatar for the user in the specified format.
 
 **Kind**: instance method of [<code>User</code>](#User)  
-**Returns**: The default avatar URL for the user.  
+**Returns**: <code>string</code> \| <code>null</code> - The URL of the default avatar image, or null if it is not available.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| format | <code>string</code> | The format of the avatar image (e.g. "png", "jpg", "gif"). |
+
 <a name="User+displayAvatarURL"></a>
 
-### user.displayAvatarURL([options]) ⇒
-"If the user doesn't have an avatar, return the default avatar URL, otherwise return the user'savatar URL."
+### user.displayAvatarURL(options) ⇒ <code>string</code>
+Returns the URL of the avatar for the user.
 
 **Kind**: instance method of [<code>User</code>](#User)  
-**Returns**: The avatar URL of the user.  
+**Returns**: <code>string</code> - The URL of the user's avatar.  
 
-| Param | Description |
-| --- | --- |
-| [options] | dynamic, size, format |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options for generating the avatar URL. |
+| [options.dynamic] | <code>boolean</code> | Whether to generate a dynamic avatar URL. |
+| [options.size] | <code>number</code> | The size of the avatar. |
+| [options.format] | <code>string</code> | The format of the avatar image. |
 
 <a name="User+bannerURL"></a>
 
-### user.bannerURL([options]) ⇒
-"If the user has a banner, return the banner URL, otherwise return null."The function is called like this:
+### user.bannerURL(options) ⇒ <code>string</code> \| <code>null</code>
+Generates the URL for the user's banner image.
 
 **Kind**: instance method of [<code>User</code>](#User)  
-**Returns**: The user's banner URL.  
+**Returns**: <code>string</code> \| <code>null</code> - The URL of the user's banner image, or null if no banner is set.  
 
-| Param | Description |
-| --- | --- |
-| [options] | The options for the banner. |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | Optional parameters for customizing the URL. |
+| [options.dynamic] | <code>boolean</code> | Whether to include dynamic content in the URL. |
+| [options.size] | <code>string</code> | The desired size of the banner image. |
+| [options.format] | <code>string</code> | The desired format of the banner image. |
 
 <a name="User+avatarDecorationURL"></a>
 
-### user.avatarDecorationURL([options]) ⇒
-"If the user has an avatar decoration, return the URL of the avatar decoration, otherwise returnnull."The function is called avatarDecorationURL because it returns the URL of the avatar decoration
+### user.avatarDecorationURL(options) ⇒ <code>string</code> \| <code>null</code>
+Returns the URL of the avatar decoration for the user.
 
 **Kind**: instance method of [<code>User</code>](#User)  
-**Returns**: The avatar decoration URL.  
+**Returns**: <code>string</code> \| <code>null</code> - The URL of the avatar decoration, or null if no decoration is set.  
 
-| Param |
-| --- |
-| [options] | 
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | Optional parameters for the URL generation. |
+| options.size | <code>number</code> | The desired size of the avatar decoration. |
+| options.format | <code>string</code> | The desired format of the avatar decoration. |
 
 <a name="User+hexAccentColor"></a>
 
-### user.hexAccentColor() ⇒
-If the accentColor property is not null, return a string that starts with a hash symbol and isfollowed by the accentColor property converted to a string in base 16.
+### user.hexAccentColor() ⇒ <code>string</code> \| <code>null</code>
+Returns the hexadecimal representation of the accent color.
 
 **Kind**: instance method of [<code>User</code>](#User)  
-**Returns**: The accent color in hexadecimal format.  
+**Returns**: <code>string</code> \| <code>null</code> - - The hexadecimal representation of the accent color, or null if the accent color is not set.  

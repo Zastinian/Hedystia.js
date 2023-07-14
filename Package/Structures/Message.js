@@ -11,17 +11,22 @@ const MessageMentions = require("./MessageMentions");
 const PartialSticker = require("./PartialSticker");
 const ReactionManager = require("../Managers/ReactionManager");
 /**
- * It's a class that extends another class
+ * Represents a message in a chat channel.
  * @class
  * @extends Base
+ * @param {Object} data - The data object containing information about the message.
+ * @param {string} guildId - The ID of the guild the message belongs to.
+ * @param {string} channelId - The ID of the channel the message belongs to.
+ * @param {Client} client - The client instance.
  */
 class Message extends Base {
   /**
-   * It's a constructor for a class that extends another class
-   * @param [data] - The data that is passed to the constructor.
-   * @param guildId - The ID of the guild the message is in.
-   * @param channelId - The channel ID of the message
-   * @param client - RaidenClient
+   * Constructs a new instance of the Message class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the message information.
+   * @param {string} guildId - The ID of the guild the message belongs to.
+   * @param {string} channelId - The ID of the channel the message belongs to.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, channelId, client) {
     super(client);
@@ -66,76 +71,77 @@ class Message extends Base {
   }
 
   /**
-   * It returns the channel object if it exists, otherwise it returns null
-   * @returns The channel object.
+   * Retrieves the channel associated with this object.
+   * @returns The channel object if found, otherwise null.
    */
   get channel() {
     return this.client.channels.cache.get(this.channelId) ?? null;
   }
 
   /**
-   * It returns the guild object if it exists, otherwise it returns null
-   * @returns The guild object.
+   * Retrieves the guild associated with this guildId from the client's guild cache.
+   * @returns The guild object if found, otherwise null.
    */
   get guild() {
     return this.client.guilds.cache.get(this.guildId) ?? null;
   }
 
   /**
-   * It edits a message
-   * @param options - Object
-   * @returns The message object.
+   * Edits the message with the given options.
+   * @param {Object} options - The options to edit the message with.
+   * @returns {Promise} A promise that resolves when the message has been edited.
    */
   async edit(options) {
     return this.channel.messages.edit(this, options);
   }
 
   /**
-   * It deletes a message
-   * @param reason - The reason for the deletion.
-   * @returns The message object.
+   * Deletes the message from the channel.
+   * @param {string} reason - The reason for deleting the message.
+   * @returns {Promise} A promise that resolves when the message is successfully deleted.
    */
   async delete(reason) {
     return this.channel.messages.delete(this, reason);
   }
 
   /**
-   * It fetches the message from the channel
-   * @param [options] - An object containing additional options to pass to the method.
-   * @returns The message object.
+   * Fetches messages from the channel using the given options.
+   * @param {Object} [options] - The options to customize the fetch request.
+   * @returns {Promise} - A promise that resolves with the fetched messages.
    */
   async fetch(options = {}) {
     return this.channel.messages.fetch(this, options);
   }
 
   /**
-   * It crossposts a message
-   * @returns The message object.
+   * Crossposts a message to another channel.
+   * @returns {Promise<void>} - A promise that resolves when the crossposting is complete.
    */
   async crosspost() {
     return this.channel.messages.crosspost(this.channelId, this.id);
   }
 
   /**
-   * It reacts to a message with an emoji
-   * @param emoji - The emoji to react with. Can be a string (e.g. "🤔") or a custom emoji object.
-   * @returns The message object.
+   * Reacts to a message with the specified emoji.
+   * @param {string} emoji - The emoji to react with.
+   * @returns {Promise<void>} - A promise that resolves when the reaction is added.
    */
   async react(emoji) {
     return await this.channel.messages.react(this, emoji);
   }
 
   /**
-   * It removes embeds from a message
-   * @returns The message object.
+   * Removes embeds from a message.
+   * @returns {Promise<void>} - A promise that resolves when the embeds are successfully removed.
    */
   async removeEmbeds() {
     return await this.edit({flags: MessageFlags.Flags.Suppress_Embeds});
   }
 
   /**
-   * It removes all attachments from a message
-   * @returns The message object.
+   * Removes all attachments from the message.
+   * @throws {RangeError} If there are no attachments in the message.
+   * @returns {Promise<void>} A promise that resolves when the attachments are successfully removed.
    */
   async removeAttachments() {
     if (this.attachments.size < 1) throw new RangeError(`There are no attachments in this message`);
@@ -143,9 +149,11 @@ class Message extends Base {
   }
 
   /**
-   * It removes an attachment from a message
-   * @param attachment - The attachment to remove.
-   * @returns The message is being edited with the new attachments.
+   * Removes the specified attachment from the message. If no attachment is provided,
+   * all attachments will be removed.
+   * @param {string | Attachment} attachment - The attachment or attachment ID to remove.
+   * @returns {Promise<void>} - A promise that resolves once the attachment is removed.
+   * @throws {RangeError} - If the message does not have the specified attachment.
    */
   async removeAttachment(attachment) {
     if (!attachment) return await this.removeAttachments();
@@ -156,9 +164,9 @@ class Message extends Base {
   }
 
   /**
-   * It sends a message to the channel that the message was sent in
-   * @param [options] - The options to pass to the send method.
-   * @returns The message object.
+   * Sends a reply message to the channel where the original message was received.
+   * @param {Object} options - Additional options for the reply message.
+   * @returns {Promise<Message>} - A promise that resolves to the sent message.
    */
   async reply(options = {}) {
     return await this.channel.send(
@@ -174,34 +182,34 @@ class Message extends Base {
   }
 
   /**
-   * It fetches a message from a channel
-   * @returns A promise that resolves to a Message object.
+   * Fetches the reference message from the channel.
+   * @returns {Promise<Message>} A promise that resolves to the reference message.
    */
   async fetchReference() {
     return await this.channel.messages.fetch(this.reference.messageId);
   }
 
   /**
-   * It pins the message to the channel
-   * @param reason - The reason for pinning this message.
-   * @returns The message object.
+   * Pins the current message to the channel.
+   * @param {string} reason - The reason for pinning the message.
+   * @returns {Promise} - A promise that resolves when the message is successfully pinned.
    */
   async pin(reason) {
     return await this.channel.messages.pin(this, reason);
   }
 
   /**
-   * It unpins a message
-   * @param reason - The reason for unpinning the message.
-   * @returns The unpinned message.
+   * Unpins the current message from the channel.
+   * @param {string} reason - The reason for unpinning the message.
+   * @returns {Promise} - A promise that resolves when the message is successfully unpinned.
    */
   async unpin(reason) {
     return await this.channel.messages.unpin(this, reason);
   }
 
   /**
-   * If the type is not one of the four types listed, then it's a system type
-   * @returns The value of the property "type" of the object "this".
+   * Get the system value based on the type of the object.
+   * @returns {boolean | null} - The system value. Returns null if the type is not set.
    */
   get system() {
     if (!this.type) return null;
@@ -210,8 +218,8 @@ class Message extends Base {
   }
 
   /**
-   * If the guildId is defined, return true, otherwise return false.
-   * @returns The boolean value of the if statement.
+   * Checks if the current context is within a guild.
+   * @returns {boolean} - True if the context is within a guild, false otherwise.
    */
   inGuild() {
     if (this.guildId) return true;
@@ -219,9 +227,9 @@ class Message extends Base {
   }
 
   /**
-   * It returns true if the message is a partial message and the type, guildId, and content are the same
-   * @param message - The message to compare to.
-   * @returns The return value is a boolean.
+   * Checks if the given object is equal to this Message object.
+   * @param {Object} message - The object to compare with this Message object.
+   * @returns {boolean|null} - Returns true if the objects are equal, false if they are not equal, and null if the given object is not an instance of Message.
    */
   equals(message) {
     if (!(message instanceof Message)) return null;
@@ -229,17 +237,21 @@ class Message extends Base {
   }
 
   /**
-   * It returns the author of the message
-   * @returns The author of the message.
+   * Get the author of this object.
+   * @returns The author of this object.
    */
   get author() {
     return this.client.users._add(this._author);
   }
 
   /**
-   * It creates a thread
-   * @param [options] - Object
-   * @returns The thread object.
+   * Creates a new thread in a channel.
+   * @param {Object} [options] - The options for creating the thread.
+   * @param {string} [options.reason] - The reason for creating the thread.
+   * @param {string} [options.name] - The name of the thread.
+   * @param {number} [options.autoArchiveDuration] - The duration in minutes to automatically archive the thread.
+   * @param {number} [options.ratelimit] - The rate limit per user in the thread.
+   * @returns {Promise<Thread>} A promise that resolves with the created thread.
    */
   async createThread(options = {}) {
     const {reason} = options;
@@ -254,9 +266,10 @@ class Message extends Base {
   }
 
   /**
-   * It adds attachments to a message
-   * @param [attachments] - The attachments to add to the message.
-   * @returns The message is being edited with the attachments and files.
+   * Adds attachments to the message.
+   * @param {Array} attachments - An array of attachment objects to add to the message.
+   * @returns {Promise} - A promise that resolves when the attachments have been added.
+   * @throws {RangeError} - If the message has no attachments or if one of the specified attachments already exists.
    */
   async addAttachments(attachments = []) {
     if (this.attachments.size <= 0) throw new RangeError(`This message has no attachments`);

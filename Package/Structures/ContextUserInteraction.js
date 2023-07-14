@@ -1,11 +1,19 @@
 const ContextMenuInteraction = require("./ContextMenuInteraction");
-/* It's a class that extends another class, and it's constructor takes in 3 arguments. */
+/**
+ * Represents a user interaction with a context menu.
+ * @extends ContextMenuInteraction
+ * @constructor
+ * @param {Object} [data] - The data associated with the interaction.
+ * @param {string} guildId - The ID of the guild where the interaction occurred.
+ * @param {Client} client - The client instance that received the interaction.
+ */
 class ContextUserInteraction extends ContextMenuInteraction {
   /**
-   * It's a constructor function that takes in data, guildId, and client as parameters.
-   * @param [data] - The data that the class will be constructed with.
-   * @param guildId - The ID of the guild the role is in.
-   * @param client - The client that instantiated the object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object to initialize the instance with.
+   * @param {string} guildId - The ID of the guild associated with the instance.
+   * @param {Client} client - The client instance associated with the instance.
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);

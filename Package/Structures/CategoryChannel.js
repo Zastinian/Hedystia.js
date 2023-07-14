@@ -1,27 +1,32 @@
 const Channel = require("./Channel");
-/* It's a class that extends the Channel class, and adds a few methods to it */
+/**
+ * Represents a category channel in a guild.
+ * @class
+ * @extends Channel
+ */
 class CategoryChannel extends Channel {
   /**
-   * It's a constructor for the class.
-   * @param [data] - The data that is passed to the constructor.
-   * @param guildId - The ID of the guild the role is in.
-   * @param client - The client that instantiated the object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object to initialize the instance with.
+   * @param {string} guildId - The ID of the guild associated with the instance.
+   * @param {Client} client - The client instance associated with the instance.
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
   }
 
   /**
-   * It returns a collection of channels that are children of the current channel
-   * @returns A collection of channels that are children of this channel.
+   * Retrieves the child channels of the current channel.
+   * @returns {Collection<Snowflake, GuildChannel>} A collection of child channels.
    */
   get childrens() {
     return this.client.channels.cache.filter((o) => (o.parent_id ?? o.parentId) === this.id);
   }
 
   /**
-   * It sorts the childrens array by position, and then returns the first element of the sorted array
-   * @returns The first channel in the array.
+   * Get the highest child element based on their position property.
+   * @returns The highest child element.
    */
   get highest() {
     const channel = this.childrens.sort((a, b) => a.position - b.position);
