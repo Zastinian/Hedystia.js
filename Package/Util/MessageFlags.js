@@ -9,7 +9,7 @@ class MessageFlags extends Bitfield {
   /**
    * Constructs a new instance of the class.
    * @constructor
-   * @param {...any} bit - The arguments to pass to the superclass constructor.
+   * @param {...bigint} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);

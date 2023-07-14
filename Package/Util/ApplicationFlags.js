@@ -5,13 +5,13 @@ const Bitfield = require("./Bitfield");
  * @class
  * @extends Bitfield
  * @constructor
- * @param {...number} bit - The bits to set in the bitfield.
+ * @param {...bigint} bit - The bits to set in the bitfield.
  */
 class ApplicationFlags extends Bitfield {
   /**
    * Constructs a new instance of the class.
    * @constructor
-   * @param {...any} bit - The arguments to pass to the superclass constructor.
+   * @param {...bigint} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);

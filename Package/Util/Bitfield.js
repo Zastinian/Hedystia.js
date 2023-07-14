@@ -12,7 +12,7 @@ class Bitfield {
 
   /**
    * Checks if any of the given bit(s) are set in the bitfield.
-   * @param {...number} bit - The bit(s) to check.
+   * @param {...bigint} bit - The bit(s) to check.
    * @returns {boolean} True if any of the given bit(s) are set, false otherwise.
    */
   any(...bit) {
@@ -21,7 +21,7 @@ class Bitfield {
 
   /**
    * Checks if the given bit(s) are set in the bitfield.
-   * @param {...number} bit - The bit(s) to check.
+   * @param {...bigint} bit - The bit(s) to check.
    * @returns {boolean} True if the bit(s) are set, false otherwise.
    */
   has(...bit) {
@@ -31,7 +31,7 @@ class Bitfield {
 
   /**
    * Adds one or more bit(s) to the current bitfield.
-   * @param {...number} bit - The bit(s) to add.
+   * @param {...bigint} bit - The bit(s) to add.
    * @returns {this} The modified instance of the class.
    */
   add(...bit) {
@@ -42,7 +42,7 @@ class Bitfield {
 
   /**
    * Removes one or more bits from the bitfield.
-   * @param {...number} bits - The bits to remove from the bitfield.
+   * @param {...bigint} bits - The bits to remove from the bitfield.
    * @returns {Bitfield} A new Bitfield object with the specified bits removed.
    */
   remove(...bits) {
