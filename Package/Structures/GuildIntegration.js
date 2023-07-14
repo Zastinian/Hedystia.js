@@ -1,7 +1,6 @@
 const {IntegrationExpireBehavior} = require("../Util/Constants");
 const Base = require("../Base/base");
 const ClientApplication = require("./ClientApplication");
-
 /**
  * Represents a Guild Integration on Discord.
  * @class
@@ -9,6 +8,7 @@ const ClientApplication = require("./ClientApplication");
  */
 class GuildIntegration extends Base {
   /**
+   * @constructor
    * @param {Object} data The data for the guild integration.
    * @param {Snowflake} guildId The ID of the guild this integration belongs to.
    * @param {Client} client The client that instantiated this integration.

@@ -1,6 +1,5 @@
 const {GuildAutoModActionTypes} = require("../Util/Constants");
 const Base = require("../Base/base");
-
 /**
  * Represents an action taken by the guild automod system.
  * @class
@@ -8,6 +7,7 @@ const Base = require("../Base/base");
  */
 class GuildAutoModActions extends Base {
   /**
+   * @constructor
    * @param {Object} data - The data for the action.
    * @param {Client} client - The instantiating client
    */

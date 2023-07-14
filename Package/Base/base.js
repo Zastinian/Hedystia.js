@@ -1,14 +1,13 @@
 /**
- * The class "Base" has a constructor that sets a "client" property.
+ * Represents a base class with a client property.
  * @class
+ * @param {object} client - The client object.
  */
 class Base {
   /**
-   * This is a constructor function that sets the "client" property of an object to a given value.
-   * @param client - The "client" parameter is an object that is being passed into the constructor
-   * function. It is likely that this object represents a client or connection to some external service
-   * or resource that the class will interact with. The constructor function is using the
-   * Object.defineProperty method to define a property called "client" on the
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} client - The client object to be assigned to the "client" property.
    */
   constructor(client) {
     Object.defineProperty(this, "client", {value: client});

@@ -4,7 +4,7 @@
  */
 class Row {
   /**
-   * @param {Object} [data={}] - The data for the row.
+   * @param {Object} [data] - The data for the row.
    * @param {Array<Object>} [data.components] - An array of button components to be included in the row.
    */
   constructor(data = {}) {

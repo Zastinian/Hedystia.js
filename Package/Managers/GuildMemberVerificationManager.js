@@ -1,12 +1,18 @@
 const GuildMemberVerification = require("../Structures/GuildMemberVerification");
 const Base = require("../Base/base");
-/* This class is used to manage the member verification settings of a guild */
+/**
+ * Represents a manager for guild member verification settings.
+ * @class
+ * @extends Base
+ * @param {string} guildId - The ID of the guild.
+ * @param {Client} client - The client instance.
+ */
 class GuildMemberVerificationManager extends Base {
   /**
-   * `constructor(guildId, client)` is a function that takes two arguments, `guildId` and `client`, and
-   * assigns them to the `guildId` and `client` properties of the class.
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -15,9 +21,11 @@ class GuildMemberVerificationManager extends Base {
   }
 
   /**
-   * `fetch` fetches the guild's member verification settings
-   * @param [options] - Object
-   * @returns A new GuildMemberVerification object
+   * Fetches the member verification information for a guild.
+   * @param {Object} [options] - The options for the fetch request.
+   * @param {boolean} [options.withGuild] - Whether to include guild information in the response.
+   * @param {string | { code: string }} [options.inviteCode] - The invite code or object containing the invite code.
+   * @returns {Promise<GuildMemberVerification>} - A promise that resolves with the fetched GuildMemberVerification object.
    */
   async fetch(options = {}) {
     const query = {
@@ -30,9 +38,12 @@ class GuildMemberVerificationManager extends Base {
   }
 
   /**
-   * It edits the verification form
-   * @param [options] - Object
-   * @returns A new GuildMemberVerification object
+   * Edits the member verification settings for the guild.
+   * @param {Object} [options] - The options for the member verification settings.
+   * @param {boolean} [options.enabled] - Whether member verification is enabled or not.
+   * @param {Array<Object>} [options.fields] - An array of form field objects for member verification.
+   * @param {string} [options.description] - The description for the member verification form.
+   * @returns {Promise<GuildMemberVerification>} A promise that resolves with the updated GuildMemberVerification object.
    */
   async edit(options = {}) {
     const body = {
@@ -45,16 +56,9 @@ class GuildMemberVerificationManager extends Base {
   }
 
   /**
-   * It takes an object with any of the following keys: `fieldType`, `field_type`, `type`, `label`,
-   * `required`, `values`, `choices` and returns an object with the following keys: `field_type`,
-   * `label`, `required`, `values`, `choices`
-   * @param [fields] - The fields object that is passed in from the form.
-   * @returns An object with the following properties:
-   *   field_type: The type of field.
-   *   label: The label of the field.
-   *   required: Whether or not the field is required.
-   *   values: The values of the field.
-   *   choices: The choices of the field.
+   * Creates a form field object with the given fields.
+   * @param {Object} fields - The fields to include in the form field object.
+   * @returns {Object} - The created form field object.
    */
   static createFormFields(fields = {}) {
     return {

@@ -1,23 +1,23 @@
 "use strict";
 
 /**
- * It's a Map with some extra methods.
+ * A custom implementation of a Map with additional utility methods.
  * @class RaidenCol
  * @extends Map
  */
 class RaidenCol extends Map {
   /**
-   * The size() method returns the number of elements in the array
-   * @returns The size of the array.
+   * Get the size of the Map object.
+   * @returns {number} The number of key-value pairs in the Map object.
    */
   get size() {
     return super.size;
   }
 
   /**
-   * It takes a function as an argument, and returns an array of the keys of the object, mapped to the
-   * function
-   * @param fn - A function that produces an element of the new Array, taking three arguments:
+   * Maps over the elements of the Map object and applies a function to each element.
+   * @param {Function} fn - The function to apply to each element.
+   * @returns {Array} - An array containing the results of applying the function to each element.
    */
   map(fn) {
     let array = [];
@@ -28,10 +28,9 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It takes a function as an argument, and returns an array of the results of that function being
-   * applied to each value in the map.
-   * @param fn - The function to apply to each value in the Map.
-   * @returns An array of values that are returned from the function.
+   * Maps each value in the Map object using the provided function and returns an array of the mapped values.
+   * @param {Function} fn - The function to apply to each value in the Map object.
+   * @returns {Array} - An array of the mapped values.
    */
   mapVal(fn) {
     let val = this.values();
@@ -47,9 +46,8 @@ class RaidenCol extends Map {
   }
 
   /**
-   * If the size of the list is less than or equal to 0, return undefined. Otherwise, return the first
-   * value in the list.
-   * @returns The first value in the Map.
+   * Returns the first element in the collection.
+   * @returns {any | undefined} The first element in the collection, or undefined if the collection is empty.
    */
   first() {
     if (this.size <= 0) return undefined;
@@ -57,10 +55,9 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It takes a function as an argument and returns the first value in the array that returns true when
-   * passed to the function
-   * @param fn - A function that returns a boolean value.
-   * @returns The value of the first element in the array that satisfies the function.
+   * Finds the first value in the Map that satisfies the provided testing function.
+   * @param {Function} fn - The testing function. It should return true if the value satisfies the condition, false otherwise.
+   * @returns The first value that satisfies the condition, or undefined if no value satisfies the condition.
    */
   find(fn) {
     for (let [key, val] of this) {
@@ -70,10 +67,9 @@ class RaidenCol extends Map {
   }
 
   /**
-   * If the function passed to filter returns true, then the key/value pair is added to the new Map.
-   * @param fn - The function to test each element of the map.
-   * @returns A new Map object with the same keys and values as the original Map object, but with only
-   * the values that pass the test implemented by the provided function.
+   * Creates a new instance of the same class and returns a filtered version of the current instance.
+   * @param {Function} fn - The filter function to apply to each value in the instance.
+   * @returns {Object} - A new instance of the same class with the filtered values.
    */
   filter(fn) {
     let result = new this.constructor[Symbol.species]();
@@ -84,9 +80,9 @@ class RaidenCol extends Map {
   }
 
   /**
-   * If the key passes the test, add it to the new Map.
-   * @param fn - The function to call for each key.
-   * @returns A new Map object with the same keys and values as the original Map object.
+   * Filters the key-value pairs of a Map object based on a given function.
+   * @param {Function} fn - The function used to filter the keys.
+   * @returns A new Map object containing the filtered key-value pairs.
    */
   filterKey(fn) {
     let result = new this.constructor[Symbol.species]();
@@ -97,8 +93,8 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It returns the last element of the array.
-   * @returns The last value in the Map.
+   * Returns the last element in the set.
+   * @returns {any} The last element in the set, or undefined if the set is empty.
    */
   last() {
     if (this.size <= 0) return undefined;
@@ -106,18 +102,17 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It returns the last key in the object.
-   * @returns The last key in the object.
+   * Returns the last key in the keyArray.
+   * @returns The last key in the keyArray.
    */
   lastKey() {
     return this.keyArray()[this.keyArray().length - 1];
   }
 
   /**
-   * The tap function takes a function as an argument and calls it with the current object as an
-   * argument. It then returns the current object.
-   * @param fn - The function to call.
-   * @returns The object that was passed in.
+   * Executes a function with the current object as its argument and returns the object itself.
+   * @param {Function} fn - The function to be executed.
+   * @returns {Object} - The current object.
    */
   tap(fn) {
     fn(this);
@@ -125,35 +120,34 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It checks if the key is present in the map.
-   * @param k - The key of the element to test for presence in the Map object.
-   * @returns The super.has(k) method is being returned.
+   * Checks if the specified key is present in the Map object.
+   * @param {any} k - The key to check for.
+   * @returns {boolean} - True if the key is present, false otherwise.
    */
   has(k) {
     return super.has(k);
   }
 
   /**
-   * Return an array of the values in the Map.
-   * @returns An array of the values in the map.
+   * Returns an array containing all the values of the current object.
+   * @returns {Array} - An array containing all the values of the object.
    */
   array() {
     return Array.from(this.values());
   }
 
   /**
-   * It returns an array of the keys in the map.
-   * @returns An array of the keys in the map.
+   * Returns an array containing all the keys in the Map object.
+   * @returns {Array} An array containing all the keys in the Map object.
    */
   keyArray() {
     return Array.from(this.keys());
   }
 
   /**
-   * If the first argument is an array, then check if every element in the array is in the set. If the
-   * first argument is not an array, then check if every argument is in the set.
-   * @param c - The array of elements to check for.
-   * @returns The return value is a boolean.
+   * Checks if all the given elements are present in the set.
+   * @param {...any} c - The elements to check for presence in the set.
+   * @returns {boolean} - True if all elements are present, false otherwise.
    */
   hasAll(...c) {
     if (Array.isArray(c[0])) {
@@ -164,10 +158,9 @@ class RaidenCol extends Map {
   }
 
   /**
-   * If the first argument is an array, then check if any of the elements in the array are in the map,
-   * otherwise check if any of the arguments are in the map.
-   * @param keys - The keys to check for.
-   * @returns The return value is a boolean.
+   * Checks if any of the given keys exist in the Map.
+   * @param {...any} keys - The keys to check for existence in the Map.
+   * @returns {boolean} - True if any of the keys exist in the Map, false otherwise.
    */
   hasAny(...keys) {
     if (Array.isArray(keys[0])) {
@@ -178,21 +171,21 @@ class RaidenCol extends Map {
   }
 
   /**
-   * If the callback function returns true for any of the entries, return true, otherwise return false.
-   * @param fn - A function that takes two parameters: key and value.
+   * Checks if any key-value pair in the Map satisfies the given condition.
+   * @param {Function} fn - The condition function to be applied to each key-value pair.
+   *                       It should take two arguments: key and value.
+   * @returns {boolean} True if any key-value pair satisfies the condition, false otherwise.
    */
   some(fn) {
     for (const [key, val] of this.entries()) {
       if (fn(key, val)) return true;
     }
-
     return false;
   }
 
   /**
-   * It takes the values of the map, turns them into an array, and then returns a random element from
-   * that array.
-   * @returns a random element from the Map.
+   * Returns a random element from the Set.
+   * @returns A random element from the Set.
    */
   random() {
     let array = Array.from(this.values())[Math.floor(Math.random() * this.size)];
@@ -200,17 +193,20 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It returns the value of the key k.
-   * @param k - The key to look up.
-   * @returns The value of the key k.
+   * Retrieves the value associated with the specified key from the Map object.
+   * @param {any} k - The key of the element to retrieve.
+   * @returns The value associated with the specified key, or undefined if the key does not exist in the Map.
    */
   get(k) {
     return super.get(k);
   }
 
   /**
-   * It returns true if the callback function returns true for every element in the array
-   * @param fn - The function to test for each element, taking two arguments:
+   * Checks if every element in the collection satisfies the provided testing function.
+   * @param {Function} fn - The testing function to apply to each element.
+   *                       It should return a boolean value indicating whether the element passes the test.
+   *                       The function is invoked with two arguments: the element value and the element key.
+   * @returns {boolean} - True if every element passes the test, false otherwise.
    */
   every(fn) {
     for (let [key, val] of this) {
@@ -220,10 +216,9 @@ class RaidenCol extends Map {
   }
 
   /**
-   * The each function takes a function as an argument and calls the forEach function on the array,
-   * then returns the array.
-   * @param fn - The function to execute on each element.
-   * @returns the array.
+   * Executes a provided function once for each element in the array.
+   * @param {function} fn - The function to execute for each element.
+   * @returns {Array} - The modified array.
    */
   each(fn) {
     this.forEach(fn);
@@ -231,20 +226,17 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It returns a random key from the Map.
-   * @returns The random key from the map.
+   * Generates a random key from the Set object.
+   * @returns A random key from the Set object.
    */
   randomKey() {
     return Array.from(this.keys())[Math.floor(Math.random() * this.size)];
   }
 
   /**
-   * If the collection is not defined, return false; if the size of the collection is not equal to the
-   * size of the current collection, return false; if the current collection is the same as the
-   * collection, return true; if the collection does not have the key or the value is not equal to the
-   * value of the collection, return false; otherwise, return true
-   * @param collection - The collection to compare against.
-   * @returns a boolean value.
+   * Checks if the current collection is equal to the given collection.
+   * @param {Collection} collection - The collection to compare with.
+   * @returns {boolean} True if the collections are equal, false otherwise.
    */
   equals(collection) {
     if (!collection) return false;
@@ -257,9 +249,10 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It returns the difference between two sets
-   * @param collection - The collection to compare against.
-   * @returns The difference between the two sets.
+   * Calculates the difference between this Set and another collection.
+   * @param {Collection} collection - The collection to compare against.
+   * @returns {Array} - An array of values that are present in the other collection but not in this Set.
+   * If the sizes of the two collections are different, returns a string indicating the size difference.
    */
   difference(collection) {
     if (this.size !== collection.size) return `size difference by: ${Math.abs(this.size - collection.size)}`;
@@ -267,9 +260,9 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It takes a function as an argument and returns the first key for which the function returns true
-   * @param fn - A function that takes two parameters: key and value.
-   * @returns The key of the first element in the array that satisfies the provided testing function.
+   * Finds the key in the Map object that satisfies the given function.
+   * @param {Function} fn - The function to test each key-value pair of the Map object.
+   * @returns The key that satisfies the function, or the Map object if no key is found.
    */
   findKey(fn) {
     for (let [key, val] of this) {
@@ -279,9 +272,9 @@ class RaidenCol extends Map {
   }
 
   /**
-   * It sorts the RaidenCol by the given function
-   * @param [fn] - The function to use to sort the entries.
-   * @returns The sorted map.
+   * Sorts the entries in the RaidenCol object based on the provided compare function or the default compare function.
+   * @param {function} [fn=RaidenCol.compareFunction] - The compare function used to determine the order of the entries. If not provided, the default compare function of the RaidenCol object will be used.
+   * @returns {RaidenCol} - The sorted RaidenCol object.
    */
   sort(fn = RaidenCol.compareFunction) {
     const entries = [...this.entries()];
@@ -294,17 +287,17 @@ class RaidenCol extends Map {
   }
 
   /**
-   * The function `clear()` is a method of the `Set` class. It removes all elements from the set.
-   * @returns The return value of the superclass method.
+   * Clears the current state of the object by calling the clear method of the superclass.
+   * @returns {void}
    */
   clear() {
     return super.clear();
   }
 
   /**
-   * The at() function returns the item at the specified index in the collection.
-   * @param [index=0] - The index of the item you want to get.
-   * @returns The first element of the array.
+   * Retrieves the element at the specified index from the collection.
+   * @param {number} [index=0] - The index of the element to retrieve. Defaults to 0 if not provided.
+   * @returns The element at the specified index.
    */
   at(index = 0) {
     const collectionArr = this.array();
@@ -312,10 +305,13 @@ class RaidenCol extends Map {
   }
 
   /**
-   * If one is greater than two, return 1. If one is equal to two, return 0. If one is less than two,
-   * return -1.
-   * @param one - The first value to compare.
-   * @param two - The second item to compare.
+   * Compare two values and return a number indicating their relative order.
+   * @param {any} one - The first value to compare.
+   * @param {any} two - The second value to compare.
+   * @returns {number} - A number indicating the relative order of the values:
+   *   -1 if `one` is less than `two`,
+   *    0 if `one` is equal to `two`,
+   *    1 if `one` is greater than `two`.
    */
   static compareFunction(one, two) {
     return Number(one > two || one === two) - 1;

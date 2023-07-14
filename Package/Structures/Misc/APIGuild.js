@@ -2,14 +2,26 @@ const {RaidenCol} = require("../../Util/@Collections/RaidenCol");
 const {VerificationLevel, DefaultMessageNotifications, ExplicitContentFilter} = require("../../Util/Constants");
 const SystemChannelFlags = require("../../Util/SystemChannelFlags");
 const Base = require("../../Base/base");
-/* It takes in a data object and a client, and then sets the properties of the class to the values of
-the data object */
+/**
+ * Represents a guild in the API.
+ * @class
+ * @extends Base
+ * @param {Object} [data] - The data object containing guild information.
+ * @param {Client} client - The client instance.
+ * @property {string | null} name - The name of the guild.
+ * @property {string | null} description - The description of the guild.
+ * @property {string | null} region - The region of the guild.
+ * @property {VerificationLevel | null} verificationLevel - The verification level of the guild.
+ * @property {DefaultMessageNotifications | null} defaultMessageNotifications - The default message notifications setting of the guild.
+ * @property {ExplicitContentFilter | null} explicitContentFilter
+ */
 class APIGuild extends Base {
   /**
    * It takes in a data object and a client, and then sets the properties of the class to the values of
    * the data object
-   * @param [data] - The data that was sent from the API.
-   * @param client - The client that created the guild.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {Client} client - The client object associated with the instance.
    */
   constructor(data = {}, client) {
     super(client);

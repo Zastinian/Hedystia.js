@@ -3,15 +3,24 @@ const Snowflake = require("../Util/Snowflake");
 const Base = require("../Base/base");
 const TeamMember = require("./TeamMember");
 /**
- * It's a class that represents a team in the Discord API
+ * Represents a team object.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data object containing the team information.
+ * @param {Client} client - The client object.
+ * @property {string | undefined} icon - The icon of the team.
+ * @property {string | undefined} id - The ID of the team.
+ * @property {RaidenCol} members - A collection of team members.
+ * @property {Date | undefined} createdAt - The creation date of the team.
+ * @property {number | undefined} createdTimestamp - The timestamp of the team's creation date.
+ * @property {string | undefined} name - The name of the team.
  */
 class Team extends Base {
   /**
-   * It's a constructor for a class that extends another class
-   * @param [data] - The data that was passed to the constructor
-   * @param client - The client that instantiated the object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {Client} client - The client object associated with the instance.
    */
   constructor(data = {}, client) {
     super(client);
@@ -26,11 +35,12 @@ class Team extends Base {
   }
 
   /**
-   * "If the team has an icon, return the icon URL, otherwise return null."
-   *
-   * The function takes an optional parameter, options, which is an object
-   * @param [options] - Object
-   * @returns The URL of the team icon.
+   * Returns the URL of the icon for this team.
+   * @param {Object} options - Optional parameters for customizing the icon URL.
+   * @param {boolean} [options.dynamic] - Whether to use a dynamic icon.
+   * @param {number} [options.size] - The desired size of the icon.
+   * @param {string} [options.format] - The desired format of the icon.
+   * @returns {string | null} The URL of the team's icon, or null if no icon is available.
    */
   iconURL(options = {}) {
     if (!this.icon) return null;

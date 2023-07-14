@@ -1,17 +1,22 @@
 const {MemberShipState} = require("../Util/Constants");
 const Base = require("../Base/base");
 /**
- * It's a class that represents a team member
+ * Represents a team member.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data object containing information about the team member.
+ * @param {Client} client - The client object.
+ * @property {MembershipState|null} state - The membership state of the team member.
+ * @property {Object|undefined} permissions - The permissions of the team member.
+ * @property {string|null} teamId - The ID of the team that the member belongs to.
+ * @property {User|null} user - The user object representing the team member.
  */
 class TeamMember extends Base {
   /**
-   * It's a constructor for a class that takes in a data object and a client object, and sets the
-   * state, permissions, teamId, and user properties of the class to the values of the state,
-   * permissions, teamId, and user properties of the data object, respectively
-   * @param [data] - The data that was received from the API.
-   * @param client - The client that instantiated the object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(client);

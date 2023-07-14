@@ -898,7 +898,7 @@ export class StringSelect {
 
   /**
    * Transforms an option object for a string select component into a simpler format.
-   * @param {Object} [options={}] - The option object to transform.
+   * @param {Object} [options] - The option object to transform.
    * @returns {Object} - The transformed option object.
    * @throws {RangeError} - If the option object is missing the label or value properties, or if the default property is not a boolean.
    */
@@ -983,7 +983,7 @@ export class UserSelect {
 
   /**
    * Transforms an option object for a user select component into a simpler format.
-   * @param {Object} [options={}] - The option object to transform.
+   * @param {Object} [options] - The option object to transform.
    * @returns {Object} - The transformed option object.
    */
   static transformOptions(options?: Object): Object;
@@ -3955,7 +3955,7 @@ export class APIGuild {
 /**
  * A class representing a Discord Slash Command.
  * @class
- * @param {Object} [data={}] - The data for the Slash Command.
+ * @param {Object} [data] - The data for the Slash Command.
  * @param {number | string} [data.type="Chat_Input"] - The type of the command.
  * @param {string} [data.name] - The name of the command.
  * @param {Object} [data.name_localizations] - The localizations of the command name.
@@ -3969,7 +3969,7 @@ export class Slash {
   /**
    * A class representing a Discord Slash Command.
    * @class
-   * @param {Object} [data={}] - The data for the Slash Command.
+   * @param {Object} [data] - The data for the Slash Command.
    * @param {number | string} [data.type="Chat_Input"] - The type of the command.
    * @param {string} [data.name] - The name of the command.
    * @param {Object} [data.name_localizations] - The localizations of the command name.
@@ -4013,7 +4013,7 @@ export class Slash {
 
   /**
    * Sets the localizations of the name of the Slash Command.
-   * @param {Object} [localizations={}] - The localizations of the command name.
+   * @param {Object} [localizations] - The localizations of the command name.
    * @returns {Slash} The Slash instance.
    */
   setNameLocalizations(localizations?: Object): Slash;
@@ -4138,7 +4138,7 @@ export class SlashOption {
 
   /**
    * Sets the localized names of the option.
-   * @param {Object} [localizations={}] - The localized names of the option.
+   * @param {Object} [localizations] - The localized names of the option.
    * @returns {SlashOption} The updated instance of the SlashOption class.
    */
   setNameLocalizations(localizations?: Object): SlashOption;
@@ -4270,7 +4270,7 @@ export class SlashSubCommandGroups {
 
   /**
    * Sets the name localizations of the sub-command group.
-   * @param {Object} [localizations={}] - The name localizations of the sub-command group.
+   * @param {Object} [localizations] - The name localizations of the sub-command group.
    * @returns {SlashSubCommandGroups} The sub-command group object.
    */
   setNameLocalizations(localizations?: Object): SlashSubCommandGroups;
@@ -5303,7 +5303,7 @@ export class ForumChannel extends Channel {
   /**
    * Creates a new thread in the forum channel.
    * @async
-   * @param {Object} [options={}] - The options for the thread
+   * @param {Object} [options] - The options for the thread
    * @param {string} [options.name] - The name of the thread
    * @param {number} [options.autoArchiveDuration] - The duration in minutes to automatically archive the thread
    * @param {number} [options.rateLimitPerUser] - The rate limit per user for the thread in seconds
@@ -5489,7 +5489,7 @@ export class Guild {
 
   /**
    * Returns the URL of the guild's icon.
-   * @param {Object} [options={}] - Additional options for the URL.
+   * @param {Object} [options] - Additional options for the URL.
    * @param {boolean} [options.dynamic=false] - Whether to return a dynamic icon.
    * @param {number} [options.size] - The size of the icon to return.
    * @param {string} [options.format] - The format of the icon to return.
@@ -5499,7 +5499,7 @@ export class Guild {
 
   /**
    * Returns the URL of the guild's banner.
-   * @param {Object} [options={}] - Additional options for the URL.
+   * @param {Object} [options] - Additional options for the URL.
    * @param {boolean} [options.dynamic=false] - Whether to return a dynamic banner.
    * @param {number} [options.size] - The size of the banner to return.
    * @param {string} [options.format] - The format of the banner to return.
@@ -5509,7 +5509,7 @@ export class Guild {
 
   /**
    * Returns the URL of the guild's splash.
-   * @param {Object} [options={}] - Additional options for the URL.
+   * @param {Object} [options] - Additional options for the URL.
    * @param {boolean} [options.dynamic=false] - Whether to return a dynamic splash.
    * @param {number} [options.size] - The size of the splash to return.
    * @param {string} [options.format] - The format of the splash to return.
@@ -5519,7 +5519,7 @@ export class Guild {
 
   /**
    * Returns the URL of the guild's discovery splash.
-   * @param {Object} [options={}] - Additional options for the URL.
+   * @param {Object} [options] - Additional options for the URL.
    * @param {boolean} [options.dynamic=false] - Whether to return a dynamic discovery splash.
    * @param {number} [options.size] - The size of the discovery splash to return.
    * @param {string} [options.format] - The format of the discovery splash to return.
@@ -5611,7 +5611,7 @@ export class Guild {
   /**
    * Fetches the audit logs for the guild.
    * @async
-   * @param {Object} [options={}] - The options for fetching audit logs.
+   * @param {Object} [options] - The options for fetching audit logs.
    * @param {UserResolvable} [options.user] - The user to filter the audit log by.
    * @param {string} [options.actionType] - The type of action to filter the audit log by.
    * @param {Snowflake|GuildAuditLogEntry} [options.before] - The entry to get audit logs before.

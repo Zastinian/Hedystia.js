@@ -1,18 +1,20 @@
 const {RaidenCol} = require("../Util/@Collections/RaidenCol");
 const Base = require("../Base/base");
 /**
- * It's a class that represents a guild widget
+ * Represents a guild widget.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data object containing guild widget information.
+ * @param {string} guildId - The ID of the guild.
+ * @param {Client} client - The client instance.
  */
 class GuildWidget extends Base {
   /**
-   * It takes in a data object, a guild id, and a client, and then it sets the id, name, instantInvite,
-   * channels, members, and presenceCount properties of the class to the values of the data object, the
-   * guild id, and the client
-   * @param [data] - The data that is passed to the constructor.
-   * @param guildId - The ID of the guild
-   * @param client - The client
+   * Constructs a new instance of the Guild class.
+   * @constructor
+   * @param {Object} [data] - The data object containing guild information.
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -25,16 +27,16 @@ class GuildWidget extends Base {
   }
 
   /**
-   * It fetches the settings of the widget
-   * @returns The settings of the widget.
+   * Fetches the settings for the guild's widgets.
+   * @returns {Promise} A promise that resolves to the fetched settings.
    */
   async fetchSettings() {
     return await this.guild?.widgets.fetchSettings();
   }
 
   /**
-   * It adds the guild to the cache if it's not already there, and then returns the guild
-   * @returns The guild object.
+   * Retrieves the guild associated with this object.
+   * @returns {Guild | null} The guild object if found, otherwise null.
    */
   get guild() {
     return this.client.guilds._add(this.id) ?? null;

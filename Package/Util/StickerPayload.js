@@ -1,10 +1,15 @@
 const DataManager = require("./DataManager");
 
 /**
- * It's a class that creates a payload for the VK API.
- * @module StickerPayload
+ * Represents a sticker payload.
+ * @class
  */
 class StickerPayload {
+  /**
+   * Creates a payload for an API request.
+   * @param {Object} payload - The payload object.
+   * @returns {Promise<Object>} - The created payload.
+   */
   static async create(payload = {}) {
     const data = this.resolveData(payload);
     if (payload.file) {
@@ -28,6 +33,14 @@ class StickerPayload {
     return data;
   }
 
+  /**
+   * Resolves the data object by validating and formatting its properties.
+   * @param {Object} [data] - The data object to resolve.
+   * @returns {Object} - The resolved data object with validated and formatted properties.
+   * @throws {RangeError} - If the name property is not between 2 and 30 characters.
+   * @throws {RangeError} - If the description property is not between 2 and 100 characters.
+   * @throws {RangeError} - If the tags property is longer than 200 characters.
+   */
   static resolveData(data = {}) {
     if (data.name?.length > 30 || data.name?.length < 2) throw new RangeError(`The name on the sticker should be between 2 and 30`);
     if (data.description?.length > 100 || data.description?.length < 2)

@@ -8,7 +8,7 @@ class UserSelect {
   /**
    * Creates a new instance of UserSelect.
    * @constructor
-   * @param {Object} [data={}] - The data to create the UserSelect instance.
+   * @param {Object} [data] - The data to create the UserSelect instance.
    * @param {string} [data.custom_id] - The custom ID of the user select.
    * @param {Object[]} [data.options] - The options for the user select.
    * @param {string} [data.options.label] - The label for the option.
@@ -36,7 +36,7 @@ class UserSelect {
 
   /**
    * Transforms an option object for a user select component into a simpler format.
-   * @param {Object} [options={}] - The option object to transform.
+   * @param {Object} [options] - The option object to transform.
    * @returns {Object} - The transformed option object.
    */
   static transformOptions(options = {}) {

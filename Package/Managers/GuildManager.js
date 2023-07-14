@@ -5,23 +5,29 @@ const SystemChannelFlags = require("../Util/SystemChannelFlags");
 const Util = require("../Util/Util");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages guilds */
+/**
+ * Represents a manager for guild-related operations.
+ * @class
+ * @extends Base
+ */
 class GuildManager extends Base {
   /**
-   * It's a constructor function that takes in two parameters, client and websocket, and then calls the
-   * super function with those two parameters.
-   * @param client - The client object
-   * @param websocket - The websocket that the client is connected to.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object.
+   * @param {WebSocket} websocket - The WebSocket object.
    */
   constructor(client, websocket) {
     super(client, websocket);
   }
 
   /**
-   * It adds a guild to the cache
-   * @param guilds - The guild object or ID of the guild to add.
-   * @param [options] - cache = true, force = false
-   * @returns A new instance of the Guild class.
+   * Adds a guild to the cache and returns the guild object.
+   * @param {string | Guild} guilds - The guild ID or the guild object to add.
+   * @param {object} [options] - Additional options for adding the guild.
+   * @param {boolean} [options.cache=true] - Whether to cache the guild object.
+   * @param {boolean} [options.force=false] - Whether to force adding the guild even if it already exists in the cache.
+   * @returns {Guild | null} The guild object that was added to the cache, or null if the guild is not provided.
    */
   _add(guilds, options = {cache: true, force: false}) {
     if (!guilds) return null;
@@ -49,9 +55,9 @@ class GuildManager extends Base {
   }
 
   /**
-   * It creates a new guild
-   * @param [options] - Object
-   * @returns The guild object.
+   * Creates a new guild with the given options.
+   * @param {Object} options - The options for creating the guild.
+   * @returns {Promise} A promise that resolves with the created guild.
    */
   async create(options = {}) {
     const body = await GuildManager.transformPayload(options);
@@ -63,10 +69,15 @@ class GuildManager extends Base {
   }
 
   /**
-   * It fetches the guilds of the user
-   * @param guild - The guild to fetch.
-   * @param options
-   * @returns {Function} constructor cache
+   * Fetches guild information from the Discord API.
+   * @param {string | object} guild - The guild ID or guild object to fetch.
+   * @param {object} options - Additional options for the fetch request.
+   * @param {boolean} options.cache - Whether to cache the fetched guild information.
+   * @param {boolean} options.force - Whether to force fetch the guild information even if it is already cached.
+   * @param {string} options.before - The ID of the guild to fetch guilds before.
+   * @param {string} options.after - The ID of the guild to fetch guilds after.
+   * @param {number} options.limit - The maximum number of guilds to fetch.
+   * @returns {Promise<Cache>}
    */
   async fetch(guild, options) {
     if (typeof guild?.id !== "undefined" || typeof guild === "string") return this._fetchId(guild, options);
@@ -82,10 +93,13 @@ class GuildManager extends Base {
   }
 
   /**
-   * It fetches a guild by ID
-   * @param guild - The guild object or ID
-   * @param options
-   * @returns The guild object.
+   * Fetches the ID of a guild asynchronously.
+   * @param {string | Guild} guild - The guild or guild ID to fetch the ID for.
+   * @param {Object} [options] - Additional options for the fetch.
+   * @param {boolean} [options.cache] - Whether to cache the fetched ID.
+   * @param {boolean} [options.force] - Whether to force the fetch even if the ID is already cached.
+   * @param {boolean} [options.withCounts] - Whether to include counts in the fetch query.
+   * @returns {Promise<string>} - A promise that resolves with the fetched guild ID.
    */
   async _fetchId(guild, options) {
     const guildId = typeof guild === "string" ? guild : guild.id;
@@ -103,10 +117,11 @@ class GuildManager extends Base {
   }
 
   /**
-   * It edits a guild
-   * @param guilds - The guild object
-   * @param [options] - Object
-   * @returns The guilds object.
+   * Edits a guild with the given options.
+   * @param {string | Guild} guilds - The ID or the Guild object of the guild to edit.
+   * @param {Object} [options] - The options to edit the guild with.
+   * @param {string} [options.reason] - The reason for the edit.
+   * @returns {Promise<Guild>} A promise that resolves with the edited guild.
    */
   async edit(guilds, options = {}) {
     const guildId = typeof guilds === "string" ? guilds : guilds.id;
@@ -118,9 +133,9 @@ class GuildManager extends Base {
   }
 
   /**
-   * It deletes a guild
-   * @param guild - The guild to delete.
-   * @returns The deleted guild.
+   * Deletes a guild from the server.
+   * @param {string | Guild} guild - The guild to delete. Can be either a guild ID or a Guild object.
+   * @returns {Promise<Guild>} - The deleted guild.
    */
   async delete(guild) {
     const guildId = typeof guild === "string" ? guild : guild.id;
@@ -130,9 +145,9 @@ class GuildManager extends Base {
   }
 
   /**
-   * It fetches the preview of a guild
-   * @param guild - The guild to fetch the preview for.
-   * @returns A new GuildPreview object.
+   * Fetches the preview information for a guild.
+   * @param {string | Guild} guild - The guild ID or guild object.
+   * @returns {Promise<GuildPreview>} - A promise that resolves to a GuildPreview object.
    */
   async fetchPreview(guild) {
     const guildId = typeof guild === "string" ? guild : guild?.id;
@@ -141,14 +156,17 @@ class GuildManager extends Base {
   }
 
   /**
-   * It modifies the MFA level of a guild
-   * @param guild - The guild to modify the MFA level of.
-   * @param [options] - Object
-   * @returns The client.guilds._add(guildId)
+   * Modifies the MFA (Multi-Factor Authentication) level for a guild.
+   * @param {string | Guild} guild - The guild or guild ID to modify.
+   * @param {Object} [options] - Additional options for the modification.
+   * @param {string} [options.reason] - The reason for the modification.
+   * @param {string | number} [options.mfaLevel] - The new MFA level to set for the guild.
+   * @returns {Promise<Guild>} A promise that resolves with the modified guild.
+   * @throws {RangeError} If no guild ID is specified.
    */
   async modifyMFALevel(guild, options = {}) {
     const guildId = typeof guild === "string" ? guild : guild.id;
-    if (!guildId) throw new RangeError(`Por favor, especifique un servidor`);
+    if (!guildId) throw new RangeError(`Please specify a server`);
     const {reason, mfaLevel} = options;
     const body = {
       level: typeof mfaLevel === "string" ? MfaLevel[mfaLevel] : mfaLevel,
@@ -161,18 +179,17 @@ class GuildManager extends Base {
   }
 
   /**
-   * The function returns a collection of objects that are stored in the cache.
-   * @returns The Collection class.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It takes a payload object, and returns a new object with the same keys, but with the values
-   * transformed
-   * @param [payload]
-   * @returns The payload is being returned.
+   * Transforms the given payload object into a new format.
+   * @param {Object} payload - The payload object to transform.
+   * @returns {Object} - The transformed payload object.
    */
   static async transformPayload(payload = {}) {
     return {
@@ -202,12 +219,14 @@ class GuildManager extends Base {
   }
 
   /**
-   * It takes an object with optional properties `before`, `after`, and `limit`, and returns an object
-   * with the same properties, but with the `before` and `after` properties converted to strings if
-   * they are not already strings.
-   *
-   * @param [o] - The options object.
-   * @returns The return value is an object with the following properties:
+   * Transforms the options object by extracting the "before" and "after" properties
+   * and setting them to their corresponding IDs if they are strings, or undefined if they
+   * are not provided. The "limit" property is set to 200 if it is not provided.
+   * @param {Object} o - The options object.
+   * @param {string} [o.before] - The "before" property of the options object.
+   * @param {string} [o.after] - The "after" property of the options object.
+   * @param {number} [o.limit] - The "limit" property of the options object.
+   * @returns {Object} - The transformed options object.
    */
   static transformOptions(o = {}) {
     return {

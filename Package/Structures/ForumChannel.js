@@ -8,7 +8,8 @@ const Channel = require("./Channel");
  */
 class ForumChannel extends Channel {
   /**
-   * @param {Object} [data={}] - The data for the forum channel
+   * @constructor
+   * @param {Object} [data] - The data for the forum channel
    * @param {string} [guildId] - The ID of the guild that the channel belongs to
    * @param {Client} [client] - The client that instantiated the channel
    */
@@ -25,7 +26,7 @@ class ForumChannel extends Channel {
   /**
    * Creates a new thread in the forum channel.
    * @async
-   * @param {Object} [options={}] - The options for the thread
+   * @param {Object} [options] - The options for the thread
    * @param {string} [options.name] - The name of the thread
    * @param {number} [options.autoArchiveDuration] - The duration in minutes to automatically archive the thread
    * @param {number} [options.rateLimitPerUser] - The rate limit per user for the thread in seconds

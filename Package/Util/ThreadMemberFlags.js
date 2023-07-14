@@ -2,11 +2,14 @@ const Bitfield = require("./Bitfield");
 
 /**
  * A bitfield of flags for a thread member.
+ * @class
  * @extends {Bitfield}
  */
 class ThreadMemberFlags extends Bitfield {
   /**
-   * @param {...bigint} bit - Bit(s) to set in the bitfield.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {...any} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);
@@ -14,8 +17,8 @@ class ThreadMemberFlags extends Bitfield {
 }
 
 /**
- * Thread member flags.
- * @type {Object<string, bigint>}
+ * An object that represents the flags for a thread member.
+ * @type {bigint}
  * @readonly
  * @enum {bigint}
  */
@@ -27,16 +30,17 @@ ThreadMemberFlags.Flags = {
 };
 
 /**
- * Default bit value for a thread member.
+ * Sets the default value for the ThreadMemberFlags property.
+ * @readonly
  * @type {bigint}
- * @static
  */
 ThreadMemberFlags.Default = 0n;
 
 /**
- * Bitfield representing all available thread member flags.
- * @type {bigint}
- * @static
+ * Calculates the bitwise OR of all the values in the ThreadMemberFlags.Flags object
+ * and assigns the result to the ThreadMemberFlags.All property.
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of ThreadMemberFlags.All.
  */
 ThreadMemberFlags.All = Object.values(ThreadMemberFlags.Flags).reduce((a, b) => a | b, ThreadMemberFlags.Default);
 

@@ -1,11 +1,16 @@
 const GuildVanity = require("../Structures/GuildVanity");
 const Base = require("../Base/base");
-/* It's a class that manages a guild's vanity URL */
+/**
+ * Represents a manager for handling guild vanity URLs.
+ * @class
+ * @extends Base
+ */
 class GuildVanityManager extends Base {
   /**
-   * The constructor function is a function that is called when an object is created from a class.
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run from.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -14,9 +19,9 @@ class GuildVanityManager extends Base {
   }
 
   /**
-   * It fetches the vanity url of a guild
-   * @param [guild] - The guild ID or guild object to fetch the vanity URL for.
-   * @returns A new instance of the GuildVanity class.
+   * Fetches the vanity URL for the specified guild.
+   * @param {string | Guild} [guild=this.guildId] - The guild ID or Guild object. Defaults to the current guild.
+   * @returns {Promise<GuildVanity>} - A promise that resolves to a GuildVanity object containing the vanity URL information.
    */
   async fetch(guild = this.guildId) {
     const guildId = typeof guild === "string" ? guild : guild.id;
@@ -25,10 +30,10 @@ class GuildVanityManager extends Base {
   }
 
   /**
-   * It edits the guild's vanity url
-   * @param code - The vanity code you want to set.
-   * @param [guild] - The guild ID or guild object to edit the vanity URL for.
-   * @returns A new GuildVanity object.
+   * Edits the code for a guild's vanity URL.
+   * @param {string} code - The new code for the vanity URL.
+   * @param {string | Guild} [guild=this.guildId] - The guild ID or guild object to edit the vanity URL for.
+   * @returns {Promise<GuildVanity>} A promise that resolves with the updated GuildVanity object.
    */
   async edit(code, guild = this.guildId) {
     const guildId = typeof guild === "string" ? guild : guild.id;

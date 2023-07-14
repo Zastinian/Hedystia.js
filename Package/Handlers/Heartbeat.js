@@ -2,13 +2,12 @@ const Base = require("../Base/base");
 const {Opcodes} = require("../Util/Constants");
 /**
  * The Heartbeat class sends a heartbeat to the Discord server in response to a request.
- * @class
- * @extends Base
  */
 class Heartbeat extends Base {
   /**
    * The constructor function initializes an instance of a class and calls a private method.
-   * @param client - The "client" parameter is an object that represents the client or the user of the
+   * @constructor
+   * @param {Client} client - The "client" parameter is an object that represents the client or the user of the
    * constructor. It could be an instance of a class or an object that contains information about the
    * client.
    */

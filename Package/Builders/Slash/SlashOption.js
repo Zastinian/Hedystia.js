@@ -7,7 +7,7 @@ const {OptionType, ChannelType} = require("../../Util/Constants");
 class SlashOption {
   /**
    * Creates a new instance of the SlashOption class.
-   * @param {Object} [data={}] - The data for the option.
+   * @param {Object} [data] - The data for the option.
    * @param {string|number} [data.type="String"] - The type of the option.
    * @param {string} [data.name] - The name of the option.
    * @param {Object} [data.name_localizations] - The localized names of the option.
@@ -90,7 +90,7 @@ class SlashOption {
 
   /**
    * Sets the localized names of the option.
-   * @param {Object} [localizations={}] - The localized names of the option.
+   * @param {Object} [localizations] - The localized names of the option.
    * @returns {SlashOption} The updated instance of the SlashOption class.
    */
   setNameLocalizations(localizations = {}) {

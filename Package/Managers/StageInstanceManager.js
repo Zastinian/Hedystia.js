@@ -2,22 +2,29 @@ const StageInstance = require("../Structures/StageInstance");
 const {PrivacyLevel} = require("../Util/Constants");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages the creation, deletion, and editing of stage instances */
+/**
+ * Manages stage instances in a guild.
+ * @class
+ * @extends Base
+ */
 class StageInstanceManager extends Base {
   /**
-   * A constructor function.
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It adds a stage instance to the cache.
-   * @param stageInstances - This is the stage instance object or the stage instance ID.
-   * @param [guildId] - The guild ID of the guild the stage instance is in.
-   * @param [options] - cache = true, force = false
-   * @returns A new StageInstance object
+   * Adds a stage instance to the cache and returns the stage instance object.
+   * @param {string | StageInstance} stageInstances - The stage instance ID or the stage instance object.
+   * @param {string} [guildId=this.guildId] - The ID of the guild where the stage instance belongs to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the stage instance.
+   * @param {boolean} [options.cache=true] - Whether to cache the stage instance or not.
+   * @param {boolean} [options.force=false] - Whether to force fetch the stage instance even if it is already in the cache.
+   * @returns {StageInstance | null} The stage
    */
   _add(stageInstances, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!stageInstances) return null;
@@ -46,10 +53,12 @@ class StageInstanceManager extends Base {
   }
 
   /**
-   * It fetches a stage instance from the API and adds it to the cache
-   * @param channel - The channel to fetch. Can be a channel ID or a channel object.
-   * @param [options] - Object
-   * @returns The stage instance
+   * Fetches a stage instance from the API.
+   * @param {string | Channel} channel - The channel or channel ID to fetch the stage instance from.
+   * @param {Object} [options] - Additional options for the fetch.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched stage instance.
+   * @param {boolean} [options.force=false] - Whether to force fetch the stage instance even if it is already cached.
+   * @returns {Promise<StageInstance>} A promise that resolves with the fetched stage instance.
    */
   async fetch(channel, options = {}) {
     const {cache = true, force = false} = options;
@@ -59,9 +68,10 @@ class StageInstanceManager extends Base {
   }
 
   /**
-   * It creates a new stage instance.
-   * @param [options] - Object
-   * @returns A new StageInstance object
+   * Creates a new stage instance with the given options.
+   * @param {Object} [options] - The options for creating the stage instance.
+   * @param {string} [options.reason] - The reason for creating the stage instance.
+   * @returns {Promise<StageInstance>} A promise that resolves with the created stage instance.
    */
   async create(options = {}) {
     const {reason} = options;
@@ -71,10 +81,11 @@ class StageInstanceManager extends Base {
   }
 
   /**
-   * It edits a stage instance
-   * @param channel - The channel to edit.
-   * @param [options] - The options to pass to the API.
-   * @returns A stage instance object
+   * Edits a stage instance in a channel.
+   * @param {string | Channel} channel - The channel or channel ID where the stage instance is located.
+   * @param {Object} [options] - Additional options for editing the stage instance.
+   * @param {string} [options.reason] - The reason for editing the stage instance.
+   * @returns {Promise<StageInstance>} A promise that resolves with the updated stage instance.
    */
   async edit(channel, options = {}) {
     const {reason} = options;
@@ -89,10 +100,10 @@ class StageInstanceManager extends Base {
   }
 
   /**
-   * It deletes a stage instance
-   * @param channel - The channel to delete. Can be a channel object or a channel ID.
-   * @param reason - The reason for the deletion.
-   * @returns The deleted stage
+   * Deletes a stage instance from a channel.
+   * @param {string | Channel} channel - The channel or channel ID where the stage instance is located.
+   * @param {string} reason - The reason for deleting the stage instance.
+   * @returns {Promise<StageInstance | null>} - A promise that resolves to the deleted stage instance, or null if it does not exist.
    */
   async delete(channel, reason) {
     const channelId = typeof channel === "string" ? channel : channel?.id;
@@ -102,18 +113,17 @@ class StageInstanceManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection class.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It takes a payload object and returns a new object with the same properties, but with the
-   * `channel` property replaced with a `channel_id` property
-   * @param [payload] - The payload object that is passed to the function.
-   * @returns A new object with the properties channel_id, topic, and privacy_level.
+   * Transforms the given payload object into a new object with specific properties.
+   * @param {object} [payload] - The payload object to transform.
+   * @returns {object} - The transformed payload object.
    */
   static transformPayload(payload = {}) {
     return {

@@ -1,12 +1,15 @@
 const Bitfield = require("./Bitfield");
 
 /**
- * @typedef {Object} UserFlags
- * @property {bigint} value - The raw bitfield value.
+ * Represents a set of user flags using a bitfield.
+ * @class
+ * @extends Bitfield
  */
 class UserFlags extends Bitfield {
   /**
-   * @param {...number|string|bigint} bit - Bit(s) to set in the bitfield.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {...any} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);
@@ -14,6 +17,9 @@ class UserFlags extends Bitfield {
 }
 
 /**
+ * An object that represents various user flags in Discord.
+ * Each flag is represented as a bit in a BigInt value.
+ * @type {bigint}
  * @readonly
  * @enum {bigint}
  */
@@ -35,10 +41,19 @@ UserFlags.Flags = {
   Active_Developer: 1n << 22n,
 };
 
-/* Setting the default value of the bitfield to 0. */
+/**
+ * Sets the default value for the UserFlags to 0n.
+ * @readonly
+ * @type {bigint}
+ */
 UserFlags.Default = 0n;
 
-/* It's taking all the values in the `UserFlags.Flags` object and reducing them to a single value. */
+/**
+ * Combines all the values of the UserFlags.Flags object using a bitwise OR operation
+ * and assigns the result to the UserFlags.All property.
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of UserFlags.All.
+ */
 UserFlags.All = Object.values(UserFlags.Flags).reduce((a, b) => a | b, UserFlags.Default);
 
 module.exports = UserFlags;

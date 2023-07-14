@@ -1,7 +1,6 @@
 const GuildEmojiManager = require("../Managers/GuildEmojiManager");
 const Snowflake = require("../Util/Snowflake");
 const Base = require("../Base/base");
-
 /**
  * Represents the preview for a guild.
  * @class
@@ -9,6 +8,7 @@ const Base = require("../Base/base");
  */
 class GuildPreview extends Base {
   /**
+   * @constructor
    * @param {Object} data The data for the guild preview
    * @param {Client} client The instantiating client
    */

@@ -2,11 +2,14 @@ const Bitfield = require("./Bitfield");
 
 /**
  * A bitfield that represents the system channel flags.
+ * @class
  * @extends {Bitfield}
  */
 class SystemChannelFlags extends Bitfield {
   /**
-   * @param {...number} bit - Bit(s) to set initially.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {...any} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);
@@ -14,14 +17,8 @@ class SystemChannelFlags extends Bitfield {
 }
 
 /**
- * The default bitfield of a system channel.
+ * Represents the flags for the system channel.
  * @type {bigint}
- */
-SystemChannelFlags.Default = 0n;
-
-/**
- * Available flags for a system channel.
- * @type {Object<string, bigint>}
  * @readonly
  * @enum {bigint}
  */
@@ -35,8 +32,17 @@ SystemChannelFlags.Flags = {
 };
 
 /**
- * All available flags for a system channel.
+ * Sets the default value for the SystemChannelFlags property.
+ * @readonly
  * @type {bigint}
+ */
+SystemChannelFlags.Default = 0n;
+
+/**
+ * Calculates the value of the SystemChannelFlags.All property by performing a bitwise OR operation
+ * on all the values of the SystemChannelFlags.Flags object.
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of SystemChannelFlags.All.
  */
 SystemChannelFlags.All = Object.values(SystemChannelFlags.Flags).reduce((a, b) => a | b, SystemChannelFlags.Default);
 

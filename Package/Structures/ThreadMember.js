@@ -1,11 +1,7 @@
 const Base = require("../Base/base");
 const ThreadMemberFlags = require("../Util/ThreadMemberFlags");
 const Snowflake = require("../Util/Snowflake");
-/**
- * It's a class that represents a user in a thread
- * @class
- * @extends Base
- */
+
 class ThreadMember extends Base {
   /**
    * "This function is used to create a new ThreadMember object, which is used to represent a member of

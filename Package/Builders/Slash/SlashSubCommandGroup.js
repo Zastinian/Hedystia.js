@@ -7,7 +7,7 @@ const SlashSubCommands = require("./SlashSubCommands");
  */
 class SlashSubCommandGroups {
   /**
-   * @param {Object} [data={}] - The data for the sub-command group.
+   * @param {Object} [data] - The data for the sub-command group.
    * @param {string} [data.name] - The name of the sub-command group.
    * @param {string} [data.description] - The description of the sub-command group.
    * @param {Object} [data.nameLocalizations] - The name localizations of the sub-command group.
@@ -55,7 +55,7 @@ class SlashSubCommandGroups {
 
   /**
    * Sets the name localizations of the sub-command group.
-   * @param {Object} [localizations={}] - The name localizations of the sub-command group.
+   * @param {Object} [localizations] - The name localizations of the sub-command group.
    * @returns {SlashSubCommandGroups} The sub-command group object.
    */
   setNameLocalizations(localizations = {}) {

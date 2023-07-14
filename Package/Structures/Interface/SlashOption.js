@@ -1,12 +1,26 @@
 const {RaidenCol} = require("../../Util/@Collections/RaidenCol");
 const {OptionType, ChannelType} = require("../../Util/Constants");
 const Base = require("../../Base/base");
-/* It's a class that represents a slash command option */
+/**
+ * Represents a slash command option.
+ * @class
+ * @extends Base
+ * @param {Object} [data] - The data object containing the option properties.
+ * @param {Client} client - The client object.
+ * @property {string} type - The type of the option.
+ * @property {string} name - The name of the option.
+ * @property {string} description - The description of the option.
+ * @property {boolean} required - Whether the option is required or not.
+ * @property {Array<Object>} choices - The choices available for the option.
+ * @property {Array<string>} channelTypes - The types of channels the option can be used in.
+ * @property {number} minValue
+ */
 class SlashOption extends Base {
   /**
-   * It takes in a JSON object and returns a SlashOption object
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - The client that instantiated the object.
+   * Constructs a new instance of the SlashOption class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties of the SlashOption.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(client);
@@ -25,9 +39,11 @@ class SlashOption extends Base {
   }
 
   /**
-   * It takes an object and returns a new object with the same keys but with the values transformed
-   * @param [o] - The object to transform.
-   * @returns An object with the properties name and value.
+   * Transforms an object into a new object with the properties "name" and "value".
+   * If the original object does not have a "name" or "value" property, the corresponding
+   * property in the new object will be set to undefined.
+   * @param {Object} o - The original object to transform.
+   * @returns {Object} - The transformed object with "name" and "value" properties.
    */
   static transformChoices(o = {}) {
     return {
@@ -37,9 +53,9 @@ class SlashOption extends Base {
   }
 
   /**
-   * It takes a channel object and returns the channel type
-   * @param [channel] - The channel to transform.
-   * @returns The channel type is being returned.
+   * Transforms the channel type from a number to its corresponding string representation.
+   * @param {number | object} channel - The channel type to transform. If it is a number, it will be converted to its string representation. If it is an object, it will be returned as is.
+   * @returns {string | object} - The transformed channel type.
    */
   static transformChannelTypes(channel = {}) {
     return typeof channel === "number" ? ChannelType[channel] : channel;

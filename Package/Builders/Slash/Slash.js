@@ -7,7 +7,7 @@ const SlashSubCommands = require("./SlashSubCommands");
 /**
  * A class representing a Discord Slash Command.
  * @class
- * @param {Object} [data={}] - The data for the Slash Command.
+ * @param {Object} [data] - The data for the Slash Command.
  * @param {number | string} [data.type="Chat_Input"] - The type of the command.
  * @param {string} [data.name] - The name of the command.
  * @param {Object} [data.name_localizations] - The localizations of the command name.
@@ -61,7 +61,7 @@ class Slash {
 
   /**
    * Sets the localizations of the name of the Slash Command.
-   * @param {Object} [localizations={}] - The localizations of the command name.
+   * @param {Object} [localizations] - The localizations of the command name.
    * @returns {Slash} The Slash instance.
    */
   setNameLocalizations(localizations = {}) {

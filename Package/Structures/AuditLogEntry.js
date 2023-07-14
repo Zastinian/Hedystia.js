@@ -2,18 +2,23 @@ const Base = require("../Base/base");
 const {GuildAuditLogEntryActionTypes} = require("../Util/Constants");
 const Snowflake = require("../Util/Snowflake");
 /**
- * The `AuditLogEntry` class is a subclass of `Base` that represents an entry in an audit log, with
-properties and methods for accessing and manipulating the data. 
+ * Represents an entry in the audit log.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data for the audit log entry.
+ * @param {Client} client - The client instance.
+ * @property {string|null} targetId - The ID of the target of the audit log entry.
+ * @property {Array<Object>} changes - An array of objects representing the changes made in the audit log entry.
+ * @property {string|null} userId - The ID of the user who performed the action in the audit log entry.
+ * @property {string|null} id - The ID of the audit log entry.
+ * @property {string|null} actionType - The type of action performed
  */
 class AuditLogEntry extends Base {
   /**
-   * This is a constructor function that initializes properties based on the provided data object.
-   * @param [data] - An object containing the data for the constructor. It can have the following
-   * properties:
-   * @param client - The `client` parameter is an instance of a client object that is used to interact
-   * with the Discord API. It is typically passed in when creating an instance of this class.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data=] - The data object containing the properties for the instance.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(client);
@@ -46,18 +51,16 @@ class AuditLogEntry extends Base {
   }
 
   /**
-   * The function checks if the action type is included in the GuildAuditLogEntryActionTypes array.
-   * @returns a boolean value.
+   * Checks if the action type of the guild audit log entry is an update action.
+   * @returns {boolean} - True if the action type is an update action, false otherwise.
    */
   isUpdate() {
     return GuildAuditLogEntryActionTypes.includes(this.actionType);
   }
 
   /**
-   * The function returns the executor user object based on the provided user ID, or null if the user
-   * is not found.
-   * @returns the executor, which is the user associated with the provided userId. If the user is found
-   * in the cache, it will be returned. Otherwise, it will return null.
+   * Retrieves the executor of the action.
+   * @returns The user object representing the executor, or null if not found.
    */
   get executor() {
     return this.client.users.cache.get(this.userId) ?? null;

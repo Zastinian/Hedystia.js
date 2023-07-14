@@ -2,17 +2,20 @@ const {GuildAutoModTriggerTypes} = require("../Util/Constants");
 const Base = require("../Base/base");
 const GuildAutoModActions = require("./GuildAutoModActions");
 /**
- * It's a class that represents a triggered automod rule.
+ * Represents a triggered auto moderation rule.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data for the triggered auto moderation rule.
+ * @param {string} guildId - The ID of the guild that the rule belongs to.
+ * @param {Client} client - The client instance.
  */
 class TriggeredAutoModRule extends Base {
   /**
-   * "This function is used to create a new instance of the GuildAutoModRule class, which is used to
-   * represent a rule that is used to automatically moderate a guild."
-   * @param [data] - The data that is passed in from the API.
-   * @param guildId - The ID of the guild the alert is for.
-   * @param client - Discord.Client
+   * Constructs a GuildAutoModRule object.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties of the rule.
+   * @param {string} guildId - The ID of the guild the rule belongs to.
+   * @param {Client} client - The Discord client object.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -31,7 +34,7 @@ class TriggeredAutoModRule extends Base {
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
+   * Get the guild object associated with this guildId.
    * @returns The guild object.
    */
   get guild() {
@@ -39,7 +42,7 @@ class TriggeredAutoModRule extends Base {
   }
 
   /**
-   * It returns the channel object of the channel ID that is stored in the message object
+   * Retrieves the channel object associated with this instance.
    * @returns The channel object.
    */
   get channel() {
@@ -47,7 +50,7 @@ class TriggeredAutoModRule extends Base {
   }
 
   /**
-   * It returns the user object of the user who sent the message
+   * Get the user object associated with this instance.
    * @returns The user object.
    */
   get user() {
@@ -55,108 +58,105 @@ class TriggeredAutoModRule extends Base {
   }
 
   /**
-   * It returns a message object from the messageId
-   * @returns The message object.
+   * Retrieves the message from the channel using the specified message ID.
+   * @returns The retrieved message object.
    */
   get message() {
     return this.channel.messages._add(this.messageId);
   }
 
   /**
-   * It fetches the rule from the database
-   * @param [options] - Object
-   * @returns The rule object.
+   * Fetches the automod rule with the specified ruleId from the guild.
+   * @param {object} options - Optional parameters for the fetch request.
+   * @returns {Promise} A promise that resolves to the fetched automod rule.
    */
   async fetch(options = {}) {
     return await this.guild.automod.fetch(this.ruleId, options);
   }
 
   /**
-   * It edits a rule in the guild's automod
-   * @param [options] - Object
-   * @returns The return value is the edited rule.
+   * Edits the automod rule with the specified options.
+   * @param {Object} options - The options to update the automod rule.
+   * @returns {Promise} A promise that resolves when the automod rule has been successfully edited.
    */
   async edit(options = {}) {
     return await this.guild.automod.edit(this.ruleId, options);
   }
 
   /**
-   * It deletes a rule from the database
-   * @param reason - The reason for the deletion.
-   * @returns The return value of the delete method.
+   * Deletes the automod rule with the specified reason.
+   * @param {string} reason - The reason for deleting the rule.
+   * @returns {Promise<void>} - A promise that resolves when the rule is successfully deleted.
    */
   async delete(reason) {
     return await this.guild.automod.delete(this.ruleId, reason);
   }
 
   /**
-   * It edits the name of the channel
-   * @param name - The new name of the channel.
-   * @param reason - The reason for the edit.
-   * @returns The name of the channel.
+   * Sets the name and reason for an object.
+   * @param {string} name - The new name to set.
+   * @param {string} reason - The reason for setting the new name.
+   * @returns {Promise} - A promise that resolves when the name and reason are successfully set.
    */
   async setName(name, reason) {
     return await this.edit({name, reason});
   }
 
   /**
-   * It returns a promise that resolves to the result of calling the edit function with the eventType
-   * and reason parameters.
-   * @param eventType - The event type to set.
-   * @param reason - The reason for the event.
-   * @returns The return value of the edit function.
+   * Sets the event type and reason for the current object.
+   * @param {string} eventType - The type of event to set.
+   * @param {string} reason - The reason for the event.
+   * @returns {Promise} - A promise that resolves when the edit is complete.
    */
   async setEventType(eventType, reason) {
     return await this.edit({eventType, reason});
   }
 
   /**
-   * It sets the triggerMetadata property of the current object to the value of the triggerMetadata
-   * parameter
-   * @param triggerMetadata - The metadata of the trigger.
-   * @param reason - The reason for the edit.
-   * @returns The return value of the edit function.
+   * Sets the trigger metadata for the current object and updates it with the given reason.
+   * @param {any} triggerMetadata - The new trigger metadata to set.
+   * @param {string} reason - The reason for updating the trigger metadata.
+   * @returns {Promise<void>} - A promise that resolves when the trigger metadata is successfully set.
    */
   async setTriggerMetadata(triggerMetadata, reason) {
     return await this.edit({triggerMetadata, reason});
   }
 
   /**
-   * It edits the message with the given actions and reason
-   * @param actions - An array of actions to set.
-   * @param reason - The reason for the edit.
-   * @returns The return value of the edit method.
+   * Sets the actions and reason for editing a resource.
+   * @param {any} actions - The actions to be set.
+   * @param {string} reason - The reason for the edit.
+   * @returns {Promise<any>} - A promise that resolves to the result of the edit operation.
    */
   async setActions(actions, reason) {
     return await this.edit({actions, reason});
   }
 
   /**
-   * This function sets the enabled property of the command to the value of the enabled parameter, and
-   * the reason property of the command to the value of the reason parameter.
-   * @param enabled - Boolean - Whether the command should be enabled or disabled.
-   * @param reason - The reason for the change (0-1024 characters).
-   * @returns The return value of the edit function.
+   * Sets the enabled status of an item and provides a reason for the change.
+   * @param {boolean} enabled - The new enabled status of the item.
+   * @param {string} reason - The reason for the change in enabled status.
+   * @returns {Promise} - A promise that resolves when the edit is complete.
    */
   async setEnabled(enabled, reason) {
     return await this.edit({enabled, reason});
   }
 
   /**
-   * It sets the exempt roles of a role
-   * @param exemptRoles - An array of role IDs that are exempt from the filter.
-   * @param reason - The reason for the edit.
-   * @returns The return value of the edit function.
+   * Sets the exempt roles for a certain action and provides a reason for the change.
+   * @param {Array} exemptRoles - The roles that are exempt from the action.
+   * @param {string} reason - The reason for setting the exempt roles.
+   * @returns {Promise} - A promise that resolves when the exempt roles are successfully set.
    */
   async setExemptRoles(exemptRoles, reason) {
     return await this.edit({exemptRoles, reason});
   }
 
   /**
-   * It edits the channel overwrites for a role
-   * @param exemptChannels - An array of channel IDs that are exempt from the filter.
-   * @param reason - The reason for the edit.
-   * @returns The return value of the edit function.
+   * Sets the exempt channels for a specific action and provides a reason.
+   * @param {Array} exemptChannels - The channels to exempt from the action.
+   * @param {string} reason - The reason for setting the exempt channels.
+   * @returns {Promise} - A promise that resolves when the exempt channels are set.
    */
   async setExemptChannels(exemptChannels, reason) {
     return await this.edit({exemptChannels, reason});

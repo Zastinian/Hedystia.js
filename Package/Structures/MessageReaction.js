@@ -3,18 +3,24 @@ const EmojiResolver = require("../Util/EmojiResolver");
 const Base = require("../Base/base");
 const Emoji = require("./Emoji");
 /**
- * It's a class that represents a reaction on a message
+ * Represents a message reaction.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data for the message reaction.
+ * @param {string} guildId - The ID of the guild the reaction belongs to.
+ * @param {string} channelId - The ID of the channel the reaction belongs to.
+ * @param {string} messageId - The ID of the message the reaction belongs to.
+ * @param {Client} client - The client instance.
  */
 class MessageReaction extends Base {
   /**
-   * It's a constructor for a class called Reaction.
-   * @param [data] - The data that is passed to the constructor.
-   * @param guildId - The guild ID of the message
-   * @param channelId - The channel ID of the message
-   * @param messageId - The ID of the message that the reaction is on.
-   * @param client - The client
+   * Constructs a Reaction object.
+   * @constructor
+   * @param {Object} [data] - The data object containing information about the reaction.
+   * @param {string} guildId - The ID of the guild where the reaction occurred.
+   * @param {string} channelId - The ID of the channel where the reaction occurred.
+   * @param {string} messageId - The ID of the message where the reaction occurred.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, channelId, messageId, client) {
     super(client);
@@ -29,8 +35,8 @@ class MessageReaction extends Base {
   }
 
   /**
-   * It fetches the message, gets the reaction, and returns the reaction
-   * @returns The reaction object.
+   * Fetches a message from a channel and retrieves a reaction associated with it.
+   * @returns {Promise<Reaction | null>} A Promise that resolves to the Reaction object if found, or null if not found.
    */
   async fetch() {
     const message = await this.channel.messages.fetch(this.message);
@@ -39,8 +45,9 @@ class MessageReaction extends Base {
   }
 
   /**
-   * It removes a reaction from a message
-   * @returns The reaction object.
+   * Removes the reaction associated with this message.
+   * @async
+   * @returns {Promise<this>} - A promise that resolves to the current instance of the class.
    */
   async remove() {
     const emoji = EmojiResolver.transformEmoji(this.emoji, this.client);
@@ -51,7 +58,7 @@ class MessageReaction extends Base {
   }
 
   /**
-   * It returns the channel object of the channel ID that is stored in the message object
+   * Retrieves the channel object associated with this instance.
    * @returns The channel object.
    */
   get channel() {
@@ -59,16 +66,17 @@ class MessageReaction extends Base {
   }
 
   /**
-   * It returns the guild object of the channel
-   * @returns The guild object.
+   * Get the guild associated with this channel.
+   * @returns The guild object associated with this channel.
    */
   get guild() {
     return this.client.guilds._add(this.channelId);
   }
 
   /**
-   * @param user - The user that was added to the channel.
-   * @returns the value of the if statement.
+   * Adds a user to the list of users.
+   * @param {User} user - The user to add.
+   * @returns {void}
    */
   _addUsers(user) {
     if (this.partial) return;
@@ -77,8 +85,9 @@ class MessageReaction extends Base {
   }
 
   /**
-   * @param user - The user that was removed from the voice channel.
-   * @returns the value of the variable "this.me"
+   * Removes a user from the list of users.
+   * @param {User} user - The user to remove.
+   * @returns {void}
    */
   _removeUsers(user) {
     if (this.partial) return;

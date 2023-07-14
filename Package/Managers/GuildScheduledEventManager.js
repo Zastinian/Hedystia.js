@@ -1,11 +1,16 @@
 const GuildScheduledEventUsersManager = require("./GuildScheduledEventUsersManager");
 const ScheduledEventManager = require("./ScheduledEventManager");
-/* It's a ScheduledEventManager that only returns events for a specific guild */
+/**
+ * Represents a scheduled event manager for a specific guild.
+ * @class
+ * @extends ScheduledEventManager
+ */
 class GuildScheduledEventManager extends ScheduledEventManager {
   /**
-   * It creates a new instance of the GuildScheduledEventUsersManager class.
-   * @param guildId - The ID of the guild the event is in
-   * @param client - The client that the manager is being created for.
+   * Constructs a new instance of the GuildScheduledEvent class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild associated with the scheduled event.
+   * @param {Client} client - The Discord client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -15,8 +20,8 @@ class GuildScheduledEventManager extends ScheduledEventManager {
   }
 
   /**
-   * It returns the cache, but only the cache that has the same guildId as the current guild
-   * @returns The cache is being filtered by the guildId.
+   * Retrieves the cache for the current guild.
+   * @returns {Array} An array of objects from the cache that belong to the current guild.
    */
   get cache() {
     return super.cache.filter((o) => o.guildId === this.guildId);

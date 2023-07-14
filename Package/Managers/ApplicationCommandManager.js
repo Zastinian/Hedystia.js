@@ -7,22 +7,29 @@ const Base = require("../Base/base");
 const SlashSubCommandGroups = require("../Builders/Slash/SlashSubCommandGroup");
 const SlashSubCommands = require("../Builders/Slash/SlashSubCommands");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages the creation, deletion, and editing of commands for a Discord application */
+/**
+ * Represents a manager for application commands.
+ * @class
+ * @extends Base
+ */
 class ApplicationCommandManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function.
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * _add(commands, guild = this.guildId, options = {cache: true, force: false})
-   * @param commands - The command or commands to add.
-   * @param [guild] - The guild ID
-   * @param [options] - cache = true, force = false
-   * @returns The command object.
+   * Adds a command to the command cache.
+   * @param {string | ApplicationCommand} commands - The command or command ID to add.
+   * @param {string} [guild=this.guildId] - The ID of the guild to add the command to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the command.
+   * @param {boolean} [options.cache=true] - Whether to cache the command.
+   * @param {boolean} [options.force=false] - Whether to force adding the command even if it already exists in the cache.
+   * @returns {ApplicationCommand} The added command.
    */
   _add(commands, guild = this.guildId, options = {cache: true, force: false}) {
     const commandId = typeof commands === "string" ? commands : commands.commandId;
@@ -50,10 +57,11 @@ class ApplicationCommandManager extends Base {
   }
 
   /**
-   * It creates a new command for the application
-   * @param [options] - The options for the command.
-   * @param [guild] - The guild ID or guild object to create the command for.
-   * @returns The command object.
+   * Creates a new application command.
+   * @param {Object} [options] - The options for the command.
+   * @param {string | Guild} [guild=this.guildId] - The guild ID or guild object where the command should be created.
+   * @returns {Promise<ApplicationCommand>} A promise that resolves with the created application command.
+   * @throws {Error} If the command creation fails.
    */
   async create(options = {}, guild = this.guildId) {
     const body = ApplicationCommandManager.transformPayload(options);
@@ -66,10 +74,10 @@ class ApplicationCommandManager extends Base {
   }
 
   /**
-   * It sets the commands for a guild
-   * @param [options] - An array of objects that contain the following properties:
-   * @param [guild] - The guild ID or guild object to set the commands for.
-   * @returns An array of objects.
+   * Sets the application commands for the specified guild or globally.
+   * @param {Object[]} [options=[{}]] - An array of options for the application commands.
+   * @param {string|Guild} [guild=this.guildId] - The guild ID or guild object to set the commands for.
+   * @returns {Promise<Cache>} A promise that resolves to a new instance of the cache with the updated commands.
    */
   async set(options = [{}], guild = this.guildId) {
     const body = options?.map((o) => ApplicationCommandManager.transformPayload(o));
@@ -82,10 +90,14 @@ class ApplicationCommandManager extends Base {
   }
 
   /**
-   * It fetches commands from the API
-   * @param command - The command to fetch.
-   * @param options
-   * @returns An array of objects.
+   * Fetches commands from the API based on the provided command and options.
+   * @param {string | ApplicationCommand} command - The command to fetch. Can be an ID, a string, or an object.
+   * @param {object} options - The options for fetching the commands.
+   * @param {boolean} options.cache - Whether to use the cache for fetching the commands.
+   * @param {boolean} options.force - Whether to force fetch the commands.
+   * @param {string} options.guild - The ID of the guild to fetch the commands from.
+   * @param {boolean} options.withLocalizations - Whether to include localizations in the fetched commands.
+   * @returns {Promise} A promise that resolves to the fetched commands.
    */
   async fetch(command, options) {
     if (typeof command?.id !== "undefined" || typeof command === "string")
@@ -102,10 +114,11 @@ class ApplicationCommandManager extends Base {
   }
 
   /**
-   * It deletes a command from the application
-   * @param command - The command to delete.
-   * @param [guild] - The guild to remove the command from.
-   * @returns The deleted command.
+   * Deletes an application command from the specified guild or the default guild.
+   * @param {string | ApplicationCommand} command - The ID or the ApplicationCommand object to delete.
+   * @param {string | Guild} [guild=this.guildId] - The ID or the Guild object where the command is located.
+   * @returns {Promise<ApplicationCommand>} - The deleted ApplicationCommand object.
+   * @throws {RangeError} - If no command ID is specified.
    */
   async delete(command, guild = this.guildId) {
     const commandId = typeof command === "string" ? command : command?.commandId;
@@ -119,11 +132,12 @@ class ApplicationCommandManager extends Base {
   }
 
   /**
-   * It edits an application command
-   * @param command - The command to edit.
-   * @param [options] - The options for the command.
-   * @param [guild] - The guild ID
-   * @returns The command object.
+   * Edits an application command with the given command ID and options.
+   * @param {string | ApplicationCommand} command - The command ID or the command object to edit.
+   * @param {object} [options] - The options to update the command with.
+   * @param {string | Guild} [guild=this.guildId] - The guild ID or the guild object where the command is located.
+   * @returns {Promise<ApplicationCommand>} A promise that resolves with the updated command object.
+   * @throws {RangeError} If the application command is required but not provided.
    */
   async edit(command, options = {}, guild = this.guildId) {
     const body = ApplicationCommandManager.transformPayload(options);
@@ -138,12 +152,12 @@ class ApplicationCommandManager extends Base {
   }
 
   /**
-   * It fetches a command from the API and adds it to the cache
-   * @param command - The command to fetch.
-   * @param [cache=true] - Whether or not to cache the command.
-   * @param [force=false] - If true, it will force the cache to be updated.
-   * @param [guild] - The guild to fetch the command from.
-   * @returns The command object.
+   * Fetches the ID of a command from the API.
+   * @param {string | object} command - The command ID or command object.
+   * @param {boolean} [cache=true] - Whether to cache the fetched command.
+   * @param {boolean} [force=false] - Whether to force fetch the command even if it is already cached.
+   * @param {string | object} [guild=this.guildId] - The guild ID or guild object. Defaults to the guild ID of the instance.
+   * @returns {Promise<object>} - A promise that resolves to the fetched command object.
    */
   async _fetchId(command, cache = true, force = false, guild = this.guildId) {
     const guildId = typeof guild === "string" ? guild : guild?.id;
@@ -156,29 +170,25 @@ class ApplicationCommandManager extends Base {
   }
 
   /**
-   * It returns a new ApplicationCommandPermissionManager object, which is a class that I made.
-   *
-   * I'm not sure if this is the right place to ask this question, but I'm not sure where else to ask
-   * it.
-   * @returns A new instance of the ApplicationCommandPermissionManager class.
+   * Returns the ApplicationCommandPermissionManager for managing permissions of application commands in a guild.
+   * @returns {ApplicationCommandPermissionManager} The ApplicationCommandPermissionManager instance.
    */
   get permissions() {
     return new ApplicationCommandPermissionManager(this.client, this.guildId);
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection object.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * If the option type is a sub command group or sub command, return a new instance of the respective
-   * class, otherwise return a new instance of the SlashOption class
-   * @param [options] - Object
-   * @returns The return value is a JSON object.
+   * Transforms the given options object into the appropriate JSON format based on its type.
+   * @param {object} options - The options object to transform.
+   * @returns {object} The transformed options object in JSON format.
    */
   static transformOptions(options = {}) {
     if (["Sub_Command_Group", 2].includes(OptionType[options.type])) return new SlashSubCommandGroups(options).toJSON();
@@ -187,9 +197,10 @@ class ApplicationCommandManager extends Base {
   }
 
   /**
-   * It takes a payload object and returns a transformed payload object
-   * @param [payload] - The payload that is sent to the API.
-   * @returns The return is a new object with the properties of the payload object.
+   * Transforms the payload object into a standardized format for application commands.
+   * @param {Object} payload - The payload object containing the command details.
+   * @returns {Object} - The transformed payload object.
+   * @throws {RangeError} - If the payload is missing required fields or if the field values are out of range.
    */
   static transformPayload(payload = {}) {
     if (!payload.name) throw new RangeError(`Please specify a name`);

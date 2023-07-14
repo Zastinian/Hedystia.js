@@ -1,14 +1,12 @@
 /**
- * It's a custom error class that extends the built-in Error class
- * @module BitfieldInvalid
+ * Custom error class for representing an invalid bitfield.
  */
 class BitfieldInvalid extends Error {
   /**
-   * This is a constructor function that sets properties for a BitfieldInvalid object.
-   * @param data - The `data` parameter is an object that contains two properties: `message` and `bit`.
-   * The `message` property is a string that represents the error message, and the `bit` property is a
-   * number that represents the invalid bitfield. This constructor is used to create a custom error
-   * object
+   * Constructs a new instance of the BitfieldInvalid error.
+   * @param {Object} data - The data object containing the error message and bit value.
+   * @param {string} data.message - The error message.
+   * @param {number} data.bit - The invalid bit value.
    */
   constructor(data) {
     super(data.message);

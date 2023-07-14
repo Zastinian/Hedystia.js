@@ -1,5 +1,4 @@
 const Base = require("../Base/base");
-
 /**
  * Represents a ban for a user in a guild.
  * @class
@@ -7,6 +6,7 @@ const Base = require("../Base/base");
  */
 class GuildBan extends Base {
   /**
+   * @constructor
    * @param {Object} data - The data for the ban.
    * @param {string} guildId - The ID of the guild.
    * @param {Client} client - The instantiating client

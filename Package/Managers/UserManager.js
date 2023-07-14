@@ -4,21 +4,28 @@ const MessagePayload = require("../Util/MessagePayload");
 const UserPayload = require("../Util/UserPayload");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages users */
+/**
+ * Represents a user manager that handles user-related operations.
+ * @class
+ * @extends Base
+ */
 class UserManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function.
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It adds a user to the cache
-   * @param users - The user object or user ID to add to the cache.
-   * @param [options] - cache = true, force = false
-   * @returns A user object.
+   * Adds a user to the collection.
+   * @param {User|string} users - The user object or user ID to add.
+   * @param {Object} [options] - Additional options for adding the user.
+   * @param {boolean} [options.cache=true] - Whether to cache the user object.
+   * @param {boolean} [options.force=false] - Whether to force fetching the user even if it is already cached.
+   * @returns {User} The added user object.
    */
   _add(users, options = {cache: true, force: false}) {
     if (!users) return;
@@ -57,10 +64,12 @@ class UserManager extends Base {
   }
 
   /**
-   * It fetches a user from the API and adds it to the cache
-   * @param user - The user object or user ID.
-   * @param [options] - cache = true, force = false
-   * @returns The user object.
+   * Fetches user data from the server.
+   * @param {string | User} user - The user ID or user object.
+   * @param {Object} [options] - Additional options for the fetch request.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched user data.
+   * @param {boolean} [options.force=false] - Whether to force a fresh fetch even if the data is already cached.
+   * @returns {Promise<User>} A promise that resolves to the fetched user data.
    */
   async fetch(user, options = {}) {
     const userId = typeof user === "string" ? user : user.id;
@@ -71,9 +80,9 @@ class UserManager extends Base {
   }
 
   /**
-   * This function edits the user's profile.
-   * @param [options] - The options to pass to the edit function.
-   * @returns The user object.
+   * Edits the user's profile with the provided options.
+   * @param {Object} options - The options to edit the user's profile.
+   * @returns {Promise<User>} A promise that resolves with the updated user object.
    */
   async edit(options = {}) {
     const body = await UserPayload.create(options);
@@ -84,9 +93,10 @@ class UserManager extends Base {
   }
 
   /**
-   * It creates a DM channel with the user you specify
-   * @param user - The user to create a DM with.
-   * @returns The channel object.
+   * Creates a direct message channel with the specified user.
+   * @param {string | User} user - The user to create the direct message channel with.
+   * @throws {RangeError} If no user is provided.
+   * @returns {Promise<Channel>} A promise that resolves with the created direct message channel.
    */
   async createDM(user) {
     if (!user) throw new RangeError(`No user found!`);
@@ -98,11 +108,10 @@ class UserManager extends Base {
   }
 
   /**
-   * It creates a message payload, creates a DM channel, and sends the message payload to the DM
-   * channel.
-   * @param user - The user to send the message to.
-   * @param [options] - Object
-   * @returns The message that was sent.
+   * Sends a message to a user through a direct message channel.
+   * @param {User} user - The user to send the message to.
+   * @param {Object} [options] - Additional options for creating the message payload.
+   * @returns {Promise<Message>} A promise that resolves to the sent message.
    */
   async send(user, options = {}) {
     const body = await MessagePayload.create(options);
@@ -111,8 +120,8 @@ class UserManager extends Base {
   }
 
   /**
-   * The function returns a collection of objects that are stored in the cache.
-   * @returns The Collection class.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;

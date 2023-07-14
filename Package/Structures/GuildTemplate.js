@@ -1,15 +1,18 @@
 const Base = require("../Base/base");
 const APIGuild = require("./Misc/APIGuild");
 /**
- * It's a class that represents a guild template.
+ * Represents a guild template.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data for the guild template.
+ * @param {Client} client - The client instance.
  */
 class GuildTemplate extends Base {
   /**
-   * It's a constructor for a class called Invite.
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - The client that the invite was fetched from.
+   * Constructs a new instance of a data object.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties of the instance.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(client);
@@ -31,59 +34,58 @@ class GuildTemplate extends Base {
   }
 
   /**
-   * It fetches the guild template from the database
-   * @returns The return value of the async function is a Promise.
+   * Fetches a guild template using the provided code.
+   * @returns {Promise} A promise that resolves to the fetched guild template.
    */
   async fetch() {
     return await this.client.fetchGuildTemplate(this.code);
   }
 
   /**
-   * It syncs the template with the database
-   * @returns The return value of the sync() method.
+   * Synchronizes the guild templates with the provided code.
+   * @returns {Promise<void>} - A promise that resolves when the synchronization is complete.
    */
   async sync() {
     return await this.guild?.templates.sync(this.code);
   }
 
   /**
-   * It edits a template
-   * @param [options] - Object
-   * @returns The return value of the function is the return value of the function that is being
-   * called.
+   * Edits the guild template with the provided options.
+   * @param {Object} options - The options to apply to the template edit.
+   * @returns {Promise} A promise that resolves to the result of the template edit.
    */
   async edit(options = {}) {
     return await this.guild?.templates.edit(this.code, options);
   }
 
   /**
-   * It deletes the template from the database
-   * @returns The return value of the delete method of the templates object of the guild object.
+   * Deletes the template with the specified code from the guild.
+   * @returns {Promise<void>} A promise that resolves when the template is successfully deleted.
    */
   async delete() {
     return await this.guild?.templates.delete(this.code);
   }
 
   /**
-   * It sets the name of the channel
-   * @param name - The name of the channel.
-   * @returns The return value of the edit() method.
+   * Sets the name of an object asynchronously.
+   * @param {string} name - The new name to set.
+   * @returns {Promise} A promise that resolves when the name is successfully set.
    */
   async setName(name) {
     return await this.edit({name});
   }
 
   /**
-   * It edits the description of the channel
-   * @param description - The new description of the channel.
-   * @returns The description of the channel.
+   * Sets the description of an object and updates it.
+   * @param {string} description - The new description to set.
+   * @returns {Promise} - A promise that resolves when the description is successfully updated.
    */
   async setDescription(description) {
     return await this.edit({description});
   }
 
   /**
-   * It returns the guild object of the guild that the channel is in
+   * Get the guild object associated with this guild ID.
    * @returns The guild object.
    */
   get guild() {
@@ -91,9 +93,9 @@ class GuildTemplate extends Base {
   }
 
   /**
-   * It creates a guild
-   * @param [options] - The options for the guild.
-   * @returns The client.generateTemplate function is being returned.
+   * Creates a new guild using the provided options.
+   * @param {Object} options - The options for creating the guild.
+   * @returns {Promise} A promise that resolves to the generated template for the guild.
    */
   async createGuild(options = {}) {
     return await this.client.generateTemplate(this.code, options);

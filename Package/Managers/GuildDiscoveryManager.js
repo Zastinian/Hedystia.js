@@ -1,12 +1,16 @@
 const Base = require("../Base/base");
 const GuildDiscovery = require("../Structures/GuildDiscovery");
-
-/* It's a manager for guild discovery metadata */
+/**
+ * Represents a manager for guild discovery settings.
+ * @class
+ * @extends Base
+ */
 class GuildDiscoveryManager extends Base {
   /**
-   * This function is a constructor for the class
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -15,9 +19,9 @@ class GuildDiscoveryManager extends Base {
   }
 
   /**
-   * `_add` is a function that takes a `discovery` parameter and returns a new `GuildDiscovery` object.
-   * @param discovery - The discovery object or ID
-   * @returns A new GuildDiscovery object
+   * Adds a GuildDiscovery object to the guild's discovery settings.
+   * @param {string | GuildDiscovery} discovery - The discovery object or the guild ID.
+   * @returns {GuildDiscovery | null} - The added GuildDiscovery object or null if discovery is falsy.
    */
   _add(discovery) {
     if (!discovery) return null;
@@ -34,9 +38,10 @@ class GuildDiscoveryManager extends Base {
   }
 
   /**
-   * `fetch` fetches the discovery metadata for a guild
-   * @param [guild] - The guild to fetch the discovery metadata for.
-   * @returns The discovery metadata for the guild.
+   * Fetches the discovery metadata for a guild.
+   * @param {string | Guild} [guild=this.guildId] - The guild ID or Guild object to fetch the metadata for.
+   * @returns {Promise<DiscoveryMetadata>} - A promise that resolves to the discovery metadata.
+   * @throws {RangeError} - If the guild ID is not provided.
    */
   async fetch(guild = this.guildId) {
     const guildId = typeof guild === "string" ? guild : guild?.id;
@@ -46,10 +51,11 @@ class GuildDiscoveryManager extends Base {
   }
 
   /**
-   * `edit` edits the discovery metadata of a guild
-   * @param [guild] - The guild ID or guild object to edit the discovery metadata for.
-   * @param [options] - Object
-   * @returns The discovery object
+   * Edits the discovery metadata for a guild.
+   * @param {string | Guild} guild - The guild ID or guild object to edit the discovery metadata for.
+   * @param {Object} options - The options to update the discovery metadata.
+   * @returns {Promise} A promise that resolves with the updated discovery metadata.
+   * @throws {RangeError} If the guild is not provided.
    */
   async edit(guild = this.guildId, options = {}) {
     const guildId = typeof guild === "string" ? guild : guild.id;
@@ -60,10 +66,9 @@ class GuildDiscoveryManager extends Base {
   }
 
   /**
-   * It takes a payload object and returns a new object with the same keys, but with the values
-   * transformed to match the API's expectations
-   * @param [payload] - The payload that is sent to the API.
-   * @returns The transformed payload.
+   * Transforms the given payload object into a new object with specific properties.
+   * @param {Object} payload - The payload object to transform.
+   * @returns {Object} - The transformed object.
    */
   static transformPayload(payload = {}) {
     return {

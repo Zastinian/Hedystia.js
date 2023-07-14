@@ -1,15 +1,15 @@
 const Base = require("../Base/base");
 /**
- * It's a class that represents a Discord voice region
+ * Represents a voice region.
  * @class
  * @extends Base
  */
 class VoiceRegion extends Base {
   /**
-   * It's a constructor function that takes in data and a client, and then sets the data to the class
-   * properties
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - The client that instantiated the object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(client);

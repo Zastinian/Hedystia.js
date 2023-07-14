@@ -2,7 +2,6 @@ const {GuildAuditLogEntryActionTypes} = require("../Util/Constants");
 const Snowflake = require("../Util/Snowflake");
 const Base = require("../Base/base");
 const GuildAuditLogChanges = require("./GuildAuditLogChanges");
-
 /**
  * Represents an entry in the audit log for a guild.
  * @class
@@ -10,7 +9,8 @@ const GuildAuditLogChanges = require("./GuildAuditLogChanges");
  */
 class GuildAuditLogEntry extends Base {
   /**
-   * @param {Object} [data={}] - The data for the audit log entry
+   * @constructor
+   * @param {Object} [data] - The data for the audit log entry
    * @param {string} guildId - The ID of the guild the entry belongs to
    * @param {Client} client - The client that instantiated this entry
    */

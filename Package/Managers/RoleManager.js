@@ -3,22 +3,29 @@ const Permissions = require("../Util/Permissions");
 const Util = require("../Util/Util");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages roles */
+/**
+ * Represents a Role Manager that handles operations related to roles in a guild.
+ * @class
+ * @extends Base
+ */
 class RoleManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It adds a role to the cache
-   * @param roles - The role object or role ID to add to the cache.
-   * @param [guildId] - The guild ID to use for the role.
-   * @param [options] - cache = true, force = false
-   * @returns A role object
+   * Adds a role to the cache and returns the role object.
+   * @param {string | Role} roles - The role ID or role object to add to the cache.
+   * @param {string} [guildId=this.guildId] - The ID of the guild the role belongs to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for role caching.
+   * @param {boolean} [options.cache=true] - Whether to cache the role object.
+   * @param {boolean} [options.force=false] - Whether to force fetching the role from the API even if it is already in the cache.
+   * @returns {Role | null} The role object that was added to the cache
    */
   _add(roles, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!roles) return null;
@@ -47,10 +54,10 @@ class RoleManager extends Base {
   }
 
   /**
-   * It fetches all the roles in a guild and returns them
-   * @param roles - The role(s) to fetch. Can be a role ID, a role object, or an array of role objects.
-   * @param options - An object containing the following properties:
-   * @returns The role object
+   * Fetches roles from the server based on the provided roles and options.
+   * @param {string | object} roles - The roles to fetch. Can be a string representing a role ID or an object containing options.
+   * @param {object} options - The options for fetching roles. Can contain properties like cache and force.
+   * @returns {Promise} - A promise that resolves to the fetched roles.
    */
   async fetch(roles, options) {
     if (typeof roles === "object" && !options) options = roles;
@@ -63,9 +70,11 @@ class RoleManager extends Base {
   }
 
   /**
-   * It creates a role
-   * @param [options] - Object
-   * @returns A new role object
+   * Creates a new role in the guild with the given options.
+   * @param {Object} options - The options for creating the role.
+   * @param {string} options.reason - The reason for creating the role.
+   * @param {number} options.position - The position of the role in the hierarchy.
+   * @returns {Promise<Role>} A promise that resolves with the created role.
    */
   async create(options = {}) {
     const {reason, position} = options;
@@ -83,10 +92,12 @@ class RoleManager extends Base {
   }
 
   /**
-   * It edits a role
-   * @param role - The role to edit. Can be a role object or a role ID.
-   * @param [options] - Object
-   * @returns The role object
+   * Edits a role in the guild.
+   * @param {string | Role} role - The role ID or role object to edit.
+   * @param {Object} [options] - Additional options for editing the role.
+   * @param {string} [options.reason] - The reason for editing the role.
+   * @param {number} [options.position] - The new position of the role.
+   * @returns {Promise<Role>} A promise that resolves with the edited role object.
    */
   async edit(role, options = {}) {
     const {reason, position} = options;
@@ -101,10 +112,11 @@ class RoleManager extends Base {
   }
 
   /**
-   * `delete` deletes a role
-   * @param role - The role to delete. Can be a role object or a role ID.
-   * @param reason - The reason for the role deletion.
-   * @returns The deleted role
+   * Deletes a role from the guild.
+   * @param {string | Role} role - The role to delete. Can be either the role ID or the Role object.
+   * @param {string} reason - The reason for deleting the role.
+   * @returns {Promise<Role>} - The deleted role.
+   * @throws {Error} - If the role cannot be deleted.
    */
   async delete(role, reason) {
     const roleId = typeof role === "string" ? role : role?.id;
@@ -114,9 +126,10 @@ class RoleManager extends Base {
   }
 
   /**
-   * `clone` clones a role
-   * @param [role] - The role to clone.
-   * @returns A new role object
+   * Clones a role by creating a new instance of it.
+   * @param {string | Object} [role] - The role to clone. Can be either a role ID or a role object.
+   * @returns {Promise} - A promise that resolves with the cloned role.
+   * @throws {RangeError} - If the role is not found in the cache.
    */
   async clone(role = {}) {
     const roleId = typeof role === "string" ? role : role.id;
@@ -129,10 +142,11 @@ class RoleManager extends Base {
   }
 
   /**
-   * It takes an array of role objects, transforms them into a format that the API can understand, and
-   * then sends them to the API
-   * @param [options] - Object
-   * @returns A new cache object with the roles that were modified.
+   * Modifies the position of roles in a guild.
+   * @param {Object} [options] - The options for modifying the position.
+   * @param {string} [options.reason] - The reason for the modification.
+   * @param {Array} [options.data] - The data containing the roles to modify.
+   * @returns {Promise} A promise that resolves with the modified roles.
    */
   async modifyPosition(options = {}) {
     const {reason} = options;
@@ -145,18 +159,18 @@ class RoleManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection class.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It takes an object, and returns an object with the same properties, but with some of them modified
-   * @param [o] - The object to transform.
-   * @param [modifyPosition=false] - Whether or not to modify the position of the role.
-   * @returns A function that takes two parameters, o and modifyPosition.
+   * Transforms the payload object based on the provided parameters.
+   * @param {object} o - The payload object to transform.
+   * @param {boolean} [modifyPosition=false] - Whether to modify the position property.
+   * @returns {Promise<object>} - The transformed payload object.
    */
   static async transformPayload(o = {}, modifyPosition = false) {
     if (modifyPosition) {

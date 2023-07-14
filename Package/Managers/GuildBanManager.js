@@ -1,12 +1,19 @@
 const GuildBan = require("../Structures/GuildBan");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages bans in a guild */
+/**
+ * Represents a manager for handling guild bans.
+ * @class
+ * @extends Base
+ * @param {string} guildId - The ID of the guild.
+ * @param {Client} client - The client instance.
+ */
 class GuildBanManager extends Base {
   /**
-   * This function is a constructor for the class
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @class
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -15,11 +22,13 @@ class GuildBanManager extends Base {
   }
 
   /**
-   * It adds a ban to the cache
-   * @param bans - The ban object or ID of the ban to add to the cache.
-   * @param [guildId] - The ID of the guild to fetch the bans from.
-   * @param [options] - Object
-   * @returns A new instance of the GuildBan class.
+   * Adds a ban to the guild's ban cache.
+   * @param {string | GuildBan} bans - The ban ID or GuildBan object to add.
+   * @param {string} [guildId=this.guildId] - The ID of the guild to add the ban to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the ban.
+   * @param {boolean} [options.cache=true] - Whether to cache the ban.
+   * @param {boolean} [options.force=false] - Whether to force adding the ban even if it already exists in the cache.
+   * @returns {GuildBan | null} - The added GuildBan object, or null if the ban is
    */
   _add(bans, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!bans) return null;
@@ -48,10 +57,12 @@ class GuildBanManager extends Base {
   }
 
   /**
-   * It bans a user from the guild.
-   * @param user - The user to ban.
-   * @param [options] - Object
-   * @returns A new instance of the GuildBanManager class.
+   * Creates a ban for a user in the guild.
+   * @param {string | User} user - The user to ban. Can be a user ID or a User object.
+   * @param {Object} [options] - Additional options for the ban.
+   * @param {string} [options.reason] - The reason for the ban.
+   * @returns {Promise<GuildBan>} A promise that resolves with the created GuildBan object.
+   * @throws {Error} If the API request fails.
    */
   async create(user, options = {}) {
     const {reason} = options;
@@ -64,10 +75,10 @@ class GuildBanManager extends Base {
   }
 
   /**
-   * It removes a ban from a guild
-   * @param user - The user to ban. Can be a user object, user ID, or mention.
-   * @param reason - The reason for the ban.
-   * @returns A ban object
+   * Removes a user from the ban list in the guild.
+   * @param {string | User} user - The user to remove from the ban list. Can be a user ID or a User object.
+   * @param {string} reason - The reason for removing the user from the ban list.
+   * @returns {Promise<Ban>} A promise that resolves with the ban object of the removed user.
    */
   async remove(user, reason) {
     const userId = typeof user === "string" ? user : user?.user?.id ?? user?.id;
@@ -77,10 +88,12 @@ class GuildBanManager extends Base {
   }
 
   /**
-   * It fetches a list of bans from the API and returns a cache of them
-   * @param ban - The ban to fetch. Can be a ban object, a user object, a user ID, or a string.
-   * @param options - An object containing the following properties:
-   * @returns A new cache constructor
+   * Fetches ban information from the server.
+   * @param {string | object} ban - The ban ID or ban object.
+   * @param {object} options - Additional options for the fetch.
+   * @param {boolean} options.cache - Whether to use cached data.
+   * @param {boolean} options.force - Whether to force a fresh fetch.
+   * @returns {Promise<object>} - A promise that resolves to the fetched ban information.
    */
   async fetch(ban, options) {
     if (typeof (ban?.user?.id ?? ban?.id) !== "undefined" || typeof ban === "string") return this._fetchId(ban, options?.cache, options?.force);
@@ -99,11 +112,11 @@ class GuildBanManager extends Base {
   }
 
   /**
-   * It fetches a ban from the API and adds it to the cache
-   * @param ban - The ban object or id to fetch.
-   * @param [cache=true] - Whether or not to cache the ban.
-   * @param [force=false] - If true, it will force the cache to be updated.
-   * @returns The ban object
+   * Fetches the ID of a ban from the server.
+   * @param {string | object} ban - The ban object or the ID of the ban.
+   * @param {boolean} [cache=true] - Whether to cache the fetched ban.
+   * @param {boolean} [force=false] - Whether to force fetching the ban even if it is already cached.
+   * @returns {Promise<object>} - The fetched ban object.
    */
   async _fetchId(ban, cache = true, force = false) {
     const banId = typeof ban === "string" ? ban : ban?.user?.id ?? ban?.id;
@@ -113,19 +126,19 @@ class GuildBanManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection class
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It takes an object with a property called days, and if that property is less than 0 or greater
-   * than 7, it throws a RangeError. Otherwise, it returns an object with a property called
-   * delete_message_days
-   * @param [o] - The object that contains the parameters.
-   * @returns The payload for the request.
+   * Transforms the payload object for deleting messages.
+   * @param {Object} o - The payload object.
+   * @param {number} o.days - The number of days to delete messages.
+   * @throws {RangeError} If the days value is less than 0 or greater than 7.
+   * @returns {Object} The transformed payload object.
    */
   static transformPayloadd(o = {}) {
     if (o.days < 0 || o.days > 7) throw new RangeError(`The days of deleted messages must be between 0 and 7.`);

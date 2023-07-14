@@ -1,10 +1,19 @@
 const {InviteTargetTypes} = require("./Constants");
 
 /**
- * IIt takes an object with properties that are used to create an invite
- * @module InvitePayload
+ * A utility class for creating invite payloads.
+ * @class
  */
 class InvitePayload {
+  /**
+   * Creates an invite object with the given payload.
+   * @param {Object} payload - The payload object containing the invite properties.
+   * @param {number} [payload.maxAge=86400] - The maximum age of the invite in seconds.
+   * @param {number | undefined} [payload.maxUses=undefined] - The maximum number of times the invite can be used.
+   * @param {boolean | undefined} [payload.temporary=undefined] - Whether the invite is temporary or not.
+   * @param {string | undefined} [payload.targetType=undefined] - The type of target for the invite.
+   * @param {string | undefined} [payload.targetUser=undefined] - The ID of the target user for the
+   */
   static create(payload = {}) {
     return {
       max_age: payload.maxAge ?? 86400,

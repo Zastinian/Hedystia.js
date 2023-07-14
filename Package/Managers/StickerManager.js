@@ -2,22 +2,29 @@ const Sticker = require("../Structures/Sticker");
 const StickerPayload = require("../Util/StickerPayload");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a class that manages stickers */
+/**
+ * Represents a Sticker Manager that handles operations related to stickers in a guild.
+ * @class
+ * @extends Base
+ */
 class StickerManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It adds a sticker to the cache
-   * @param stickers - The sticker object or sticker ID.
-   * @param [guildId] - The guild ID to use for the sticker.
-   * @param [options] - cache = true, force = false
-   * @returns A sticker object
+   * Adds a sticker to the cache and returns the sticker object.
+   * @param {string | Sticker} stickers - The sticker object or sticker ID to add to the cache.
+   * @param {string} [guildId=this.guildId] - The ID of the guild where the sticker belongs.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the sticker.
+   * @param {boolean} [options.cache=true] - Whether to cache the sticker object.
+   * @param {boolean} [options.force=false] - Whether to force fetching the sticker even if it is already in the cache.
+   * @returns {Sticker | null} The sticker object that was added to the cache
    */
   _add(stickers, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!stickers) return null;
@@ -46,10 +53,12 @@ class StickerManager extends Base {
   }
 
   /**
-   * It fetches all the stickers in a guild
-   * @param sticker - The sticker to fetch. Can be a sticker ID, a sticker object, or nothing.
-   * @param options - An object containing the following properties:
-   * @returns A new cache object with the sticker id and the sticker object
+   * Fetches a sticker from the server based on the provided sticker ID or options.
+   * @param {string | object} sticker - The sticker ID or options object.
+   * @param {object} [options] - The options for fetching the sticker.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched sticker.
+   * @param {boolean} [options.force=false] - Whether to force fetch the sticker even if it is already cached.
+   * @returns {Promise<Sticker>} - A promise that resolves to the fetched sticker.
    */
   async fetch(sticker, options) {
     if (typeof sticker?.id !== "undefined" || typeof sticker === "string") return this._fetchId(sticker, options?.cache, options?.force);
@@ -60,11 +69,11 @@ class StickerManager extends Base {
   }
 
   /**
-   * It fetches a sticker from the API and adds it to the cache
-   * @param sticker - The sticker object or ID.
-   * @param [cache=true] - Whether or not to cache the sticker.
-   * @param [force=false] - If true, it will force the cache to be updated.
-   * @returns The sticker object
+   * Fetches the ID of a sticker from the server.
+   * @param {string | Sticker} sticker - The sticker or sticker ID to fetch.
+   * @param {boolean} [cache=true] - Whether to cache the fetched sticker.
+   * @param {boolean} [force=false] - Whether to force fetching the sticker even if it is already cached.
+   * @returns {Promise<Sticker>} - A promise that resolves with the fetched sticker.
    */
   async _fetchId(sticker, cache = true, force = false) {
     const stickerId = typeof sticker === "string" ? sticker : sticker?.id;
@@ -74,9 +83,10 @@ class StickerManager extends Base {
   }
 
   /**
-   * It creates a sticker.
-   * @param [options] - Object
-   * @returns A new sticker object
+   * Creates a sticker in the guild.
+   * @param {Object} [options] - The options for creating the sticker.
+   * @param {string} [options.reason] - The reason for creating the sticker.
+   * @returns {Promise<Sticker>} A promise that resolves with the created sticker.
    */
   async create(options = {}) {
     const {reason} = options;
@@ -89,10 +99,11 @@ class StickerManager extends Base {
   }
 
   /**
-   * It edits a sticker.
-   * @param sticker - The sticker to edit. Can be a sticker object or a sticker ID.
-   * @param [options] - Object
-   * @returns A sticker object
+   * Edits a sticker with the given options.
+   * @param {string | Sticker} sticker - The sticker to edit. Can be either a sticker ID or a sticker object.
+   * @param {Object} [options] - The options for editing the sticker.
+   * @param {string} [options.reason] - The reason for editing the sticker.
+   * @returns {Promise<Sticker>} A promise that resolves with the edited sticker.
    */
   async edit(sticker, options = {}) {
     const {reason} = options;
@@ -103,10 +114,11 @@ class StickerManager extends Base {
   }
 
   /**
-   * It deletes a sticker
-   * @param sticker - The sticker to delete. Can be a sticker object or a sticker ID.
-   * @param reason - The reason for the deletion.
-   * @returns The deleted sticker
+   * Deletes a sticker from the guild.
+   * @param {string | Sticker} sticker - The sticker to delete. Can be either a sticker ID or a sticker object.
+   * @param {string} reason - The reason for deleting the sticker.
+   * @returns {Promise<Sticker>} - The deleted sticker object.
+   * @throws {Error} - If the sticker deletion fails.
    */
   async delete(sticker, reason) {
     const stickerId = typeof sticker === "string" ? sticker : sticker?.id;
@@ -116,8 +128,8 @@ class StickerManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection class
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;

@@ -2,16 +2,20 @@ const {OverwriteType} = require("../Util/Constants");
 const Permissions = require("../Util/Permissions");
 const Base = require("../Base/base");
 /**
- * It's a class that represents a permission overwrite for a channel
- * @class PermissionOverwrite
+ * Represents a permission overwrite for a channel in Discord.
+ * @class
  * @extends Base
+ * @param {Object} [data] - The data for the permission overwrite.
+ * @param {string} channelId - The ID of the channel that the permission overwrite belongs to.
+ * @param {Client} client - The client instance.
  */
 class PermissionOverwrite extends Base {
   /**
-   * It's a constructor for a class called Overwrite.
-   * @param [data] - The data that was received from the API.
-   * @param channelId - The ID of the channel this overwrite is for.
-   * @param client - Discord.Client
+   * Constructs a new instance of the Overwrite class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the overwrite information.
+   * @param {string} channelId - The ID of the channel that the overwrite belongs to.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, channelId, client) {
     super(client);
@@ -24,17 +28,16 @@ class PermissionOverwrite extends Base {
   }
 
   /**
-   * It deletes a permission overwrite from a channel
-   * @param reason - The reason for the deletion.
-   * @returns The return value is a Promise that resolves with a Collection&lt;Snowflake,
-   * PermissionOverwrite&gt;.
+   * Deletes the permission overwrite for this channel.
+   * @param {string} reason - The reason for deleting the permission overwrite.
+   * @returns {Promise<boolean>} - A promise that resolves to true if the deletion was successful, or false otherwise.
    */
   async delete(reason) {
     return this.client.channels._add(this.channelId)?.permissionOverwrites?.delete(this.id, reason);
   }
 
   /**
-   * It returns the channel object of the channel ID that is stored in the message object
+   * Retrieves the channel object associated with this instance.
    * @returns The channel object.
    */
   get channel() {

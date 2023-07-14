@@ -1,6 +1,5 @@
 const Base = require("../Base/base");
 const VerificationFormFields = require("./VerificationFormFields");
-
 /**
  * Represents the verification requirements for a guild member.
  * @class
@@ -8,6 +7,7 @@ const VerificationFormFields = require("./VerificationFormFields");
  */
 class GuildMemberVerification extends Base {
   /**
+   * @constructor
    * @param {Object} data - The data for the verification.
    * @param {string} guildId - The ID of the guild the verification is for.
    * @param {Client} client - The client that instantiated this object.

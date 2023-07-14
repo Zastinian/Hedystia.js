@@ -1,8 +1,15 @@
 /**
- * It transforms an emoji into a string that can be used in a message
- * @module EmojiResolver
+ * A utility class for resolving and transforming emojis.
+ * @class
  */
 class EmojiResolver {
+  /**
+   * Transforms an emoji object or string into a formatted emoji string.
+   * @param {Object|string} emoji - The emoji object or string to transform.
+   * @param {Client} client - The Discord client instance.
+   * @returns {string} The formatted emoji string.
+   * @throws {RangeError} If the emoji is not found in the emoji cache.
+   */
   static transformEmoji(emoji = {}, client) {
     const emojiManager = client.emojis;
     if (typeof emoji === "string") {

@@ -1,15 +1,20 @@
 const {PrivacyLevel} = require("../Util/Constants");
 const Base = require("../Base/base");
 /**
- * It's a class that represents a stage instance.
+ * Represents a Stage Instance in a guild.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data for the Stage Instance.
+ * @param {string} guildId - The ID of the guild the Stage Instance belongs to.
+ * @param {Client} client - The client instance.
  */
 class StageInstance extends Base {
   /**
-   * @param [data] - The data that was passed into the constructor
-   * @param guildId - The ID of the guild the voice channel is in.
-   * @param client - Discord.Client
+   * Constructs a new instance of a Channel object.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties of the Channel.
+   * @param {string} guildId - The ID of the guild that the Channel belongs to.
+   * @param {Client} client - The client object representing the Discord bot.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -23,74 +28,71 @@ class StageInstance extends Base {
   }
 
   /**
-   * It fetches the stage instance from the guild's stage instances.
-   * @param options - An object containing the following properties:
-   * @returns The stage instance.
+   * Fetches the stage instance for the given channel ID using the provided options.
+   * @param {Object} options - The options to pass to the fetch request.
+   * @returns {Promise<StageInstance>} A promise that resolves with the fetched stage instance.
    */
   async fetch(options) {
     return await this.guild?.stageInstances.fetch(this.channelId, options);
   }
 
   /**
-   * It edits the stage instance
-   * @param options
-   * @returns The return value of the edit method.
+   * Edits the stage instance with the given options.
+   * @param {Object} options - The options to edit the stage instance.
+   * @returns {Promise} A promise that resolves when the stage instance is successfully edited.
    */
   async edit(options) {
     return await this.guild?.stageInstances.edit(this.channelId, options);
   }
 
   /**
-   * It deletes the stage instance
-   * @param reason - The reason for the deletion.
-   * @returns The return value of the delete method of the StageInstances class.
+   * Deletes the stage instance associated with the channel.
+   * @param {string} reason - The reason for deleting the stage instance.
+   * @returns {Promise<void>} - A promise that resolves when the stage instance is deleted.
    */
   async delete(reason) {
     return await this.guild?.stageInstances.delete(this.channelId, reason);
   }
 
   /**
-   * It sets the topic of the channel
-   * @param topic - The new topic of the channel.
-   * @param reason - The reason for the change (0-1024 characters).
-   * @returns The return value of the edit function.
+   * Sets the topic of the current object and provides a reason for the change.
+   * @param {string} topic - The new topic to set.
+   * @param {string} reason - The reason for changing the topic.
+   * @returns {Promise} - A promise that resolves when the topic is successfully set.
    */
   async setTopic(topic, reason) {
     return await this.edit({topic, reason});
   }
 
   /**
-   * This function sets the privacy level of the current channel to the privacy level specified in the
-   * first parameter, and sets the reason for the change to the reason specified in the second
-   * parameter.
-   * @param privacyLevel - The privacy level of the channel.
-   * @param reason - The reason for the change.
-   * @returns The return value of the edit function.
+   * Sets the privacy level for the current user.
+   * @param {string} privacyLevel - The privacy level to set.
+   * @param {string} reason - The reason for setting the privacy level.
+   * @returns {Promise} - A promise that resolves when the privacy level is successfully set.
    */
   async setPrivacyLevel(privacyLevel, reason) {
     return await this.edit({privacyLevel, reason});
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
-   * @returns The guild object.
+   * Retrieves the guild associated with this guildId.
+   * @returns The guild object if found, otherwise null.
    */
   get guild() {
     return this.client.guilds._add(this.guildId) ?? null;
   }
 
   /**
-   * It returns the channel object of the message
-   * @returns The channel object.
+   * Retrieves the channel associated with this object.
+   * @returns The channel object if found, otherwise null.
    */
   get channel() {
     return this.client.channels._add(this.channelId) ?? null;
   }
 
   /**
-   * If the guild exists, return the event with the id of the guildScheduledEventId, otherwise return
-   * null.
-   * @returns The guildScheduledEventId is being returned.
+   * Retrieves the scheduled event associated with the guild.
+   * @returns {ScheduledEvent | null} The scheduled event object if found, otherwise null.
    */
   get guildScheduledEvent() {
     return this.guild?.events._add(this.guildScheduledEventId) ?? null;

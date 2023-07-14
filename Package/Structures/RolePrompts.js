@@ -2,16 +2,24 @@ const {RaidenCol} = require("../Util/@Collections/RaidenCol");
 const Snowflake = require("../Util/Snowflake");
 const Base = require("../Base/base");
 /**
- * It's a class that takes in data, guildId, and client.
+ * Represents a RolePrompts object that extends the Base class.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data object containing the properties of the RolePrompts.
+ * @param {string} guildId - The ID of the guild associated with the RolePrompts.
+ * @param {Client} client - The client object associated with the RolePrompts.
+ * @property {boolean} partial - Indicates if the RolePrompts object is partial or not.
+ * @property {string} guildId - The ID of the guild associated with the RolePrompts.
+ * @property {string|null} description - The description of the RolePrompts.
+ * @property {boolean|null}
  */
 class RolePrompts extends Base {
   /**
-   * It's a constructor for a class that takes in data, guildId, and client.
-   * @param [data] - The data that is being passed in.
-   * @param guildId - The guild ID
-   * @param client - The client
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties of the instance.
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -28,7 +36,7 @@ class RolePrompts extends Base {
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
+   * Get the guild object associated with this guildId.
    * @returns The guild object.
    */
   get guild() {
@@ -36,14 +44,9 @@ class RolePrompts extends Base {
   }
 
   /**
-   * It takes an object with keys that are either camelCase or snake_case and returns an object with keys
-   * that are camelCase
-   * @param [roles] - The object that contains the data that needs to be transformed.
-   * @returns An object with the following properties:
-   * - emojiId
-   * - emojiName
-   * - name
-   * - rolesId
+   * Transforms the roles data object by extracting specific properties and assigning default values if necessary.
+   * @param {Object} roles - The roles data object.
+   * @returns {Object} - The transformed roles data object with extracted properties and default values.
    */
   static transformRolesData(roles = {}) {
     return {

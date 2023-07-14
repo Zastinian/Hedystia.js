@@ -1,17 +1,23 @@
 const Base = require("../Base/base");
 const MessageAttachment = require("../Builders/MessageAttachment");
 const {OptionType, ApplicationCommandTypes} = require("../Util/Constants");
-/* It's a class that allows you to get the data from the options that the user has selected */
+/**
+ * A class that provides methods to resolve command interaction options.
+ * @class CommandInteractionOptionResolver
+ * @extends Base
+ * @param {Object} [data] - The data object containing the command interaction options.
+ * @param {string} guildId - The ID of the guild where the command interaction occurred.
+ * @param {string} channelId - The ID of the channel where the command interaction occurred.
+ * @param {Client} client - The client instance.
+ */
 class CommandInteractionOptionResolver extends Base {
   /**
-   * This function is a constructor for the class, and it takes in a data object, a guildId, a
-   * channelId, and a client. It then sets the data object to the data object passed in, sets the
-   * options object to the options object in the data object, sets the guildId to the guildId passed
-   * in, and sets the channelId to the channelId passed in.
-   * @param [data] - The data that is passed to the constructor.
-   * @param guildId - The ID of the guild the poll is in.
-   * @param channelId - The channel ID of the channel the message is in.
-   * @param client - The client that the message was sent from
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object for the instance.
+   * @param {string} guildId - The ID of the guild.
+   * @param {string} channelId - The ID of the channel.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, guildId, channelId, client) {
     super(client);
@@ -22,19 +28,9 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * If the first element of the array is an object with a type of 2, then return the result of calling
-   * the function again with the options of the first element.
-   *
-   * If the first element of the array is an object with a type of 1, then return the result of calling
-   * the function again with the options of the first element.
-   *
-   * Otherwise, return the array.
-   * @param [options] - The options array from the JSON
-   * @returns The first option of the first option of the first option of the first option of the first
-   * option of the first option of the first option of the first option of the first option of the
-   * first option of the first option of the first option of the first option of the first option of
-   * the first option of the first option of the first option of the first option of the first option
-   * of the first option of
+   * Parses the options array and returns the parsed result.
+   * @param {Array} [options=this.options] - The options array to parse.
+   * @returns {Array|null} - The parsed options array or null if the data type is 2 or 3, or if the options array is empty.
    */
   _parse(options = this.options) {
     if ([2, 3].includes(this.data?.type)) return null;
@@ -45,10 +41,11 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It takes a string, and returns a string
-   * @param name - The name of the option you want to get the value of.
-   * @param [required=false] - boolean
-   * @returns The value of the option.
+   * Retrieves the value of a string option by its name.
+   * @param {string} name - The name of the option.
+   * @param {boolean} [required=false] - Indicates whether the option is required. If set to true and the option is not found, a RangeError is thrown.
+   * @returns {string | null} The value of the option, or null if the option is not found and not required.
+   * @throws {RangeError} If the option is required and not found, or if the option is found but its type is not string.
    */
   getString(name, required = false) {
     const options = this._parse(this.options);
@@ -64,10 +61,11 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * If the option type is not a number, throw an error, otherwise return the value of the option.
-   * @param name - The name of the option to be retrieved.
-   * @param [required=false] - boolean
-   * @returns The value of the option.
+   * Retrieves the value of a number option by its name.
+   * @param {string} name - The name of the option.
+   * @param {boolean} [required=false] - Indicates whether the option is required. If set to true and the option is not found, a RangeError is thrown.
+   * @returns {number | null} The value of the number option, or null if the option is not found.
+   * @throws {RangeError} If the option is required and not found, or if the option type is not Number.
    */
   getNumber(name, required = false) {
     const options = this._parse(this.options);
@@ -83,10 +81,11 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It takes a string and a boolean as parameters, and returns a number or null.
-   * @param name - The name of the option
-   * @param [required=false] - boolean
-   * @returns The value of the option.
+   * Retrieves the integer value of the specified option name from the options list.
+   * @param {string} name - The name of the option to retrieve.
+   * @param {boolean} [required=false] - Indicates whether the option is required. If set to true and the option is not found, a RangeError will be thrown.
+   * @returns {number | null} The integer value of the option, or null if the option is not found.
+   * @throws {RangeError} If the option is required and not found, or if the option type is not an integer.
    */
   getInteger(name, required = false) {
     const options = this._parse(this.options);
@@ -102,10 +101,11 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It takes a string and a boolean as arguments, and returns a boolean.
-   * @param name - The name of the option to be retrieved.
-   * @param [required=false] - boolean
-   * @returns The value of the option.
+   * Retrieves the boolean value of the specified option name from the options list.
+   * @param {string} name - The name of the option to retrieve.
+   * @param {boolean} [required=false] - Indicates whether the option is required. If set to true and the option is not found, a RangeError is thrown.
+   * @returns {boolean | null} - The boolean value of the option, or null if the option is not found and not required.
+   * @throws {RangeError} - If the option is required and not found, or if the option type is not boolean.
    */
   getBoolean(name, required = false) {
     const options = this._parse(this.options);
@@ -121,9 +121,10 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It gets the attachment from the message
-   * @param [required=false] - boolean
-   * @returns The attachment of the message.
+   * Retrieves an attachment from the message data based on the provided options.
+   * @param {boolean} [required=false] - Indicates whether the attachment is required. If set to true and no attachment is found, a RangeError will be thrown.
+   * @returns {MessageAttachment | null} - The retrieved attachment, or null if no attachment is found and it is not required.
+   * @throws {RangeError} - If the required parameter is set to true and no attachment is found.
    */
   getAttachment(required = false) {
     const options = this._parse(this.options);
@@ -138,10 +139,11 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It gets a user from the options
-   * @param name - The name of the option you want to get
-   * @param [required=false] - boolean
-   * @returns The user object.
+   * Retrieves a user based on the given name.
+   * @param {string} name - The name of the user to retrieve.
+   * @param {boolean} [required=false] - Indicates whether the user is required. If set to true and the user is not found, a RangeError will be thrown.
+   * @returns {User | null} - The retrieved user object, or null if the user is not found and is not required.
+   * @throws {RangeError} - If the option type is not User or if the option name does not match the specified option and is required.
    */
   getUser(name, required = false) {
     const options = this._parse(this.options);
@@ -159,10 +161,11 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It gets a member from the options
-   * @param name - The name of the option
-   * @param [required=false] - boolean
-   * @returns The member object.
+   * Retrieves a member by name from the guild's options.
+   * @param {string} name - The name of the member to retrieve.
+   * @param {boolean} [required=false] - Whether the member is required. If set to true and the member is not found, a RangeError will be thrown.
+   * @returns {GuildMember | null} The retrieved member, or null if not found (unless required is set to true).
+   * @throws {RangeError} If the option type is not User or if the option name does not match the specified option (if required is set to true).
    */
   getMember(name, required = false) {
     const options = this._parse(this.options);
@@ -178,9 +181,9 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * If the data is not null, and the data is resolved and the data type is not 2, throw a range error.
-   * If the data is resolved, and the data type is 2, return the user.
-   * @returns The user object.
+   * Retrieves the context user from the data object.
+   * @returns {User | null} The context user, or null if the data object is not available.
+   * @throws {RangeError} If the data object is resolved and its type is not 2 (context user).
    */
   getContextUser() {
     if (!this.data) return null;
@@ -191,8 +194,9 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It returns a message object from a message ID
-   * @returns A MessageManager object.
+   * Retrieves the message associated with the current context.
+   * @returns {Message | null} The message object if found, otherwise null.
+   * @throws {RangeError} If the message is not of type "Context Message".
    */
   getMessage() {
     if (!this.data) return null;
@@ -204,10 +208,11 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It gets the channel from the options.
-   * @param name - The name of the option you want to get.
-   * @param [required=false] - boolean
-   * @returns The channel object.
+   * Retrieves a channel based on its name from the available options.
+   * @param {string} name - The name of the channel to retrieve.
+   * @param {boolean} [required=false] - Whether the channel is required. If set to true and the channel is not found, a RangeError will be thrown.
+   * @returns {Channel | null} - The retrieved channel or null if not found (unless required is set to true).
+   * @throws {RangeError} - If the type of option is not Channel or if the name of the option does not match the selected option (if required is set to true).
    */
   getChannel(name, required = false) {
     const options = this._parse(this.options);
@@ -225,10 +230,11 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It gets the role from the options
-   * @param name - The name of the option
-   * @param [required=false] - boolean
-   * @returns The role object.
+   * Retrieves the role with the specified name from the options.
+   * @param {string} name - The name of the role to retrieve.
+   * @param {boolean} [required=false] - Whether the role is required. If set to true and the role is not found, a RangeError will be thrown.
+   * @returns {Role | null} The role object if found, or null if not found and not required.
+   * @throws {RangeError} If the option type is not Role and required is set to true, or if the name of the option does not match the selected option and required is set to true.
    */
   getRole(name, required = false) {
     const options = this._parse(this.options);
@@ -244,10 +250,12 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It gets the mentionable object from the options
-   * @param name - The name of the option.
-   * @param [required=false] - boolean
-   * @returns The user, member, or role that was selected.
+   * Retrieves the mentionable value for the specified option name.
+   * @param {string} name - The name of the option.
+   * @param {boolean} [required=false] - Indicates whether the option is required.
+   * @returns {User | GuildMember | Role | null} The mentionable value for the option, or null if not found.
+   * @throws {RangeError} If the option type is not Mentionable.
+   * @throws {RangeError} If the name of the option does not match the selected option and is required.
    */
   getMentionable(name, required = false) {
     const options = this._parse(this.options);
@@ -277,9 +285,10 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It returns the name of the subcommand if it exists, otherwise it returns null.
-   * @param [required=false] - boolean
-   * @returns The name of the sub command.
+   * Retrieves the sub command name from the options array.
+   * @param {boolean} [required=false] - Indicates whether the sub command is required.
+   * @returns {string | null} - The name of the sub command, or null if not found.
+   * @throws {RangeError} - If the sub command is required but not found.
    */
   getSubCommand(required = false) {
     const option = this.options;
@@ -294,10 +303,10 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * If the option has a filter, return the filter's name. If the option doesn't have a filter, return
-   * null
-   * @param [required=false] - boolean
-   * @returns The Sub_Command_Group of the option.
+   * Retrieves the sub command group from the options array.
+   * @param {boolean} [required=false] - Indicates whether the sub command group is required.
+   * @returns {string | null} - The name of the sub command group, or null if not found.
+   * @throws {RangeError} - If the sub command group is required but not found.
    */
   getSubCommandGroup(required = false) {
     const option = this.options;
@@ -312,7 +321,7 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
+   * Get the guild object associated with this guildId.
    * @returns The guild object.
    */
   get guild() {
@@ -320,7 +329,7 @@ class CommandInteractionOptionResolver extends Base {
   }
 
   /**
-   * It returns the channel object of the channel ID that is stored in the message object
+   * Get the channel object associated with this instance.
    * @returns The channel object.
    */
   get channel() {

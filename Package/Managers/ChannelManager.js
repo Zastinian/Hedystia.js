@@ -15,22 +15,29 @@ const Invite = require("../Structures/Invite");
 const ThreadChannel = require("../Structures/ThreadChannel");
 const ChannelFlags = require("../Util/ChannelFlags");
 const DirectoryChannel = require("../Structures/DirectoryChannel");
-/* It's a class that manages channels */
+/**
+ * Represents a Channel Manager that handles operations related to channels.
+ * @class
+ * @extends Base
+ */
 class ChannelManager extends Base {
   /**
-   * It's a constructor function that takes a client parameter and passes it to the super function.
-   * @param client - The client object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Client} client - The client object used for communication with the server.
    */
   constructor(client) {
     super(client);
   }
 
   /**
-   * It takes a channel object, and returns a channel object
-   * @param channels - The channel object or channel ID.
-   * @param [guildId] - The ID of the guild the channel is in.
-   * @param [options] - cache = true, force = false
-   * @returns A channel object.
+   * Adds a channel to the cache and returns the channel object.
+   * @param {string | Channel} channels - The channel ID or channel object to add.
+   * @param {string} [guildId=this.guildId] - The ID of the guild the channel belongs to.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the channel.
+   * @param {boolean} [options.cache=true] - Whether to cache the channel object.
+   * @param {boolean} [options.force=false] - Whether to force fetching the channel from the cache.
+   * @returns {Channel} The added channel object.
    */
   _add(channels, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!channels) return;
@@ -156,10 +163,12 @@ class ChannelManager extends Base {
   }
 
   /**
-   * It fetches all the channels in a guild.
-   * @param channel - The channel ID or object.
-   * @param options
-   * @returns An array of objects.
+   * Fetches a channel from the server based on the provided channel ID or channel object.
+   * @param {string | object} channel - The channel ID or channel object to fetch.
+   * @param {object} [options] - Additional options for the fetch operation.
+   * @param {boolean} [options.cache] - Whether to use the cache for the fetch operation.
+   * @param {boolean} [options.force] - Whether to force a fresh fetch from the server.
+   * @returns {Promise<object>} - A promise that resolves to the fetched channel object.
    */
   async fetch(channel, options) {
     if (typeof channel?.id !== "undefined" || typeof channel === "string") return await this._fetchId(channel, options?.cache, options?.force);
@@ -170,11 +179,12 @@ class ChannelManager extends Base {
   }
 
   /**
-   * It fetches the channel ID from the API and adds it to the cache
-   * @param channel - The channel to fetch.
-   * @param [cache=true] - Whether or not to cache the channel.
-   * @param [force=false] - If true, it will force the cache to be updated.
-   * @returns The channel object.
+   * Fetches the ID of a channel from the API.
+   * @param {string | Channel} channel - The channel or channel ID to fetch.
+   * @param {boolean} [cache=true] - Whether to cache the fetched channel.
+   * @param {boolean} [force=false] - Whether to force fetching the channel even if it is already cached.
+   * @returns {Promise<Channel>} - A promise that resolves to the fetched channel.
+   * @throws {RangeError} - If the fetched channel is not a part of the guild.
    */
   async _fetchId(channel, cache = true, force = false) {
     const channelId = typeof channel === "string" ? channel : channel?.id;
@@ -185,10 +195,11 @@ class ChannelManager extends Base {
   }
 
   /**
-   * It edits a channel
-   * @param channel - The channel to edit.
-   * @param [options] - Object
-   * @returns The channel object.
+   * Edits a channel with the given options.
+   * @param {string | Channel} channel - The channel to edit. Can be either a channel ID or a Channel object.
+   * @param {Object} [options] - The options for editing the channel.
+   * @param {string} [options.reason] - The reason for the channel edit.
+   * @returns {Promise<Channel>} A promise that resolves with the edited channel.
    */
   async edit(channel, options = {}) {
     const {reason} = options;
@@ -199,10 +210,10 @@ class ChannelManager extends Base {
   }
 
   /**
-   * It deletes a channel
-   * @param channel - The channel to delete.
-   * @param reason - The reason for the deletion.
-   * @returns The deleted channel.
+   * Deletes a channel.
+   * @param {string | Channel} channel - The channel to delete. Can be either a channel ID or a Channel object.
+   * @param {string} reason - The reason for deleting the channel.
+   * @returns {Promise<Channel>} - A promise that resolves with the deleted channel.
    */
   async delete(channel, reason) {
     const channelId = typeof channel === "string" ? channel : channel.id;
@@ -212,10 +223,11 @@ class ChannelManager extends Base {
   }
 
   /**
-   * It creates an invite for a channel
-   * @param channel - The channel to create the invite for.
-   * @param [options] - Object
-   * @returns An invite object.
+   * Creates an invite for a given channel with optional options.
+   * @param {string | Channel} channel - The channel or channel ID to create the invite for.
+   * @param {Object} [options] - Optional parameters for creating the invite.
+   * @param {string} [options.reason] - The reason for creating the invite.
+   * @returns {Promise<Invite>} - A promise that resolves with the created invite.
    */
   async createInvite(channel, options = {}) {
     const {reason} = options;
@@ -229,10 +241,12 @@ class ChannelManager extends Base {
   }
 
   /**
-   * It follows a channel
-   * @param news - The channel you want to follow.
-   * @param [options] - Object
-   * @returns The channel that was followed.
+   * Follows a news channel and adds it to the list of followed channels.
+   * @param {string | NewsChannel} news - The news channel to follow. Can be either a string representing the channel ID or a NewsChannel object.
+   * @param {Object} [options] - Additional options for following the channel.
+   * @param {string} [options.reason] - The reason for following the channel.
+   * @param {string | NewsChannel} [options.channel] - The channel to receive webhook notifications. Can be either a string representing the channel ID or a NewsChannel object.
+   * @returns {Promise<string>} - A promise that resolves with the ID of the followed channel.
    */
   async follow(news, options = {}) {
     const {reason} = options;
@@ -246,9 +260,9 @@ class ChannelManager extends Base {
   }
 
   /**
-   * It triggers typing in a channel
-   * @param channel - The channel to send the typing indicator to.
-   * @returns Nothing.
+   * Triggers the typing indicator in a given channel.
+   * @param {string | Channel} channel - The channel ID or the channel object.
+   * @returns {Promise<void>} - A promise that resolves when the typing indicator is triggered.
    */
   async triggerTyping(channel) {
     const channelId = typeof channel === "string" ? channel : channel?.id;
@@ -257,8 +271,10 @@ class ChannelManager extends Base {
   }
 
   /**
-   * @param channel - The channel to clone.
-   * @returns The channel object.
+   * Clones a channel by creating a new channel with the same properties and permission overwrites.
+   * @param {string | Channel} channel - The channel ID or the channel object to clone.
+   * @returns {Promise<Channel>} - A promise that resolves with the cloned channel.
+   * @throws {RangeError} - If the channel is not found in the cache.
    */
   async clone(channel) {
     const channelId = typeof channel === "string" ? channel : channel?.id;
@@ -275,21 +291,18 @@ class ChannelManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection object.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It transforms an object into another object
-   * @param [o] - The object that is being transformed.
-   * @param [position=false] - boolean
-   * @returns an object with the properties of name, type, topic, bitrate, user_limit,
-   * rate_limit_per_user, position, permission_overwrites, parent_id, nsfw, archived,
-   * auto_archive_duration, locked, invitable, default_auto_archive_duration, video_quality_mode,
-   * rtc_region, and
+   * Transforms the payload object into the desired format based on the given parameters.
+   * @param {object} o - The payload object to transform.
+   * @param {boolean} [position=false] - Indicates whether to include position-related properties in the transformed object.
+   * @returns {object} - The transformed payload object.
    */
   static transformPayload(o = {}, position = false) {
     if (position) {
@@ -322,11 +335,13 @@ class ChannelManager extends Base {
   }
 
   /**
-   * It takes an object with properties id, type, allow, and deny, and returns an object with the same
-   * properties, but with the id property being a string, the type property being a number, and the
-   * allow and deny properties being strings
-   * @param [p] - The overwrites object.
-   * @returns The return is an object with the properties id, type, allow, and deny.
+   * Transforms an object of overwrite properties into a standardized format.
+   * @param {Object} p - The overwrite properties object.
+   * @param {string} p.id - The ID of the overwrite.
+   * @param {string} p.type - The type of the overwrite.
+   * @param {string[]} p.allow - The permissions to allow for the overwrite.
+   * @param {string[]} p.deny - The permissions to deny for the overwrite.
+   * @returns {Object} - The transformed overwrite object.
    */
   static transformOverwrites(p = {}) {
     return {

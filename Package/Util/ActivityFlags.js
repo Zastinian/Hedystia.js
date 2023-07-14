@@ -1,13 +1,17 @@
 const Bitfield = require("./Bitfield");
 
 /**
- * Represents a set of flags that can be used to represent various activity options.
+ * Represents a set of activity flags using a bitfield.
+ * @class
  * @extends Bitfield
+ * @constructor
+ * @param {...number} bit - The bits to set in the bitfield.
  */
 class ActivityFlags extends Bitfield {
   /**
-   * Creates a new ActivityFlags instance.
-   * @param {...number} bit - The bits to set for this ActivityFlags instance.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {...any} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);
@@ -15,8 +19,8 @@ class ActivityFlags extends Bitfield {
 }
 
 /**
- * The individual flags that can be used to represent activity options.
- * @type {Object<string, bigint>}
+ * Represents the available flags for activity settings.
+ * @type {bigint}
  * @readonly
  * @enum {bigint}
  */
@@ -33,14 +37,16 @@ ActivityFlags.Flags = {
 };
 
 /**
- * The default flag value.
- * @type {number}
+ * Sets the default value for the ActivityFlags to 0n.
+ * @param {bigint} Default - The default bit value to set.
  */
 ActivityFlags.Default = 0n;
 
 /**
- * All available flag values.
- * @type {number}
+ * Calculates the value of the ActivityFlags.All by performing a bitwise OR operation
+ * on all the values of the ActivityFlags.Flags.
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of ActivityFlags.All.
  */
 ActivityFlags.All = Object.values(ActivityFlags.Flags).reduce((a, b) => a | b, ActivityFlags.Default);
 

@@ -1,15 +1,22 @@
 const Base = require("../Base/base");
 /**
- * This class is used to create a new verification form field
+ * Represents a set of form fields for verification.
  * @class
  * @extends Base
+ * @param {object} [data] - The data object containing the field properties.
+ * @param {object} client - The client object used for making API requests.
+ * @property {string|null} description - The description of the form field.
+ * @property {string|null} fieldType - The type of the form field.
+ * @property {string|null} label - The label of the form field.
+ * @property {boolean|null} required - Indicates if the form field is required.
+ * @property {Array} values - The values associated with the form field.
  */
 class VerificationFormFields extends Base {
   /**
-   * The above function is a constructor function that takes in two parameters, data and client, and
-   * returns an object with the properties description, fieldType, label, required, and values.
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - The client that instantiated the object.
+   * Constructs a new instance of a class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, client) {
     super(client);

@@ -1,11 +1,15 @@
 const StickerManager = require("./StickerManager");
-/* It's a StickerManager that only returns stickers from a specific guild */
+/**
+ * Represents a sticker manager for a specific guild.
+ * @class
+ * @extends StickerManager
+ */
 class GuildStickerManager extends StickerManager {
   /**
-   * `constructor(guildId, client)` is a function that takes two arguments, `guildId` and `client`, and
-   * assigns them to the `guildId` and `client` properties of the class.
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -14,10 +18,8 @@ class GuildStickerManager extends StickerManager {
   }
 
   /**
-   * `return super.cache.filter((o) => o.guildId === this.guildId)`
-   *
-   * The `super` keyword is used to access and call functions on an object's parent
-   * @returns The cache property is being returned.
+   * Retrieves the cache for the current guild.
+   * @returns {Array} - An array of objects from the cache that belong to the current guild.
    */
   get cache() {
     return super.cache.filter((o) => o.guildId === this.guildId);

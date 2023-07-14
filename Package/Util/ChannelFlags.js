@@ -1,13 +1,17 @@
 const Bitfield = require("./Bitfield");
 
 /**
- * Class representing bitfields of Channel flags.
+ * Represents a set of channel flags using a bitfield.
+ * @class
  * @extends Bitfield
+ * @constructor
+ * @param {...number} bit - The bits to set in the bitfield.
  */
 class ChannelFlags extends Bitfield {
   /**
-   * Creates a new instance of the ChannelFlags class.
-   * @param {...number} bit - Bit numbers to include in the Bitfield.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {...any} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);
@@ -15,14 +19,8 @@ class ChannelFlags extends Bitfield {
 }
 
 /**
- * Default value for the ChannelFlags class.
- * @type {bigint}
- */
-ChannelFlags.Default = 0n;
-
-/**
  * Channel flags and their corresponding bit numbers.
- * @type {Object<string, bigint>}
+ * @type {bigint}
  * @readonly
  * @enum {bigint}
  */
@@ -32,8 +30,16 @@ ChannelFlags.Flags = {
 };
 
 /**
- * Bitwise OR operation on all flags to get a bitfield with all flags.
- * @type {bigint}
+ * Sets the default value for the ChannelFlags property to 0n.
+ * @param {bigint} Default - The default bit value to set.
+ */
+ChannelFlags.Default = 0n;
+
+/**
+ * Calculates the value of ChannelFlags.All by performing a bitwise OR operation on all the values
+ * in the ChannelFlags.Flags object.
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of ChannelFlags.All.
  */
 ChannelFlags.All = Object.values(ChannelFlags.Flags).reduce((a, b) => a | b, ChannelFlags.Default);
 

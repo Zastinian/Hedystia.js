@@ -7,10 +7,16 @@ const MessageReference = require("../Structures/MessageReference");
 const MessageEmbed = require("../Builders/MessageEmbed");
 const MessageFlags = require("./MessageFlags");
 /**
- * It takes a payload object and returns a payload object
- * @module MessagePayload
+ * Represents a message payload and provides methods for creating and resolving message data.
+ * @class
  */
 class MessagePayload {
+  /**
+   * Creates a payload for a given type.
+   * @param {Object} payload - The payload object.
+   * @param {string} type - The type of payload to create.
+   * @returns {Promise<Object>|Object} - The created payload.
+   */
   static async create(payload = {}, type) {
     let data = this.resolveData(payload);
     if (type) {
@@ -49,6 +55,11 @@ class MessagePayload {
     return data;
   }
 
+  /**
+   * Resolves a file to a Buffer object.
+   * @param {Buffer | MessageAttachment | string} file - The file to resolve.
+   * @returns {Promise<Buffer | null>} - A Promise that resolves to a Buffer object or null if the file cannot be resolved.
+   */
   static async resolveFiles(file) {
     if (file instanceof Buffer) return file;
     if (file instanceof MessageAttachment) {
@@ -81,6 +92,11 @@ class MessagePayload {
     return file ?? null;
   }
 
+  /**
+   * Resolves the data payload for a message.
+   * @param {Object} [payload] - The payload object containing the message data.
+   * @returns {Object} - The resolved data payload for the message.
+   */
   static resolveData(payload = {}) {
     return {
       content: payload.content ?? undefined,
@@ -102,12 +118,23 @@ class MessagePayload {
     };
   }
 
+  /**
+   * Resolves the message flags and returns the parsed bitfield value.
+   * @param {number} flags - The message flags to resolve.
+   * @returns {number | undefined} The parsed bitfield value of the message flags.
+   */
   static resolveMessageFlags(flags) {
     if (!flags) return;
     flags = new MessageFlags(flags);
     return parseInt(flags.bitfield);
   }
 
+  /**
+   * Resolves the modal data and returns an object with the specified type and data.
+   * @param {Object} data - The modal data object.
+   * @param {string} type - The type of the modal.
+   * @returns {Object} - An object with the specified type and data.
+   */
   static resolveModal(data = {}, type) {
     data = {
       title: data.title ?? undefined,
@@ -118,6 +145,12 @@ class MessagePayload {
     return {type, data};
   }
 
+  /**
+   * Resolves a webhook payload by merging it with additional extras.
+   * @param {object} payload - The webhook payload object.
+   * @param {object} extras - Additional extras to merge with the payload.
+   * @returns {object} - The resolved webhook payload with merged extras.
+   */
   static resolveWebhook(payload = {}, extras = {}) {
     return Object.assign(extras, {
       username: payload.username ?? undefined,
@@ -126,6 +159,12 @@ class MessagePayload {
     });
   }
 
+  /**
+   * Resolves deferred data by assigning the appropriate flags and returning the resolved data.
+   * @param {object} data - The data object to resolve.
+   * @param {number} [type=5] - The type of the resolved data.
+   * @returns {object} - The resolved data object with assigned flags.
+   */
   static resolveDefers(data = {}, type = 5) {
     data = {
       flags: data.ephemeral ? 64 : undefined,

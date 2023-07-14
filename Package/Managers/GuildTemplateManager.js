@@ -1,14 +1,19 @@
 const GuildTemplate = require("../Structures/GuildTemplate");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* It's a manager for guild templates */
+/**
+ * Represents a manager for guild templates.
+ * @class
+ * @extends Base
+ * @param {string} guildId - The ID of the guild.
+ * @param {Client} client - The client instance.
+ */
 class GuildTemplateManager extends Base {
   /**
-   * `constructor(guildId, client)` is a function that takes two parameters, `guildId` and `client`, and
-   * sets the `guildId` property of the class to the `guildId` parameter, and the `client` property of
-   * the class to the `client` parameter
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -17,10 +22,12 @@ class GuildTemplateManager extends Base {
   }
 
   /**
-   * It adds a template to the cache
-   * @param templates - The template code or template object.
-   * @param [options] - An object with the following properties:
-   * @returns A new GuildTemplate object.
+   * Adds a template to the cache and returns the template object.
+   * @param {string | { code: string }} templates - The template code or an object containing the template code.
+   * @param {object} [options] - Optional options for the template.
+   * @param {boolean} [options.cache=true] - Whether to cache the template or not.
+   * @param {boolean} [options.force=false] - Whether to force the template to be retrieved from the cache or not.
+   * @returns {GuildTemplate | null} The template object if it exists, otherwise null.
    */
   _add(templates, options = {cache: true, force: false}) {
     if (!templates) return null;
@@ -48,9 +55,11 @@ class GuildTemplateManager extends Base {
   }
 
   /**
-   * It fetches all the templates from the API and returns a new cache of them
-   * @param [options] - Object
-   * @returns A new instance of the cache constructor.
+   * Fetches templates from the server.
+   * @param {Object} [options] - Optional parameters for the fetch request.
+   * @param {boolean} [options.cache=true] - Whether to cache the fetched templates.
+   * @param {boolean} [options.force=false] - Whether to force the fetch request even if the templates are already cached.
+   * @returns {Promise<Cache>} - A promise that resolves to a cache object containing the fetched templates.
    */
   async fetch(options = {}) {
     const {cache = true, force = false} = options;
@@ -59,9 +68,9 @@ class GuildTemplateManager extends Base {
   }
 
   /**
-   * `create` creates a new guild template
-   * @param [options] - Object
-   * @returns A new GuildTemplate instance.
+   * Creates a guild template with the given options.
+   * @param {Object} options - The options for creating the guild template.
+   * @returns {Promise<Object>} A promise that resolves to the created guild template.
    */
   async create(options = {}) {
     const body = GuildTemplateManager.transformPayload(options);
@@ -72,10 +81,11 @@ class GuildTemplateManager extends Base {
   }
 
   /**
-   * It edits a guild template
-   * @param code - The code of the template you want to edit.
-   * @param [options] - Object
-   * @returns A new GuildTemplate instance.
+   * Edits a guild template with the given code and options.
+   * @param {string | GuildTemplate} code - The code or GuildTemplate object of the template to edit.
+   * @param {Object} [options] - The options for editing the template.
+   * @returns {Promise<GuildTemplate>} A promise that resolves with the edited GuildTemplate object.
+   * @throws {RangeError} If the code is not provided.
    */
   async edit(code, options = {}) {
     if (!code) throw new RangeError(`The code is required!`);
@@ -87,9 +97,10 @@ class GuildTemplateManager extends Base {
   }
 
   /**
-   * It syncs the template with the Discord API
-   * @param code - The code of the template you want to sync.
-   * @returns A new instance of the GuildTemplate class.
+   * Synchronizes a guild template with the provided code.
+   * @param {string | GuildTemplate} code - The code or GuildTemplate object to sync.
+   * @returns {Promise<GuildTemplate>} - A promise that resolves with the synchronized GuildTemplate.
+   * @throws {RangeError} - If the code is not provided.
    */
   async sync(code) {
     if (!code) throw new RangeError(`The code is required!`);
@@ -100,9 +111,10 @@ class GuildTemplateManager extends Base {
   }
 
   /**
-   * It deletes a guild template
-   * @param code - The code of the template you want to delete.
-   * @returns A new instance of the GuildTemplate class.
+   * Deletes a guild template.
+   * @param {string | GuildTemplate} code - The code or GuildTemplate object of the template to delete.
+   * @returns {Promise<GuildTemplate>} A promise that resolves with the deleted template.
+   * @throws {RangeError} If the code is not provided.
    */
   async delete(code) {
     if (!code) throw new RangeError(`The code is required!`);
@@ -113,17 +125,18 @@ class GuildTemplateManager extends Base {
   }
 
   /**
-   * `return Collection;`
-   * @returns The cache property is being returned.
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;
   }
 
   /**
-   * It takes an object and returns a new object with only the properties that are defined
-   * @param [o] - The object to transform.
-   * @returns The transformPayload function is being returned.
+   * Transforms the given payload object by extracting the "name" and "description" properties.
+   * If these properties are not present in the object, they will be set to undefined in the returned object.
+   * @param {Object} o - The payload object to transform.
+   * @returns {Object} - The transformed object with "name" and "description" properties.
    */
   static transformPayload(o = {}) {
     return {

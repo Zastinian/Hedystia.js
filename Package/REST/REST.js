@@ -3,31 +3,26 @@ const FormData = require("form-data");
 const https = require("node:https");
 const got = (...args) => import("got").then(({default: got}) => got(...args));
 /**
- * A class representing a REST client.
+ * Represents a REST client for making HTTP requests.
  * @class
- * @param {Object} client - The client object.
+ * @param {object} client - The client object.
  */
 class REST {
   /**
-   * Create a new REST client.
+   * Constructs a new instance of the class.
    * @constructor
-   * @param {Object} client - The client object.
+   * @param {Object} client - The client object to be assigned to the "client" property.
    */
   constructor(client) {
-    /**
-     * The client object.
-     * @type {Object}
-     * @private
-     */
     Object.defineProperty(this, "client", {
       value: client,
     });
   }
 
   /**
-   * Set the token for the REST client.
-   * @param {string} token - The token to set.
-   * @returns {REST} The REST client instance.
+   * Sets the token value for the current instance of the class.
+   * @param {string} token - The token value to set.
+   * @returns {Object} - The current instance of the class.
    */
   setToken(token) {
     this.token = token;
@@ -35,10 +30,11 @@ class REST {
   }
 
   /**
-   * Make a request to the server with the PATCH method
-   * @param {string} url - The URL to make the request to
-   * @param {Object} options - Additional options for the request
-   * @returns {Promise<Object>} - The response from the server
+   * Makes an HTTP request to the specified URL with the given options.
+   * @param {string} url - The URL to make the request to.
+   * @param {Object} [options] - The options for the request.
+   * @returns {Promise<Object>} - A promise that resolves to the response from the request.
+   * @throws {DiscordAPIError} - If the response status code is not 201, 200, or 204.
    */
   async _make(url, options = {}) {
     const agent = new https.Agent({keepAlive: true});
@@ -101,10 +97,10 @@ class REST {
   }
 
   /**
-   * Make a request to the server with the GET method
-   * @param {string} url - The URL to make the request to
-   * @param {Object} options - Additional options for the request
-   * @returns {Promise<Object>} - The response from the server
+   * Sends a GET request to the specified URL with optional request options.
+   * @param {string} url - The URL to send the GET request to.
+   * @param {object} [options] - Optional request options.
+   * @returns {Promise} A promise that resolves to the response of the GET request.
    */
   async get(url, options = {}) {
     return this._make(url, {
@@ -114,10 +110,10 @@ class REST {
   }
 
   /**
-   * Make a request to the server with the POST method
-   * @param {string} url - The URL to make the request to
-   * @param {Object} options - Additional options for the request
-   * @returns {Promise<Object>} - The response from the server
+   * Sends a POST request to the specified URL with the given options.
+   * @param {string} url - The URL to send the POST request to.
+   * @param {object} [options] - Additional options for the request.
+   * @returns {Promise} A promise that resolves to the response of the request.
    */
   async post(url, options = {}) {
     return this._make(url, {
@@ -127,10 +123,10 @@ class REST {
   }
 
   /**
-   * Make a request to the server with the DELETE method
-   * @param {string} url - The URL to make the request to
-   * @param {Object} options - Additional options for the request
-   * @returns {Promise<Object>} - The response from the server
+   * Sends a DELETE request to the specified URL with optional request options.
+   * @param {string} url - The URL to send the DELETE request to.
+   * @param {object} [options] - Optional request options.
+   * @returns {Promise} A promise that resolves to the response of the DELETE request.
    */
   async delete(url, options = {}) {
     return this._make(url, {
@@ -141,10 +137,10 @@ class REST {
   }
 
   /**
-   * Make a request to the server with the PUT method
-   * @param {string} url - The URL to make the request to
-   * @param {Object} options - Additional options for the request
-   * @returns {Promise<Object>} - The response from the server
+   * Sends a PUT request to the specified URL with the given options.
+   * @param {string} url - The URL to send the PUT request to.
+   * @param {object} [options] - Additional options for the request.
+   * @returns {Promise} A promise that resolves with the response from the server.
    */
   async put(url, options = {}) {
     return this._make(url, {
@@ -154,10 +150,10 @@ class REST {
   }
 
   /**
-   * Make a request to the server with the PATCH method
-   * @param {string} url - The URL to make the request to
-   * @param {Object} options - Additional options for the request
-   * @returns {Promise<Object>} - The response from the server
+   * Sends a PATCH request to the specified URL with the given options.
+   * @param {string} url - The URL to send the PATCH request to.
+   * @param {object} [options] - Additional options for the request.
+   * @returns {Promise} A promise that resolves with the response from the server.
    */
   async patch(url, options = {}) {
     return this._make(url, {

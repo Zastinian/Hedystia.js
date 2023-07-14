@@ -1,12 +1,14 @@
 /**
- * It's a class that extends the Error class and adds a code and rawError property to it.
- * @module WebsocketError
+ * Custom error class for WebSocket errors.
  */
 class WebsocketError extends Error {
   /**
-   * This is a constructor function that sets properties for an error object.
-   * @param [error] - The `error` parameter is an object that contains information about an error that
-   * occurred. It may have the following properties:
+   * Constructs a new instance of the Error class.
+   * @constructor
+   * @param {Object} [error] - The error object containing the error message, code, and raw error.
+   * @param {string} [error.message] - The error message.
+   * @param {number} [error.code] - The error code.
+   * @param {Object} [error.rawError] - The raw error object.
    */
   constructor(error = {}) {
     super(error.message);

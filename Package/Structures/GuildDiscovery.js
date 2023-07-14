@@ -1,6 +1,5 @@
 const Base = require("../Base/base");
 const {GuildPrimaryCategory} = require("../Util/Constants");
-
 /**
  * Represents a guild's discovery metadata.
  * @class
@@ -8,6 +7,7 @@ const {GuildPrimaryCategory} = require("../Util/Constants");
  */
 class GuildDiscovery extends Base {
   /**
+   * @constructor
    * @param {Object} data - The data for the guild discovery metadata
    * @param {Snowflake} guildId - The ID of the guild this discovery metadata belongs to
    * @param {Client} client - The instantiating client

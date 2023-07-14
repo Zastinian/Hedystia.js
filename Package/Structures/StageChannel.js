@@ -1,33 +1,33 @@
 const VoiceBasedChannels = require("./Interface/VoiceBasedChannels");
 /**
- * It's a class that extends the VoiceBasedChannels class, and adds a few extra methods to it.
+ * Represents a stage channel, which is a type of voice-based channel.
  * @class
  * @extends VoiceBasedChannels
  */
 class StageChannel extends VoiceBasedChannels {
   /**
-   * It's a constructor function that takes in three parameters, data, guildId, and client.
-   * @param [data] - The data that the role is being created with.
-   * @param guildId - The ID of the guild the role is in.
-   * @param client - The client that instantiated the object.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object to initialize the instance with.
+   * @param {string} guildId - The ID of the guild associated with the instance.
+   * @param {Client} client - The client instance associated with the instance.
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
   }
 
   /**
-   * If the guild exists, return the stage instance that has the same channel ID as the current
-   * channel, otherwise return null
-   * @returns The stageInstance is being returned.
+   * Retrieves the stage instance associated with the channel.
+   * @returns {StageInstance | null} The stage instance object if found, otherwise null.
    */
   get stageInstance() {
     return this.guild?.stageInstances.cache.find((o) => o.channelId === this.id) ?? null;
   }
 
   /**
-   * It creates a new stage instance in the guild, and sets the channel to the current channel
-   * @param [options] - The options to pass to the stage instance.
-   * @returns The stage instance that was created.
+   * Creates a stage instance in the specified channel.
+   * @param {Object} options - The options for creating the stage instance.
+   * @returns {Promise<StageInstance>} A promise that resolves to the created stage instance.
    */
   async createStageInstance(options = {}) {
     options["channel"] = this.id;

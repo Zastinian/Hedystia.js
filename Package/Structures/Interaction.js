@@ -4,16 +4,20 @@ const MessagePayload = require("../Util/MessagePayload");
 const Permissions = require("../Util/Permissions");
 const Snowflake = require("../Util/Snowflake");
 /**
- * It's a class that handles interactions with the Discord API.
+ * Represents an interaction with a user in a Discord server.
  * @class
  * @extends Base
+ * @param {Object} data - The data object containing information about the interaction.
+ * @param {string} guildId - The ID of the guild where the interaction occurred.
+ * @param {Client} client - The client instance.
  */
 class Interaction extends Base {
   /**
-   * It's a constructor function that takes in data, guildId, and client as parameters.
-   * @param data - The data that is passed to the constructor.
-   * @param guildId - The ID of the guild the user is in.
-   * @param client - Discord.Client
+   * Constructs a new instance of the Interaction class.
+   * @constructor
+   * @param {Object} [data] - The data object containing information about the interaction.
+   * @param {string} guildId - The ID of the guild the interaction belongs to.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -39,8 +43,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the commandType is Chat_Input or 1, return true, otherwise return false.
-   * @returns a boolean value.
+   * Checks if the command type is a chat input.
+   * @returns {boolean} - true if the command type is a chat input, false otherwise.
    */
   isChatInput() {
     if (["Chat_Input", 1].includes(this.commandType)) return true;
@@ -48,8 +52,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the type is either "Application_Command" or 2, return true, otherwise return false
-   * @returns The return value is a boolean.
+   * Checks if the current object is a command.
+   * @returns {boolean} - true if the object is a command, false otherwise.
    */
   isCommand() {
     if (["Application_Command", 2].includes(this.type)) return true;
@@ -57,8 +61,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the commandType is either "User" or 2, then return true, otherwise return false.
-   * @returns a boolean value.
+   * Checks if the command type is "User" or 2.
+   * @returns {boolean} - true if the command type is "User" or 2, false otherwise.
    */
   isUser() {
     if (["User", 2].includes(this.commandType)) return true;
@@ -66,8 +70,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the command type is either "Message" or 3, then return true, otherwise return false.
-   * @returns The return value is a boolean.
+   * Checks if the command type is "Message" or 3.
+   * @returns {boolean} - true if the command type is "Message" or 3, false otherwise.
    */
   isMessage() {
     if (["Message", 3].includes(this.commandType)) return true;
@@ -75,8 +79,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the componentType is either "Button" or 2, then return true, otherwise return false.
-   * @returns a boolean value.
+   * Checks if the component type is a button.
+   * @returns {boolean} - true if the component type is a button, false otherwise.
    */
   isButton() {
     if (["Button", 2].includes(this.componentType)) return true;
@@ -84,8 +88,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the type is either "Modal_Submit" or 5, then return true, otherwise return false.
-   * @returns The return value is a boolean.
+   * Checks if the current instance is a modal.
+   * @returns {boolean} - Returns true if the instance is a modal, false otherwise.
    */
   isModal() {
     if (["Modal_Submit", 5].includes(this.type)) return true;
@@ -93,9 +97,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the type is either "Application_Command_Autocomplete" or 4, return true, otherwise return
-   * false.
-   * @returns The return value is a boolean.
+   * Checks if the current object is an autocomplete.
+   * @returns {boolean} - True if the object is an autocomplete, false otherwise.
    */
   isAutocomplete() {
     if (["Application_Command_Autocomplete", 4].includes(this.type)) return true;
@@ -103,8 +106,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the componentType is either "Select_Menu" or 3, then return true, otherwise return false.
-   * @returns The return value is a boolean.
+   * Checks if the component type is a select menu.
+   * @returns {boolean} - true if the component type is a select menu, false otherwise.
    */
   isSelect() {
     if (["Select_Menu", 3].includes(this.componentType)) return true;
@@ -112,8 +115,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the command type is a user, message, 2, or 3, then return true. Otherwise, return false
-   * @returns The return value is a boolean.
+   * Checks if the current context is valid for the given command type.
+   * @returns {boolean} - true if the context is valid, false otherwise.
    */
   isContext() {
     if (["User", "Message", 2, 3].includes(this.commandType)) return true;
@@ -121,8 +124,8 @@ class Interaction extends Base {
   }
 
   /**
-   * If the channel type is a DM, return true, otherwise return false
-   * @returns a boolean value.
+   * Checks if the current channel is a direct message (DM) channel.
+   * @returns {boolean} - True if the channel is a DM channel, false otherwise.
    */
   isDM() {
     if (this.channel?.type === "Dm") return true;
@@ -130,17 +133,17 @@ class Interaction extends Base {
   }
 
   /**
-   * It takes a name as an argument, and returns the value of the option with that name
-   * @param name - The name of the option you want to get the value of.
-   * @returns The value of the option that matches the name.
+   * Retrieves the value associated with the given name from the options list.
+   * @param {string} name - The name of the option to retrieve the value for.
+   * @returns The value associated with the given name.
    */
   getValue(name) {
     return this.options.options.filter((data) => data.name == name)[0].value;
   }
 
   /**
-   * It fetches the original message that the webhook was created with
-   * @returns The message object.
+   * Fetches the reply message from the Discord API using the provided webhook information.
+   * @returns {Promise<Message>} A promise that resolves to the fetched reply message.
    */
   async fetchReply() {
     const reply = await this.client.api.get(`${this.client.root}/webhooks/${this.applicationId}/${this.token}/messages/@original`);
@@ -148,9 +151,9 @@ class Interaction extends Base {
   }
 
   /**
-   * It sends a reply to the user
-   * @param data - The data to send to the user.
-   * @returns The reply method returns a Promise that resolves to the reply message.
+   * Sends a reply to an interaction with the provided data.
+   * @param {Object} data - The data to send as the reply.
+   * @returns {Promise<Message|null>} - A promise that resolves to the sent message, or null if fetchReply is false.
    */
   async reply(data) {
     const body = await MessagePayload.create(data, 4);
@@ -161,10 +164,9 @@ class Interaction extends Base {
   }
 
   /**
-   * It takes an object of options, creates a payload from those options, and then sends that payload to
-   * the API.
-   * @param options
-   * @returns The response from the API.
+   * Sends a deferred reply to an interaction.
+   * @param {Object} options - The options for creating the message payload.
+   * @returns {Promise} A promise that resolves when the reply is sent.
    */
   async deferReply(options = {}) {
     const body = await MessagePayload.create(options, 5);
@@ -174,10 +176,9 @@ class Interaction extends Base {
   }
 
   /**
-   * It takes an object, creates a new object with the original object and a number, and then sends that
-   * new object to a URL.
-   * @param options - The options object.
-   * @returns The response from the API.
+   * Submits a modal form by sending a POST request to the specified endpoint.
+   * @param {Object} options - The options for the modal form submission.
+   * @returns {Promise} A promise that resolves when the form submission is complete.
    */
   async modalSubmit(options = {}) {
     const body = await MessagePayload.create(options, 9);
@@ -187,8 +188,8 @@ class Interaction extends Base {
   }
 
   /**
-   * It deletes the message that was sent to the webhook
-   * @returns The message that was deleted.
+   * Deletes the reply message associated with the current interaction.
+   * @returns {Promise<Message>} A promise that resolves to the deleted message.
    */
   async deleteReply() {
     const message = await this.fetchReply();
@@ -197,9 +198,9 @@ class Interaction extends Base {
   }
 
   /**
-   * It edits a message that was sent by a webhook
-   * @param options
-   * @returns The message object.
+   * Edits the reply message of a webhook interaction.
+   * @param {Object} options - The options for editing the reply message.
+   * @returns {Promise<Message>} A promise that resolves with the edited message.
    */
   async editReply(options) {
     const body = await MessagePayload.create(options);
@@ -208,9 +209,10 @@ class Interaction extends Base {
   }
 
   /**
-   * It takes an object of options, creates a message payload, and then sends it to the webhook.
-   * @param options
-   * @returns The message object.
+   * Sends a follow-up message using the provided options.
+   * @param {object} options - The options for the follow-up message.
+   * @returns {Promise<Message>} A promise that resolves to the sent message.
+   * @throws {Error} If there was an error sending the follow-up message.
    */
   async followUp(options) {
     const body = await MessagePayload.create(options);
@@ -219,16 +221,16 @@ class Interaction extends Base {
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
-   * @returns The guild object.
+   * Retrieves the guild associated with this guildId.
+   * @returns The guild object if found, otherwise null.
    */
   get guild() {
     return this.client.guilds._add(this.guildId) ?? null;
   }
 
   /**
-   * It returns the user object of the user who sent the message
-   * @returns The user object.
+   * Get the user associated with this instance.
+   * @returns {User | null} The user object, or null if it is not available.
    */
   get user() {
     return this.client.users._add(this._user) ?? null;

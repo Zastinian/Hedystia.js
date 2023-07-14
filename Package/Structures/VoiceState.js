@@ -1,15 +1,19 @@
 const Base = require("../Base/base");
 /**
- * It's a class that represents a user's voice state in a guild
+ * Represents the state of a voice connection for a user in a guild.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data for the voice state.
+ * @param {string} guildId - The ID of the guild the voice state belongs to.
+ * @param {Client} client - The client instance.
  */
 class VoiceState extends Base {
   /**
-   * It's a constructor for a class that is used to store voice state data.
-   * @param [data] - The data that was received from the Discord API.
-   * @param guildId - The ID of the guild the voice state is in.
-   * @param client - Discord.Client
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {string} guildId - The ID of the guild associated with the instance.
+   * @param {Client} client - The client instance associated with the instance.
    */
   constructor(data = {}, guildId, client) {
     super(client);
@@ -31,81 +35,81 @@ class VoiceState extends Base {
   }
 
   /**
-   * It edits the member's settings
-   * @param options - An object containing the options to edit the member with.
-   * @returns The return value is a Promise that resolves to the edited member.
+   * Edits the user's guild member profile with the given options.
+   * @param {Object} options - The options to edit the guild member profile.
+   * @returns {Promise} A promise that resolves when the edit is complete.
    */
   async edit(options) {
     return await this.guild?.members.edit(this.user, options);
   }
 
   /**
-   * It sets the channel of the invite
-   * @param channel - The channel to move the member to, can be a voice channel or a category channel.
-   * @param reason - The reason for the update.
-   * @returns The channel that the message was sent in.
+   * Sets the channel for the current object and updates it with the given reason.
+   * @param {Channel} channel - The channel to set.
+   * @param {string} reason - The reason for setting the channel.
+   * @returns {Promise<void>} - A promise that resolves when the channel is successfully set.
    */
   async setChannel(channel, reason) {
     return await this.edit({channel, reason});
   }
 
   /**
-   * It sets the deaf property of the member to deaf, and the reason property of the member to reason
-   * @param deaf - Boolean - Whether or not the member should be deafened
-   * @param reason - The reason for the change.
-   * @returns The deaf status of the member.
+   * Sets the deaf status of the user.
+   * @param {boolean} deaf - Whether the user should be deafened or not.
+   * @param {string} reason - The reason for setting the deaf status.
+   * @returns {Promise} - A promise that resolves when the deaf status is set.
    */
   async setDeaf(deaf, reason) {
     return await this.edit({deaf, reason});
   }
 
   /**
-   * It sets the mute status of a user
-   * @param mute - Boolean - Whether or not the member should be muted.
-   * @param reason - The reason for the mute.
-   * @returns The mute status and the reason for the mute.
+   * Sets the mute status and reason for an object.
+   * @param {boolean} mute - The mute status to set.
+   * @param {string} reason - The reason for muting.
+   * @returns {Promise} - A promise that resolves when the mute status and reason are set.
    */
   async setMute(mute, reason) {
     return await this.edit({mute, reason});
   }
 
   /**
-   * It sets the user's voice state to suppress
-   * @param suppress - Boolean
-   * @returns The voice state of the user.
+   * Sets the suppress property of the voice state for the user in the guild.
+   * @param {boolean} suppress - The value to set for the suppress property.
+   * @returns {Promise<void>} - A promise that resolves when the suppress property is set.
    */
   async setSuppress(suppress) {
     return await this.guild?.voiceStates.edit(this.user, {suppress});
   }
 
   /**
-   * It sets the request to speak status of a user in a voice channel
-   * @param requestToSpeak - boolean
-   * @returns The return value is a Promise that resolves to the updated VoiceState.
+   * Sets the "request to speak" status for the user in the guild's voice channel.
+   * @param {boolean} requestToSpeak - The value indicating whether the user wants to request to speak.
+   * @returns {Promise<void>} - A promise that resolves when the request to speak status is set.
    */
   async setRequestToSpeak(requestToSpeak) {
     return await this.guild?.voiceStates.edit(this.user, {requestToSpeak});
   }
 
   /**
-   * It returns the guild object of the guild ID that is stored in the database
-   * @returns The guild object.
+   * Retrieves the guild associated with this guildId.
+   * @returns The guild object if found, otherwise null.
    */
   get guild() {
     return this.client.guilds._add(this.guildId) ?? null;
   }
 
   /**
-   * It returns the channel object of the channel ID that is stored in the message object
-   * @returns The channel object.
+   * Retrieves the channel object associated with this instance.
+   * @returns {Channel | null} The channel object, or null if it does not exist.
    */
   get channel() {
     return this.client.channels._add(this.channelId) ?? null;
   }
 
   /**
-   * It returns the user object of the user who sent the message
-   * @returns The user object.
+   * Retrieves the user associated with this instance.
+   * @returns {User | null} The user object if found, otherwise null.
    */
   get user() {
     return this.client.users._add(this.userId) ?? null;

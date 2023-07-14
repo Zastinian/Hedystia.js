@@ -1,11 +1,15 @@
 const ChannelManager = require("./ChannelManager");
-/* It's a class that manages channels in a guild */
+/**
+ * Represents a manager for guild channels.
+ * @class
+ * @extends ChannelManager
+ */
 class GuildChannelManager extends ChannelManager {
   /**
-   * It's a constructor function that takes in a guildId and a client, and then sets the guildId to the
-   * guildId that was passed in, and then sets the client to the client that was passed in.
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run from.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -14,9 +18,10 @@ class GuildChannelManager extends ChannelManager {
   }
 
   /**
-   * It creates a new channel in the guild.
-   * @param [options] - Object
-   * @returns The channel object.
+   * Creates a new channel in the guild.
+   * @param {Object} [options] - The options for creating the channel.
+   * @param {string} [options.reason] - The reason for creating the channel.
+   * @returns {Promise<Channel>} A promise that resolves with the created channel.
    */
   async create(options = {}) {
     const {reason} = options;
@@ -29,9 +34,11 @@ class GuildChannelManager extends ChannelManager {
   }
 
   /**
-   * It takes an array of objects, transforms them, and then sends them to the API
-   * @param [options] - Object
-   * @returns A new cache object.
+   * Modifies the position of channels in a guild.
+   * @param {Object} [options] - The options for modifying the position.
+   * @param {string} [options.reason] - The reason for modifying the position.
+   * @param {Array} [options.data] - The data containing the channels to modify.
+   * @returns {Promise} A promise that resolves when the position is modified.
    */
   async modifyPosition(options = {}) {
     const {reason, data} = options ?? {};
@@ -41,10 +48,8 @@ class GuildChannelManager extends ChannelManager {
   }
 
   /**
-   * It filters the cache to only include objects that have a guild_id or guildId property that matches
-   * the guildId of the current instance
-   * @returns The cache is being filtered to only return the objects that have the same guildId as the
-   * guildId of the current guild.
+   * Retrieves the cache for the current guild.
+   * @returns {Array} - The filtered cache objects for the current guild.
    */
   get cache() {
     return super.cache.filter((o) => (o.guild_id ?? o.guildId) === this.guildId);

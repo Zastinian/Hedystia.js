@@ -1,13 +1,19 @@
 const RolePrompts = require("../Structures/RolePrompts");
 const Base = require("../Base/base");
 const Collection = new (require("../Util/@Collections/RaidenCol").RaidenCol)();
-/* `RolePromptManager` is a class that manages role prompts for a guild */
+/**
+ * Represents a manager for role prompts in a guild.
+ * @class
+ * @extends Base
+ * @param {string} guildId - The ID of the guild.
+ * @param {Client} client - The client instance.
+ */
 class RolePromptManager extends Base {
   /**
-   * `constructor(guildId, client)` is a function that takes two arguments, `guildId` and `client`, and
-   * assigns them to the `guildId` and `client` properties of the class.
-   * @param guildId - The ID of the guild you want to get the settings for.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildId, client) {
     super(client);
@@ -15,12 +21,13 @@ class RolePromptManager extends Base {
   }
 
   /**
-   * It adds a role prompt to the cache
-   * @param prompts - This is the prompt you want to add. It can be a string or an object. If it's a
-   * string, it will be the prompt's ID. If it's an object, it will be the prompt's data.
-   * @param [guildId] - The guild ID to use for the role prompt.
-   * @param [options] -
-   * @returns A new RolePrompts object
+   * Adds a role prompt to the collection.
+   * @param {string | RolePrompt} prompts - The ID of the prompt or the prompt object itself.
+   * @param {string} [guildId=this.guildId] - The ID of the guild where the prompt is added.
+   * @param {object} [options={cache: true, force: false}] - Additional options for adding the prompt.
+   * @param {boolean} [options.cache=true] - Whether to cache the prompt.
+   * @param {boolean} [options.force=false] - Whether to force adding the prompt even if it already exists in the cache.
+   * @returns {RolePrompt | null} The added role prompt or null if prompts is falsy.
    */
   _add(prompts, guildId = this.guildId, options = {cache: true, force: false}) {
     if (!prompts) return null;
@@ -49,9 +56,11 @@ class RolePromptManager extends Base {
   }
 
   /**
-   * It fetches all role prompts from the API and returns them in a cache
-   * @param [options] - Object
-   * @returns A new instance of the cache constructor.
+   * Fetches role prompts from the server.
+   * @param {Object} [options] - Optional parameters for the fetch request.
+   * @param {boolean} [options.cache] - Whether to use cached data or not.
+   * @param {boolean} [options.force] - Whether to force a fresh fetch or not.
+   * @returns {Promise<Object>} - A promise that resolves to the fetched role prompts.
    */
   async fetch(options = {}) {
     const {cache, force} = options;
@@ -60,9 +69,11 @@ class RolePromptManager extends Base {
   }
 
   /**
-   * It sets the role prompts for the guild
-   * @param [options] - Object
-   * @returns A new cache.constructor
+   * Sets the role prompts for the guild.
+   * @param {Object} [options] - The options for setting the role prompts.
+   * @param {string} [options.reason] - The reason for setting the role prompts.
+   * @returns {Promise<Cache>} A promise that resolves with a new instance of the cache
+   * containing the updated role prompts.
    */
   async set(options = {}) {
     const {reason} = options;
@@ -75,9 +86,9 @@ class RolePromptManager extends Base {
   }
 
   /**
-   * It transforms the payload into a format that the API can understand.
-   * @param [payload] - The payload that is passed to the function.
-   * @returns The payload is being returned with the title, description, required, and roles.
+   * Transforms the given payload object into a new object with specific properties.
+   * @param {object} payload - The payload object to transform.
+   * @returns {object} - The transformed object with properties: title, description, required, and roles.
    */
   static transformPayload(payload = {}) {
     return {
@@ -89,9 +100,9 @@ class RolePromptManager extends Base {
   }
 
   /**
-   * It takes an object with the keys `emojiName`, `emojiId`, `name`, and `role` and returns an object
-   * with the keys `emoji_name`, `emoji_id`, `name`, and `role_id`
-   * @param [roles] - The roles object.
+   * Transforms a roles object into a new format.
+   * @param {Object} roles - The roles object to transform.
+   * @returns {Object} - The transformed roles object.
    */
   static transformRoles(roles = {}) {
     return {
@@ -103,8 +114,8 @@ class RolePromptManager extends Base {
   }
 
   /**
-   * It returns the Collection object.
-   * @returns The Collection class
+   * Getter method for the cache property.
+   * @returns The Collection object representing the cache.
    */
   get cache() {
     return Collection;

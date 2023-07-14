@@ -2,17 +2,16 @@ const MessagePayload = require("../Util/MessagePayload");
 const Base = require("../Base/base");
 const Webhook = require("./Webhook");
 /**
- * It's a class that allows you to send messages to a channel using a webhook.
+ * Represents a webhook client that can interact with webhooks.
  * @class
  * @extends Base
  */
 class WebhookClient extends Base {
   /**
-   * The above function is a constructor function that takes in two parameters, data and client, and
-   * sets the id, token, and url properties of the object to the values of the data object's id, token,
-   * and url properties, or null if the data object doesn't have those properties.
-   * @param [data] - The data that is passed to the constructor.
-   * @param client - The client that the webhook is being created for.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the properties for the instance.
+   * @param {Client} client - The client object associated with the instance.
    */
   constructor(data = {}, client) {
     super(client);
@@ -22,8 +21,8 @@ class WebhookClient extends Base {
   }
 
   /**
-   * It fetches the webhook from the API and returns a new Webhook instance
-   * @returns A new Webhook object.
+   * Fetches a webhook from the server.
+   * @returns {Promise<Webhook>} A promise that resolves to a Webhook object.
    */
   async fetchWebhook() {
     const webhook = await this.client.api.get(`${this.client.root}/webhooks/${this.id}`);
@@ -31,9 +30,11 @@ class WebhookClient extends Base {
   }
 
   /**
-   * It sends a message to a channel using a webhook
-   * @param [options] - Object
-   * @returns The message object.
+   * Sends a message using a webhook.
+   * @param {Object} [options] - The options for sending the message.
+   * @param {number} [options.wait] - The time to wait before sending the message.
+   * @param {string | Object} [options.thread] - The thread ID or thread object to send the message to.
+   * @returns {Promise<Message | undefined>} - A promise that resolves to the sent message, or undefined if the message failed to send.
    */
   async send(options = {}) {
     const query = {
@@ -54,10 +55,10 @@ class WebhookClient extends Base {
   }
 
   /**
-   * It deletes a message from a thread.
-   * @param message - The message object or message ID to delete.
-   * @param thread - The thread ID of the thread you want to delete the message from.
-   * @returns Nothing.
+   * Deletes a message from a thread.
+   * @param {string | Message} message - The ID or the message object to delete.
+   * @param {string | Thread} thread - The ID or the thread object where the message is located.
+   * @returns {void}
    */
   async delete(message, thread) {
     const query = {
@@ -69,11 +70,12 @@ class WebhookClient extends Base {
   }
 
   /**
-   * It edits a message sent by a webhook
-   * @param message - The message to edit.
-   * @param [options] - The options to send to the message.
-   * @param thread - The thread ID of the message to edit.
-   * @returns The message that was edited.
+   * Edits a message in a channel using the Discord API.
+   * @param {string | Message} message - The ID or the message object to edit.
+   * @param {Object} [options] - The options for editing the message.
+   * @param {string | ThreadChannel} [thread] - The ID or the thread channel object where the message is located.
+   * @returns {void}
+   * @throws {RangeError} If the channel is not cached.
    */
   async edit(message, options = {}, thread) {
     const query = {
@@ -88,10 +90,10 @@ class WebhookClient extends Base {
   }
 
   /**
-   * It fetches a message from a webhook
-   * @param message - The message to fetch. Can be a message object, a message ID, or a message URL.
-   * @param thread - The thread ID of the message.
-   * @returns The message object.
+   * Fetches a webhook message from the specified thread.
+   * @param {string | Message} message - The ID or the message object to fetch.
+   * @param {string | ThreadChannel} thread - The ID or the thread object to fetch the message from.
+   * @returns {Promise<Message | undefined>} - A promise that resolves to the fetched message, or undefined if the channel is not found.
    */
   async fetch(message, thread) {
     const query = {

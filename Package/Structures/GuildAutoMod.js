@@ -4,10 +4,12 @@ const Base = require("../Base/base");
 const GuildAutoModActions = require("./GuildAutoModActions");
 /**
  * Represents an auto-mod configuration for a guild.
+ * @class
  * @extends Base
  */
 class GuildAutoMod extends Base {
   /**
+   * @constructor
    * @param {Object} data The data for the auto-mod configuration
    * @param {Snowflake} guildId The ID of the guild the auto-mod is for
    * @param {Client} client The client instance

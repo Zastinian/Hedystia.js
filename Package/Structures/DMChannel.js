@@ -1,14 +1,20 @@
 const {RaidenCol} = require("../Util/@Collections/RaidenCol");
 const TextBasedChannels = require("./Interface/TextBasedChannels");
-/* It's a class that extends TextBasedChannels, and it has a constructor that takes in data, guildId,
-and client, and it has a recipients property that is a RaidenCol of the data.recipients mapped to
-the client.users._add(o) */
+/**
+ * Represents a direct message channel in Discord.
+ * @class
+ * @extends TextBasedChannels
+ * @param {Object} [data] - The data for the DM channel.
+ * @param {string|null} [guildId=null] - The ID of the guild that the DM channel belongs to.
+ * @param {Client} client - The client that instantiated this DM channel.
+ */
 class DMChannel extends TextBasedChannels {
   /**
-   * It's a constructor for a class that extends another class
-   * @param [data] - The data that is passed to the constructor.
-   * @param [guildId=null] - The ID of the guild the message is in.
-   * @param client - The client instance
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {Object} [data] - The data object to initialize the instance with.
+   * @param {string|null} [guildId=null] - The ID of the guild associated with the instance.
+   * @param {Client} client - The client instance associated with the instance.
    */
   constructor(data = {}, guildId = null, client) {
     super(data, guildId, client);

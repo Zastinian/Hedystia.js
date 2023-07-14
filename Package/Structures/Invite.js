@@ -2,16 +2,20 @@ const Base = require("../Base/base");
 const {InviteTargetTypes} = require("../Util/Constants");
 const ClientApplication = require("./ClientApplication");
 /**
- * It's a class that represents an invite.
+ * Represents an invite to a guild.
  * @class
  * @extends Base
+ * @param {Object} [data] - The data for the invite.
+ * @param {Guild} guild - The guild that the invite belongs to.
+ * @param {Client} client - The client instance.
  */
 class Invite extends Base {
   /**
-   * It's a constructor function that takes in data, guild, and client as parameters.
-   * @param data - The data that was received from the API.
-   * @param guild - Guild
-   * @param client - Discord.Client
+   * Constructs a new instance of the Invite class.
+   * @constructor
+   * @param {Object} [data] - The data object containing the invite information.
+   * @param {Guild} guild - The guild associated with the invite.
+   * @param {Client} client - The client instance.
    */
   constructor(data = {}, guild, client) {
     super(client);
@@ -37,18 +41,18 @@ class Invite extends Base {
   }
 
   /**
-   * It fetches the invite from the Discord API
-   * @param options - An object containing the following properties:
-   * @returns The invite object.
+   * Fetches an invite using the provided options.
+   * @param {object} options - The options for fetching the invite.
+   * @returns {Promise} A promise that resolves to the fetched invite.
    */
   async fetch(options) {
     return await this.client.fetchInvite(this, options);
   }
 
   /**
-   * It deletes the invite
-   * @param reason - The reason for deleting the invite.
-   * @returns The return value is the invite object.
+   * Deletes the invite associated with the guild.
+   * @param {string} reason - The reason for deleting the invite.
+   * @returns {Promise<void>} - A promise that resolves when the invite is deleted.
    */
   async delete(reason) {
     return await this.guild?.invites.delete(this, reason);

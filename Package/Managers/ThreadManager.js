@@ -1,12 +1,17 @@
 const BaseThreadManager = require("./BaseThreadManager");
-/* It's a class that extends the BaseThreadManager class, and it filters the cache to only include
-threads that are in the channel that the ThreadManager is for */
+/**
+ * A class representing a thread manager for a specific channel in a guild.
+ * Extends the BaseThreadManager class.
+ * @class
+ * @extends BaseThreadManager
+ */
 class ThreadManager extends BaseThreadManager {
   /**
-   * `This function is a constructor for the class.`
-   * @param channelId - The channel ID of the channel you want to send the message to.
-   * @param guildId - The ID of the guild the channel is in.
-   * @param client - The client that the command is being run on.
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} channelId - The ID of the channel.
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(channelId, guildId, client) {
     super(client);
@@ -15,8 +20,8 @@ class ThreadManager extends BaseThreadManager {
   }
 
   /**
-   * It returns the cache, but only the cache items that have a parentId that matches the channelId
-   * @returns The cache property is being returned.
+   * Retrieves the cache items that have a parentId matching the channelId of the current instance.
+   * @returns {Array} An array of cache items that have a matching parentId.
    */
   get cache() {
     return super.cache.filter((o) => o.parentId === this.channelId);

@@ -1,15 +1,17 @@
 const {VideoQualityMode, Opcodes} = require("../../Util/Constants");
 const Channel = require("../Channel");
-/* It's a class that extends the Channel class and adds some voice channel specific methods */
+/**
+ * Represents a voice-based channel in a guild.
+ * @class
+ * @extends Channel
+ */
 class VoiceBasedChannels extends Channel {
   /**
-   * It's a constructor function that takes in a data object, a guildId, and a client, and then sets the
-   * userLimit, bitrate, rtcRegion, and videoQualityMode properties of the object to the values of the
-   * corresponding properties of the data object, or null if the data object doesn't have those
-   * properties.
-   * @param [data] - The data that was sent from the Discord API.
-   * @param guildId - The ID of the guild the voice channel is in.
-   * @param client - Discord.Client
+   * Constructs a new instance of a class, extending the base class.
+   * @constructor
+   * @param {Object} [data] - The data object to initialize the instance with.
+   * @param {string} guildId - The ID of the guild associated with the instance.
+   * @param {Object} client - The client object associated with the instance.
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
@@ -21,9 +23,11 @@ class VoiceBasedChannels extends Channel {
   }
 
   /**
-   * It sends a packet to the Discord API to join the voice channel
-   * @param [options] - Object
-   * @returns The VoiceChannel object.
+   * Joins the voice channel associated with this VoiceConnection.
+   * @param {Object} [options] - Optional parameters for joining the voice channel.
+   * @param {boolean} [options.selfMute=false] - Whether to mute the user's own audio.
+   * @param {boolean} [options.selfDeaf=false] - Whether to deafen the user's own audio.
+   * @returns {VoiceConnection} - The VoiceConnection instance.
    */
   join(options = {}) {
     this.client.ws.send({
@@ -40,8 +44,8 @@ class VoiceBasedChannels extends Channel {
   }
 
   /**
-   * It sends a packet to the Discord API to disconnect the bot from the voice channel
-   * @returns The VoiceConnection object.
+   * Disconnects the voice connection by sending a voice state update to the server with a null channel ID.
+   * @returns {this} - Returns the current instance of the class.
    */
   disconnect() {
     this.client.ws.send({
@@ -53,28 +57,28 @@ class VoiceBasedChannels extends Channel {
   }
 
   /**
-   * This function sets the rtcRegion of the guild.
-   * @param rtcRegion - The region to set the voice server to.
-   * @param reason - The reason for the change.
-   * @returns The return value of the edit function.
+   * Sets the RTC (Real-Time Communication) region for the object.
+   * @param {string} rtcRegion - The RTC region to set.
+   * @param {string} reason - The reason for setting the RTC region.
+   * @returns {Promise} - A promise that resolves when the RTC region is successfully set.
    */
   async setRtcRegion(rtcRegion, reason) {
     return await this.edit({rtcRegion, reason});
   }
 
   /**
-   * It sets the bitrate of the voice channel
-   * @param bitrate - The bitrate of the voice channel in bits.
-   * @param reason - The reason for the change.
-   * @returns The bitrate of the voice channel.
+   * Sets the bitrate of the current object.
+   * @param {number} bitrate - The new bitrate value to set.
+   * @param {string} reason - The reason for setting the bitrate.
+   * @returns {Promise} - A promise that resolves when the bitrate is successfully set.
    */
   async setBitrate(bitrate, reason) {
     return await this.edit({bitrate, reason});
   }
 
   /**
-   * It returns an array of members in the voice channel
-   * @returns The members in the voice channel.
+   * Retrieves the members in the voice channel associated with the current guild.
+   * @returns {Collection<Snowflake, GuildMember> | null} - A collection of guild members in the voice channel, or null if no members are found.
    */
   get members() {
     const voiceStates = this.guild?.voiceStates.cache.array();

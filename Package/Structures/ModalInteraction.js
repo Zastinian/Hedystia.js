@@ -1,17 +1,21 @@
 const {ComponentType} = require("../Util/Constants");
 const MessageComponentInteraction = require("./MessageComponentInteraction");
 /**
- * It's a class that allows you to get the values of a modal
+ * Represents a modal interaction, extending the MessageComponentInteraction class.
  * @class
  * @extends MessageComponentInteraction
+ * @constructor
+ * @param {Object} [data] - The data object for the interaction.
+ * @param {string} guildId - The ID of the guild where the interaction occurred.
+ * @param {Client} client - The client instance.
  */
 class ModalInteraction extends MessageComponentInteraction {
   /**
-   * It takes a JSON object, and returns a new object with the same properties, but with the values
-   * transformed.
-   * @param [data] - The data that is passed to the constructor.
-   * @param guildId - The guild ID of the guild the modal is being sent to.
-   * @param client - Discord.Client
+   * Constructs a new instance of the Input_Text component.
+   * @constructor
+   * @param {Object} [data] - The data object for the component.
+   * @param {string} guildId - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
@@ -20,11 +24,11 @@ class ModalInteraction extends MessageComponentInteraction {
   }
 
   /**
-   * Returns the value of a text input component with the specified custom ID, if it exists.
-   * @param {string} customId - The custom ID of the text input component to retrieve the value from.
-   * @param {boolean} [required=false] - Whether the text input component is required or not.
-   * @returns {string|null} The value of the text input component, or null if it does not exist and is not required.
-   * @throws {RangeError} If the text input component is required and cannot be found, or if the component found is not of type "Input_Text".
+   * Retrieves the value of a text input field with the specified custom ID.
+   * @param {string} customId - The custom ID of the text input field.
+   * @param {boolean} [required=false] - Indicates whether the text input field is required. If set to true and the field is not found, a RangeError will be thrown.
+   * @returns {string|null} The value of the text input field, or null if the field is not found and not required.
+   * @throws {RangeError} If the specified custom ID is not found or if the field is not of type "Input_Text".
    */
   getTextInput(customId, required = false) {
     const modal = this.fields?.find((o) => o.components.find((o) => o.customId === customId));
@@ -39,12 +43,11 @@ class ModalInteraction extends MessageComponentInteraction {
   }
 
   /**
-   * It takes a customId and returns the values of the first component in the module with that
-   * customId.
-   * @param customId - The custom id of the module you want to get the select from.
-   * @param [required=false] - boolean - If the module is required, it will throw an error if it is not
-   * found.
-   * @returns The return value is a string.
+   * Retrieves the values of a Select component with the specified custom ID.
+   * @param {string} customId - The custom ID of the Select component.
+   * @param {boolean} [required=false] - Indicates whether the Select component is required.
+   * @returns {string[] | null} - The values of the Select component, or null if not found and not required.
+   * @throws {RangeError} - If the Select component is not found and is required, or if the mode type selected is not String_Select.
    */
   getSelect(customId, required = false) {
     const modal = this.data.components?.find((o) => o.components.find((o) => o.custom_id === customId));
@@ -59,10 +62,10 @@ class ModalInteraction extends MessageComponentInteraction {
   }
 
   /**
-   * It takes an object with a property called "type" and a property called "components" and returns an
-   * object with a property called "type" and a property called "components"
-   * @param [fields]
-   * @returns An object with the following properties:
+   * Transforms the resolved fields object by converting the "type" property from a number to its corresponding string value from the ComponentType enum.
+   * Also, maps the "components" array and transforms each object by converting the "type" property from a number to its corresponding string value from the ComponentType enum.
+   * @param {Object} fields - The resolved fields object to transform.
+   * @returns {Object} - The transformed fields object.
    */
   static transformResolvedFields(fields = {}) {
     return {

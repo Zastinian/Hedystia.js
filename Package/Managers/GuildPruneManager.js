@@ -1,12 +1,17 @@
 const Base = require("../Base/base");
-/* It's a class that allows you to prune members from a guild */
+/**
+ * Represents a manager for pruning members in a guild.
+ * @class
+ * @extends Base
+ * @param {string} guildid - The ID of the guild.
+ * @param {Client} client - The client instance.
+ */
 class GuildPruneManager extends Base {
   /**
-   * `constructor(guildid, client)` is a function that takes two arguments, `guildid` and `client`, and
-   * sets the `guildid` property of the class to the `guildid` argument, and the `client` property of the
-   * class to the `client` argument
-   * @param guildid - The ID of the guild you want to get the settings for.
-   * @param client - The client object
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {string} guildid - The ID of the guild.
+   * @param {Client} client - The client object.
    */
   constructor(guildid, client) {
     super(client);
@@ -15,9 +20,11 @@ class GuildPruneManager extends Base {
   }
 
   /**
-   * It prunes members from a guild
-   * @param [options] - An object containing the following parameters:
-   * @returns The number of members that were pruned.
+   * Prunes (removes) inactive members from the guild based on the specified options.
+   * @param {Object} [options] - The options for pruning.
+   * @param {string} [options.reason] - The reason for the prune.
+   * @returns {boolean} - True if the prune was successful, false otherwise.
+   * @throws {Error} - If an error occurs during the prune process.
    */
   async prune(options = {}) {
     const {reason} = options;
@@ -29,9 +36,9 @@ class GuildPruneManager extends Base {
   }
 
   /**
-   * It fetches the prune count of a guild
-   * @param [options] - An object containing the following parameters:
-   * @returns The number of members that would be pruned.
+   * Fetches the count of pruned members in a guild based on the given options.
+   * @param {Object} [options] - The options for fetching the prune count.
+   * @returns {Promise<number>} - A promise that resolves to the prune count.
    */
   async fetchCount(options = {}) {
     const query = GuildPruneManager.transformOptions(options);
@@ -41,10 +48,9 @@ class GuildPruneManager extends Base {
   }
 
   /**
-   * It takes an array of role objects or strings and returns an array of role IDs
-   * @param [roles] - The roles to check against. This can be a single role, an array of roles, or an
-   * object with a `roles` property.
-   * @returns An array of strings
+   * Transforms the given roles object into an array of role IDs.
+   * @param {Object | Array} roles - The roles object to transform.
+   * @returns {Array} - An array of role IDs.
    */
   static transformRoles(roles = {}) {
     if (Array.isArray(roles)) return roles?.map((o) => (typeof o === "string" ? o : o.id));
@@ -52,10 +58,13 @@ class GuildPruneManager extends Base {
   }
 
   /**
-   * It takes an object with the keys `days`, `count`, and `roles`, and returns an object with the keys
-   * `days`, `complete_prune_count`, and `include_roles`
-   * @param [o] - The options object.
-   * @returns The transformed options for the prune command.
+   * Transforms the options object for server deletion.
+   * @param {Object} o - The options object.
+   * @param {number} o.days - The number of days for server deletion. Must be between 1 and 30.
+   * @param {boolean} o.count - Whether to include the complete prune count. Default is true.
+   * @param {Array<string>} o.roles - The roles to include in the deletion. Default is undefined.
+   * @returns {Object} - The transformed options object.
+   * @throws {RangeError} - If the days value is not between 1 and 30.
    */
   static transformOptions(o = {}) {
     if (o.days < 1 || o.days > 30) throw new RangeError(`Server deletion days must be between 1 and 30 days.`);

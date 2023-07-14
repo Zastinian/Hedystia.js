@@ -1,13 +1,17 @@
 const Bitfield = require("./Bitfield");
 
 /**
- * A bitfield for application flags.
- * @extends {Bitfield}
+ * Represents a set of application flags using a bitfield.
+ * @class
+ * @extends Bitfield
+ * @constructor
+ * @param {...number} bit - The bits to set in the bitfield.
  */
 class ApplicationFlags extends Bitfield {
   /**
-   * Creates a new ApplicationFlags instance.
-   * @param {...number} bit - Bit(s) to set in the bitfield
+   * Constructs a new instance of the class.
+   * @constructor
+   * @param {...any} bit - The arguments to pass to the superclass constructor.
    */
   constructor(...bit) {
     super(bit);
@@ -15,8 +19,8 @@ class ApplicationFlags extends Bitfield {
 }
 
 /**
- * Application flag bitfields.
- * @type {Object<string, bigint>}
+ * Represents the available application flags.
+ * @type {bigint}
  * @readonly
  * @enum {bigint}
  */
@@ -33,14 +37,16 @@ ApplicationFlags.Flags = {
 };
 
 /**
- * Default application flag bitfield.
- * @type {number}
+ * Sets the default value for the ApplicationFlags to 0n.
+ * @param {bigint} Default - The default bit value to set.
  */
 ApplicationFlags.Default = 0n;
 
 /**
- * All application flag bitfields.
- * @type {number}
+ * Combines all the values of the ApplicationFlags.Flags object using a bitwise OR operation
+ * and assigns the result to the ApplicationFlags.All property.
+ * @param {bigint} All - All bit value.
+ * @returns The calculated value of ApplicationFlags.All.
  */
 ApplicationFlags.All = Object.values(ApplicationFlags.Flags).reduce((a, b) => a | b, ApplicationFlags.Default);
 
