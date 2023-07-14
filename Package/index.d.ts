@@ -2096,7 +2096,7 @@ declare class Client extends EventEmitter {
    * @param {boolean} [options.guildSelect] - Whether to enable guild selection in the invite flow.
    * @param {string|Guild} [options.guild] - The guild to pre-select in the invite flow.
    * @param {string} [options.responseType] - The response type to use for the invite.
-   * @returns {string|undefined} - The
+   * @returns {string|undefined}
    */
   generateInvite(
     options?:

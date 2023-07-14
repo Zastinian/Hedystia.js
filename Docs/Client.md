@@ -131,7 +131,7 @@ Generates a template using the provided code and options.
 Generates an invite URL for the bot with the specified options.
 
 **Kind**: instance method of [<code>Client</code>](#Client)  
-**Returns**: <code>string</code> \| <code>undefined</code> - - The  
+**Returns**: <code>string</code> \| <code>undefined</code>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -240,7 +240,10 @@ Transforms a presence object into a new format.
 Transforms the activities object into a new format.
 
 **Kind**: static method of [<code>Client</code>](#Client)  
-**Returns**: <code>Object</code> - - The transformed activities object.- name: The name of the activity. If not provided, it will be set to undefined.- type: The type of the activity. If not provided or not a string, it will be set to 0.- url: The URL of the activity. If not provided, it will be set to undefined.  
+**Returns**: <code>Object</code> - - The transformed activities object.
+- name: The name of the activity. If not provided, it will be set to undefined.
+- type: The type of the activity. If not provided or not a string, it will be set to 0.
+- url: The URL of the activity. If not provided, it will be set to undefined.  
 
 | Param | Type | Description |
 | --- | --- | --- |
