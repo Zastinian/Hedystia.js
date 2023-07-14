@@ -18,14 +18,14 @@ Represents a sub-command group for a slash command.
 
 ### new SlashSubCommandGroups([data])
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The data for the sub-command group. |
-| [data.name] | <code>string</code> |  | The name of the sub-command group. |
-| [data.description] | <code>string</code> |  | The description of the sub-command group. |
-| [data.nameLocalizations] | <code>Object</code> |  | The name localizations of the sub-command group. |
-| [data.descriptionLocalizations] | <code>Object</code> |  | The description localizations of the sub-command group. |
-| [data.options] | <code>Array.&lt;Object&gt;</code> |  | The sub-commands of the sub-command group. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the sub-command group. |
+| [data.name] | <code>string</code> | The name of the sub-command group. |
+| [data.description] | <code>string</code> | The description of the sub-command group. |
+| [data.nameLocalizations] | <code>Object</code> | The name localizations of the sub-command group. |
+| [data.descriptionLocalizations] | <code>Object</code> | The description localizations of the sub-command group. |
+| [data.options] | <code>Array.&lt;Object&gt;</code> | The sub-commands of the sub-command group. |
 
 <a name="SlashSubCommandGroups+setName"></a>
 
@@ -71,9 +71,9 @@ Sets the name localizations of the sub-command group.
 **Kind**: instance method of [<code>SlashSubCommandGroups</code>](#SlashSubCommandGroups)  
 **Returns**: [<code>SlashSubCommandGroups</code>](#SlashSubCommandGroups) - The sub-command group object.  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [localizations] | <code>Object</code> | <code>{}</code> | The name localizations of the sub-command group. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [localizations] | <code>Object</code> | The name localizations of the sub-command group. |
 
 <a name="SlashSubCommandGroups+addSubCommands"></a>
 

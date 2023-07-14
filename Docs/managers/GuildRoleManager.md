@@ -1,43 +1,46 @@
 <a name="GuildRoleManager"></a>
 
-## GuildRoleManager
-**Kind**: global class  
+## GuildRoleManager ⇐ <code>RoleManager</code>
+A class representing a manager for guild roles.
 
-* [GuildRoleManager](#GuildRoleManager)
+**Kind**: global class  
+**Extends**: <code>RoleManager</code>  
+
+* [GuildRoleManager](#GuildRoleManager) ⇐ <code>RoleManager</code>
     * [new GuildRoleManager(guildId, client)](#new_GuildRoleManager_new)
     * [.highest](#GuildRoleManager+highest) ⇒
     * [.everyone](#GuildRoleManager+everyone) ⇒
-    * [.cache](#GuildRoleManager+cache) ⇒
+    * [.cache](#GuildRoleManager+cache) ⇒ <code>Array</code>
 
 <a name="new_GuildRoleManager_new"></a>
 
 ### new GuildRoleManager(guildId, client)
-`constructor` is a function that runs when a new instance of the class is created
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run on. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 
 <a name="GuildRoleManager+highest"></a>
 
 ### guildRoleManager.highest ⇒
-It sorts the roles in the cache by their position, and then returns the first one
+Get the highest role from the cache based on position.
 
 **Kind**: instance property of [<code>GuildRoleManager</code>](#GuildRoleManager)  
-**Returns**: The highest role in the guild.  
+**Returns**: The highest role object.  
 <a name="GuildRoleManager+everyone"></a>
 
 ### guildRoleManager.everyone ⇒
-It returns the cached data for the guild
+Get the cached data for everyone in the guild.
 
 **Kind**: instance property of [<code>GuildRoleManager</code>](#GuildRoleManager)  
-**Returns**: The cache is being returned.  
+**Returns**: The cached data for everyone in the guild.  
 <a name="GuildRoleManager+cache"></a>
 
-### guildRoleManager.cache ⇒
-It returns the cache, but only the cache that has the same guild ID as the current guild
+### guildRoleManager.cache ⇒ <code>Array</code>
+Retrieves the cache for the current guild.
 
 **Kind**: instance property of [<code>GuildRoleManager</code>](#GuildRoleManager)  
-**Returns**: The cache of the super class, but filtered to only include objects that have a guild_id orguildId property that matches the guildId of the current class.  
+**Returns**: <code>Array</code> - - The filtered cache objects for the current guild.  

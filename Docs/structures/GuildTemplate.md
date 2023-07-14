@@ -1,7 +1,7 @@
 <a name="GuildTemplate"></a>
 
 ## GuildTemplate ⇐ <code>Base</code>
-It's a class that represents a guild template.
+Represents a guild template.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
@@ -9,98 +9,98 @@ It's a class that represents a guild template.
 * [GuildTemplate](#GuildTemplate) ⇐ <code>Base</code>
     * [new GuildTemplate([data], client)](#new_GuildTemplate_new)
     * [.guild](#GuildTemplate+guild) ⇒
-    * [.fetch()](#GuildTemplate+fetch) ⇒
-    * [.sync()](#GuildTemplate+sync) ⇒
-    * [.edit([options])](#GuildTemplate+edit) ⇒
-    * [.delete()](#GuildTemplate+delete) ⇒
-    * [.setName(name)](#GuildTemplate+setName) ⇒
-    * [.setDescription(description)](#GuildTemplate+setDescription) ⇒
-    * [.createGuild([options])](#GuildTemplate+createGuild) ⇒
+    * [.fetch()](#GuildTemplate+fetch) ⇒ <code>Promise</code>
+    * [.sync()](#GuildTemplate+sync) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.edit(options)](#GuildTemplate+edit) ⇒ <code>Promise</code>
+    * [.delete()](#GuildTemplate+delete) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.setName(name)](#GuildTemplate+setName) ⇒ <code>Promise</code>
+    * [.setDescription(description)](#GuildTemplate+setDescription) ⇒ <code>Promise</code>
+    * [.createGuild(options)](#GuildTemplate+createGuild) ⇒ <code>Promise</code>
 
 <a name="new_GuildTemplate_new"></a>
 
 ### new GuildTemplate([data], client)
-It's a constructor for a class called Invite.
+Constructs a new instance of a data object.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| client | The client that the invite was fetched from. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the guild template. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="GuildTemplate+guild"></a>
 
 ### guildTemplate.guild ⇒
-It returns the guild object of the guild that the channel is in
+Get the guild object associated with this guild ID.
 
 **Kind**: instance property of [<code>GuildTemplate</code>](#GuildTemplate)  
 **Returns**: The guild object.  
 <a name="GuildTemplate+fetch"></a>
 
-### guildTemplate.fetch() ⇒
-It fetches the guild template from the database
+### guildTemplate.fetch() ⇒ <code>Promise</code>
+Fetches a guild template using the provided code.
 
 **Kind**: instance method of [<code>GuildTemplate</code>](#GuildTemplate)  
-**Returns**: The return value of the async function is a Promise.  
+**Returns**: <code>Promise</code> - A promise that resolves to the fetched guild template.  
 <a name="GuildTemplate+sync"></a>
 
-### guildTemplate.sync() ⇒
-It syncs the template with the database
+### guildTemplate.sync() ⇒ <code>Promise.&lt;void&gt;</code>
+Synchronizes the guild templates with the provided code.
 
 **Kind**: instance method of [<code>GuildTemplate</code>](#GuildTemplate)  
-**Returns**: The return value of the sync() method.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the synchronization is complete.  
 <a name="GuildTemplate+edit"></a>
 
-### guildTemplate.edit([options]) ⇒
-It edits a template
+### guildTemplate.edit(options) ⇒ <code>Promise</code>
+Edits the guild template with the provided options.
 
 **Kind**: instance method of [<code>GuildTemplate</code>](#GuildTemplate)  
-**Returns**: The return value of the function is the return value of the function that is beingcalled.  
+**Returns**: <code>Promise</code> - A promise that resolves to the result of the template edit.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options to apply to the template edit. |
 
 <a name="GuildTemplate+delete"></a>
 
-### guildTemplate.delete() ⇒
-It deletes the template from the database
+### guildTemplate.delete() ⇒ <code>Promise.&lt;void&gt;</code>
+Deletes the template with the specified code from the guild.
 
 **Kind**: instance method of [<code>GuildTemplate</code>](#GuildTemplate)  
-**Returns**: The return value of the delete method of the templates object of the guild object.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - A promise that resolves when the template is successfully deleted.  
 <a name="GuildTemplate+setName"></a>
 
-### guildTemplate.setName(name) ⇒
-It sets the name of the channel
+### guildTemplate.setName(name) ⇒ <code>Promise</code>
+Sets the name of an object asynchronously.
 
 **Kind**: instance method of [<code>GuildTemplate</code>](#GuildTemplate)  
-**Returns**: The return value of the edit() method.  
+**Returns**: <code>Promise</code> - A promise that resolves when the name is successfully set.  
 
-| Param | Description |
-| --- | --- |
-| name | The name of the channel. |
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The new name to set. |
 
 <a name="GuildTemplate+setDescription"></a>
 
-### guildTemplate.setDescription(description) ⇒
-It edits the description of the channel
+### guildTemplate.setDescription(description) ⇒ <code>Promise</code>
+Sets the description of an object and updates it.
 
 **Kind**: instance method of [<code>GuildTemplate</code>](#GuildTemplate)  
-**Returns**: The description of the channel.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the description is successfully updated.  
 
-| Param | Description |
-| --- | --- |
-| description | The new description of the channel. |
+| Param | Type | Description |
+| --- | --- | --- |
+| description | <code>string</code> | The new description to set. |
 
 <a name="GuildTemplate+createGuild"></a>
 
-### guildTemplate.createGuild([options]) ⇒
-It creates a guild
+### guildTemplate.createGuild(options) ⇒ <code>Promise</code>
+Creates a new guild using the provided options.
 
 **Kind**: instance method of [<code>GuildTemplate</code>](#GuildTemplate)  
-**Returns**: The client.generateTemplate function is being returned.  
+**Returns**: <code>Promise</code> - A promise that resolves to the generated template for the guild.  
 
-| Param | Description |
-| --- | --- |
-| [options] | The options for the guild. |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options for creating the guild. |
 

@@ -1,44 +1,50 @@
 <a name="Intents"></a>
 
-## Intents
+## Intents ⇐ <code>Bitfield</code>
 Represents the intents that the bot wishes to subscribe to.
 
 **Kind**: global class  
+**Extends**: <code>Bitfield</code>  
 
-* [Intents](#Intents)
+* [Intents](#Intents) ⇐ <code>Bitfield</code>
     * [new Intents(...bit)](#new_Intents_new)
     * [.Default](#Intents.Default) : <code>bigint</code>
-    * [.All](#Intents.All) : <code>bigint</code>
+    * [.All](#Intents.All) ⇒
     * [.Flags](#Intents.Flags) : <code>enum</code>
 
 <a name="new_Intents_new"></a>
 
 ### new Intents(...bit)
-Creates a new Intents bitfield.
+Constructs a new instance of the class.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| ...bit | <code>number</code> | Bit(s) to set in the bitfield. |
+| ...bit | <code>bigint</code> | The arguments to pass to the superclass constructor. |
 
 <a name="Intents.Default"></a>
 
 ### Intents.Default : <code>bigint</code>
-The default value for the Intents bitfield.
+Sets the default value for the Intents enum to 0.
 
 **Kind**: static property of [<code>Intents</code>](#Intents)  
 **Read only**: true  
 <a name="Intents.All"></a>
 
-### Intents.All : <code>bigint</code>
-The value that represents all flags in the Intents bitfield.
+### Intents.All ⇒
+Combines all the values of the Intents.Flags object using a bitwise OR operationand assigns the result to the Intents.All property.
 
 **Kind**: static property of [<code>Intents</code>](#Intents)  
-**Read only**: true  
+**Returns**: The calculated value of Intents.All.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| All | <code>bigint</code> | All bit value. |
+
 <a name="Intents.Flags"></a>
 
 ### Intents.Flags : <code>enum</code>
-The available flags for the Intents bitfield.
+Represents the flags for different intents in Discord.
 
 **Kind**: static enum of [<code>Intents</code>](#Intents)  
 **Read only**: true  
@@ -46,23 +52,23 @@ The available flags for the Intents bitfield.
 
 | Name | Type | Default |
 | --- | --- | --- |
-| Guilds | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Members | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Moderation | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Emojis_And_Stickers | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Integrations | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Webhooks | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Invites | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Voice_States | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Presences | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Messages | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Message_Reactions | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Message_Typing | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Direct_Messages | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Direct_Message_Reactions | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Direct_Message_Typing | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Message_Content | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Guild_Scheduled_Events | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Auto_Moderation_Configuration | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Auto_Moderation_Execution | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
+| Guilds | <code>bigint</code> | <code></code> | 
+| Guild_Members | <code>bigint</code> | <code></code> | 
+| Guild_Moderation | <code>bigint</code> | <code></code> | 
+| Guild_Emojis_And_Stickers | <code>bigint</code> | <code></code> | 
+| Guild_Integrations | <code>bigint</code> | <code></code> | 
+| Guild_Webhooks | <code>bigint</code> | <code></code> | 
+| Guild_Invites | <code>bigint</code> | <code></code> | 
+| Guild_Voice_States | <code>bigint</code> | <code></code> | 
+| Guild_Presences | <code>bigint</code> | <code></code> | 
+| Guild_Messages | <code>bigint</code> | <code></code> | 
+| Guild_Message_Reactions | <code>bigint</code> | <code></code> | 
+| Guild_Message_Typing | <code>bigint</code> | <code></code> | 
+| Direct_Messages | <code>bigint</code> | <code></code> | 
+| Direct_Message_Reactions | <code>bigint</code> | <code></code> | 
+| Direct_Message_Typing | <code>bigint</code> | <code></code> | 
+| Message_Content | <code>bigint</code> | <code></code> | 
+| Guild_Scheduled_Events | <code>bigint</code> | <code></code> | 
+| Auto_Moderation_Configuration | <code>bigint</code> | <code></code> | 
+| Auto_Moderation_Execution | <code>bigint</code> | <code></code> | 
 

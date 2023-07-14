@@ -1,20 +1,19 @@
 <a name="SelectMenuInteraction"></a>
 
 ## SelectMenuInteraction ⇐ <code>MessageComponentInteraction</code>
-It's a class that extends another class, and it has a constructor that takes in some data, a
-guildId, and a client, and it has a property called values that is set to an array of values
+Represents an interaction with a select menu component.
 
 **Kind**: global class  
 **Extends**: <code>MessageComponentInteraction</code>  
 <a name="new_SelectMenuInteraction_new"></a>
 
 ### new SelectMenuInteraction([data], guildId, client)
-The above function is a constructor function that takes in three parameters, data, guildId, andclient. The data parameter is an object that has a property called data, which has a propertycalled values. The guildId parameter is a string, and the client parameter is an object. Thefunction returns an object that has a property called values, which is an array
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was passed to the constructor. |
-| guildId | The ID of the guild the data is for. |
-| client | The client instance |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object for the instance. |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client instance. |
 

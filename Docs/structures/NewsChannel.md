@@ -1,49 +1,49 @@
 <a name="NewsChannel"></a>
 
 ## NewsChannel ⇐ <code>BaseGuildChannel</code>
-It's a class that extends BaseGuildChannel, and it has two methods: follow and crosspost
+Represents a news channel in a guild.
 
 **Kind**: global class  
 **Extends**: <code>BaseGuildChannel</code>  
 
 * [NewsChannel](#NewsChannel) ⇐ <code>BaseGuildChannel</code>
     * [new NewsChannel([data], guildId, client)](#new_NewsChannel_new)
-    * [.follow([options])](#NewsChannel+follow) ⇒
-    * [.crosspost(message)](#NewsChannel+crosspost) ⇒
+    * [.follow(options)](#NewsChannel+follow) ⇒ <code>Promise</code>
+    * [.crosspost(message)](#NewsChannel+crosspost) ⇒ <code>Promise.&lt;void&gt;</code>
 
 <a name="new_NewsChannel_new"></a>
 
 ### new NewsChannel([data], guildId, client)
-It's a constructor function that takes in three parameters, data, guildId, and client.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that the role is being created with. |
-| guildId | The ID of the guild the role is in. |
-| client | The client that instantiated the object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object to initialize the instance with. |
+| guildId | <code>string</code> | The ID of the guild associated with the instance. |
+| client | <code>Client</code> | The client instance associated with the instance. |
 
 <a name="NewsChannel+follow"></a>
 
-### newsChannel.follow([options]) ⇒
-This function is used to follow a channel
+### newsChannel.follow(options) ⇒ <code>Promise</code>
+Follows the channel using the specified options.
 
 **Kind**: instance method of [<code>NewsChannel</code>](#NewsChannel)  
-**Returns**: The channel object.  
+**Returns**: <code>Promise</code> - A promise that resolves when the channel is successfully followed.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options for following the channel. |
 
 <a name="NewsChannel+crosspost"></a>
 
-### newsChannel.crosspost(message) ⇒
-It takes a message object and returns a promise that resolves to the message object
+### newsChannel.crosspost(message) ⇒ <code>Promise.&lt;void&gt;</code>
+Crossposts a message to another channel.
 
 **Kind**: instance method of [<code>NewsChannel</code>](#NewsChannel)  
-**Returns**: The return value of the function is the return value of the function that is beingcalled.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the crossposting is complete.  
 
-| Param | Description |
-| --- | --- |
-| message | The message to crosspost. |
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>Message</code> | The message to crosspost. |
 

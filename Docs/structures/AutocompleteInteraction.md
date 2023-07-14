@@ -1,62 +1,63 @@
 <a name="AutocompleteInteraction"></a>
 
-## AutocompleteInteraction
+## AutocompleteInteraction ⇐ <code>Interaction</code>
+Represents an interaction with an autocomplete component.
 
-**Kind**: global class
+**Kind**: global class  
+**Extends**: <code>Interaction</code>  
 
-- [AutocompleteInteraction](#AutocompleteInteraction)
-  - [new AutocompleteInteraction([data], guildId, client)](#new_AutocompleteInteraction_new)
-  - _instance_
-    - [.getFocused()](#AutocompleteInteraction+getFocused) ⇒
-    - [.respond(choices)](#AutocompleteInteraction+respond) ⇒
-  - _static_
-    - [.transformChoices([choices])](#AutocompleteInteraction.transformChoices) ⇒
+* [AutocompleteInteraction](#AutocompleteInteraction) ⇐ <code>Interaction</code>
+    * [new AutocompleteInteraction([data], guildId, client)](#new_AutocompleteInteraction_new)
+    * _instance_
+        * [.getFocused()](#AutocompleteInteraction+getFocused) ⇒
+        * [.respond(choices)](#AutocompleteInteraction+respond) ⇒ <code>Promise</code>
+    * _static_
+        * [.transformChoices(choices)](#AutocompleteInteraction.transformChoices) ⇒ <code>Object</code>
 
 <a name="new_AutocompleteInteraction_new"></a>
 
 ### new AutocompleteInteraction([data], guildId, client)
+Constructs a new instance of the class.
 
-It's a constructor for the class.
 
-| Param   | Description                                   |
-| ------- | --------------------------------------------- |
-| [data]  | The data that is passed to the constructor.   |
-| guildId | The ID of the guild the role is in            |
-| client  | The client that the command is being run from |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object to initialize the instance with. |
+| guildId | <code>string</code> | The ID of the guild associated with the instance. |
+| client | <code>Client</code> | The client instance associated with the instance. |
 
 <a name="AutocompleteInteraction+getFocused"></a>
 
 ### autocompleteInteraction.getFocused() ⇒
-
-If the data.options array has a focused property, then return the value of that property.
-
-If it doesn't, then return null.
+Retrieves the focused option from the data object.
 
 **Kind**: instance method of [<code>AutocompleteInteraction</code>](#AutocompleteInteraction)  
-**Returns**: The value of the focused option.  
+**Returns**: The value of the focused option, or null if no option is focused or if the value is not available.  
 <a name="AutocompleteInteraction+respond"></a>
 
-### autocompleteInteraction.respond(choices) ⇒
-
-It sends a response to the interaction.
+### autocompleteInteraction.respond(choices) ⇒ <code>Promise</code>
+Sends a response to an autocomplete interaction with the provided choices.
 
 **Kind**: instance method of [<code>AutocompleteInteraction</code>](#AutocompleteInteraction)  
-**Returns**: The response from the API.
+**Returns**: <code>Promise</code> - A promise that resolves when the response is sent.  
 
-| Param   | Description                                        |
-| ------- | -------------------------------------------------- |
-| choices | An array of objects with the following properties: |
+| Param | Type | Description |
+| --- | --- | --- |
+| choices | <code>Array</code> | An array of choices for the autocomplete interaction. |
 
 <a name="AutocompleteInteraction.transformChoices"></a>
 
-### AutocompleteInteraction.transformChoices([choices]) ⇒
-
-It takes an object with a name and value property and returns an object with a name and value
-property
+### AutocompleteInteraction.transformChoices(choices) ⇒ <code>Object</code>
+Transforms the given choices object into a new object with the name and value properties.
 
 **Kind**: static method of [<code>AutocompleteInteraction</code>](#AutocompleteInteraction)  
-**Returns**: The transformed choices object.
+**Returns**: <code>Object</code> - - The transformed choices object with name and value properties.  
+**Throws**:
 
-| Param     |
-| --------- |
-| [choices] |
+- <code>RangeError</code> - If the length of the name property is less than 1 or greater than 100.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| choices | <code>Object</code> | The choices object to transform. |
+

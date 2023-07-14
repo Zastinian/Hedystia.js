@@ -1,18 +1,18 @@
 <a name="InteractionWebhook"></a>
 
 ## InteractionWebhook ⇐ <code>WebhookClient</code>
-It's a class that extends the WebhookClient class, and it's used to handle interactions
+Represents an interaction webhook.
 
 **Kind**: global class  
 **Extends**: <code>WebhookClient</code>  
 <a name="new_InteractionWebhook_new"></a>
 
-### new InteractionWebhook([data], client)
-The constructor function is a special method for creating and initializing an object createdwithin a class.
+### new InteractionWebhook([data], [client])
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was returned from the API. |
-| client | The client that instantiated the object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the interaction webhook. |
+| [client] | <code>Client</code> | The client associated with the interaction webhook. |
 

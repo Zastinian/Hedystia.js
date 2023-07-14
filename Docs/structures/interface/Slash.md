@@ -1,15 +1,29 @@
 <a name="Slash"></a>
 
-## Slash
+## Slash ⇐ <code>Base</code>
+Represents a Slash command.
+
 **Kind**: global class  
+**Extends**: <code>Base</code>  
+**Constructor.**:   
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | The type of the Slash command. |
+| name | <code>string</code> | The name of the Slash command. |
+| description | <code>string</code> | The description of the Slash command. |
+| options | <code>Array.&lt;SlashOption&gt;</code> | The options of the Slash command. |
+| defaultMemberPermissions | <code>boolean</code> | The default member permissions of the Slash command. |
+
 <a name="new_Slash_new"></a>
 
 ### new Slash([data], client)
-It takes in a data object and a client object, and then it sets the type, name, description,options, and defaultPermission properties of the class to the values of the data object's type,name, description, options, and defaultPermission properties, respectively
+Constructs a new instance of the ApplicationCommand class
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data object that is returned from the API. |
-| client | The client instance. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing information about the Slash command. |
+| client | <code>Client</code> | The client object. |
 

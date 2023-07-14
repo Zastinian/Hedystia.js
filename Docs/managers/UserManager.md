@@ -1,94 +1,105 @@
 <a name="UserManager"></a>
 
-## UserManager
-**Kind**: global class  
+## UserManager ⇐ <code>Base</code>
+Represents a user manager that handles user-related operations.
 
-* [UserManager](#UserManager)
+**Kind**: global class  
+**Extends**: <code>Base</code>  
+
+* [UserManager](#UserManager) ⇐ <code>Base</code>
     * [new UserManager(client)](#new_UserManager_new)
     * [.cache](#UserManager+cache) ⇒
-    * [._add(users, [options])](#UserManager+_add) ⇒
-    * [.fetch(user, [options])](#UserManager+fetch) ⇒
-    * [.edit([options])](#UserManager+edit) ⇒
-    * [.createDM(user)](#UserManager+createDM) ⇒
-    * [.send(user, [options])](#UserManager+send) ⇒
+    * [._add(users, [options])](#UserManager+_add) ⇒ <code>User</code>
+    * [.fetch(user, [options])](#UserManager+fetch) ⇒ <code>Promise.&lt;User&gt;</code>
+    * [.edit(options)](#UserManager+edit) ⇒ <code>Promise.&lt;User&gt;</code>
+    * [.createDM(user)](#UserManager+createDM) ⇒ <code>Promise.&lt;Channel&gt;</code>
+    * [.send(user, [options])](#UserManager+send) ⇒ <code>Promise.&lt;Message&gt;</code>
 
 <a name="new_UserManager_new"></a>
 
 ### new UserManager(client)
-It's a constructor function that takes a client parameter and passes it to the super function.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| client | The client object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| client | <code>Client</code> | The client object used for communication with the server. |
 
 <a name="UserManager+cache"></a>
 
 ### userManager.cache ⇒
-The function returns a collection of objects that are stored in the cache.
+Getter method for the cache property.
 
 **Kind**: instance property of [<code>UserManager</code>](#UserManager)  
-**Returns**: The Collection class.  
+**Returns**: The Collection object representing the cache.  
 <a name="UserManager+_add"></a>
 
-### userManager.\_add(users, [options]) ⇒
-It adds a user to the cache
+### userManager.\_add(users, [options]) ⇒ <code>User</code>
+Adds a user to the collection.
 
 **Kind**: instance method of [<code>UserManager</code>](#UserManager)  
-**Returns**: A user object.  
+**Returns**: <code>User</code> - The added user object.  
 
-| Param | Description |
-| --- | --- |
-| users | The user object or user ID to add to the cache. |
-| [options] | cache = true, force = false |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| users | <code>User</code> \| <code>string</code> |  | The user object or user ID to add. |
+| [options] | <code>Object</code> |  | Additional options for adding the user. |
+| [options.cache] | <code>boolean</code> | <code>true</code> | Whether to cache the user object. |
+| [options.force] | <code>boolean</code> | <code>false</code> | Whether to force fetching the user even if it is already cached. |
 
 <a name="UserManager+fetch"></a>
 
-### userManager.fetch(user, [options]) ⇒
-It fetches a user from the API and adds it to the cache
+### userManager.fetch(user, [options]) ⇒ <code>Promise.&lt;User&gt;</code>
+Fetches user data from the server.
 
 **Kind**: instance method of [<code>UserManager</code>](#UserManager)  
-**Returns**: The user object.  
+**Returns**: <code>Promise.&lt;User&gt;</code> - A promise that resolves to the fetched user data.  
 
-| Param | Description |
-| --- | --- |
-| user | The user object or user ID. |
-| [options] | cache = true, force = false |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| user | <code>string</code> \| <code>User</code> |  | The user ID or user object. |
+| [options] | <code>Object</code> |  | Additional options for the fetch request. |
+| [options.cache] | <code>boolean</code> | <code>true</code> | Whether to cache the fetched user data. |
+| [options.force] | <code>boolean</code> | <code>false</code> | Whether to force a fresh fetch even if the data is already cached. |
 
 <a name="UserManager+edit"></a>
 
-### userManager.edit([options]) ⇒
-This function edits the user's profile.
+### userManager.edit(options) ⇒ <code>Promise.&lt;User&gt;</code>
+Edits the user's profile with the provided options.
 
 **Kind**: instance method of [<code>UserManager</code>](#UserManager)  
-**Returns**: The user object.  
+**Returns**: <code>Promise.&lt;User&gt;</code> - A promise that resolves with the updated user object.  
 
-| Param | Description |
-| --- | --- |
-| [options] | The options to pass to the edit function. |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options to edit the user's profile. |
 
 <a name="UserManager+createDM"></a>
 
-### userManager.createDM(user) ⇒
-It creates a DM channel with the user you specify
+### userManager.createDM(user) ⇒ <code>Promise.&lt;Channel&gt;</code>
+Creates a direct message channel with the specified user.
 
 **Kind**: instance method of [<code>UserManager</code>](#UserManager)  
-**Returns**: The channel object.  
+**Returns**: <code>Promise.&lt;Channel&gt;</code> - A promise that resolves with the created direct message channel.  
+**Throws**:
 
-| Param | Description |
-| --- | --- |
-| user | The user to create a DM with. |
+- <code>RangeError</code> If no user is provided.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| user | <code>string</code> \| <code>User</code> | The user to create the direct message channel with. |
 
 <a name="UserManager+send"></a>
 
-### userManager.send(user, [options]) ⇒
-It creates a message payload, creates a DM channel, and sends the message payload to the DMchannel.
+### userManager.send(user, [options]) ⇒ <code>Promise.&lt;Message&gt;</code>
+Sends a message to a user through a direct message channel.
 
 **Kind**: instance method of [<code>UserManager</code>](#UserManager)  
-**Returns**: The message that was sent.  
+**Returns**: <code>Promise.&lt;Message&gt;</code> - A promise that resolves to the sent message.  
 
-| Param | Description |
-| --- | --- |
-| user | The user to send the message to. |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| user | <code>User</code> | The user to send the message to. |
+| [options] | <code>Object</code> | Additional options for creating the message payload. |
 

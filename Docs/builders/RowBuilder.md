@@ -13,10 +13,10 @@ A row of buttons to be added to a message component.
 
 ### new Row([data])
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The data for the row. |
-| [data.components] | <code>Array.&lt;Object&gt;</code> |  | An array of button components to be included in the row. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the row. |
+| [data.components] | <code>Array.&lt;Object&gt;</code> | An array of button components to be included in the row. |
 
 <a name="Row+components"></a>
 

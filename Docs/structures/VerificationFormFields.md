@@ -1,18 +1,28 @@
 <a name="VerificationFormFields"></a>
 
 ## VerificationFormFields ⇐ <code>Base</code>
-This class is used to create a new verification form field
+Represents a set of form fields for verification.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| description | <code>string</code> \| <code>null</code> | The description of the form field. |
+| fieldType | <code>string</code> \| <code>null</code> | The type of the form field. |
+| label | <code>string</code> \| <code>null</code> | The label of the form field. |
+| required | <code>boolean</code> \| <code>null</code> | Indicates if the form field is required. |
+| values | <code>Array</code> | The values associated with the form field. |
+
 <a name="new_VerificationFormFields_new"></a>
 
 ### new VerificationFormFields([data], client)
-The above function is a constructor function that takes in two parameters, data and client, andreturns an object with the properties description, fieldType, label, required, and values.
+Constructs a new instance of a class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| client | The client that instantiated the object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>object</code> | The data object containing the field properties. |
+| client | <code>object</code> | The client object used for making API requests. |
 

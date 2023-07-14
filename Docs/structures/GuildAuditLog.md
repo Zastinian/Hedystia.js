@@ -13,14 +13,14 @@ Represents an audit log for a guild.
 <a name="new_GuildAuditLog_new"></a>
 
 ### new GuildAuditLog([data], guildId, client)
-Constructs a new `GuildAuditLog` object.
+Constructs a new instance of the Guild class.
 
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The audit log data. |
-| guildId | <code>string</code> |  | The ID of the guild. |
-| client | <code>Client</code> |  | The client object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing guild information. |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="GuildAuditLog+guild"></a>
 

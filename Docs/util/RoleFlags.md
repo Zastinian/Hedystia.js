@@ -1,18 +1,3 @@
-## Classes
-
-<dl>
-<dt><a href="#RoleFlags">RoleFlags</a> ⇐ <code>Bitfield</code></dt>
-<dd><p>Represents the possible flags for a Role</p>
-</dd>
-</dl>
-
-## Typedefs
-
-<dl>
-<dt><a href="#RoleFlagsResolvable">RoleFlagsResolvable</a> : <code>Object</code></dt>
-<dd></dd>
-</dl>
-
 <a name="RoleFlags"></a>
 
 ## RoleFlags ⇐ <code>Bitfield</code>
@@ -24,49 +9,48 @@ Represents the possible flags for a Role
 * [RoleFlags](#RoleFlags) ⇐ <code>Bitfield</code>
     * [new RoleFlags(...bit)](#new_RoleFlags_new)
     * [.Default](#RoleFlags.Default) : <code>bigint</code>
-    * [.All](#RoleFlags.All) : <code>bigint</code>
+    * [.All](#RoleFlags.All) ⇒
     * [.Flags](#RoleFlags.Flags) : <code>enum</code>
 
 <a name="new_RoleFlags_new"></a>
 
 ### new RoleFlags(...bit)
+Constructs a new instance of the class.
+
 
 | Param | Type | Description |
 | --- | --- | --- |
-| ...bit | <code>bigint</code> | Bit positions to enable |
+| ...bit | <code>bigint</code> | The arguments to pass to the superclass constructor. |
 
 <a name="RoleFlags.Default"></a>
 
 ### RoleFlags.Default : <code>bigint</code>
-The default bit(s) for a role
+Sets the RoleFlags.Default value to 0n.
 
 **Kind**: static property of [<code>RoleFlags</code>](#RoleFlags)  
+**Read only**: true  
 <a name="RoleFlags.All"></a>
 
-### RoleFlags.All : <code>bigint</code>
-The total bit(s) of all the flags combined
+### RoleFlags.All ⇒
+Calculates the bitwise OR of all the values in the RoleFlags.Flags object and assignsthe result to the RoleFlags.All property.
 
 **Kind**: static property of [<code>RoleFlags</code>](#RoleFlags)  
+**Returns**: The calculated value of RoleFlags.All.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| All | <code>bigint</code> | All bit value. |
+
 <a name="RoleFlags.Flags"></a>
 
 ### RoleFlags.Flags : <code>enum</code>
-The flags for a role
+Represents the available role flags.
 
 **Kind**: static enum of [<code>RoleFlags</code>](#RoleFlags)  
+**Read only**: true  
 **Properties**
 
 | Name | Type | Default |
 | --- | --- | --- |
 | In_Prompt | <code>bigint</code> | <code></code> | 
-
-<a name="RoleFlagsResolvable"></a>
-
-## RoleFlagsResolvable : <code>Object</code>
-**Kind**: global typedef  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| [name] | <code>string</code> | The name of the flag |
-| [bit] | <code>bigint</code> \| <code>number</code> | The bit of the flag |
 

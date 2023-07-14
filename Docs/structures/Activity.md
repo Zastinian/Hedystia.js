@@ -1,27 +1,30 @@
 <a name="Activity"></a>
 
-## Activity
-**Kind**: global class  
+## Activity ⇐ <code>Base</code>
+It's a class that represents a user's activity
 
-* [Activity](#Activity)
+**Kind**: global class  
+**Extends**: <code>Base</code>  
+
+* [Activity](#Activity) ⇐ <code>Base</code>
     * [new Activity([data], client)](#new_Activity_new)
-    * [.toJSON()](#Activity+toJSON) ⇒
+    * [.toJSON()](#Activity+toJSON) ⇒ <code>Object</code>
 
 <a name="new_Activity_new"></a>
 
 ### new Activity([data], client)
-It takes in a data object and a client object, and then it sets the properties of the Activityobject to the values of the data object
+The constructor function initializes an object with properties based on the provided data, andassigns default values if the data is missing or invalid.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was sent from the Discord API. |
-| client | DiscordClient |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the activity. |
+| client | <code>Client</code> | The client that instantiated this activity. |
 
 <a name="Activity+toJSON"></a>
 
-### activity.toJSON() ⇒
-It takes the enum value and returns the string value.
+### activity.toJSON() ⇒ <code>Object</code>
+Converts the current object to a JSON representation.
 
 **Kind**: instance method of [<code>Activity</code>](#Activity)  
-**Returns**: The object literal is being returned.  
+**Returns**: <code>Object</code> - - The JSON representation of the object.  

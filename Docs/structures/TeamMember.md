@@ -1,18 +1,27 @@
 <a name="TeamMember"></a>
 
 ## TeamMember ⇐ <code>Base</code>
-It's a class that represents a team member
+Represents a team member.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| state | <code>MembershipState</code> \| <code>null</code> | The membership state of the team member. |
+| permissions | <code>Object</code> \| <code>undefined</code> | The permissions of the team member. |
+| teamId | <code>string</code> \| <code>null</code> | The ID of the team that the member belongs to. |
+| user | <code>User</code> \| <code>null</code> | The user object representing the team member. |
+
 <a name="new_TeamMember_new"></a>
 
 ### new TeamMember([data], client)
-It's a constructor for a class that takes in a data object and a client object, and sets thestate, permissions, teamId, and user properties of the class to the values of the state,permissions, teamId, and user properties of the data object, respectively
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was received from the API. |
-| client | The client that instantiated the object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing information about the team member. |
+| client | <code>Client</code> | The client object. |
 

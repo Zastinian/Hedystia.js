@@ -1,12 +1,9 @@
 <a name="ThreadMember"></a>
 
-## ThreadMember ⇐ <code>Base</code>
-It's a class that represents a user in a thread
-
+## ThreadMember
 **Kind**: global class  
-**Extends**: <code>Base</code>  
 
-* [ThreadMember](#ThreadMember) ⇐ <code>Base</code>
+* [ThreadMember](#ThreadMember)
     * [new ThreadMember([data], guildId, threadId, client)](#new_ThreadMember_new)
     * [.guild](#ThreadMember+guild) ⇒
     * [.thread](#ThreadMember+thread) ⇒

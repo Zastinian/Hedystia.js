@@ -1,27 +1,30 @@
 <a name="GuildScheduledEventManager"></a>
 
-## GuildScheduledEventManager
-**Kind**: global class  
+## GuildScheduledEventManager ⇐ <code>ScheduledEventManager</code>
+Represents a scheduled event manager for a specific guild.
 
-* [GuildScheduledEventManager](#GuildScheduledEventManager)
+**Kind**: global class  
+**Extends**: <code>ScheduledEventManager</code>  
+
+* [GuildScheduledEventManager](#GuildScheduledEventManager) ⇐ <code>ScheduledEventManager</code>
     * [new GuildScheduledEventManager(guildId, client)](#new_GuildScheduledEventManager_new)
-    * [.cache](#GuildScheduledEventManager+cache) ⇒
+    * [.cache](#GuildScheduledEventManager+cache) ⇒ <code>Array</code>
 
 <a name="new_GuildScheduledEventManager_new"></a>
 
 ### new GuildScheduledEventManager(guildId, client)
-It creates a new instance of the GuildScheduledEventUsersManager class.
+Constructs a new instance of the GuildScheduledEvent class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild the event is in |
-| client | The client that the manager is being created for. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild associated with the scheduled event. |
+| client | <code>Client</code> | The Discord client object. |
 
 <a name="GuildScheduledEventManager+cache"></a>
 
-### guildScheduledEventManager.cache ⇒
-It returns the cache, but only the cache that has the same guildId as the current guild
+### guildScheduledEventManager.cache ⇒ <code>Array</code>
+Retrieves the cache for the current guild.
 
 **Kind**: instance property of [<code>GuildScheduledEventManager</code>](#GuildScheduledEventManager)  
-**Returns**: The cache is being filtered by the guildId.  
+**Returns**: <code>Array</code> - An array of objects from the cache that belong to the current guild.  

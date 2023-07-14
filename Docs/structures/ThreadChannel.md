@@ -1,140 +1,140 @@
 <a name="ThreadChannel"></a>
 
 ## ThreadChannel ⇐ <code>TextBasedChannels</code>
-It's a class that represents a Discord Thread Channel
+Represents a thread channel in Discord.
 
 **Kind**: global class  
 **Extends**: <code>TextBasedChannels</code>  
 
 * [ThreadChannel](#ThreadChannel) ⇐ <code>TextBasedChannels</code>
     * [new ThreadChannel([data], guildId, client)](#new_ThreadChannel_new)
-    * [.join()](#ThreadChannel+join) ⇒
-    * [.add(member)](#ThreadChannel+add) ⇒
-    * [.remove(user)](#ThreadChannel+remove) ⇒
-    * [.fetchOwner(options)](#ThreadChannel+fetchOwner) ⇒
-    * [.setArchived(archived, reason)](#ThreadChannel+setArchived) ⇒
-    * [.setLocked(locked, reason)](#ThreadChannel+setLocked) ⇒
-    * [.setAutoArchiveDuration(autoArchiveDuration, reason)](#ThreadChannel+setAutoArchiveDuration) ⇒
-    * [.setInvitable(invitable, reason)](#ThreadChannel+setInvitable) ⇒
-    * [.setFlags(flags, reason)](#ThreadChannel+setFlags) ⇒
+    * [.join()](#ThreadChannel+join) ⇒ <code>Promise.&lt;Group&gt;</code>
+    * [.add(member)](#ThreadChannel+add) ⇒ <code>Promise</code>
+    * [.remove(user)](#ThreadChannel+remove) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.fetchOwner(options)](#ThreadChannel+fetchOwner) ⇒ <code>Promise.&lt;(Object\|null)&gt;</code>
+    * [.setArchived(archived, reason)](#ThreadChannel+setArchived) ⇒ <code>Promise</code>
+    * [.setLocked(locked, reason)](#ThreadChannel+setLocked) ⇒ <code>Promise</code>
+    * [.setAutoArchiveDuration(autoArchiveDuration, reason)](#ThreadChannel+setAutoArchiveDuration) ⇒ <code>Promise</code>
+    * [.setInvitable(invitable, reason)](#ThreadChannel+setInvitable) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.setFlags(flags, reason)](#ThreadChannel+setFlags) ⇒ <code>Promise.&lt;void&gt;</code>
 
 <a name="new_ThreadChannel_new"></a>
 
 ### new ThreadChannel([data], guildId, client)
-"This function is used to create a new instance of the Thread class."
+Constructs a new instance of the ThreadChannel class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| guildId | The ID of the guild the channel is in. |
-| client | Discord.Client |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing information about the thread channel. |
+| guildId | <code>string</code> | The ID of the guild that the thread channel belongs to. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="ThreadChannel+join"></a>
 
-### threadChannel.join() ⇒
-It returns a promise that resolves to the current object
+### threadChannel.join() ⇒ <code>Promise.&lt;Group&gt;</code>
+Asynchronously joins all members of a group.
 
 **Kind**: instance method of [<code>ThreadChannel</code>](#ThreadChannel)  
-**Returns**: The members array.  
+**Returns**: <code>Promise.&lt;Group&gt;</code> - A promise that resolves to the joined group.  
 <a name="ThreadChannel+add"></a>
 
-### threadChannel.add(member) ⇒
-It adds a member to the members collection.
+### threadChannel.add(member) ⇒ <code>Promise</code>
+Adds a member to the collection asynchronously.
 
 **Kind**: instance method of [<code>ThreadChannel</code>](#ThreadChannel)  
-**Returns**: The return value is a Promise that resolves to the result of the add() method.  
+**Returns**: <code>Promise</code> - A promise that resolves when the member is added.  
 
-| Param | Description |
-| --- | --- |
-| member | The member to add to the set. |
+| Param | Type | Description |
+| --- | --- | --- |
+| member | <code>GuildMember</code> | The member to add. |
 
 <a name="ThreadChannel+remove"></a>
 
-### threadChannel.remove(user) ⇒
-It removes a user from the members array.
+### threadChannel.remove(user) ⇒ <code>Promise.&lt;void&gt;</code>
+Removes a user from the members list.
 
 **Kind**: instance method of [<code>ThreadChannel</code>](#ThreadChannel)  
-**Returns**: The return value is the result of the remove method.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the user is successfully removed.  
 
-| Param | Description |
-| --- | --- |
-| user | The user to remove from the guild. |
+| Param | Type | Description |
+| --- | --- | --- |
+| user | <code>User</code> | The user to remove. |
 
 <a name="ThreadChannel+fetchOwner"></a>
 
-### threadChannel.fetchOwner(options) ⇒
-It fetches the owner of the guild
+### threadChannel.fetchOwner(options) ⇒ <code>Promise.&lt;(Object\|null)&gt;</code>
+Fetches the owner of the object.
 
 **Kind**: instance method of [<code>ThreadChannel</code>](#ThreadChannel)  
-**Returns**: The owner of the guild.  
+**Returns**: <code>Promise.&lt;(Object\|null)&gt;</code> - - A promise that resolves to the owner object if found, or null if the ownerId is not set.  
 
-| Param | Description |
-| --- | --- |
-| options | An object with the following properties: |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | Additional options for the fetch operation. |
 
 <a name="ThreadChannel+setArchived"></a>
 
-### threadChannel.setArchived(archived, reason) ⇒
-It edits the channel's archived property to the value of the archived parameter, and the reasonproperty to the value of the reason parameter
+### threadChannel.setArchived(archived, reason) ⇒ <code>Promise</code>
+Sets the archived status and reason for an item.
 
 **Kind**: instance method of [<code>ThreadChannel</code>](#ThreadChannel)  
-**Returns**: The return value of the edit function.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the item is successfully edited.  
 
-| Param | Description |
-| --- | --- |
-| archived | Boolean - Whether the channel should be archived or not. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| archived | <code>boolean</code> | The archived status to set. |
+| reason | <code>string</code> | The reason for archiving the item. |
 
 <a name="ThreadChannel+setLocked"></a>
 
-### threadChannel.setLocked(locked, reason) ⇒
-It sets the locked property of a channel to true or false
+### threadChannel.setLocked(locked, reason) ⇒ <code>Promise</code>
+Sets the locked status and reason for an item.
 
 **Kind**: instance method of [<code>ThreadChannel</code>](#ThreadChannel)  
-**Returns**: The return value of the edit method.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the edit is complete.  
 
-| Param | Description |
-| --- | --- |
-| locked | Boolean - Whether the channel should be locked or not |
-| reason | The reason for the lock. |
+| Param | Type | Description |
+| --- | --- | --- |
+| locked | <code>boolean</code> | The locked status to set. |
+| reason | <code>string</code> | The reason for locking the item. |
 
 <a name="ThreadChannel+setAutoArchiveDuration"></a>
 
-### threadChannel.setAutoArchiveDuration(autoArchiveDuration, reason) ⇒
-It sets the autoArchiveDuration of a channel
+### threadChannel.setAutoArchiveDuration(autoArchiveDuration, reason) ⇒ <code>Promise</code>
+Sets the auto archive duration for a specific item and provides a reason for the change.
 
 **Kind**: instance method of [<code>ThreadChannel</code>](#ThreadChannel)  
-**Returns**: The return value of the edit method.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the operation is complete.  
 
-| Param | Description |
-| --- | --- |
-| autoArchiveDuration | The duration in seconds after which the channel will be automatically archived. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| autoArchiveDuration | <code>number</code> | The new auto archive duration in seconds. |
+| reason | <code>string</code> | The reason for changing the auto archive duration. |
 
 <a name="ThreadChannel+setInvitable"></a>
 
-### threadChannel.setInvitable(invitable, reason) ⇒
-It sets the invitable property of the guild.
+### threadChannel.setInvitable(invitable, reason) ⇒ <code>Promise.&lt;void&gt;</code>
+Sets the invitable property and reason for the object.
 
 **Kind**: instance method of [<code>ThreadChannel</code>](#ThreadChannel)  
-**Returns**: The return value of the edit method.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the edit is complete.  
 
-| Param | Description |
-| --- | --- |
-| invitable | Boolean - Whether the role should be invitable or not. |
-| reason | The reason for the change (0-1024 characters) |
+| Param | Type | Description |
+| --- | --- | --- |
+| invitable | <code>boolean</code> | The new value for the invitable property. |
+| reason | <code>string</code> | The reason for the change. |
 
 <a name="ThreadChannel+setFlags"></a>
 
-### threadChannel.setFlags(flags, reason) ⇒
-It sets the flags of a message
+### threadChannel.setFlags(flags, reason) ⇒ <code>Promise.&lt;void&gt;</code>
+Sets the flags and reason for an object.
 
 **Kind**: instance method of [<code>ThreadChannel</code>](#ThreadChannel)  
-**Returns**: The return value of the edit method.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the flags are set.  
 
-| Param | Description |
-| --- | --- |
-| flags | The flags to set. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| flags | <code>any</code> | The flags to set. |
+| reason | <code>string</code> | The reason for setting the flags. |
 

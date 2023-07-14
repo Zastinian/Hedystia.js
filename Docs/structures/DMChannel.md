@@ -1,16 +1,19 @@
 <a name="DMChannel"></a>
 
-## DMChannel
+## DMChannel ⇐ <code>TextBasedChannels</code>
+Represents a direct message channel in Discord.
+
 **Kind**: global class  
+**Extends**: <code>TextBasedChannels</code>  
 <a name="new_DMChannel_new"></a>
 
 ### new DMChannel([data], [guildId], client)
-It's a constructor for a class that extends another class
+Constructs a new instance of the class.
 
 
-| Param | Default | Description |
-| --- | --- | --- |
-| [data] |  | The data that is passed to the constructor. |
-| [guildId] | <code></code> | The ID of the guild the message is in. |
-| client |  | The client instance |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [data] | <code>Object</code> |  | The data for the DM channel. |
+| [guildId] | <code>string</code> \| <code>null</code> | <code>null</code> | The ID of the guild that the DM channel belongs to. |
+| client | <code>Client</code> |  | The client that instantiated this DM channel. |
 

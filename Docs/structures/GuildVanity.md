@@ -1,7 +1,7 @@
 <a name="GuildVanity"></a>
 
 ## GuildVanity ⇐ <code>Base</code>
-It's a class that represents a guild vanity
+Represents a Guild Vanity URL.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
@@ -13,17 +13,19 @@ It's a class that represents a guild vanity
 <a name="new_GuildVanity_new"></a>
 
 ### new GuildVanity([data], guildId, client)
+Constructs a new instance of the class.
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| guildId | The ID of the guild the invite is for. |
-| client | The client instance |
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing the initial values for the instance. |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="GuildVanity+guild"></a>
 
 ### guildVanity.guild ⇒
-It returns the guild object of the guild ID that is stored in the database
+Get the guild object associated with this guildId.
 
 **Kind**: instance property of [<code>GuildVanity</code>](#GuildVanity)  
 **Returns**: The guild object.  

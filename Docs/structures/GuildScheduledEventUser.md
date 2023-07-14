@@ -1,7 +1,7 @@
 <a name="GuildScheduledEventUser"></a>
 
 ## GuildScheduledEventUser ⇐ <code>Base</code>
-It's a class that represents a user that is going to an event
+Represents a user associated with a scheduled event in a guild.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
@@ -9,32 +9,32 @@ It's a class that represents a user that is going to an event
 * [GuildScheduledEventUser](#GuildScheduledEventUser) ⇐ <code>Base</code>
     * [new GuildScheduledEventUser([data], guildId, eventId, client)](#new_GuildScheduledEventUser_new)
     * [.guild](#GuildScheduledEventUser+guild) ⇒
-    * [.guildScheduledEvent](#GuildScheduledEventUser+guildScheduledEvent) ⇒
+    * [.guildScheduledEvent](#GuildScheduledEventUser+guildScheduledEvent) ⇒ <code>ScheduledEvent</code> \| <code>null</code>
 
 <a name="new_GuildScheduledEventUser_new"></a>
 
 ### new GuildScheduledEventUser([data], guildId, eventId, client)
-This function is used to create a new instance of the class GuildScheduledEventMember.
+Constructs a new instance of the Event class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was received from the API. |
-| guildId | The ID of the guild the event is in |
-| eventId | The ID of the event |
-| client | Discord.Client |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing information about the user. |
+| guildId | <code>string</code> | The ID of the guild the user belongs to. |
+| eventId | <code>string</code> | The ID of the scheduled event the user is associated with. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="GuildScheduledEventUser+guild"></a>
 
 ### guildScheduledEventUser.guild ⇒
-It returns the guild object of the guild ID that is stored in the database
+Retrieves the guild associated with this guildId.
 
 **Kind**: instance property of [<code>GuildScheduledEventUser</code>](#GuildScheduledEventUser)  
-**Returns**: The guild object.  
+**Returns**: The guild object if found, otherwise null.  
 <a name="GuildScheduledEventUser+guildScheduledEvent"></a>
 
-### guildScheduledEventUser.guildScheduledEvent ⇒
-"If the guild exists, add the guildScheduledEventId to the events array, otherwise return null."
+### guildScheduledEventUser.guildScheduledEvent ⇒ <code>ScheduledEvent</code> \| <code>null</code>
+Retrieves the scheduled event associated with the guild.
 
 **Kind**: instance property of [<code>GuildScheduledEventUser</code>](#GuildScheduledEventUser)  
-**Returns**: The guildScheduledEventId is being returned.  
+**Returns**: <code>ScheduledEvent</code> \| <code>null</code> - The scheduled event object if found, otherwise null.  

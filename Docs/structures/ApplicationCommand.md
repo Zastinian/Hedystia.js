@@ -1,28 +1,29 @@
 <a name="ApplicationCommand"></a>
 
-## ApplicationCommand
-Class representing an application command.
+## ApplicationCommand ⇐ <code>Base</code>
+Represents an application command.
 
 **Kind**: global class  
+**Extends**: <code>Base</code>  
 
-* [ApplicationCommand](#ApplicationCommand)
-    * [new ApplicationCommand(data, guildId, client)](#new_ApplicationCommand_new)
+* [ApplicationCommand](#ApplicationCommand) ⇐ <code>Base</code>
+    * [new ApplicationCommand([data], guildId, client)](#new_ApplicationCommand_new)
     * [.guild](#ApplicationCommand+guild) ⇒
-    * [.fetch([options])](#ApplicationCommand+fetch) ⇒
-    * [.edit([options])](#ApplicationCommand+edit) ⇒
-    * [.delete()](#ApplicationCommand+delete) ⇒
+    * [.fetch([options])](#ApplicationCommand+fetch) ⇒ <code>Promise</code>
+    * [.edit(options)](#ApplicationCommand+edit) ⇒ <code>Promise</code>
+    * [.delete()](#ApplicationCommand+delete) ⇒ <code>Promise.&lt;void&gt;</code>
 
 <a name="new_ApplicationCommand_new"></a>
 
-### new ApplicationCommand(data, guildId, client)
+### new ApplicationCommand([data], guildId, client)
 Create an application command object.
 
 
-| Param | Description |
-| --- | --- |
-| data | The data object for the command. |
-| guildId | The ID of the guild the command belongs to. |
-| client | The client object for the command. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing the command information. |
+| guildId | <code>string</code> | The ID of the guild the command belongs to. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="ApplicationCommand+guild"></a>
 
@@ -33,32 +34,32 @@ Get the guild object if it exists, otherwise return null.
 **Returns**: The guild object or null.  
 <a name="ApplicationCommand+fetch"></a>
 
-### applicationCommand.fetch([options]) ⇒
-Fetch the command from the guild or the client.
+### applicationCommand.fetch([options]) ⇒ <code>Promise</code>
+Fetches the commands for a guild or the global application.
 
 **Kind**: instance method of [<code>ApplicationCommand</code>](#ApplicationCommand)  
-**Returns**: The command object.  
+**Returns**: <code>Promise</code> - - A promise that resolves with the fetched commands.  
 
-| Param | Description |
-| --- | --- |
-| [options] | The options to pass to the command. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | Optional parameters for the fetch operation. |
 
 <a name="ApplicationCommand+edit"></a>
 
-### applicationCommand.edit([options]) ⇒
-Edit the command.
+### applicationCommand.edit(options) ⇒ <code>Promise</code>
+Edits the command with the specified options.If the command is associated with a guild, it will edit the guild command.Otherwise, it will edit the global command.
 
 **Kind**: instance method of [<code>ApplicationCommand</code>](#ApplicationCommand)  
-**Returns**: The return value of the edit method of the commands property of the guild or application object.  
+**Returns**: <code>Promise</code> - A promise that resolves when the command is successfully edited.  
 
-| Param | Description |
-| --- | --- |
-| [options] | The options to edit the command with. |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options to edit the command with. |
 
 <a name="ApplicationCommand+delete"></a>
 
-### applicationCommand.delete() ⇒
-Delete the command from the commands collection.
+### applicationCommand.delete() ⇒ <code>Promise.&lt;void&gt;</code>
+Deletes the command from the guild or the global application.
 
 **Kind**: instance method of [<code>ApplicationCommand</code>](#ApplicationCommand)  
-**Returns**: The return value of the delete method.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the command is successfully deleted.  

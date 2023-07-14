@@ -24,9 +24,9 @@ Represents a select menu with string options.
 
 ### new StringSelect([data])
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The data for the select menu. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the select menu. |
 
 <a name="StringSelect+setCustomId"></a>
 
@@ -140,9 +140,9 @@ Transforms an option object for a string select component into a simpler format.
 - <code>RangeError</code> - If the option object is missing the label or value properties, or if the default property is not a boolean.
 
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [options] | <code>Object</code> | <code>{}</code> | The option object to transform. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | The option object to transform. |
 
 <a name="StringSelect.transformEmoji"></a>
 

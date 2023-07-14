@@ -1,16 +1,19 @@
 <a name="ButtonInteraction"></a>
 
-## ButtonInteraction
+## ButtonInteraction ⇐ <code>MessageComponentInteraction</code>
+Represents a button interaction, extending the MessageComponentInteraction class.
+
 **Kind**: global class  
+**Extends**: <code>MessageComponentInteraction</code>  
 <a name="new_ButtonInteraction_new"></a>
 
 ### new ButtonInteraction([data], guildId, client)
-It's a constructor for the class.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| guildId | The ID of the guild the role is in. |
-| client | The client that the command is being run from |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing information about the interaction. |
+| guildId | <code>string</code> | The ID of the guild where the interaction occurred. |
+| client | <code>Client</code> | The client instance associated with the interaction. |
 

@@ -25,23 +25,23 @@ Represents a user select component in a Discord interaction.
 Creates a new instance of UserSelect.
 
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The data to create the UserSelect instance. |
-| [data.custom_id] | <code>string</code> |  | The custom ID of the user select. |
-| [data.options] | <code>Array.&lt;Object&gt;</code> |  | The options for the user select. |
-| [data.options.label] | <code>string</code> |  | The label for the option. |
-| [data.options.value] | <code>string</code> |  | The value for the option. |
-| [data.options.description] | <code>string</code> |  | The description for the option. |
-| [data.options.emoji] | <code>string</code> \| <code>Object</code> |  | The emoji for the option. |
-| [data.options.emoji.name] | <code>string</code> |  | The name of the emoji. |
-| [data.options.emoji.id] | <code>string</code> |  | The ID of the emoji. |
-| [data.options.emoji.animated] | <code>boolean</code> |  | Whether the emoji is animated. |
-| [data.options.default] | <code>boolean</code> |  | Whether the option is the default one. |
-| [data.placeholder] | <code>string</code> |  | The placeholder text for the user select. |
-| [data.min_values] | <code>number</code> |  | The minimum number of values that can be selected. |
-| [data.max_values] | <code>number</code> |  | The maximum number of values that can be selected. |
-| [data.disabled] | <code>boolean</code> |  | Whether the user select is disabled. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data to create the UserSelect instance. |
+| [data.custom_id] | <code>string</code> | The custom ID of the user select. |
+| [data.options] | <code>Array.&lt;Object&gt;</code> | The options for the user select. |
+| [data.options.label] | <code>string</code> | The label for the option. |
+| [data.options.value] | <code>string</code> | The value for the option. |
+| [data.options.description] | <code>string</code> | The description for the option. |
+| [data.options.emoji] | <code>string</code> \| <code>Object</code> | The emoji for the option. |
+| [data.options.emoji.name] | <code>string</code> | The name of the emoji. |
+| [data.options.emoji.id] | <code>string</code> | The ID of the emoji. |
+| [data.options.emoji.animated] | <code>boolean</code> | Whether the emoji is animated. |
+| [data.options.default] | <code>boolean</code> | Whether the option is the default one. |
+| [data.placeholder] | <code>string</code> | The placeholder text for the user select. |
+| [data.min_values] | <code>number</code> | The minimum number of values that can be selected. |
+| [data.max_values] | <code>number</code> | The maximum number of values that can be selected. |
+| [data.disabled] | <code>boolean</code> | Whether the user select is disabled. |
 
 <a name="UserSelect+setCustomId"></a>
 
@@ -130,9 +130,9 @@ Transforms an option object for a user select component into a simpler format.
 **Kind**: static method of [<code>UserSelect</code>](#UserSelect)  
 **Returns**: <code>Object</code> - - The transformed option object.  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [options] | <code>Object</code> | <code>{}</code> | The option object to transform. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | The option object to transform. |
 
 <a name="UserSelect.transformEmoji"></a>
 

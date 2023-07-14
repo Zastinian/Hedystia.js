@@ -1,27 +1,30 @@
 <a name="GuildAutoModManager"></a>
 
-## GuildAutoModManager
-**Kind**: global class  
+## GuildAutoModManager ⇐ <code>AutoModManager</code>
+Represents a manager for guild-specific auto moderation settings.
 
-* [GuildAutoModManager](#GuildAutoModManager)
+**Kind**: global class  
+**Extends**: <code>AutoModManager</code>  
+
+* [GuildAutoModManager](#GuildAutoModManager) ⇐ <code>AutoModManager</code>
     * [new GuildAutoModManager(guildId, client)](#new_GuildAutoModManager_new)
-    * [.cache](#GuildAutoModManager+cache) ⇒
+    * [.cache](#GuildAutoModManager+cache) ⇒ <code>Array</code>
 
 <a name="new_GuildAutoModManager_new"></a>
 
 ### new GuildAutoModManager(guildId, client)
-`constructor(guildId, client)` is a function that takes two arguments, `guildId` and `client`, andassigns them to the `guildId` and `client` properties of the class.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run on. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 
 <a name="GuildAutoModManager+cache"></a>
 
-### guildAutoModManager.cache ⇒
-`return super.cache.filter((o) => o.guildId === this.guildId)`The `super` keyword is used to access and call functions on an object's parent
+### guildAutoModManager.cache ⇒ <code>Array</code>
+Retrieves the cache for the current guild.
 
 **Kind**: instance property of [<code>GuildAutoModManager</code>](#GuildAutoModManager)  
-**Returns**: The cache property is being returned.  
+**Returns**: <code>Array</code> - An array of objects from the cache that belong to the current guild.  

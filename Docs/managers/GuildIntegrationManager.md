@@ -1,70 +1,79 @@
 <a name="GuildIntegrationManager"></a>
 
-## GuildIntegrationManager
-**Kind**: global class  
+## GuildIntegrationManager ⇐ <code>Base</code>
+Represents a manager for guild integrations.
 
-* [GuildIntegrationManager](#GuildIntegrationManager)
+**Kind**: global class  
+**Extends**: <code>Base</code>  
+
+* [GuildIntegrationManager](#GuildIntegrationManager) ⇐ <code>Base</code>
     * [new GuildIntegrationManager(guildId, client)](#new_GuildIntegrationManager_new)
     * [.cache](#GuildIntegrationManager+cache) ⇒
-    * [._add(integrations, [guildId], [options])](#GuildIntegrationManager+_add) ⇒
-    * [.fetch([options], [guild])](#GuildIntegrationManager+fetch) ⇒
-    * [.delete([options], reason)](#GuildIntegrationManager+delete) ⇒
+    * [._add(integrations, [guildId], [options])](#GuildIntegrationManager+_add) ⇒ <code>Integration</code> \| <code>null</code>
+    * [.fetch([options], [guild])](#GuildIntegrationManager+fetch) ⇒ <code>Promise.&lt;Cache&gt;</code>
+    * [.delete(options, reason)](#GuildIntegrationManager+delete) ⇒ <code>Promise</code>
 
 <a name="new_GuildIntegrationManager_new"></a>
 
 ### new GuildIntegrationManager(guildId, client)
-It's a constructor function that takes in a guildId and a client, and then sets the guildId to theguildId that was passed in, and then sets the client to the client that was passed in.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run from. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="GuildIntegrationManager+cache"></a>
 
 ### guildIntegrationManager.cache ⇒
-It returns a collection of all the elements in the document with the given tag name.
+Getter method for the cache property.
 
 **Kind**: instance property of [<code>GuildIntegrationManager</code>](#GuildIntegrationManager)  
-**Returns**: The Collection class.  
+**Returns**: The Collection object representing the cache.  
 <a name="GuildIntegrationManager+_add"></a>
 
-### guildIntegrationManager.\_add(integrations, [guildId], [options]) ⇒
-_add(integrations, guildId = this.guildId, options = {cache: true, force: false})
+### guildIntegrationManager.\_add(integrations, [guildId], [options]) ⇒ <code>Integration</code> \| <code>null</code>
+Adds an integration to the guild.
 
 **Kind**: instance method of [<code>GuildIntegrationManager</code>](#GuildIntegrationManager)  
-**Returns**: The integration object  
+**Returns**: <code>Integration</code> \| <code>null</code> - - The added integration or null if integrations is falsy.  
 
-| Param | Description |
-| --- | --- |
-| integrations | The integrations object |
-| [guildId] | The ID of the guild |
-| [options] | cache = true, force = false |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| integrations | <code>string</code> \| <code>Integration</code> |  | The integration ID or the integration object. |
+| [guildId] | <code>string</code> | <code>&quot;this.guildId&quot;</code> | The ID of the guild to add the integration to. |
+| [options] | <code>object</code> | <code>{cache: true, force: false}</code> | Additional options for adding the integration. |
+| [options.cache] | <code>boolean</code> | <code>true</code> | Whether to cache the integration. |
+| [options.force] | <code>boolean</code> | <code>false</code> | Whether to force adding the integration even if it is already cached. |
 
 <a name="GuildIntegrationManager+fetch"></a>
 
-### guildIntegrationManager.fetch([options], [guild]) ⇒
-It fetches the integrations for a guild
+### guildIntegrationManager.fetch([options], [guild]) ⇒ <code>Promise.&lt;Cache&gt;</code>
+Fetches the integrations for a guild.
 
 **Kind**: instance method of [<code>GuildIntegrationManager</code>](#GuildIntegrationManager)  
-**Returns**: An array of objects.  
+**Returns**: <code>Promise.&lt;Cache&gt;</code> - - A promise that resolves to a cache object containing the fetched integrations.  
 
-| Param | Description |
-| --- | --- |
-| [options] | cache = true, force = false |
-| [guild] | The guild ID or guild object. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | Optional parameters for the fetch request. |
+| [options.cache] | <code>boolean</code> |  | Whether to cache the fetched data. |
+| [options.force] | <code>boolean</code> |  | Whether to force the fetch request even if the data is already cached. |
+| [guild] | <code>string</code> \| <code>Guild</code> | <code>&quot;this.guildId&quot;</code> | The guild to fetch integrations for. Defaults to the current guild. |
 
 <a name="GuildIntegrationManager+delete"></a>
 
-### guildIntegrationManager.delete([options], reason) ⇒
-It deletes an integration from a guild.
+### guildIntegrationManager.delete(options, reason) ⇒ <code>Promise</code>
+Deletes an integration from a guild.
 
 **Kind**: instance method of [<code>GuildIntegrationManager</code>](#GuildIntegrationManager)  
-**Returns**: The integration object.  
+**Returns**: <code>Promise</code> - A promise that resolves when the integration is deleted and the deleted integration is added to the list of deleted integrations.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
-| reason | The reason for the audit log. |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options for deleting the integration. |
+| options.guild | <code>string</code> | The ID of the guild where the integration is located. |
+| options.integration | <code>string</code> | The ID of the integration to delete. |
+| reason | <code>string</code> | The reason for deleting the integration. |
 

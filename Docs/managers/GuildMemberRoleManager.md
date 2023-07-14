@@ -1,93 +1,100 @@
 <a name="GuildMemberRoleManager"></a>
 
-## GuildMemberRoleManager
-**Kind**: global class  
+## GuildMemberRoleManager ⇐ <code>RoleManager</code>
+Represents a manager for handling roles of a guild member.
 
-* [GuildMemberRoleManager](#GuildMemberRoleManager)
+**Kind**: global class  
+**Extends**: <code>RoleManager</code>  
+
+* [GuildMemberRoleManager](#GuildMemberRoleManager) ⇐ <code>RoleManager</code>
     * [new GuildMemberRoleManager(guildId, member, client)](#new_GuildMemberRoleManager_new)
     * _instance_
         * [.highest](#GuildMemberRoleManager+highest) ⇒
-        * [.cache](#GuildMemberRoleManager+cache) ⇒
-        * [.add(roles, reason)](#GuildMemberRoleManager+add) ⇒
-        * [.remove(roles, reason)](#GuildMemberRoleManager+remove) ⇒
-        * [.set(roles, reason)](#GuildMemberRoleManager+set) ⇒
+        * [.cache](#GuildMemberRoleManager+cache) ⇒ <code>Array</code>
+        * [.add(roles, reason)](#GuildMemberRoleManager+add) ⇒ <code>Promise.&lt;void&gt;</code>
+        * [.remove(roles, reason)](#GuildMemberRoleManager+remove) ⇒ <code>Promise.&lt;null&gt;</code>
+        * [.set(roles, reason)](#GuildMemberRoleManager+set) ⇒ <code>Promise.&lt;void&gt;</code>
     * _static_
-        * [.transformRole([role])](#GuildMemberRoleManager.transformRole) ⇒
+        * [.transformRole(role)](#GuildMemberRoleManager.transformRole) ⇒ <code>Array.&lt;string&gt;</code>
 
 <a name="new_GuildMemberRoleManager_new"></a>
 
 ### new GuildMemberRoleManager(guildId, member, client)
-`This function is a constructor for the class.`
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild the member is in. |
-| member | The member object of the member who left the guild. |
-| client | The client that the command is being run from. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| member | <code>GuildMember</code> | The guild member object. |
+| client | <code>Client</code> | The client object. |
 
 <a name="GuildMemberRoleManager+highest"></a>
 
 ### guildMemberRoleManager.highest ⇒
-It sorts the cache by position, then returns the first item in the sorted collection
+Get the highest positioned item from the cache collection.
 
 **Kind**: instance property of [<code>GuildMemberRoleManager</code>](#GuildMemberRoleManager)  
-**Returns**: The highest position in the cache.  
+**Returns**: The highest positioned item from the cache collection.  
 <a name="GuildMemberRoleManager+cache"></a>
 
-### guildMemberRoleManager.cache ⇒
-It returns the cache, but only if the cache's id is the same as the guild id, or if the member hasthe role
+### guildMemberRoleManager.cache ⇒ <code>Array</code>
+Retrieves the cache of objects, filtered based on the guild ID and member roles.
 
 **Kind**: instance property of [<code>GuildMemberRoleManager</code>](#GuildMemberRoleManager)  
-**Returns**: The cache is being filtered to only return objects that have the same id as the guildId orthe member's roles.  
+**Returns**: <code>Array</code> - An array of objects from the cache that match the guild ID or are included in the member roles.  
 <a name="GuildMemberRoleManager+add"></a>
 
-### guildMemberRoleManager.add(roles, reason) ⇒
-It adds a role to a member
+### guildMemberRoleManager.add(roles, reason) ⇒ <code>Promise.&lt;void&gt;</code>
+Adds roles to a member in a guild.
 
 **Kind**: instance method of [<code>GuildMemberRoleManager</code>](#GuildMemberRoleManager)  
-**Returns**: The member object  
+**Returns**: <code>Promise.&lt;void&gt;</code> - A promise that resolves when the roles have been added.  
+**Throws**:
 
-| Param | Description |
-| --- | --- |
-| roles | The role(s) to add to the member. |
-| reason | The reason for the action. |
+- <code>RangeError</code> If an invalid role is specified or if the role cache is empty.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| roles | <code>Array.&lt;string&gt;</code> \| <code>RaidenCol</code> | The roles to add. Can be an array of role IDs or a RaidenCol object. |
+| reason | <code>string</code> | The reason for adding the roles. |
 
 <a name="GuildMemberRoleManager+remove"></a>
 
-### guildMemberRoleManager.remove(roles, reason) ⇒
-It removes a role from a member
+### guildMemberRoleManager.remove(roles, reason) ⇒ <code>Promise.&lt;null&gt;</code>
+Removes the specified roles from the member.
 
 **Kind**: instance method of [<code>GuildMemberRoleManager</code>](#GuildMemberRoleManager)  
-**Returns**: The member object  
+**Returns**: <code>Promise.&lt;null&gt;</code> - A promise that resolves to null when the roles have been removed.  
 
-| Param | Description |
-| --- | --- |
-| roles | The role(s) to remove from the member. |
-| reason | The reason for the role removal. |
+| Param | Type | Description |
+| --- | --- | --- |
+| roles | <code>Array.&lt;string&gt;</code> \| <code>RaidenCol</code> | The roles to remove. Can be an array of role IDs or a RaidenCol object. |
+| reason | <code>string</code> | The reason for removing the roles. |
 
 <a name="GuildMemberRoleManager+set"></a>
 
-### guildMemberRoleManager.set(roles, reason) ⇒
-It takes an array of role IDs and a reason, and then it returns a promise that resolves to theresult of the edit request.
+### guildMemberRoleManager.set(roles, reason) ⇒ <code>Promise.&lt;void&gt;</code>
+Sets the roles for a guild member.
 
 **Kind**: instance method of [<code>GuildMemberRoleManager</code>](#GuildMemberRoleManager)  
-**Returns**: The roles that the member has.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the roles are set.  
 
-| Param | Description |
-| --- | --- |
-| roles | The roles to set. |
-| reason | The reason for the role change. |
+| Param | Type | Description |
+| --- | --- | --- |
+| roles | <code>Array.&lt;string&gt;</code> | The roles to set for the guild member. |
+| reason | <code>string</code> | The reason for setting the roles. |
 
 <a name="GuildMemberRoleManager.transformRole"></a>
 
-### GuildMemberRoleManager.transformRole([role]) ⇒
-It takes a role object, array, or string and returns an array of role IDs
+### GuildMemberRoleManager.transformRole(role) ⇒ <code>Array.&lt;string&gt;</code>
+Transforms the given role into an array of role IDs.
 
 **Kind**: static method of [<code>GuildMemberRoleManager</code>](#GuildMemberRoleManager)  
-**Returns**: The role is being returned.  
+**Returns**: <code>Array.&lt;string&gt;</code> - - An array of role IDs.  
 
-| Param | Description |
-| --- | --- |
-| [role] | The role to check for. Can be a string, a role object, or an array of either. |
+| Param | Type | Description |
+| --- | --- | --- |
+| role | <code>RaidenCol</code> \| <code>string</code> | The role to transform. |
 

@@ -1,7 +1,7 @@
 <a name="MessageMentions"></a>
 
 ## MessageMentions ⇐ <code>Base</code>
-It's a class that stores mentions in a message
+Represents a message mention object.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
@@ -13,19 +13,19 @@ It's a class that stores mentions in a message
 <a name="new_MessageMentions_new"></a>
 
 ### new MessageMentions([data], guildId, client)
-It takes in a data object, a guildId, and a client, and then it sets the guildId, users, members,roles, channels, and everyone properties of the object
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| guildId | The guild id |
-| client | The client |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data for the message mention object. |
+| guildId | <code>string</code> | The ID of the guild the mention is in. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="MessageMentions+guild"></a>
 
 ### messageMentions.guild ⇒
-It returns the guild object of the guild ID that is stored in the database
+Get the guild object associated with this guildId.
 
 **Kind**: instance property of [<code>MessageMentions</code>](#MessageMentions)  
 **Returns**: The guild object.  

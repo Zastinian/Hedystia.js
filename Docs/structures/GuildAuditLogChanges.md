@@ -11,9 +11,9 @@ Represents changes made to a guild audit log.
 Constructs a new `GuildAuditLogChanges` object.
 
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [data] | <code>Object</code> | <code>{}</code> | The audit log changes data. |
-| guildId | <code>string</code> |  | The ID of the guild. |
-| client | <code>Client</code> |  | The client object. |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The audit log changes data. |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 

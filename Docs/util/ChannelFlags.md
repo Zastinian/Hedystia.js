@@ -1,39 +1,48 @@
 <a name="ChannelFlags"></a>
 
 ## ChannelFlags ⇐ <code>Bitfield</code>
-Class representing bitfields of Channel flags.
-
 **Kind**: global class  
 **Extends**: <code>Bitfield</code>  
 
 * [ChannelFlags](#ChannelFlags) ⇐ <code>Bitfield</code>
     * [new ChannelFlags(...bit)](#new_ChannelFlags_new)
-    * [.Default](#ChannelFlags.Default) : <code>bigint</code>
-    * [.All](#ChannelFlags.All) : <code>bigint</code>
+    * [.Default](#ChannelFlags.Default)
+    * [.All](#ChannelFlags.All) ⇒
     * [.Flags](#ChannelFlags.Flags) : <code>enum</code>
 
 <a name="new_ChannelFlags_new"></a>
 
 ### new ChannelFlags(...bit)
-Creates a new instance of the ChannelFlags class.
+Constructs a new instance of the class.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| ...bit | <code>number</code> | Bit numbers to include in the Bitfield. |
+| ...bit | <code>bigint</code> | The bits to set in the bitfield. |
 
 <a name="ChannelFlags.Default"></a>
 
-### ChannelFlags.Default : <code>bigint</code>
-Default value for the ChannelFlags class.
+### ChannelFlags.Default
+Sets the default value for the ChannelFlags property to 0n.
 
 **Kind**: static property of [<code>ChannelFlags</code>](#ChannelFlags)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Default | <code>bigint</code> | The default bit value to set. |
+
 <a name="ChannelFlags.All"></a>
 
-### ChannelFlags.All : <code>bigint</code>
-Bitwise OR operation on all flags to get a bitfield with all flags.
+### ChannelFlags.All ⇒
+Calculates the value of ChannelFlags.All by performing a bitwise OR operation on all the valuesin the ChannelFlags.Flags object.
 
 **Kind**: static property of [<code>ChannelFlags</code>](#ChannelFlags)  
+**Returns**: The calculated value of ChannelFlags.All.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| All | <code>bigint</code> | All bit value. |
+
 <a name="ChannelFlags.Flags"></a>
 
 ### ChannelFlags.Flags : <code>enum</code>
@@ -45,6 +54,6 @@ Channel flags and their corresponding bit numbers.
 
 | Name | Type | Default |
 | --- | --- | --- |
-| Pinned | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
-| Require_Tag | <code>Object.&lt;string, bigint&gt;</code> | <code></code> | 
+| Pinned | <code>bigint</code> | <code></code> | 
+| Require_Tag | <code>bigint</code> | <code></code> | 
 

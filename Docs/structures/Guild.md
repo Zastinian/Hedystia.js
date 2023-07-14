@@ -1,13 +1,25 @@
 <a name="Guild"></a>
 
-## Guild ⇐ <code>BaseGuild</code>
-The Guild structure class
+## Guild ⇐ <code>Base</code>
+Represents a guild in Discord.
 
 **Kind**: global class  
-**Extends**: <code>BaseGuild</code>  
+**Extends**: <code>Base</code>  
+**Properties**
 
-* [Guild](#Guild) ⇐ <code>BaseGuild</code>
-    * [new Guild(data, client)](#new_Guild_new)
+| Name | Type | Description |
+| --- | --- | --- |
+| partial | <code>boolean</code> | Whether the guild is partial or not. |
+| id | <code>string</code> \| <code>null</code> | The ID of the guild. |
+| name | <code>string</code> \| <code>null</code> | The name of the guild. |
+| icon | <code>string</code> \| <code>null</code> | The icon of the guild. |
+| iconHash | <code>string</code> \| <code>null</code> | The hash of the guild's icon. |
+| splash | <code>string</code> \| <code>null</code> | The splash image of the guild. |
+|  | <code>string</code> \| <code>null</code> |  |
+
+
+* [Guild](#Guild) ⇐ <code>Base</code>
+    * [new Guild([data], client)](#new_Guild_new)
     * [.me](#Guild+me) ⇒ <code>GuildMember</code>
     * [.afkChannel](#Guild+afkChannel) ⇒ <code>VoiceChannel</code>
     * [.widgetChannel](#Guild+widgetChannel) ⇒ [<code>Promise.&lt;Guild&gt;</code>](#Guild)
@@ -56,14 +68,14 @@ The Guild structure class
 
 <a name="new_Guild_new"></a>
 
-### new Guild(data, client)
-Creates a new Guild object.
+### new Guild([data], client)
+Constructs a new Guild object.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>Object</code> | The data for the guild. |
-| client | <code>Client</code> | The client that instantiated the guild. |
+| [data] | <code>Object</code> | The data object containing guild information. |
+| client | <code>Client</code> | The client object associated with the guild. |
 
 <a name="Guild+me"></a>
 
@@ -386,7 +398,7 @@ Returns the URL of the guild's icon.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> | <code>{}</code> | Additional options for the URL. |
+| [options] | <code>Object</code> |  | Additional options for the URL. |
 | [options.dynamic] | <code>boolean</code> | <code>false</code> | Whether to return a dynamic icon. |
 | [options.size] | <code>number</code> |  | The size of the icon to return. |
 | [options.format] | <code>string</code> |  | The format of the icon to return. |
@@ -401,7 +413,7 @@ Returns the URL of the guild's banner.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> | <code>{}</code> | Additional options for the URL. |
+| [options] | <code>Object</code> |  | Additional options for the URL. |
 | [options.dynamic] | <code>boolean</code> | <code>false</code> | Whether to return a dynamic banner. |
 | [options.size] | <code>number</code> |  | The size of the banner to return. |
 | [options.format] | <code>string</code> |  | The format of the banner to return. |
@@ -416,7 +428,7 @@ Returns the URL of the guild's splash.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> | <code>{}</code> | Additional options for the URL. |
+| [options] | <code>Object</code> |  | Additional options for the URL. |
 | [options.dynamic] | <code>boolean</code> | <code>false</code> | Whether to return a dynamic splash. |
 | [options.size] | <code>number</code> |  | The size of the splash to return. |
 | [options.format] | <code>string</code> |  | The format of the splash to return. |
@@ -431,7 +443,7 @@ Returns the URL of the guild's discovery splash.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> | <code>{}</code> | Additional options for the URL. |
+| [options] | <code>Object</code> |  | Additional options for the URL. |
 | [options.dynamic] | <code>boolean</code> | <code>false</code> | Whether to return a dynamic discovery splash. |
 | [options.size] | <code>number</code> |  | The size of the discovery splash to return. |
 | [options.format] | <code>string</code> |  | The format of the discovery splash to return. |
@@ -472,7 +484,7 @@ Fetches the audit logs for the guild.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> | <code>{}</code> | The options for fetching audit logs. |
+| [options] | <code>Object</code> |  | The options for fetching audit logs. |
 | [options.user] | <code>UserResolvable</code> |  | The user to filter the audit log by. |
 | [options.actionType] | <code>string</code> |  | The type of action to filter the audit log by. |
 | [options.before] | <code>Snowflake</code> \| <code>GuildAuditLogEntry</code> |  | The entry to get audit logs before. |

@@ -1,27 +1,30 @@
 <a name="GuildStickerManager"></a>
 
-## GuildStickerManager
-**Kind**: global class  
+## GuildStickerManager ⇐ <code>StickerManager</code>
+Represents a sticker manager for a specific guild.
 
-* [GuildStickerManager](#GuildStickerManager)
+**Kind**: global class  
+**Extends**: <code>StickerManager</code>  
+
+* [GuildStickerManager](#GuildStickerManager) ⇐ <code>StickerManager</code>
     * [new GuildStickerManager(guildId, client)](#new_GuildStickerManager_new)
-    * [.cache](#GuildStickerManager+cache) ⇒
+    * [.cache](#GuildStickerManager+cache) ⇒ <code>Array</code>
 
 <a name="new_GuildStickerManager_new"></a>
 
 ### new GuildStickerManager(guildId, client)
-`constructor(guildId, client)` is a function that takes two arguments, `guildId` and `client`, andassigns them to the `guildId` and `client` properties of the class.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run on. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 
 <a name="GuildStickerManager+cache"></a>
 
-### guildStickerManager.cache ⇒
-`return super.cache.filter((o) => o.guildId === this.guildId)`The `super` keyword is used to access and call functions on an object's parent
+### guildStickerManager.cache ⇒ <code>Array</code>
+Retrieves the cache for the current guild.
 
 **Kind**: instance property of [<code>GuildStickerManager</code>](#GuildStickerManager)  
-**Returns**: The cache property is being returned.  
+**Returns**: <code>Array</code> - - An array of objects from the cache that belong to the current guild.  

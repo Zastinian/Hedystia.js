@@ -1,7 +1,7 @@
 <a name="Sticker"></a>
 
 ## Sticker ⇐ <code>Base</code>
-It's a class that represents a sticker in a guild
+Represents a Sticker object, extending the Base class.
 
 **Kind**: global class  
 **Extends**: <code>Base</code>  
@@ -9,138 +9,140 @@ It's a class that represents a sticker in a guild
 * [Sticker](#Sticker) ⇐ <code>Base</code>
     * [new Sticker([data], guildId, client)](#new_Sticker_new)
     * [.guild](#Sticker+guild) ⇒
-    * [.fetch(options)](#Sticker+fetch) ⇒
-    * [.edit(options)](#Sticker+edit) ⇒
-    * [.delete(reason)](#Sticker+delete) ⇒
-    * [.setName(name, reason)](#Sticker+setName) ⇒
-    * [.setDescription(description, reason)](#Sticker+setDescription) ⇒
-    * [.setTags(tags, reason)](#Sticker+setTags) ⇒
-    * [.fetchPack()](#Sticker+fetchPack) ⇒
-    * [.imageURL([options])](#Sticker+imageURL) ⇒
-    * [.equals(sticker)](#Sticker+equals) ⇒
+    * [.fetch(options)](#Sticker+fetch) ⇒ <code>Promise</code>
+    * [.edit(options)](#Sticker+edit) ⇒ <code>Promise</code>
+    * [.delete(reason)](#Sticker+delete) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.setName(name, reason)](#Sticker+setName) ⇒ <code>Promise</code>
+    * [.setDescription(description, reason)](#Sticker+setDescription) ⇒ <code>Promise</code>
+    * [.setTags(tags, reason)](#Sticker+setTags) ⇒ <code>Promise</code>
+    * [.fetchPack()](#Sticker+fetchPack) ⇒ <code>Promise.&lt;(NitroPack\|null)&gt;</code>
+    * [.imageURL(options)](#Sticker+imageURL) ⇒ <code>string</code>
+    * [.equals(sticker)](#Sticker+equals) ⇒ <code>boolean</code>
 
 <a name="new_Sticker_new"></a>
 
 ### new Sticker([data], guildId, client)
-This function is used to create a new instance of the Sticker class, which is used to represent asticker in a guild.
+Constructs a Sticker object.
 
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that was received from the API. |
-| guildId | The ID of the guild the sticker is in |
-| client | Discord.Client |
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing the sticker information. |
+| guildId | <code>string</code> | The ID of the guild the sticker belongs to. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="Sticker+guild"></a>
 
 ### sticker.guild ⇒
-It returns the guild object of the guild ID that is stored in the database
+Retrieves the guild associated with this guildId.
 
 **Kind**: instance property of [<code>Sticker</code>](#Sticker)  
-**Returns**: The guild object.  
+**Returns**: The guild object if found, otherwise null.  
 <a name="Sticker+fetch"></a>
 
-### sticker.fetch(options) ⇒
-It fetches the sticker from the server
+### sticker.fetch(options) ⇒ <code>Promise</code>
+Fetches stickers from the guild using the provided options.
 
 **Kind**: instance method of [<code>Sticker</code>](#Sticker)  
-**Returns**: The sticker object.  
+**Returns**: <code>Promise</code> - - A promise that resolves to the fetched stickers.  
 
-| Param | Description |
-| --- | --- |
-| options | An object containing the following properties: |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options for fetching the stickers. |
 
 <a name="Sticker+edit"></a>
 
-### sticker.edit(options) ⇒
-It edits the sticker
+### sticker.edit(options) ⇒ <code>Promise</code>
+Edits the sticker with the given options.
 
 **Kind**: instance method of [<code>Sticker</code>](#Sticker)  
-**Returns**: The sticker object.  
+**Returns**: <code>Promise</code> - A promise that resolves when the sticker is successfully edited.  
 
-| Param | Description |
-| --- | --- |
-| options | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options to edit the sticker. |
 
 <a name="Sticker+delete"></a>
 
-### sticker.delete(reason) ⇒
-It deletes the sticker
+### sticker.delete(reason) ⇒ <code>Promise.&lt;void&gt;</code>
+Deletes the sticker from the guild.
 
 **Kind**: instance method of [<code>Sticker</code>](#Sticker)  
-**Returns**: The return value of the delete method in the StickerManager class.  
+**Returns**: <code>Promise.&lt;void&gt;</code> - - A promise that resolves when the sticker is deleted.  
 
-| Param | Description |
-| --- | --- |
-| reason | The reason for the deletion. |
+| Param | Type | Description |
+| --- | --- | --- |
+| reason | <code>string</code> | The reason for deleting the sticker. |
 
 <a name="Sticker+setName"></a>
 
-### sticker.setName(name, reason) ⇒
-It edits the name of the channel
+### sticker.setName(name, reason) ⇒ <code>Promise</code>
+Sets the name and reason for an object.
 
 **Kind**: instance method of [<code>Sticker</code>](#Sticker)  
-**Returns**: The name of the channel.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the name and reason are successfully set.  
 
-| Param | Description |
-| --- | --- |
-| name | The new name of the role. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The new name to set. |
+| reason | <code>string</code> | The reason for setting the new name. |
 
 <a name="Sticker+setDescription"></a>
 
-### sticker.setDescription(description, reason) ⇒
-It edits the description of the channel
+### sticker.setDescription(description, reason) ⇒ <code>Promise</code>
+Sets the description of an object and updates it with the provided reason.
 
 **Kind**: instance method of [<code>Sticker</code>](#Sticker)  
-**Returns**: The description of the channel.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the description is successfully updated.  
 
-| Param | Description |
-| --- | --- |
-| description | The new description of the channel. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| description | <code>string</code> | The new description to set. |
+| reason | <code>string</code> | The reason for updating the description. |
 
 <a name="Sticker+setTags"></a>
 
-### sticker.setTags(tags, reason) ⇒
-It edits the tags of a message
+### sticker.setTags(tags, reason) ⇒ <code>Promise</code>
+Sets the tags of an object and provides a reason for the change.
 
 **Kind**: instance method of [<code>Sticker</code>](#Sticker)  
-**Returns**: The return value of the edit method.  
+**Returns**: <code>Promise</code> - - A promise that resolves when the tags are successfully set.  
 
-| Param | Description |
-| --- | --- |
-| tags | The new tags of the user. |
-| reason | The reason for the edit. |
+| Param | Type | Description |
+| --- | --- | --- |
+| tags | <code>Array</code> | The new tags to set. |
+| reason | <code>string</code> | The reason for the change. |
 
 <a name="Sticker+fetchPack"></a>
 
-### sticker.fetchPack() ⇒
-It fetches the Nitro Pack from the Discord API and returns it
+### sticker.fetchPack() ⇒ <code>Promise.&lt;(NitroPack\|null)&gt;</code>
+Fetches the Nitro Pack with the specified packId from the client.
 
 **Kind**: instance method of [<code>Sticker</code>](#Sticker)  
-**Returns**: The pack object.  
+**Returns**: <code>Promise.&lt;(NitroPack\|null)&gt;</code> - A promise that resolves to the Nitro Pack object if found, or null if not found.  
 <a name="Sticker+imageURL"></a>
 
-### sticker.imageURL([options]) ⇒
-It returns the URL of the sticker image
+### sticker.imageURL(options) ⇒ <code>string</code>
+Generates the URL for the sticker image with the specified options.
 
 **Kind**: instance method of [<code>Sticker</code>](#Sticker)  
-**Returns**: The URL of the sticker image.  
+**Returns**: <code>string</code> - The URL of the sticker image.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The options for generating the URL. |
+| [options.size] | <code>string</code> | The desired size of the image. |
+| [options.format] | <code>string</code> | The desired format of the image. |
 
 <a name="Sticker+equals"></a>
 
-### sticker.equals(sticker) ⇒
-If the object passed in is not an instance of the Sticker class, return false. Otherwise, returntrue if the name, description, or tags of the object passed in are equal to the name, description,or tags of the object calling the function.
+### sticker.equals(sticker) ⇒ <code>boolean</code>
+Checks if the given object is equal to this sticker.
 
 **Kind**: instance method of [<code>Sticker</code>](#Sticker)  
-**Returns**: a boolean value.  
+**Returns**: <code>boolean</code> - - True if the objects are equal, false otherwise.  
 
-| Param | Description |
-| --- | --- |
-| sticker | The sticker to compare to. |
+| Param | Type | Description |
+| --- | --- | --- |
+| sticker | [<code>Sticker</code>](#Sticker) | The object to compare with this sticker. |
 

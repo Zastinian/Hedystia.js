@@ -1,47 +1,53 @@
 <a name="MessageComponentInteraction"></a>
 
 ## MessageComponentInteraction ⇐ <code>Interaction</code>
-It's a class that represents a message interaction
+Represents a message component interaction.
 
 **Kind**: global class  
 **Extends**: <code>Interaction</code>  
 
 * [MessageComponentInteraction](#MessageComponentInteraction) ⇐ <code>Interaction</code>
     * [new MessageComponentInteraction([data], guildId, client)](#new_MessageComponentInteraction_new)
-    * [.deferUpdate([options])](#MessageComponentInteraction+deferUpdate) ⇒
-    * [.update([options])](#MessageComponentInteraction+update) ⇒
+    * [.deferUpdate(options)](#MessageComponentInteraction+deferUpdate) ⇒ <code>Promise</code>
+    * [.update([options])](#MessageComponentInteraction+update) ⇒ <code>Promise.&lt;(null\|Message)&gt;</code>
 
 <a name="new_MessageComponentInteraction_new"></a>
 
 ### new MessageComponentInteraction([data], guildId, client)
+Constructs a new instance of the Component class.
 
-| Param | Description |
-| --- | --- |
-| [data] | The data that is passed to the constructor. |
-| guildId | The ID of the guild the message is in |
-| client | Discord.Client |
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [data] | <code>Object</code> | The data object containing component information. |
+| guildId | <code>string</code> | The ID of the guild the component belongs to. |
+| client | <code>Client</code> | The client instance. |
 
 <a name="MessageComponentInteraction+deferUpdate"></a>
 
-### messageComponentInteraction.deferUpdate([options]) ⇒
-It takes an object as an argument, creates a new MessagePayload object with the options and a 6,then posts to the API with the body of the MessagePayload object.
+### messageComponentInteraction.deferUpdate(options) ⇒ <code>Promise</code>
+Defers the update of an interaction callback and sends a response to the interaction.
 
 **Kind**: instance method of [<code>MessageComponentInteraction</code>](#MessageComponentInteraction)  
-**Returns**: The response from the API.  
+**Returns**: <code>Promise</code> - A promise that resolves when the update is deferred and the response is sent.  
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | Additional options for the deferred update. |
 
 <a name="MessageComponentInteraction+update"></a>
 
-### messageComponentInteraction.update([options]) ⇒
-It updates the message with the given options and returns the reply if fetchReply is true
+### messageComponentInteraction.update([options]) ⇒ <code>Promise.&lt;(null\|Message)&gt;</code>
+Updates the interaction with the specified options.
 
 **Kind**: instance method of [<code>MessageComponentInteraction</code>](#MessageComponentInteraction)  
-**Returns**: The return value is the result of the await expression.  
+**Returns**: <code>Promise.&lt;(null\|Message)&gt;</code> - - A promise that resolves to null or a Message object.  
+**Throws**:
 
-| Param | Description |
-| --- | --- |
-| [options] | Object |
+- <code>Error</code> - If there is an error while updating the interaction.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | The options to update the interaction. |
 

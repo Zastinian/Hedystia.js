@@ -1,11 +1,13 @@
 <a name="ActionsManager"></a>
 
 ## ActionsManager
+It's a class that handles all the events that the client receives from the Discord API.
+
 **Kind**: global class  
 
 * [ActionsManager](#ActionsManager)
     * [new ActionsManager(message, client)](#new_ActionsManager_new)
-    * [._patch(message)](#ActionsManager+_patch) ⇒
+    * [._patch(message)](#ActionsManager+_patch) ⇒ <code>Object</code>
 
 <a name="new_ActionsManager_new"></a>
 
@@ -13,20 +15,20 @@
 It defines a property called client, and sets it to the client variable
 
 
-| Param | Description |
-| --- | --- |
-| message | The message object that was sent. |
-| client | The client that instantiated the message. |
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>Object</code> | The message object that was sent. |
+| client | <code>Client</code> | The client that instantiated the message. |
 
 <a name="ActionsManager+_patch"></a>
 
-### actionsManager.\_patch(message) ⇒
-It takes a message from the websocket and returns a class that represents the message.
+### actionsManager.\_patch(message) ⇒ <code>Object</code>
+Parses and handles different types of Discord gateway messages.
 
 **Kind**: instance method of [<code>ActionsManager</code>](#ActionsManager)  
-**Returns**: The event is being returned.  
+**Returns**: <code>Object</code> - - An instance of the corresponding message class.  
 
-| Param | Description |
-| --- | --- |
-| message | The message that was received from the websocket. |
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>Object</code> | The message object received from the gateway. |
 

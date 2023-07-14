@@ -1,46 +1,49 @@
 <a name="GuildVanityManager"></a>
 
-## GuildVanityManager
-**Kind**: global class  
+## GuildVanityManager ⇐ <code>Base</code>
+Represents a manager for handling guild vanity URLs.
 
-* [GuildVanityManager](#GuildVanityManager)
+**Kind**: global class  
+**Extends**: <code>Base</code>  
+
+* [GuildVanityManager](#GuildVanityManager) ⇐ <code>Base</code>
     * [new GuildVanityManager(guildId, client)](#new_GuildVanityManager_new)
-    * [.fetch([guild])](#GuildVanityManager+fetch) ⇒
-    * [.edit(code, [guild])](#GuildVanityManager+edit) ⇒
+    * [.fetch([guild])](#GuildVanityManager+fetch) ⇒ <code>Promise.&lt;GuildVanity&gt;</code>
+    * [.edit(code, [guild])](#GuildVanityManager+edit) ⇒ <code>Promise.&lt;GuildVanity&gt;</code>
 
 <a name="new_GuildVanityManager_new"></a>
 
 ### new GuildVanityManager(guildId, client)
-The constructor function is a function that is called when an object is created from a class.
+Constructs a new instance of the class.
 
 
-| Param | Description |
-| --- | --- |
-| guildId | The ID of the guild you want to get the settings for. |
-| client | The client that the command is being run from. |
+| Param | Type | Description |
+| --- | --- | --- |
+| guildId | <code>string</code> | The ID of the guild. |
+| client | <code>Client</code> | The client object. |
 
 <a name="GuildVanityManager+fetch"></a>
 
-### guildVanityManager.fetch([guild]) ⇒
-It fetches the vanity url of a guild
+### guildVanityManager.fetch([guild]) ⇒ <code>Promise.&lt;GuildVanity&gt;</code>
+Fetches the vanity URL for the specified guild.
 
 **Kind**: instance method of [<code>GuildVanityManager</code>](#GuildVanityManager)  
-**Returns**: A new instance of the GuildVanity class.  
+**Returns**: <code>Promise.&lt;GuildVanity&gt;</code> - - A promise that resolves to a GuildVanity object containing the vanity URL information.  
 
-| Param | Description |
-| --- | --- |
-| [guild] | The guild ID or guild object to fetch the vanity URL for. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [guild] | <code>string</code> \| <code>Guild</code> | <code>&quot;this.guildId&quot;</code> | The guild ID or Guild object. Defaults to the current guild. |
 
 <a name="GuildVanityManager+edit"></a>
 
-### guildVanityManager.edit(code, [guild]) ⇒
-It edits the guild's vanity url
+### guildVanityManager.edit(code, [guild]) ⇒ <code>Promise.&lt;GuildVanity&gt;</code>
+Edits the code for a guild's vanity URL.
 
 **Kind**: instance method of [<code>GuildVanityManager</code>](#GuildVanityManager)  
-**Returns**: A new GuildVanity object.  
+**Returns**: <code>Promise.&lt;GuildVanity&gt;</code> - A promise that resolves with the updated GuildVanity object.  
 
-| Param | Description |
-| --- | --- |
-| code | The vanity code you want to set. |
-| [guild] | The guild ID or guild object to edit the vanity URL for. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| code | <code>string</code> |  | The new code for the vanity URL. |
+| [guild] | <code>string</code> \| <code>Guild</code> | <code>&quot;this.guildId&quot;</code> | The guild ID or guild object to edit the vanity URL for. |
 
