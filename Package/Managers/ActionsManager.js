@@ -85,7 +85,7 @@ class ActionsManager {
    * @returns {Object} - An instance of the corresponding message class.
    */
   _patch(message) {
-    if (data.s) this.client.seq = data.s;
+    if (message.s) this.client.seq = message.s;
     switch (message.op) {
       case Opcodes.Invalid_Session:
         new InvalidSession(message, this.client);
