@@ -207,7 +207,7 @@ class ActionsManager {
       case "THREAD_MEMBERS_UPDATE":
         return new ThreadMembersUpdate(message, this.client);
       case "THREAD_LIST_SYNC":
-        return new ThreadListSync(messaget, this.client);
+        return new ThreadListSync(message, this.client);
       case "WEBHOOKS_UPDATE":
         return new WebhooksUpdate(message, this.client);
       case "APPLICATION_COMMAND_PERMISSIONS_UPDATE":
