@@ -20,6 +20,7 @@ Represents a channel in a guild or a direct message.
     * [.isDM()](#Channel+isDM) ⇒ <code>boolean</code>
     * [.isStage()](#Channel+isStage) ⇒ <code>boolean</code>
     * [.isForum()](#Channel+isForum) ⇒ <code>boolean</code>
+    * [.isMedia()](#Channel+isMedia) ⇒ <code>boolean</code>
     * [.isGuildVoice()](#Channel+isGuildVoice) ⇒ <code>boolean</code>
     * [.isNews()](#Channel+isNews) ⇒ <code>boolean</code>
     * [.isCategory()](#Channel+isCategory) ⇒ <code>boolean</code>
@@ -160,6 +161,13 @@ Checks if the current page is a forum page.
 
 **Kind**: instance method of [<code>Channel</code>](#Channel)  
 **Returns**: <code>boolean</code> - - true if the page is a forum page, false otherwise.  
+<a name="Channel+isMedia"></a>
+
+### channel.isMedia() ⇒ <code>boolean</code>
+Checks if the current object is of media type.
+
+**Kind**: instance method of [<code>Channel</code>](#Channel)  
+**Returns**: <code>boolean</code> - - true if the object is of media type, false otherwise.  
 <a name="Channel+isGuildVoice"></a>
 
 ### channel.isGuildVoice() ⇒ <code>boolean</code>
@@ -236,7 +244,8 @@ Checks if the current channel is the rules channel for the guild.
 Checks if the current channel is the system channel of the guild.
 
 **Kind**: instance method of [<code>Channel</code>](#Channel)  
-**Returns**: <code>boolean</code> \| <code>null</code> - - Returns true if the channel is the system channel,false if it is not, and null if the guild does not have a system channel.  
+**Returns**: <code>boolean</code> \| <code>null</code> - - Returns true if the channel is the system channel,
+false if it is not, and null if the guild does not have a system channel.  
 <a name="Channel+bannerURL"></a>
 
 ### channel.bannerURL(options) ⇒ <code>string</code> \| <code>null</code>

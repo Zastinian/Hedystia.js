@@ -133,6 +133,15 @@ class Channel extends Base {
   }
 
   /**
+   * Checks if the current object is of media type.
+   * @returns {boolean} - true if the object is of media type, false otherwise.
+   */
+  isMedia() {
+    if (["Guild_Media"].includes(this.type)) return true;
+    return false;
+  }
+
+  /**
    * Checks if the type of the object is "Guild_Voice".
    * @returns {boolean} - true if the type is "Guild_Voice", false otherwise.
    */

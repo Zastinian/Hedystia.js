@@ -6349,6 +6349,11 @@ declare class Channel extends Base {
    */
   isForum(): boolean;
   /**
+   * Checks if the current object is of media type.
+   * @returns {boolean} - true if the object is of media type, false otherwise.
+   */
+  isMedia(): boolean;
+  /**
    * Checks if the type of the object is "Guild_Voice".
    * @returns {boolean} - true if the type is "Guild_Voice", false otherwise.
    */

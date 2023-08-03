@@ -1,6 +1,6 @@
 {
   "name": "hedystia.js",
-  "version": "1.13.0-dev.0.0.2",
+  "version": "1.13.0-dev.0.0.3",
   "description": "JavaScript library for interacting with the Discord API",
   "main": "index.js",
   "types": "index.d.ts",
@@ -12,9 +12,9 @@
     "got": "12.6.0"
   },
   "engines": {
-    "node": ">=16.9.0"
+    "node": ">=18.6.0"
   },
-  "repository": "https://github.com/Zastinian/Hedystia.js.git",
+  "repository": "https://github.com/Zastinian/Hedystia.js",
   "homepage": "https://docs.hedystia.com/docs/category/hedystiajs",
   "keywords": [
     "client",
@@ -22,6 +22,7 @@
     "discord-client",
     "discord-api",
     "hedystia",
-    "nodejs"
+    "nodejs",
+    "hedystia.js"
   ]
 }

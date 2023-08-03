@@ -33,6 +33,7 @@ MessageFlags.Flags = {
   Loading: 1n << 7n,
   Failed_To_Mention_Some_Roles_In_Thread: 1n << 8n,
   Suppress_Notifications: 1n << 12n,
+  Is_Voice_Message: 1n << 13n,
 };
 
 /**
