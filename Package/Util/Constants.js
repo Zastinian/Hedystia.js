@@ -324,6 +324,7 @@ module.exports.GuildPrimaryCategory = createEnum([
   null,
   "Bots",
 ]);
+
 function createEnum(keys) {
   let obj = {};
   for (let [index, value] of keys.entries()) {
@@ -334,16 +335,6 @@ function createEnum(keys) {
 
   return obj;
 }
-
-module.exports.InviteTargetTypes = {
-  Stream: 1,
-  Embedded_Application: 2,
-};
-
-module.exports.OverwriteType = {
-  Role: 0,
-  Member: 1,
-};
 
 module.exports.ComponentTypes = {
   Action_Row: 1,
@@ -427,7 +418,7 @@ module.exports.Status = {
   Offline: "offline",
 };
 
-module.exports.ButtonStyle = {
+module.exports.ButtonStyles = {
   Primary: 1,
   Secondary: 2,
   Success: 3,
@@ -496,11 +487,11 @@ module.exports.CDN = {
     return `${this.CDN.root}/splashes/${guildId}/${splash}.${format}${size ? `?size=${size}` : ""}`;
   },
   GuildDiscoverySplash: (discoverySplash, dynamic, size, format = "png", guildId) => {
-    if (dynamic) format = splash.startsWith("a_") ? "gif" : format;
+    if (dynamic) format = discoverySplash.startsWith("a_") ? "gif" : format;
     return `${this.CDN.root}/discovery-splashes/${guildId}/${discoverySplash}.${format}${size ? `?size=${size}` : ""}`;
   },
   RoleIcon: (roleIcon, dynamic, size, format = "png", roleId) => {
-    if (dynamic) format = splash.startsWith("a_") ? "gif" : format;
+    if (dynamic) format = roleIcon.startsWith("a_") ? "gif" : format;
     return `${this.CDN.root}/role-icons/${roleId}/${roleIcon}.${format}${size ? `?size=${size}` : ""}`;
   },
   GuildMemberAvatar: (avatar, dynamic, size, format = "png", memberId, guildId) => {
