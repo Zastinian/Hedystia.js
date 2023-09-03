@@ -27,6 +27,7 @@ class ChannelFlags extends Bitfield {
 ChannelFlags.Flags = {
   Pinned: 1n << 1n,
   Require_Tag: 1n << 4n,
+  Hide_Media_Download_Options: 1n << 15n,
 };
 
 /**

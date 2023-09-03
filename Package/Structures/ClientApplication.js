@@ -37,6 +37,8 @@ class ClientApplication extends Base {
     this.slug = data.slug ?? null;
     this.cover = data.cover_image ?? null;
     this.flags = new ApplicationFlags(data.flags ? BigInt(data.flags) : 0n);
+    this.approximateGuildCount = data.approximate_guild_count ?? null;
+    this.tags = data.tags ?? null;
     this.installParams = data.install_params
       ? {
           scopes: data.install_params.scopes,
@@ -44,6 +46,7 @@ class ClientApplication extends Base {
         }
       : null;
     this.customInstallURL = data.custom_install_url ?? null;
+    this.roleConnectionsVerificationUrl = data.role_connections_verification_url ?? null;
   }
 
   /**

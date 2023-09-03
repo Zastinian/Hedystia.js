@@ -26,8 +26,8 @@ class SelectMenu {
       custom_id: this.customid,
       placeholder: this.placeholder,
       options: this.options,
-      min_values: this.min_values,
-      max_values: this.max_values,
+      min_values: this.minvalues,
+      max_values: this.maxvalues,
       disabled: this.disabled,
     };
     return select;

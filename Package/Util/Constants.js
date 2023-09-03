@@ -31,6 +31,7 @@ module.exports.ChannelType = createEnum([
   "Guild_Stage_Voice",
   "Guild_Directory",
   "Guild_Forum",
+  "Guild_Media",
 ]);
 module.exports.ComponentType = createEnum([
   null,
@@ -60,6 +61,8 @@ module.exports.OptionType = createEnum([
   "Attachment",
 ]);
 module.exports.VideoQualityMode = createEnum([null, "Auto", "Full"]);
+module.exports.SortOrderTypes = createEnum(["Latest_Activity", "Creation_Date"]);
+module.exports.ForumLayoutTypes = createEnum(["Not_Set", "List_View", "Gallery_View"]);
 module.exports.ApplicationCommandPermissionType = createEnum([null, "Role", "User", "Channel"]);
 module.exports.OverwriteType = createEnum(["Role", "Member"]);
 module.exports.MemberShipState = createEnum([null, "Invited", "Accepted"]);
@@ -257,6 +260,12 @@ module.exports.GuildAuditLogEntryActionTypes = createEnum([
   "Auto_Moderation_Block_Message",
   "Auto_Moderation_Flag_To_Channel",
   "Auto_Moderation_User_Communication_Disabled",
+  null,
+  null,
+  null,
+  null,
+  "Creator_Monetization_Request_Created",
+  "Creator_Monetization_Terms_Accepted",
 ]);
 module.exports.WebhookType = createEnum([null, "Incoming", "Channel Follower", "Application"]);
 module.exports.GuildAutoModTriggerTypes = createEnum([null, "Keyword", "Spam", "Keyword_Preset", "Mention_Spam"]);
