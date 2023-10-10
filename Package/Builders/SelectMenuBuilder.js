@@ -14,7 +14,8 @@ class SelectMenu {
    * @param {Array} [options.options] - The options for the select menu.
    * @returns {Object} - The select menu component.
    */
-  constructor({customid, placeholder, disabled, minvalues, maxvalues, options}) {
+  constructor({type, customid, placeholder, disabled, minvalues, maxvalues, options}) {
+    this.type = type ?? 3;
     this.customid = customid ?? undefined;
     this.placeholder = placeholder ?? undefined;
     this.disabled = disabled ?? false;
@@ -22,7 +23,7 @@ class SelectMenu {
     this.maxvalues = maxvalues ?? 1;
     this.options = options ?? undefined;
     let select = {
-      type: 3,
+      type: this.type,
       custom_id: this.customid,
       placeholder: this.placeholder,
       options: this.options,

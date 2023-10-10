@@ -158,7 +158,6 @@ class Interaction extends Base {
   async reply(data) {
     const body = await MessagePayload.create(data, 4);
     await this.client.api.post(`${this.client.root}/interactions/${this.id}/${this.token}/callback`, {body});
-
     if (data.fetchReply) return await this.fetchReply();
     return null;
   }

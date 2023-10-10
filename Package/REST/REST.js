@@ -44,7 +44,6 @@ class REST {
       "content-type": options.contentType,
       authorization: options.headers?.["authorization"] ?? this.client.token ?? this.token,
     };
-
     let body;
     if (options["reason"]) headers["X-Audit-Log-Reason"] = options["reason"];
     if (options.body) {
@@ -160,6 +159,10 @@ class REST {
       method: "PATCH",
       ...options,
     });
+  }
+
+  get root() {
+    return `https://discord.com/api/v${this.version}`;
   }
 }
 

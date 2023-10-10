@@ -1,7 +1,7 @@
 /**
  * Represents an error that occurs when making a request to the Discord API.
  */
-class DiscordAPIError extends Error {
+class DiscordAPIError extends TypeError {
   /**
    * Constructs a new DiscordAPIError object.
    * @constructor
@@ -19,12 +19,32 @@ class DiscordAPIError extends Error {
   constructor(data = {}) {
     super(data.message);
     this.name = `DiscordAPIError[${data.code}]`;
+    this.message = `${data.message}${data.rawError ? `\n${this.parseErrorObject(data.rawError)}` : ""}`;
     this.code = data.code;
     this.method = data.method;
     this.httpError = data.httpError;
     this.path = data.path;
     this.rawError = data.rawError?.errors ?? data.rawError?.error ?? data.rawError?.message ?? this.message;
     this.requestData = data.requestData ?? {};
+    this.requestBody = data.requestBody ?? {};
+  }
+
+  parseErrorObject(errObj, parentKey = "") {
+    let result = "";
+    for (const key in errObj) {
+      if (typeof errObj[key] === "object" && errObj[key] !== null) {
+        result += this.parseErrorObject(errObj[key], parentKey ? `${parentKey}.${key}` : key);
+      } else {
+        if (key === "code" && errObj["message"]) {
+          const errMessage = `${parentKey ? `${parentKey}${key !== "code" ? `.${key}` : ""}` : key}[${errObj[key]}]: ${errObj["message"]}`;
+          result += errMessage;
+        }
+      }
+
+      result += `\n`;
+    }
+
+    return result.replace(/\._errors\.0/g, "").trim();
   }
 }
 

@@ -54,7 +54,7 @@ class Hello extends Base {
       return this.client.ws.handleReconnect();
     }
     this.client.ws.interval = setInterval(() => {
-      this.client.heartbeatInterval = Math.floor(Math.random() * (40_250 - 28_523 + 1) + 28_523);
+      this.client.heartbeatInterval = Math.floor(Math.random() * (25_230 - 17_120 + 1) + 17_120);
       this.client.ws.send({op: Opcodes.Heartbeat, d: this.client.seq ?? null});
       this.client.debug(`[Heartbeat]: Successfully sent a heartbeat`);
       clearInterval(this.client.ws.interval);

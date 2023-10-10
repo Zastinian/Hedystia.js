@@ -572,6 +572,11 @@ class Guild extends Base {
   getCategories() {
     return this.channels.cache.filter((o) => ["GUILD_CATEGORY"].includes(o.type));
   }
+
+  async fetchClydeSettings() {
+    const clydeSettings = await this.client.api.get(`${this.client.root}/guilds/${this.id}/clyde-settings`);
+    return {guildId: this.id ?? clydeSettings.guild_id, personality: clydeSettings.personality};
+  }
 }
 
 module.exports = Guild;

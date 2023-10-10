@@ -46,6 +46,7 @@ module.exports.ComponentType = createEnum([
 ]);
 module.exports.ButtonStyle = createEnum([null, "Primary", "Secondary", "Success", "Danger", "Link"]);
 module.exports.TextInputStyle = createEnum([null, "Short", "Paragraph"]);
+module.exports.SelectMenuType = createEnum([null, null, null, "Text", null, "User", "Role", "Mentionable", "Channels"]);
 module.exports.OptionType = createEnum([
   null,
   "Sub_Command",
@@ -268,7 +269,7 @@ module.exports.GuildAuditLogEntryActionTypes = createEnum([
   "Creator_Monetization_Terms_Accepted",
 ]);
 module.exports.WebhookType = createEnum([null, "Incoming", "Channel Follower", "Application"]);
-module.exports.GuildAutoModTriggerTypes = createEnum([null, "Keyword", "Spam", "Keyword_Preset", "Mention_Spam"]);
+module.exports.GuildAutoModTriggerTypes = createEnum([null, "Keyword", null, "Spam", "Keyword_Preset", "Mention_Spam"]);
 module.exports.GuildAutoModEventTypes = createEnum([null, "Message_Send"]);
 module.exports.GuildAutoModPresetTypes = createEnum([null, "Profanity", "Sexual_Content", "Slurs"]);
 module.exports.GuildAutoModActionTypes = createEnum([null, "Block_Message", "Send_Alert_Message", "Timeout"]);
