@@ -75,9 +75,6 @@ class Client extends EventEmitter {
     this.application = null;
     this.heartbeatInterval = null;
     this.readyAt = null;
-    this.lastheatSent = null;
-    this.lastheat = null;
-    this.ping = null;
   }
 
   /**

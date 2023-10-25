@@ -107,11 +107,6 @@ class ActionsManager {
       case Opcodes.Hello:
         new Hello(message, this.client);
         break;
-
-      case 11:
-        this.client.lastheat = Date.now();
-        this.client.ping = this.client.lastheat - Number(this.client.lastheatSent);
-        break;
     }
     switch (message.t) {
       case "READY":

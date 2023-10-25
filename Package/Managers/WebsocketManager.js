@@ -19,6 +19,8 @@ class WebsocketManager extends WebSocket {
     Object.defineProperty(this, "client", {value: client});
     this.status = null;
     this.interval = null;
+    this.isHeartbeatAcked = null;
+    this.lastHeartbeatAck = null;
     this.handleOpen();
   }
 
