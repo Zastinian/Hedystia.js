@@ -21,6 +21,7 @@ class Heartbeat extends Base {
    * @returns The message "[Websocket]: Successfully sent a heartbeat" is being returned.
    */
   _patch() {
+    this.client.lastheatSent = Date.now();
     this.client.debug(`[Websocket]: Discord asked for heartbeat therefore sending one`);
     this.client.ws.send({
       op: Opcodes.Heartbeat,

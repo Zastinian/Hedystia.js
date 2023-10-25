@@ -86,6 +86,7 @@ class ActionsManager {
    */
   _patch(message) {
     if (message.s) this.client.seq = message.s;
+
     switch (message.op) {
       case Opcodes.Invalid_Session:
         new InvalidSession(message, this.client);
@@ -105,6 +106,11 @@ class ActionsManager {
         break;
       case Opcodes.Hello:
         new Hello(message, this.client);
+        break;
+
+      case 11:
+        this.client.lastheat = Date.now();
+        this.client.ping = this.client.lastheat - Number(this.client.lastheatSent);
         break;
     }
     switch (message.t) {
