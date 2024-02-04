@@ -19,6 +19,8 @@ class WebsocketManager extends WebSocket {
     Object.defineProperty(this, "client", {value: client});
     this.status = null;
     this.interval = null;
+    this.isHeartbeatAcked = null;
+    this.lastHeartbeatAck = null;
     this.handleOpen();
   }
 
@@ -34,8 +36,8 @@ class WebsocketManager extends WebSocket {
    */
   async connect() {
     if (this.readyState !== WebsocketReadyState.Open) {
-      setTimeout(() => this.connect(), this.client.restRestRequestTimeout);
-      return;
+      this.client.debug(`[Websocket]: Websocket isn't ready. Remaking Websocket connection`);
+      return this._handleNewInstance();
     }
     const {url, shards, session_start_limit} = (await this.client.api.get(`${this.client.root}/gateway/bot`)) || {};
     if (!url || (session_start_limit?.remaining ?? 1) < 1) {
@@ -103,6 +105,33 @@ class WebsocketManager extends WebSocket {
   }
 
   /**
+   * Sets the status to "RECONNECTING".
+   * Removes all event listeners.
+   * Sets a timeout to close the previous WebSocket connection and create a new one.
+   * If the previous connection is not closed, it will be forcefully closed.
+   * If the WebSocket is already closed, it will log a message.
+   * Creates a new WebSocket connection to the resume gateway URL.
+   * Sets the close sequence and marks the WebSocket as reconnected.
+   * @returns {void}
+   */
+  _handleNewInstance() {
+    this.status = "RECONNECTING";
+    this.removeAllListeners();
+    setTimeout(() => {
+      this.client.debug(`[Websocket]: Closing the previous WebSocket connection then making a new one`);
+      if (this.readyState !== this.CLOSED) {
+        this.destroy(4000);
+        this.client.debug(`[Websocket]: Successfully closed previous WebSocket connection`);
+      }
+      if (this.readyState === this.CLOSED) this.client.debug(`[Websocket]: Websocket has been already closed. So this should be easy`);
+      this.client.debug(`[Websocket]: Now connecting to resume gateway url: ${this.client.resumeGatewayURL}`);
+      this.client.ws = new WebsocketManager(this.client, this.client.resumeGatewayURL);
+      this.client.closeSequence = this.client.seq;
+      this.client.ws.reconnected = true;
+    }, 5_000).unref();
+  }
+
+  /**
    * Handles the resumption of a WebSocket connection.
    * If no session ID is found, it will re-identify and establish a new connection.
    * If a session ID is found, it will attempt to resume the connection using the session ID.
@@ -131,13 +160,6 @@ class WebsocketManager extends WebSocket {
    * If there is no resume gateway URL, it will re-identify and connect again.
    * If the status is not "CLOSED" and reconnect is enabled, it will initiate a reconnect.
    * It will clear the heartbeat interval if it exists.
-   * Sets the status to "RECONNECTING".
-   * Removes all event listeners.
-   * Sets a timeout to close the previous WebSocket connection and create a new one.
-   * If the previous connection is not closed, it will be forcefully closed.
-   * If the WebSocket is already closed, it will log a message.
-   * Creates a new WebSocket connection to the resume gateway URL.
-   * Sets the close sequence and marks the WebSocket as reconnected.
    * @returns {void}
    */
   handleReconnect() {
@@ -153,20 +175,7 @@ class WebsocketManager extends WebSocket {
       this.client.debug(`[Heartbeat]: Clearing the heartbeat interval`);
       clearInterval(this.interval);
     }
-    this.status = "RECONNECTING";
-    this.removeAllListeners();
-    setTimeout(() => {
-      this.client.debug(`[Websocket]: Closing the previous WebSocket connection then making a new one`);
-      if (this.readyState !== this.CLOSED) {
-        this.destroy(4000);
-        this.client.debug(`[Websocket]: Successfully closed previous WebSocket connection`);
-      }
-      if (this.readyState === this.CLOSED) this.client.debug(`[Websocket]: Websocket has been already closed. So this should be easy`);
-      this.client.debug(`[Websocket]: Now connecting to resume gateway url: ${this.client.resumeGatewayURL}`);
-      this.client.ws = new WebsocketManager(this.client, this.client.resumeGatewayURL);
-      this.client.closeSequence = this.client.seq;
-      this.client.ws.reconnected = true;
-    }, 5_000).unref();
+    return this._handleNewInstance();
   }
 
   /**

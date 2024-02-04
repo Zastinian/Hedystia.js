@@ -14,6 +14,7 @@ class TextBasedChannels extends Channel {
   constructor(data = {}, guildId, client) {
     super(data, guildId, client);
     this.rateLimitPerUser = data.rate_limit_per_user ?? null;
+    this.defaultThreadRateLimitPerUser = data.default_thread_rate_limit_per_user ?? null;
     this.lastPinnedAt = data.last_pin_timestamp ? new Date(data.last_pin_timestamp) : null;
     this.lastPinnedTimestamp = this.lastPinnedAt?.getTime() ?? null;
     this.lastMessageId = data.last_message_id ?? null;

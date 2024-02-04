@@ -178,7 +178,7 @@ class Slash {
       description: this.description,
       description_localizations: this.descriptionLocalizations,
       options: this.options,
-      default_member_permissions: this.defaultMemberPermissions.toString(),
+      default_member_permissions: this.defaultMemberPermissions?.toString(),
       dm_permission: this.dmPermission,
     };
   }

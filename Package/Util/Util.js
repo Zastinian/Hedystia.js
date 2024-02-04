@@ -14,6 +14,8 @@ class Util {
    * @returns {string} - The formatted Discord timestamp string.
    */
   static generateDiscordTimestamp(time, style) {
+    if (Number.isNaN(timestamp) && !(timestamp instanceof Date)) throw new TypeError(`Invalid time`);
+    timestamp = Math.floor(timestamp / 1000);
     return `<t:${time}:${style}>`;
   }
 
@@ -74,8 +76,12 @@ class Util {
    * @returns {Buffer} - The buffer representation of the base64 string.
    */
   static base64ToBuffer(base64) {
-    base64 = Buffer.from(base64, "base64");
-    return base64;
+    if (base64 instanceof Buffer) return base64;
+    if (base64.startsWith("data")) {
+      base64 = /^(?:data:[A-Za-z]+\/[A-Za-z]+;base64,(.+))/.exec(base64);
+      if (base64[1]) base64 = base64[1];
+    }
+    return Buffer.from(base64, "base64");
   }
 
   /**

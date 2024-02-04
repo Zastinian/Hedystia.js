@@ -21,8 +21,9 @@ class Interaction extends Base {
    */
   constructor(data = {}, guildId, client) {
     super(client);
-    Object.defineProperty(this, "_user", {
-      value: data.user ?? data.member?.user,
+    Object.defineProperties(this, {
+      _member: {value: data.member},
+      _user: {value: data.user},
     });
     this.type = (typeof data.type === "number" ? InteractionType[data.type] : data.type) ?? null;
     this.id = data.id ?? null;
@@ -34,7 +35,6 @@ class Interaction extends Base {
     this.guildLocale = data.guild_locale ?? null;
     this.version = data.version ?? null;
     this.guildId = guildId ?? null;
-    this.member = this.guild?.members._add(data.member ?? data.user) ?? null;
     this.createdAt = data.id ? new Date(Snowflake.deconstruct(this.id).timestamp) : null;
     this.createdTimestamp = this.createdAt?.getTime() ?? null;
     this.editedAt = data.edited_timestamp ? new Date(data.edited_timestamp) : null;
@@ -226,6 +226,14 @@ class Interaction extends Base {
    */
   get guild() {
     return this.client.guilds._add(this.guildId) ?? null;
+  }
+
+  /**
+   * Get the member associated with this instance.
+   * @returns {Member | null} The member object, or null if it is not available.
+   */
+  get member() {
+    return this.guild?.members._add(data.member ?? data.user) ?? null;
   }
 
   /**

@@ -62,9 +62,6 @@ class Client extends EventEmitter {
     this.websocketURL = `wss://gateway.discord.gg/?v=${this.version}&encoding=${this.encoding}`;
     this.webhookURL = `https://canary.discord.com/api/webhooks`;
 
-    this.readyAt = null;
-    this.application = null;
-
     this.channels = new ChannelManager(this);
     this.guilds = new GuildManager(this, this.ws);
     this.users = new UserManager(this, this.ws);

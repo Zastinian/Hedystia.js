@@ -161,6 +161,10 @@ class REST {
       ...options,
     });
   }
+
+  get root() {
+    return `https://discord.com/api/v${this.version}`;
+  }
 }
 
 module.exports = REST;
