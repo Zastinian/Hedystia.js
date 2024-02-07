@@ -38,11 +38,27 @@ class Util {
    * @param {Buffer | MessageAttachment | string} file - The file to retrieve the buffer data from.
    * @returns {Promise<Buffer>} - The buffer data of the file.
    */
-  static async getBuffer(file) {
-    if (file instanceof Buffer) return file;
-    if (file instanceof MessageAttachment) return this.getBuffer(file.buffer ?? file.url ?? file.proxyURL);
-    if (/^(\.(\.)?)/gi.test(file)) return fs.readFileSync(file);
-    if (typeof file === "string") return await (await fetch(file)).buffer();
+  static async getBuffer(attachment) {
+    if (attachment instanceof Buffer) return attachment;
+    if (attachment instanceof MessageAttachment) return this.getBuffer(attachment.attachment);
+    if (typeof attachment === "string") {
+      if (/^(http(s)?:\/\/)/.test(attachment)) {
+        attachment = await fetch(attachment);
+        return await this.getBuffer(await attachment.arrayBuffer());
+      }
+      if (/^(?:[\.]{1,2}\/|[a-zA-Z]+:\/.+\.\w{3,5})/.test(attachment)) {
+        if (fs.statSync(attachment).isFile()) return fs.readFileSync(attachment);
+      }
+
+      return Util.base64ToBuffer(attachment);
+    }
+    if (attachment instanceof ArrayBuffer) return Buffer.from(attachment);
+    if (attachment instanceof Stream) {
+      const buffers = [];
+      for await (const chunk of stream) buffers.push(Buffer.from(chunk));
+      return Buffer.concat(buffers);
+    }
+    throw new TypeError(`Invalid Attachment Type`);
   }
 
   /**
