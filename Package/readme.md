@@ -8,7 +8,7 @@ yarn add hedystia.js
 
 ## Nodejs Version
 
-- `v16.9.0` or higher
+- `v18.6.0` or higher
 
 ## Links
 
