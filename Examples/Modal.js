@@ -1,4 +1,4 @@
-const {Client, Intents, Status, Slash, MessageActionRow, InputTextStyle, InputText, Modal} = require("../Package");
+const {Client, Intents, Status, Slash, MessageActionRow, InputTextStyle, InputText, Modal} = require("@hedystia/discord");
 
 const client = new Client({
   token: "<BOT_TOKEN>",

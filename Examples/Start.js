@@ -1,4 +1,4 @@
-const {Client, Intents, Status} = require("hedystia.js");
+const {Client, Intents, Status} = require("@hedystia/discord");
 
 const client = new Client({
   token: "<BOT_TOKEN>",

@@ -6,9 +6,9 @@ title: Start
 ## Installation
 
 ```
-npm i hedystia.js
+npm i @hedystia/discord
 
-yarn add hedystia.js
+yarn add @hedystia/discord
 ```
 
 ## Nodejs Version
@@ -22,7 +22,7 @@ yarn add hedystia.js
 ## Example
 
 ```js
-const {Client, Intents, Status} = require("hedystia.js");
+const {Client, Intents, Status} = require("@hedystia/discord");
 
 const client = new Client({
   token: "<TOKEN>",

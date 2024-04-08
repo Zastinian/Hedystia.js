@@ -1,4 +1,4 @@
-const {Client, Intents, Status, Slash, SlashOption, MessageEmbed, OptionType} = require("hedystia.js");
+const {Client, Intents, Status, Slash, SlashOption, MessageEmbed, OptionType} = require("@hedystia/discord");
 
 const client = new Client({
   token: "<BOT_TOKEN>",
@@ -33,12 +33,12 @@ client.on("interactionCreate", (interaction) => {
     const helpEmbed = new MessageEmbed()
       .setColor(0x0099ff)
       .setTitle("Help Menu")
-      .setURL("https://docs.hedystia.com/docs/client/start")
+      .setURL("https://docs.hedystia.com/client/start")
       .setAuthor({
         name: "Name",
         iconURL:
           "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTMyYzU4YTVjNjNlZWUwZTgwN2ZiMDgxYzVlOGE0NGRhYTM3MmE1NCZjdD1z/K9svE9i7P3Ox2/giphy.gif",
-        url: "https://docs.hedystia.com/docs/client/start",
+        url: "https://docs.hedystia.com/client/start",
       })
       .setDescription("Help Description")
       .setThumbnail({
@@ -60,7 +60,7 @@ client.on("interactionCreate", (interaction) => {
     const userEmbed = new MessageEmbed()
       .setColor(0x0099ff)
       .setTitle("User Info")
-      .setURL("https://docs.hedystia.com/docs/client/start")
+      .setURL("https://docs.hedystia.com/client/start")
       .addFields({name: "Username", value: user.username, inline: true})
       .setThumbnail({
         url: user.displayAvatarURL(),

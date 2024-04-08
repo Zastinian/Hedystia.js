@@ -1,5 +1,5 @@
 {
-  "name": "hedystia.js",
+  "name": "@hedystia/discord",
   "version": "1.13.1",
   "description": "JavaScript library for interacting with the Discord API",
   "main": "index.js",
@@ -24,5 +24,8 @@
     "hedystia",
     "nodejs",
     "hedystia.js"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
