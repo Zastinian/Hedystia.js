@@ -70,6 +70,7 @@ Permissions.Flags = {
   Create_Events: 1n << 44n,
   Use_External_Sounds: 1n << 45n,
   Send_Voice_Messages: 1n << 46n,
+  Send_Polls: 1n << 49n
 };
 
 /**
