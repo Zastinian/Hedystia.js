@@ -93,4 +93,11 @@ Object containing bit flags for Permissions
 | Send_Messages_In_Threads | <code>bigint</code> | <code></code> | 
 | Use_Embedded_Activities | <code>bigint</code> | <code></code> | 
 | Moderate_Members | <code>bigint</code> | <code></code> | 
+| View_Creator_Monetization_Analytics | <code>bigint</code> | <code></code> | 
+| Use_Soundboard | <code>bigint</code> | <code></code> | 
+| Create_Guild_Expressions | <code>bigint</code> | <code></code> | 
+| Create_Events | <code>bigint</code> | <code></code> | 
+| Use_External_Sounds | <code>bigint</code> | <code></code> | 
+| Send_Voice_Messages | <code>bigint</code> | <code></code> | 
+| Send_Polls | <code>bigint</code> | <code></code> | 
 
