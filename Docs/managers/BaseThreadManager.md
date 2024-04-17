@@ -1,4 +1,10 @@
-<a name="BaseThreadManager"></a>
+---
+title: BaseThreadManager
+sidebar:
+  order: 6
+---
+
+
 
 ## BaseThreadManager ⇐ <code>Base</code>
 Represents a base thread manager that handles operations related to thread channels.

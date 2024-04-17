@@ -1,4 +1,10 @@
-<a name="WelcomeScreenChannel"></a>
+---
+title: WelcomeScreenChannel
+sidebar:
+  order: 76
+---
+
+
 
 ## WelcomeScreenChannel ⇐ <code>Base</code>
 Represents a welcome screen channel.

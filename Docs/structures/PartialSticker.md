@@ -1,4 +1,10 @@
-<a name="PartialSticker"></a>
+---
+title: PartialSticker
+sidebar:
+  order: 52
+---
+
+
 
 ## PartialSticker ⇐ <code>Base</code>
 Represents a partial sticker object.

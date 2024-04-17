@@ -1,4 +1,10 @@
-<a name="GuildPruneManager"></a>
+---
+title: GuildPruneManager
+sidebar:
+  order: 21
+---
+
+
 
 ## GuildPruneManager ⇐ <code>Base</code>
 Represents a manager for pruning members in a guild.

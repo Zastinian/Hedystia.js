@@ -1,4 +1,10 @@
-<a name="EmojiResolver"></a>
+---
+title: EmojiResolver
+sidebar:
+  order: 8
+---
+
+
 
 ## EmojiResolver
 A utility class for resolving and transforming emojis.

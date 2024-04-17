@@ -1,4 +1,10 @@
-<a name="VerificationFormFields"></a>
+---
+title: VerificationFormFields
+sidebar:
+  order: 69
+---
+
+
 
 ## VerificationFormFields ⇐ <code>Base</code>
 Represents a set of form fields for verification.

@@ -1,4 +1,10 @@
-<a name="TextBasedChannels"></a>
+---
+title: TextBasedChannels
+sidebar:
+  order: 48
+---
+
+
 
 ## TextBasedChannels
 **Kind**: global class  

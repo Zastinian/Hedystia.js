@@ -1,4 +1,10 @@
-<a name="MessageAttachment"></a>
+---
+title: MessageAttachment
+sidebar:
+  order: 7
+---
+
+
 
 ## MessageAttachment
 Represents a message attachment.

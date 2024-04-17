@@ -1,4 +1,10 @@
-<a name="CategoryChannel"></a>
+---
+title: CategoryChannel
+sidebar:
+  order: 10
+---
+
+
 
 ## CategoryChannel ⇐ <code>Channel</code>
 Represents a category channel in a guild.

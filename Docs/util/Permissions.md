@@ -1,4 +1,10 @@
-<a name="Permissions"></a>
+---
+title: Permissions
+sidebar:
+  order: 14
+---
+
+
 
 ## Permissions ⇐ <code>Bitfield</code>
 Class representing a Discord permission bitfield.

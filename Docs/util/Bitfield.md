@@ -1,4 +1,10 @@
-<a name="Bitfield"></a>
+---
+title: Bitfield
+sidebar:
+  order: 4
+---
+
+
 
 ## Bitfield
 **Kind**: global class  

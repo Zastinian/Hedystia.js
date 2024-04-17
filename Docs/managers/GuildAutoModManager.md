@@ -1,4 +1,10 @@
-<a name="GuildAutoModManager"></a>
+---
+title: GuildAutoModManager
+sidebar:
+  order: 10
+---
+
+
 
 ## GuildAutoModManager ⇐ <code>AutoModManager</code>
 Represents a manager for guild-specific auto moderation settings.

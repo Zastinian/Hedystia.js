@@ -1,4 +1,10 @@
-<a name="WelcomeScreenManager"></a>
+---
+title: WelcomeScreenManager
+sidebar:
+  order: 46
+---
+
+
 
 ## WelcomeScreenManager ⇐ <code>Base</code>
 Represents a manager for the welcome screen of a guild.

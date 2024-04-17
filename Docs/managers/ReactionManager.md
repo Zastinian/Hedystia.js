@@ -1,4 +1,10 @@
-<a name="ReactionManager"></a>
+---
+title: ReactionManager
+sidebar:
+  order: 34
+---
+
+
 
 ## ReactionManager ⇐ <code>Base</code>
 A class representing a reaction manager for a specific message in a channel.

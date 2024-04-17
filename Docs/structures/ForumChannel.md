@@ -1,4 +1,10 @@
-<a name="ForumChannel"></a>
+---
+title: ForumChannel
+sidebar:
+  order: 23
+---
+
+
 
 ## ForumChannel ⇐ <code>Channel</code>
 A class representing a forum channel on Discord.

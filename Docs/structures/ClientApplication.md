@@ -1,4 +1,10 @@
-<a name="ClientApplication"></a>
+---
+title: ClientApplication
+sidebar:
+  order: 12
+---
+
+
 
 ## ClientApplication ⇐ <code>Base</code>
 Represents a client application.

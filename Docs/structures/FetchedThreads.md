@@ -1,4 +1,10 @@
-<a name="FetchedThreads"></a>
+---
+title: FetchedThreads
+sidebar:
+  order: 22
+---
+
+
 
 ## FetchedThreads ⇐ <code>Base</code>
 Represents a collection of fetched threads.

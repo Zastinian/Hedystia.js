@@ -1,4 +1,10 @@
-<a name="ApplicationCommandPermission"></a>
+---
+title: ApplicationCommandPermission
+sidebar:
+  order: 5
+---
+
+
 
 ## ApplicationCommandPermission ⇐ <code>Base</code>
 Represents an application command permission.

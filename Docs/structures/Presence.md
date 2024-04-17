@@ -1,4 +1,10 @@
-<a name="Presence"></a>
+---
+title: Presence
+sidebar:
+  order: 54
+---
+
+
 
 ## Presence ⇐ <code>Base</code>
 Represents the presence of a user.

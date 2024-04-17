@@ -1,4 +1,10 @@
-<a name="GuildDiscoveryManager"></a>
+---
+title: GuildDiscoveryManager
+sidebar:
+  order: 13
+---
+
+
 
 ## GuildDiscoveryManager ⇐ <code>Base</code>
 Represents a manager for guild discovery settings.

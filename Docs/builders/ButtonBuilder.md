@@ -1,4 +1,10 @@
-<a name="Button"></a>
+---
+title: Button
+sidebar:
+  order: 1
+---
+
+
 
 ## Button
 A class representing a Discord button.

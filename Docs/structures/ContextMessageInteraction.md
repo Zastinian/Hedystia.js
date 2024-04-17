@@ -1,4 +1,10 @@
-<a name="ContextMessageInteraction"></a>
+---
+title: ContextMessageInteraction
+sidebar:
+  order: 17
+---
+
+
 
 ## ContextMessageInteraction ⇐ <code>ContextMenuInteraction</code>
 Represents a context menu interaction for a message in a specific context.

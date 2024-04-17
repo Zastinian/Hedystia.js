@@ -1,4 +1,10 @@
-<a name="GuildAuditLogEntry"></a>
+---
+title: GuildAuditLogEntry
+sidebar:
+  order: 27
+---
+
+
 
 ## GuildAuditLogEntry ⇐ <code>Base</code>
 Represents an entry in the audit log for a guild.

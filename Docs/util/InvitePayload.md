@@ -1,4 +1,10 @@
-<a name="InvitePayload"></a>
+---
+title: InvitePayload
+sidebar:
+  order: 11
+---
+
+
 
 ## InvitePayload
 A utility class for creating invite payloads.

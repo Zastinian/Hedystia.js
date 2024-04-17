@@ -1,4 +1,10 @@
-<a name="Row"></a>
+---
+title: Row
+sidebar:
+  order: 12
+---
+
+
 
 ## Row
 A row of buttons to be added to a message component.

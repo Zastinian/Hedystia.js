@@ -1,4 +1,10 @@
-<a name="UserManager"></a>
+---
+title: UserManager
+sidebar:
+  order: 43
+---
+
+
 
 ## UserManager ⇐ <code>Base</code>
 Represents a user manager that handles user-related operations.

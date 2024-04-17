@@ -1,4 +1,10 @@
-<a name="VoiceRegion"></a>
+---
+title: VoiceRegion
+sidebar:
+  order: 71
+---
+
+
 
 ## VoiceRegion ⇐ <code>Base</code>
 Represents a voice region.

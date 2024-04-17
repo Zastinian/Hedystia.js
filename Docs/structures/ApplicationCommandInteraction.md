@@ -1,4 +1,10 @@
-<a name="ApplicationCommandInteraction"></a>
+---
+title: ApplicationCommandInteraction
+sidebar:
+  order: 4
+---
+
+
 
 ## ApplicationCommandInteraction ⇐ <code>Interaction</code>
 Represents an application command interaction.

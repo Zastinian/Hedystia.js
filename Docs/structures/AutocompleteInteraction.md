@@ -1,4 +1,10 @@
-<a name="AutocompleteInteraction"></a>
+---
+title: AutocompleteInteraction
+sidebar:
+  order: 7
+---
+
+
 
 ## AutocompleteInteraction ⇐ <code>Interaction</code>
 Represents an interaction with an autocomplete component.

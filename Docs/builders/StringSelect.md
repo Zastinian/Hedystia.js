@@ -1,4 +1,10 @@
-<a name="StringSelect"></a>
+---
+title: StringSelect
+sidebar:
+  order: 14
+---
+
+
 
 ## StringSelect
 Represents a select menu with string options.

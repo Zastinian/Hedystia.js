@@ -1,4 +1,10 @@
-<a name="StickerManager"></a>
+---
+title: StickerManager
+sidebar:
+  order: 40
+---
+
+
 
 ## StickerManager ⇐ <code>Base</code>
 Represents a Sticker Manager that handles operations related to stickers in a guild.

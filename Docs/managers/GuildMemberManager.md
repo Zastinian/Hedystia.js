@@ -1,4 +1,10 @@
-<a name="GuildMemberManager"></a>
+---
+title: GuildMemberManager
+sidebar:
+  order: 18
+---
+
+
 
 ## GuildMemberManager ⇐ <code>Base</code>
 Represents a manager for guild members.

@@ -1,4 +1,10 @@
-<a name="GuildMemberVerificationFields"></a>
+---
+title: GuildMemberVerificationFields
+sidebar:
+  order: 4
+---
+
+
 
 ## GuildMemberVerificationFields
 A class representing fields for guild member verification.

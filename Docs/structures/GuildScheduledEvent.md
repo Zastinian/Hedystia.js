@@ -1,4 +1,10 @@
-<a name="GuildScheduledEvent"></a>
+---
+title: GuildScheduledEvent
+sidebar:
+  order: 36
+---
+
+
 
 ## GuildScheduledEvent ⇐ <code>Base</code>
 Represents a scheduled event in a guild.

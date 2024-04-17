@@ -1,4 +1,10 @@
-<a name="GuildInviteManager"></a>
+---
+title: GuildInviteManager
+sidebar:
+  order: 16
+---
+
+
 
 ## GuildInviteManager ⇐ <code>Base</code>
 Represents a manager for handling guild invites.

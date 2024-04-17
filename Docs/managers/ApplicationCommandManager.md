@@ -1,4 +1,10 @@
-<a name="ApplicationCommandManager"></a>
+---
+title: ApplicationCommandManager
+sidebar:
+  order: 3
+---
+
+
 
 ## ApplicationCommandManager ⇐ <code>Base</code>
 Represents a manager for application commands.

@@ -1,4 +1,10 @@
-<a name="PermissionOverwrite"></a>
+---
+title: PermissionOverwrite
+sidebar:
+  order: 53
+---
+
+
 
 ## PermissionOverwrite ⇐ <code>Base</code>
 Represents a permission overwrite for a channel in Discord.

@@ -1,4 +1,10 @@
-<a name="SlashSubCommand"></a>
+---
+title: SlashSubCommand
+sidebar:
+  order: 46
+---
+
+
 
 ## SlashSubCommand ⇐ <code>Base</code>
 Represents a sub-command for a slash command.

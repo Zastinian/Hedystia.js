@@ -1,4 +1,10 @@
-<a name="GuildVanity"></a>
+---
+title: GuildVanity
+sidebar:
+  order: 39
+---
+
+
 
 ## GuildVanity ⇐ <code>Base</code>
 Represents a Guild Vanity URL.

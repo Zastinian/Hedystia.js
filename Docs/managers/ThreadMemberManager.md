@@ -1,4 +1,10 @@
-<a name="ThreadMemberManager"></a>
+---
+title: ThreadMemberManager
+sidebar:
+  order: 42
+---
+
+
 
 ## ThreadMemberManager ⇐ <code>Base</code>
 Manages the members of a thread in a guild.

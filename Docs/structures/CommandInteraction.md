@@ -1,4 +1,10 @@
-<a name="CommandInteraction"></a>
+---
+title: CommandInteraction
+sidebar:
+  order: 14
+---
+
+
 
 ## CommandInteraction ⇐ <code>ApplicationCommandInteraction</code>
 **Kind**: global class  

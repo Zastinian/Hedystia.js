@@ -1,4 +1,10 @@
-<a name="GuildWidget"></a>
+---
+title: GuildWidget
+sidebar:
+  order: 40
+---
+
+
 
 ## GuildWidget ⇐ <code>Base</code>
 Represents a guild widget.

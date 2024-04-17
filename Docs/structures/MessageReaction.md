@@ -1,4 +1,10 @@
-<a name="MessageReaction"></a>
+---
+title: MessageReaction
+sidebar:
+  order: 48
+---
+
+
 
 ## MessageReaction ⇐ <code>Base</code>
 Represents a message reaction.

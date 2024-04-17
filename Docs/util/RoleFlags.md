@@ -1,4 +1,10 @@
-<a name="RoleFlags"></a>
+---
+title: RoleFlags
+sidebar:
+  order: 15
+---
+
+
 
 ## RoleFlags ⇐ <code>Bitfield</code>
 Represents the possible flags for a Role

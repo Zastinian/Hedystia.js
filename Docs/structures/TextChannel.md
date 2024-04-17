@@ -1,4 +1,10 @@
-<a name="TextChannel"></a>
+---
+title: TextChannel
+sidebar:
+  order: 64
+---
+
+
 
 ## TextChannel ⇐ <code>BaseGuildChannel</code>
 Represents a text channel in a guild.

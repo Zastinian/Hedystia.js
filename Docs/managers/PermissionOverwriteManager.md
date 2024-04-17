@@ -1,4 +1,10 @@
-<a name="PermissionOverwriteManager"></a>
+---
+title: PermissionOverwriteManager
+sidebar:
+  order: 32
+---
+
+
 
 ## PermissionOverwriteManager ⇐ <code>Base</code>
 Represents a manager for permission overwrites in a channel.

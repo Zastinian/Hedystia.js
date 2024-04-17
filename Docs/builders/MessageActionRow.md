@@ -1,4 +1,10 @@
-<a name="MessageActionRow"></a>
+---
+title: MessageActionRow
+sidebar:
+  order: 6
+---
+
+
 
 ## MessageActionRow
 Represents an action row containing components, such as buttons or selects, to be added to a message.

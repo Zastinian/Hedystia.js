@@ -1,4 +1,10 @@
-<a name="Slash"></a>
+---
+title: Slash
+sidebar:
+  order: 44
+---
+
+
 
 ## Slash ⇐ <code>Base</code>
 Represents a Slash command.

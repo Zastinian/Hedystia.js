@@ -1,4 +1,10 @@
-<a name="GuildIntegration"></a>
+---
+title: GuildIntegration
+sidebar:
+  order: 32
+---
+
+
 
 ## GuildIntegration ⇐ <code>Base</code>
 Represents a Guild Integration on Discord.

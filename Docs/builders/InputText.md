@@ -1,4 +1,10 @@
-<a name="InputText"></a>
+---
+title: InputText
+sidebar:
+  order: 5
+---
+
+
 
 ## InputText
 Represents an Input Text component for a Discord interaction message.

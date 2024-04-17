@@ -1,4 +1,10 @@
-<a name="SelectMenuInteraction"></a>
+---
+title: SelectMenuInteraction
+sidebar:
+  order: 57
+---
+
+
 
 ## SelectMenuInteraction ⇐ <code>MessageComponentInteraction</code>
 Represents an interaction with a select menu component.

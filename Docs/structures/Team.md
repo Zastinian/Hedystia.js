@@ -1,4 +1,10 @@
-<a name="Team"></a>
+---
+title: Team
+sidebar:
+  order: 62
+---
+
+
 
 ## Team ⇐ <code>Base</code>
 Represents a team object.

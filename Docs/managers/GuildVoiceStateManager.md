@@ -1,4 +1,10 @@
-<a name="GuildVoiceStateManager"></a>
+---
+title: GuildVoiceStateManager
+sidebar:
+  order: 29
+---
+
+
 
 ## GuildVoiceStateManager ⇐ <code>VoiceStateManager</code>
 Represents a voice state manager for a specific guild.

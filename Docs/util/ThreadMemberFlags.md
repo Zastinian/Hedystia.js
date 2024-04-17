@@ -1,4 +1,10 @@
-<a name="ThreadMemberFlags"></a>
+---
+title: ThreadMemberFlags
+sidebar:
+  order: 19
+---
+
+
 
 ## ThreadMemberFlags ⇐ <code>Bitfield</code>
 A bitfield of flags for a thread member.

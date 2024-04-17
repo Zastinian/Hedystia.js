@@ -1,4 +1,10 @@
-<a name="ActionsManager"></a>
+---
+title: ActionsManager
+sidebar:
+  order: 2
+---
+
+
 
 ## ActionsManager
 It's a class that handles all the events that the client receives from the Discord API.

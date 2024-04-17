@@ -1,4 +1,10 @@
-<a name="Modal"></a>
+---
+title: Modal
+sidebar:
+  order: 10
+---
+
+
 
 ## Modal
 A modal message with components.

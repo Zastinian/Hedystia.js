@@ -1,4 +1,10 @@
-<a name="NewsChannel"></a>
+---
+title: NewsChannel
+sidebar:
+  order: 51
+---
+
+
 
 ## NewsChannel ⇐ <code>BaseGuildChannel</code>
 Represents a news channel in a guild.

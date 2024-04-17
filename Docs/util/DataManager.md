@@ -1,4 +1,10 @@
-<a name="DataManager"></a>
+---
+title: DataManager
+sidebar:
+  order: 7
+---
+
+
 
 ## DataManager
 A utility class for managing data.

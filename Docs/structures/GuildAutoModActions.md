@@ -1,4 +1,10 @@
-<a name="GuildAutoModActions"></a>
+---
+title: GuildAutoModActions
+sidebar:
+  order: 29
+---
+
+
 
 ## GuildAutoModActions ⇐ <code>Base</code>
 Represents an action taken by the guild automod system.

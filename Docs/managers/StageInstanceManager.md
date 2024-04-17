@@ -1,4 +1,10 @@
-<a name="StageInstanceManager"></a>
+---
+title: StageInstanceManager
+sidebar:
+  order: 39
+---
+
+
 
 ## StageInstanceManager ⇐ <code>Base</code>
 Manages stage instances in a guild.

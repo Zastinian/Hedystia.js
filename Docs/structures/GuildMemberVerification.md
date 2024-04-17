@@ -1,4 +1,10 @@
-<a name="GuildMemberVerification"></a>
+---
+title: GuildMemberVerification
+sidebar:
+  order: 34
+---
+
+
 
 ## GuildMemberVerification ⇐ <code>Base</code>
 Represents the verification requirements for a guild member.

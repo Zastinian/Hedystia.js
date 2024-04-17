@@ -1,4 +1,10 @@
-<a name="MessageButton"></a>
+---
+title: MessageButton
+sidebar:
+  order: 8
+---
+
+
 
 ## MessageButton
 A class representing a message button.

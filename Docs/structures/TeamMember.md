@@ -1,4 +1,10 @@
-<a name="TeamMember"></a>
+---
+title: TeamMember
+sidebar:
+  order: 63
+---
+
+
 
 ## TeamMember ⇐ <code>Base</code>
 Represents a team member.

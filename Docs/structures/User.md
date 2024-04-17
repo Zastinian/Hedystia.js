@@ -1,4 +1,10 @@
-<a name="User"></a>
+---
+title: User
+sidebar:
+  order: 68
+---
+
+
 
 ## User ⇐ <code>Base</code>
 Represents a user in the application.

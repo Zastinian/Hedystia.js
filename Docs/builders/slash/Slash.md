@@ -1,4 +1,10 @@
-<a name="Slash"></a>
+---
+title: Slash
+sidebar:
+  order: 14
+---
+
+
 
 ## Slash
 A class representing a Discord Slash Command.

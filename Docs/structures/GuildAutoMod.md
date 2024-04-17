@@ -1,3 +1,9 @@
+---
+title: GuildAutoMod
+sidebar:
+  order: 28
+---
+
 ## Classes
 
 <dl>

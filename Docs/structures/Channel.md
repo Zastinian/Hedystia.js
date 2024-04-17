@@ -1,4 +1,10 @@
-<a name="Channel"></a>
+---
+title: Channel
+sidebar:
+  order: 11
+---
+
+
 
 ## Channel ⇐ <code>Base</code>
 Represents a channel in a guild or a direct message.

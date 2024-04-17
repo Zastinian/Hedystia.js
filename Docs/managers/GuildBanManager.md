@@ -1,4 +1,10 @@
-<a name="GuildBanManager"></a>
+---
+title: GuildBanManager
+sidebar:
+  order: 11
+---
+
+
 
 ## GuildBanManager ⇐ <code>Base</code>
 Represents a manager for handling guild bans.

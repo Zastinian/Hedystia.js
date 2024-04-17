@@ -1,4 +1,10 @@
-<a name="GuildStickerManager"></a>
+---
+title: GuildStickerManager
+sidebar:
+  order: 26
+---
+
+
 
 ## GuildStickerManager ⇐ <code>StickerManager</code>
 Represents a sticker manager for a specific guild.

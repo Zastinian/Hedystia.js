@@ -1,4 +1,10 @@
-<a name="MessageManager"></a>
+---
+title: MessageManager
+sidebar:
+  order: 31
+---
+
+
 
 ## MessageManager ⇐ <code>Base</code>
 Represents a message manager for a specific guild and channel.

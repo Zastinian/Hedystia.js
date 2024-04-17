@@ -1,4 +1,10 @@
-<a name="ApplicationCommandPermissionManager"></a>
+---
+title: ApplicationCommandPermissionManager
+sidebar:
+  order: 4
+---
+
+
 
 ## ApplicationCommandPermissionManager ⇐ <code>Base</code>
 Manages application command permissions for a specific guild.

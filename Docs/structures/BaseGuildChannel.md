@@ -1,4 +1,10 @@
-<a name="BaseGuildChannel"></a>
+---
+title: BaseGuildChannel
+sidebar:
+  order: 8
+---
+
+
 
 ## BaseGuildChannel ⇐ <code>TextBasedChannels</code>
 Represents a base guild channel that extends the TextBasedChannels class.

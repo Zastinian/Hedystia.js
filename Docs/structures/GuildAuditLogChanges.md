@@ -1,4 +1,10 @@
-<a name="GuildAuditLogChanges"></a>
+---
+title: GuildAuditLogChanges
+sidebar:
+  order: 26
+---
+
+
 
 ## GuildAuditLogChanges ⇐ <code>Base</code>
 Represents changes made to a guild audit log.

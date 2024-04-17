@@ -1,4 +1,10 @@
-<a name="GuildMemberVerificationManager"></a>
+---
+title: GuildMemberVerificationManager
+sidebar:
+  order: 20
+---
+
+
 
 ## GuildMemberVerificationManager ⇐ <code>Base</code>
 Represents a manager for guild member verification settings.

@@ -1,4 +1,10 @@
-<a name="MessageFlags"></a>
+---
+title: MessageFlags
+sidebar:
+  order: 12
+---
+
+
 
 ## MessageFlags ⇐ <code>Bitfield</code>
 Represents a bitfield for Discord message flags.

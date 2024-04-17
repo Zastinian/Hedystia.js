@@ -1,4 +1,10 @@
-<a name="ButtonInteraction"></a>
+---
+title: ButtonInteraction
+sidebar:
+  order: 9
+---
+
+
 
 ## ButtonInteraction ⇐ <code>MessageComponentInteraction</code>
 Represents a button interaction, extending the MessageComponentInteraction class.

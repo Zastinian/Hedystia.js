@@ -1,4 +1,10 @@
-<a name="ThreadChannel"></a>
+---
+title: ThreadChannel
+sidebar:
+  order: 65
+---
+
+
 
 ## ThreadChannel ⇐ <code>TextBasedChannels</code>
 Represents a thread channel in Discord.

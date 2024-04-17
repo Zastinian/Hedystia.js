@@ -1,4 +1,10 @@
-<a name="MessageReference"></a>
+---
+title: MessageReference
+sidebar:
+  order: 49
+---
+
+
 
 ## MessageReference ⇐ <code>Base</code>
 Represents a reference to a message.

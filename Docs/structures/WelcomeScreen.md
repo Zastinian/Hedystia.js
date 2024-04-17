@@ -1,4 +1,10 @@
-<a name="WelcomeScreen"></a>
+---
+title: WelcomeScreen
+sidebar:
+  order: 75
+---
+
+
 
 ## WelcomeScreen ⇐ <code>Base</code>
 Represents a welcome screen for a guild.

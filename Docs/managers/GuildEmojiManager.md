@@ -1,4 +1,10 @@
-<a name="GuildEmojiManager"></a>
+---
+title: GuildEmojiManager
+sidebar:
+  order: 14
+---
+
+
 
 ## GuildEmojiManager ⇐ <code>EmojiManager</code>
 Represents a manager for guild emojis.

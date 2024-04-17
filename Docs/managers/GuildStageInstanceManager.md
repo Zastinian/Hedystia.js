@@ -1,4 +1,10 @@
-<a name="GuildStageInstanceManger"></a>
+---
+title: GuildStageInstanceManger
+sidebar:
+  order: 25
+---
+
+
 
 ## GuildStageInstanceManger ⇐ <code>StageInstanceManager</code>
 A class that extends the StageInstanceManager class and manages stage instances for a specific guild.

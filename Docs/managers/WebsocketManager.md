@@ -1,4 +1,10 @@
-<a name="WebsocketManager"></a>
+---
+title: WebsocketManager
+sidebar:
+  order: 45
+---
+
+
 
 ## WebsocketManager ⇐ <code>WebSocket</code>
 Represents a WebSocket manager that extends the WebSocket class.

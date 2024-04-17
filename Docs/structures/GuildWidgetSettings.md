@@ -1,4 +1,10 @@
-<a name="GuildWidgetSettings"></a>
+---
+title: GuildWidgetSettings
+sidebar:
+  order: 41
+---
+
+
 
 ## GuildWidgetSettings ⇐ <code>Base</code>
 Represents the settings for a guild widget.

@@ -1,4 +1,10 @@
-<a name="RoleSelect"></a>
+---
+title: RoleSelect
+sidebar:
+  order: 11
+---
+
+
 
 ## RoleSelect
 Represents a Discord role select component that allows users to select one or more roles.

@@ -1,4 +1,10 @@
-<a name="Emoji"></a>
+---
+title: Emoji
+sidebar:
+  order: 21
+---
+
+
 
 ## Emoji ⇐ <code>Base</code>
 Represents an Emoji object.

@@ -1,4 +1,10 @@
-<a name="UserSelect"></a>
+---
+title: UserSelect
+sidebar:
+  order: 15
+---
+
+
 
 ## UserSelect
 Represents a user select component in a Discord interaction.

@@ -1,4 +1,10 @@
-<a name="Embed"></a>
+---
+title: Embed
+sidebar:
+  order: 3
+---
+
+
 
 ## Embed
 Class representing an embed object for use in Discord messages.

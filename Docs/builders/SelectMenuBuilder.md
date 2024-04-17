@@ -1,4 +1,10 @@
-<a name="SelectMenu"></a>
+---
+title: SelectMenu
+sidebar:
+  order: 13
+---
+
+
 
 ## SelectMenu
 Class representing a select menu component.

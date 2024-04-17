@@ -1,4 +1,10 @@
-<a name="SlashOption"></a>
+---
+title: SlashOption
+sidebar:
+  order: 15
+---
+
+
 
 ## SlashOption
 Represents an option for a slash command.

@@ -1,4 +1,10 @@
-<a name="AutoModManager"></a>
+---
+title: AutoModManager
+sidebar:
+  order: 5
+---
+
+
 
 ## AutoModManager ⇐ <code>Base</code>
 Represents an AutoMod manager that handles the creation, editing, and deletion of auto-moderation rules for a guild.

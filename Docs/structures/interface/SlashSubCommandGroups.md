@@ -1,4 +1,10 @@
-<a name="SlashSubCommandGroups"></a>
+---
+title: SlashSubCommandGroups
+sidebar:
+  order: 47
+---
+
+
 
 ## SlashSubCommandGroups ⇐ <code>Base</code>
 Represents a sub-command group for a slash command.

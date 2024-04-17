@@ -1,4 +1,10 @@
-<a name="SlashOption"></a>
+---
+title: SlashOption
+sidebar:
+  order: 45
+---
+
+
 
 ## SlashOption ⇐ <code>Base</code>
 Represents a slash command option.

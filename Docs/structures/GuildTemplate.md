@@ -1,4 +1,10 @@
-<a name="GuildTemplate"></a>
+---
+title: GuildTemplate
+sidebar:
+  order: 38
+---
+
+
 
 ## GuildTemplate ⇐ <code>Base</code>
 Represents a guild template.

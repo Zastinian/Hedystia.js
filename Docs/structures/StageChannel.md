@@ -1,4 +1,10 @@
-<a name="StageChannel"></a>
+---
+title: StageChannel
+sidebar:
+  order: 58
+---
+
+
 
 ## StageChannel ⇐ <code>VoiceBasedChannels</code>
 Represents a stage channel, which is a type of voice-based channel.

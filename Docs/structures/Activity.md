@@ -1,4 +1,10 @@
-<a name="Activity"></a>
+---
+title: Activity
+sidebar:
+  order: 2
+---
+
+
 
 ## Activity ⇐ <code>Base</code>
 It's a class that represents a user's activity

@@ -1,4 +1,10 @@
-<a name="ReactionUserManager"></a>
+---
+title: ReactionUserManager
+sidebar:
+  order: 35
+---
+
+
 
 ## ReactionUserManager ⇐ <code>Base</code>
 A class representing a manager for reaction users.

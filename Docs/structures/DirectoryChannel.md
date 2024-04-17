@@ -1,4 +1,10 @@
-<a name="DirectoryChannel"></a>
+---
+title: DirectoryChannel
+sidebar:
+  order: 19
+---
+
+
 
 ## DirectoryChannel ⇐ <code>Channel</code>
 Represents a directory channel.

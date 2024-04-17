@@ -1,4 +1,10 @@
-<a name="EmojiManager"></a>
+---
+title: EmojiManager
+sidebar:
+  order: 8
+---
+
+
 
 ## EmojiManager ⇐ <code>Base</code>
 Represents a manager for handling emojis in a guild.

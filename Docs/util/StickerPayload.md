@@ -1,4 +1,10 @@
-<a name="StickerPayload"></a>
+---
+title: StickerPayload
+sidebar:
+  order: 17
+---
+
+
 
 ## StickerPayload
 Represents a sticker payload.

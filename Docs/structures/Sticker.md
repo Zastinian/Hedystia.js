@@ -1,4 +1,10 @@
-<a name="Sticker"></a>
+---
+title: Sticker
+sidebar:
+  order: 60
+---
+
+
 
 ## Sticker ⇐ <code>Base</code>
 Represents a Sticker object, extending the Base class.

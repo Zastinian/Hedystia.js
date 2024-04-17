@@ -1,4 +1,10 @@
-<a name="Invite"></a>
+---
+title: Invite
+sidebar:
+  order: 44
+---
+
+
 
 ## Invite ⇐ <code>Base</code>
 Represents an invite to a guild.

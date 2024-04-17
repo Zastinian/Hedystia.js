@@ -1,4 +1,10 @@
-<a name="VoiceBasedChannels"></a>
+---
+title: VoiceBasedChannels
+sidebar:
+  order: 49
+---
+
+
 
 ## VoiceBasedChannels ⇐ <code>Channel</code>
 Represents a voice-based channel in a guild.

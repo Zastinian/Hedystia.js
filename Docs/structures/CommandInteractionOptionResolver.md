@@ -1,3 +1,9 @@
+---
+title: CommandInteractionOptionResolver
+sidebar:
+  order: 15
+---
+
 ## Classes
 
 <dl>

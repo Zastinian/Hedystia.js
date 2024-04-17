@@ -1,4 +1,10 @@
-<a name="ClientUser"></a>
+---
+title: ClientUser
+sidebar:
+  order: 13
+---
+
+
 
 ## ClientUser ⇐ <code>User</code>
 Represents a client user, extending the base User class.

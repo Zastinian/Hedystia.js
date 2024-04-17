@@ -1,4 +1,10 @@
-<a name="GuildMember"></a>
+---
+title: GuildMember
+sidebar:
+  order: 33
+---
+
+
 
 ## GuildMember ⇐ <code>Base</code>
 Represents a member of a guild.

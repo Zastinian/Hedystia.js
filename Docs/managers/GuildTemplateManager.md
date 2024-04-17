@@ -1,4 +1,10 @@
-<a name="GuildTemplateManager"></a>
+---
+title: GuildTemplateManager
+sidebar:
+  order: 27
+---
+
+
 
 ## GuildTemplateManager ⇐ <code>Base</code>
 Represents a manager for guild templates.

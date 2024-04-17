@@ -1,4 +1,10 @@
-<a name="ThreadManager"></a>
+---
+title: ThreadManager
+sidebar:
+  order: 41
+---
+
+
 
 ## ThreadManager ⇐ <code>BaseThreadManager</code>
 A class representing a thread manager for a specific channel in a guild.Extends the BaseThreadManager class.

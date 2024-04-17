@@ -1,4 +1,10 @@
-<a name="ApplicationCommand"></a>
+---
+title: ApplicationCommand
+sidebar:
+  order: 3
+---
+
+
 
 ## ApplicationCommand ⇐ <code>Base</code>
 Represents an application command.

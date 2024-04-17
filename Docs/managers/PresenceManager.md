@@ -1,4 +1,10 @@
-<a name="PresenceManager"></a>
+---
+title: PresenceManager
+sidebar:
+  order: 33
+---
+
+
 
 ## PresenceManager ⇐ <code>Base</code>
 Represents a presence manager that handles the caching and retrieval of presence data.

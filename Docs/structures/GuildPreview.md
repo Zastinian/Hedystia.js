@@ -1,4 +1,10 @@
-<a name="GuildPreview"></a>
+---
+title: GuildPreview
+sidebar:
+  order: 35
+---
+
+
 
 ## GuildPreview ⇐ <code>Base</code>
 Represents the preview for a guild.

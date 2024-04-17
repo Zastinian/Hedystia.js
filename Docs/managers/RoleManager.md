@@ -1,4 +1,10 @@
-<a name="RoleManager"></a>
+---
+title: RoleManager
+sidebar:
+  order: 36
+---
+
+
 
 ## RoleManager ⇐ <code>Base</code>
 Represents a Role Manager that handles operations related to roles in a guild.

@@ -1,4 +1,10 @@
-<a name="StickerPack"></a>
+---
+title: StickerPack
+sidebar:
+  order: 61
+---
+
+
 
 ## StickerPack ⇐ <code>Base</code>
 Represents a sticker pack.

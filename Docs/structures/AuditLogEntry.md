@@ -1,4 +1,10 @@
-<a name="AuditLogEntry"></a>
+---
+title: AuditLogEntry
+sidebar:
+  order: 6
+---
+
+
 
 ## AuditLogEntry ⇐ <code>Base</code>
 Represents an entry in the audit log.

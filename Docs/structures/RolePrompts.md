@@ -1,4 +1,10 @@
-<a name="RolePrompts"></a>
+---
+title: RolePrompts
+sidebar:
+  order: 56
+---
+
+
 
 ## RolePrompts ⇐ <code>Base</code>
 Represents a RolePrompts object that extends the Base class.

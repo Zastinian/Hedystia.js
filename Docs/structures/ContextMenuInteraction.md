@@ -1,4 +1,10 @@
-<a name="ContextMenuInteraction"></a>
+---
+title: ContextMenuInteraction
+sidebar:
+  order: 16
+---
+
+
 
 ## ContextMenuInteraction ⇐ <code>ApplicationCommandInteraction</code>
 Represents a context menu interaction, extending the base ApplicationCommandInteraction class.

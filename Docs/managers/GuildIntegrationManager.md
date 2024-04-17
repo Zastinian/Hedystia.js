@@ -1,4 +1,10 @@
-<a name="GuildIntegrationManager"></a>
+---
+title: GuildIntegrationManager
+sidebar:
+  order: 15
+---
+
+
 
 ## GuildIntegrationManager ⇐ <code>Base</code>
 Represents a manager for guild integrations.

@@ -1,4 +1,10 @@
-<a name="GuildVanityManager"></a>
+---
+title: GuildVanityManager
+sidebar:
+  order: 28
+---
+
+
 
 ## GuildVanityManager ⇐ <code>Base</code>
 Represents a manager for handling guild vanity URLs.

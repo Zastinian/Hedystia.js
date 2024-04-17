@@ -1,4 +1,10 @@
-<a name="ChannelFlags"></a>
+---
+title: ChannelFlags
+sidebar:
+  order: 5
+---
+
+
 
 ## ChannelFlags ⇐ <code>Bitfield</code>
 **Kind**: global class  

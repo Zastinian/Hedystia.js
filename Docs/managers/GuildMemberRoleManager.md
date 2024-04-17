@@ -1,4 +1,10 @@
-<a name="GuildMemberRoleManager"></a>
+---
+title: GuildMemberRoleManager
+sidebar:
+  order: 19
+---
+
+
 
 ## GuildMemberRoleManager ⇐ <code>RoleManager</code>
 Represents a manager for handling roles of a guild member.

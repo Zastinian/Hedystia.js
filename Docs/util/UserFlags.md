@@ -1,4 +1,10 @@
-<a name="UserFlags"></a>
+---
+title: UserFlags
+sidebar:
+  order: 20
+---
+
+
 
 ## UserFlags ⇐ <code>Bitfield</code>
 Represents a set of user flags using a bitfield.

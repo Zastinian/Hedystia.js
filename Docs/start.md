@@ -1,6 +1,7 @@
 ---
-id: start
 title: Start
+sidebar:
+  order: 1
 ---
 
 ## Installation

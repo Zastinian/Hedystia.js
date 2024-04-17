@@ -1,4 +1,10 @@
-<a name="DMChannel"></a>
+---
+title: DMChannel
+sidebar:
+  order: 20
+---
+
+
 
 ## DMChannel ⇐ <code>TextBasedChannels</code>
 Represents a direct message channel in Discord.

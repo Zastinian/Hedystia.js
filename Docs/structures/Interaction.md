@@ -1,4 +1,10 @@
-<a name="Interaction"></a>
+---
+title: Interaction
+sidebar:
+  order: 42
+---
+
+
 
 ## Interaction ⇐ <code>Base</code>
 Represents an interaction with a user in a Discord server.
@@ -9,6 +15,7 @@ Represents an interaction with a user in a Discord server.
 * [Interaction](#Interaction) ⇐ <code>Base</code>
     * [new Interaction(data, guildId, client)](#new_Interaction_new)
     * [.guild](#Interaction+guild) ⇒
+    * [.member](#Interaction+member) ⇒ <code>Member</code> \| <code>null</code>
     * [.user](#Interaction+user) ⇒ <code>User</code> \| <code>null</code>
     * [.isChatInput()](#Interaction+isChatInput) ⇒ <code>boolean</code>
     * [.isCommand()](#Interaction+isCommand) ⇒ <code>boolean</code>
@@ -48,6 +55,13 @@ Retrieves the guild associated with this guildId.
 
 **Kind**: instance property of [<code>Interaction</code>](#Interaction)  
 **Returns**: The guild object if found, otherwise null.  
+<a name="Interaction+member"></a>
+
+### interaction.member ⇒ <code>Member</code> \| <code>null</code>
+Get the member associated with this instance.
+
+**Kind**: instance property of [<code>Interaction</code>](#Interaction)  
+**Returns**: <code>Member</code> \| <code>null</code> - The member object, or null if it is not available.  
 <a name="Interaction+user"></a>
 
 ### interaction.user ⇒ <code>User</code> \| <code>null</code>

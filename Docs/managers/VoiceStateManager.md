@@ -1,4 +1,10 @@
-<a name="VoiceStateManager"></a>
+---
+title: VoiceStateManager
+sidebar:
+  order: 44
+---
+
+
 
 ## VoiceStateManager ⇐ <code>Base</code>
 Represents a Voice State Manager that handles voice state related operations.

@@ -1,4 +1,10 @@
-<a name="VoiceState"></a>
+---
+title: VoiceState
+sidebar:
+  order: 72
+---
+
+
 
 ## VoiceState ⇐ <code>Base</code>
 Represents the state of a voice connection for a user in a guild.

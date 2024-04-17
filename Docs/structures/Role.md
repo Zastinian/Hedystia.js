@@ -1,4 +1,10 @@
-<a name="Role"></a>
+---
+title: Role
+sidebar:
+  order: 55
+---
+
+
 
 ## Role ⇐ <code>Base</code>
 Represents a role in a guild.

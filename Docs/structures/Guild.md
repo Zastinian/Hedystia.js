@@ -1,4 +1,10 @@
-<a name="Guild"></a>
+---
+title: Guild
+sidebar:
+  order: 24
+---
+
+
 
 ## Guild ⇐ <code>Base</code>
 Represents a guild in Discord.

@@ -1,4 +1,10 @@
-<a name="MessageComponentInteraction"></a>
+---
+title: MessageComponentInteraction
+sidebar:
+  order: 46
+---
+
+
 
 ## MessageComponentInteraction ⇐ <code>Interaction</code>
 Represents a message component interaction.

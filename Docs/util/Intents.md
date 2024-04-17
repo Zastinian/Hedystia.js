@@ -1,4 +1,10 @@
-<a name="Intents"></a>
+---
+title: Intents
+sidebar:
+  order: 10
+---
+
+
 
 ## Intents ⇐ <code>Bitfield</code>
 Represents the intents that the bot wishes to subscribe to.

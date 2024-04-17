@@ -1,4 +1,10 @@
-<a name="GuildDiscovery"></a>
+---
+title: GuildDiscovery
+sidebar:
+  order: 31
+---
+
+
 
 ## GuildDiscovery ⇐ <code>Base</code>
 Represents a guild's discovery metadata.

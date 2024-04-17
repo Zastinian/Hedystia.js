@@ -1,4 +1,10 @@
-<a name="GuildScheduledEventManager"></a>
+---
+title: GuildScheduledEventManager
+sidebar:
+  order: 23
+---
+
+
 
 ## GuildScheduledEventManager ⇐ <code>ScheduledEventManager</code>
 Represents a scheduled event manager for a specific guild.

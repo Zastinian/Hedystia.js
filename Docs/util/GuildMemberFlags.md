@@ -1,4 +1,10 @@
-<a name="GuildMemberFlags"></a>
+---
+title: GuildMemberFlags
+sidebar:
+  order: 9
+---
+
+
 
 ## GuildMemberFlags ⇐ <code>Bitfield</code>
 A bitfield that represents flags for a guild member.

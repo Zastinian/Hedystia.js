@@ -1,4 +1,10 @@
-<a name="APIGuild"></a>
+---
+title: APIGuild
+sidebar:
+  order: 50
+---
+
+
 
 ## APIGuild ⇐ <code>Base</code>
 Represents a guild in the API.

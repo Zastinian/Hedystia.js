@@ -1,4 +1,10 @@
-<a name="ActivityFlags"></a>
+---
+title: ActivityFlags
+sidebar:
+  order: 2
+---
+
+
 
 ## ActivityFlags ⇐ <code>Bitfield</code>
 **Kind**: global class  

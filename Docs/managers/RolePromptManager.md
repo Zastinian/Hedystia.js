@@ -1,4 +1,10 @@
-<a name="RolePromptManager"></a>
+---
+title: RolePromptManager
+sidebar:
+  order: 37
+---
+
+
 
 ## RolePromptManager ⇐ <code>Base</code>
 Represents a manager for role prompts in a guild.

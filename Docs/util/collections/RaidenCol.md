@@ -1,4 +1,10 @@
-<a name="RaidenCol"></a>
+---
+title: RaidenCol
+sidebar:
+  order: 6
+---
+
+
 
 ## RaidenCol ⇐ <code>Map</code>
 **Kind**: global class  

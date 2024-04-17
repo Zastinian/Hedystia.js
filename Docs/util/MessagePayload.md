@@ -1,4 +1,10 @@
-<a name="MessagePayload"></a>
+---
+title: MessagePayload
+sidebar:
+  order: 13
+---
+
+
 
 ## MessagePayload
 Represents a message payload and provides methods for creating and resolving message data.

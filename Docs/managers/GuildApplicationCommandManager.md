@@ -1,4 +1,10 @@
-<a name="GuildApplicationCommandManager"></a>
+---
+title: GuildApplicationCommandManager
+sidebar:
+  order: 9
+---
+
+
 
 ## GuildApplicationCommandManager ⇐ <code>ApplicationCommandManager</code>
 Represents a manager for guild-specific application commands.

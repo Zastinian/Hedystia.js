@@ -1,4 +1,10 @@
-<a name="WebhookClient"></a>
+---
+title: WebhookClient
+sidebar:
+  order: 74
+---
+
+
 
 ## WebhookClient ⇐ <code>Base</code>
 Represents a webhook client that can interact with webhooks.

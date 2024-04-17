@@ -1,4 +1,10 @@
-<a name="SystemChannelFlags"></a>
+---
+title: SystemChannelFlags
+sidebar:
+  order: 18
+---
+
+
 
 ## SystemChannelFlags ⇐ <code>Bitfield</code>
 A bitfield that represents the system channel flags.

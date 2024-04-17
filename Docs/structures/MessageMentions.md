@@ -1,4 +1,10 @@
-<a name="MessageMentions"></a>
+---
+title: MessageMentions
+sidebar:
+  order: 47
+---
+
+
 
 ## MessageMentions ⇐ <code>Base</code>
 Represents a message mention object.

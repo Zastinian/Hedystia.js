@@ -1,4 +1,10 @@
-<a name="ModalInteraction"></a>
+---
+title: ModalInteraction
+sidebar:
+  order: 50
+---
+
+
 
 ## ModalInteraction ⇐ <code>MessageComponentInteraction</code>
 **Kind**: global class  

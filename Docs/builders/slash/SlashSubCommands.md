@@ -1,4 +1,10 @@
-<a name="SlashSubCommands"></a>
+---
+title: SlashSubCommands
+sidebar:
+  order: 17
+---
+
+
 
 ## SlashSubCommands
 A class representing a slash subcommand for Discord slash commands.

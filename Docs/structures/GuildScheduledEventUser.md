@@ -1,4 +1,10 @@
-<a name="GuildScheduledEventUser"></a>
+---
+title: GuildScheduledEventUser
+sidebar:
+  order: 37
+---
+
+
 
 ## GuildScheduledEventUser ⇐ <code>Base</code>
 Represents a user associated with a scheduled event in a guild.

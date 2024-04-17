@@ -1,4 +1,10 @@
-<a name="ChannelManager"></a>
+---
+title: ChannelManager
+sidebar:
+  order: 7
+---
+
+
 
 ## ChannelManager ⇐ <code>Base</code>
 Represents a Channel Manager that handles operations related to channels.

@@ -1,4 +1,10 @@
-<a name="GuildWidgetManager"></a>
+---
+title: GuildWidgetManager
+sidebar:
+  order: 30
+---
+
+
 
 ## GuildWidgetManager ⇐ <code>Base</code>
 Represents a manager for guild widget settings.

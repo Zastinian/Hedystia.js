@@ -1,4 +1,10 @@
-<a name="GuildChannelManager"></a>
+---
+title: GuildChannelManager
+sidebar:
+  order: 12
+---
+
+
 
 ## GuildChannelManager ⇐ <code>ChannelManager</code>
 Represents a manager for guild channels.

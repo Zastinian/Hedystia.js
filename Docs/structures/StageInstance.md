@@ -1,4 +1,10 @@
-<a name="StageInstance"></a>
+---
+title: StageInstance
+sidebar:
+  order: 59
+---
+
+
 
 ## StageInstance ⇐ <code>Base</code>
 Represents a Stage Instance in a guild.

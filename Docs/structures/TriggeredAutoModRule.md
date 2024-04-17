@@ -1,4 +1,10 @@
-<a name="TriggeredAutoModRule"></a>
+---
+title: TriggeredAutoModRule
+sidebar:
+  order: 67
+---
+
+
 
 ## TriggeredAutoModRule ⇐ <code>Base</code>
 Represents a triggered auto moderation rule.

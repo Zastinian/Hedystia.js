@@ -1,4 +1,10 @@
-<a name="Message"></a>
+---
+title: Message
+sidebar:
+  order: 45
+---
+
+
 
 ## Message ⇐ <code>Base</code>
 Represents a message in a chat channel.

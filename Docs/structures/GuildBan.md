@@ -1,4 +1,10 @@
-<a name="GuildBan"></a>
+---
+title: GuildBan
+sidebar:
+  order: 30
+---
+
+
 
 ## GuildBan ⇐ <code>Base</code>
 Represents a ban for a user in a guild.

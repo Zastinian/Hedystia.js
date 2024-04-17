@@ -1,4 +1,10 @@
-<a name="Snowflake"></a>
+---
+title: Snowflake
+sidebar:
+  order: 16
+---
+
+
 
 ## Snowflake
 Represents a Snowflake, a unique identifier used in distributed systems.

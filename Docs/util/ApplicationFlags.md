@@ -1,4 +1,10 @@
-<a name="ApplicationFlags"></a>
+---
+title: ApplicationFlags
+sidebar:
+  order: 3
+---
+
+
 
 ## ApplicationFlags ⇐ <code>Bitfield</code>
 **Kind**: global class  

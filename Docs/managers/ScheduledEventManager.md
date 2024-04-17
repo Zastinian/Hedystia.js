@@ -1,4 +1,10 @@
-<a name="ScheduledEventManager"></a>
+---
+title: ScheduledEventManager
+sidebar:
+  order: 38
+---
+
+
 
 ## ScheduledEventManager ⇐ <code>Base</code>
 Represents a Scheduled Event Manager that handles creating, editing, and deleting scheduled events for a guild.

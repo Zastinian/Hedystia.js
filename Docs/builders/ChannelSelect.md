@@ -1,4 +1,10 @@
-<a name="ChannelSelect"></a>
+---
+title: ChannelSelect
+sidebar:
+  order: 2
+---
+
+
 
 ## ChannelSelect
 Class representing a Channel Select component for Discord message components.

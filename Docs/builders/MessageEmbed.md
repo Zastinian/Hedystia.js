@@ -1,4 +1,10 @@
-<a name="MessageEmbed"></a>
+---
+title: MessageEmbed
+sidebar:
+  order: 9
+---
+
+
 
 ## MessageEmbed
 Represents a message embed.
