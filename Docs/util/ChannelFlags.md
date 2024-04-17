@@ -40,7 +40,8 @@ Sets the default value for the ChannelFlags property to 0n.
 <a name="ChannelFlags.All"></a>
 
 ### ChannelFlags.All ⇒
-Calculates the value of ChannelFlags.All by performing a bitwise OR operation on all the valuesin the ChannelFlags.Flags object.
+Calculates the value of ChannelFlags.All by performing a bitwise OR operation on all the values
+in the ChannelFlags.Flags object.
 
 **Kind**: static property of [<code>ChannelFlags</code>](#ChannelFlags)  
 **Returns**: The calculated value of ChannelFlags.All.  
@@ -62,4 +63,5 @@ Channel flags and their corresponding bit numbers.
 | --- | --- | --- |
 | Pinned | <code>bigint</code> | <code></code> | 
 | Require_Tag | <code>bigint</code> | <code></code> | 
+| Hide_Media_Download_Options | <code>bigint</code> | <code></code> | 
 

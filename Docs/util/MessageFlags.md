@@ -38,7 +38,8 @@ Sets the default value for the MessageFlags to 0n.
 <a name="MessageFlags.All"></a>
 
 ### MessageFlags.All ⇒
-Combines all the values of the MessageFlags.Flags object using a bitwise OR operationand assigns the result to the MessageFlags.All property.
+Combines all the values of the MessageFlags.Flags object using a bitwise OR operation
+and assigns the result to the MessageFlags.All property.
 
 **Kind**: static property of [<code>MessageFlags</code>](#MessageFlags)  
 **Returns**: The calculated value of Intents.All.  
@@ -68,4 +69,5 @@ Represents the different flags that can be applied to a message.
 | Loading | <code>bigint</code> | <code></code> | 
 | Failed_To_Mention_Some_Roles_In_Thread | <code>bigint</code> | <code></code> | 
 | Suppress_Notifications | <code>bigint</code> | <code></code> | 
+| Is_Voice_Message | <code>bigint</code> | <code></code> | 
 
